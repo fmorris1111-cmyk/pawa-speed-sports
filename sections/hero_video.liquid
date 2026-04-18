@@ -1,15 +1,124 @@
 <div tabindex="0" class="div-block">
-          <a href="{{ section.settings.url_destination_url }}" class="link-block-5 w-inline-block"> <div class="code-embed-2 w-embed w-script"> <div tabindex="0" class="div-block" style="position:relative;"> <div class="code-embed-2 w-embed w-script"> <a class="video-link" href="{{ section.settings.text_video_link_url }}" style="display:block;height:100%;width:100%;position:absolute;top:0;left:0;z-index:1;"></a> <video autoplay="" muted="" loop="" playsinline=""> <source src="{{ section.settings.text_video_url }}" type="video/mp4"></video> <div class="safari-message" style="display:none;"> <p>Video is not supported in Safari. Please use Chrome, Firefox, or Edge for the best experience.</p> </div> <style> /* &#9472;&#9472;&#9472; DESKTOP (992px and up) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */ .div-block { position: relative; width: 100%; height: 90vh; overflow: hidden; margin-bottom: 1rem; } .code-embed-2 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } video { width: 100%; height: 100%; object-fit: cover; } /* &#9472;&#9472;&#9472; TABLET (768px &ndash; 991px) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */ @media screen and (max-width: 991px) { .div-block { height: 60vh; } } /* &#9472;&#9472;&#9472; MOBILE (767px and below) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */ @media screen and (max-width: 767px) { .div-block { height: 50vh; } video { width: 100%; height: 100%; object-fit: fill; } } /* &#9472;&#9472;&#9472; DO NOT EDIT BELOW &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */ .safari-message { background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 20px; text-align: center; color: #6c757d; font-size: 14px; margin: 20px 0; } video::-webkit-media-controls, video::-webkit-media-controls-enclosure, video::-webkit-media-controls-panel { display: none !important; } </style> <script> (function () { var desktopUrl = {{ section.settings.text_video_url | json }}; var tabletUrl = {{ section.settings.text_tablet_video_url | json }} || desktopUrl; var mobileUrl = {{ section.settings.text_mobile_video_url | json }} || tabletUrl; function getUrlForBreakpoint() { var w = window.innerWidth; if (w <= 767) return mobileUrl; if (w <= 991) return tabletUrl; return desktopUrl; } var embed = document.currentScript.closest('.code-embed-2'); var video = embed.querySelector('video'); var source = embed.querySelector('source'); function updateVideo() { var url = getUrlForBreakpoint(); if (source.getAttribute('src') !== url) { source.setAttribute('src', url); video.load(); } } updateVideo(); var resizeTimer; window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(updateVideo, 150); }); // Safari fallback var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent); if (isSafari) { var safariMessage = embed.querySelector('.safari-message'); setTimeout(function () { if (video.readyState === 0 || video.paused) { video.style.display = 'none'; safariMessage.style.display = 'block'; } }, 2000); } })(); </script> </div> </div> </div> <div class="text-block-3" href="{{ section.settings.url_video_link_url }}"> <div class="text-block-3" href="{{ section.settings.url_video_link_url }}">VideoLink</div> </div> <div class="text-block-3">{{ section.settings.text_mobile_video_url }}</div> <div class="text-block-3">{{ section.settings.text_tablet_video_url }}</div> <div class="text-block-3">{{ section.settings.text_video_url }}</div> </a>
+          <div class="code-embed-2 w-embed w-script">
+            <div tabindex="0" class="div-block" style="position:relative;">
+              <div class="code-embed-2 w-embed w-script">
+                <a class="video-link" href="{{ section.settings.text_video_link_url }}" style="display:block;height:100%;width:100%;position:absolute;top:0;left:0;z-index:1;"></a>
+                <video autoplay="" muted="" loop="" playsinline="">
+                  <source src="{{ section.settings.text_video_url }}" type="video/mp4"></video>
+                <div class="safari-message" style="display:none;">
+                  <p>Video is not supported in Safari. Please use Chrome, Firefox, or Edge for the best experience.</p>
+                </div>
+                <style>
+      /* &#9472;&#9472;&#9472; DESKTOP (992px and up) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+      .div-block {
+        position: relative;
+        width: 100%;
+        height: 90vh;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .code-embed-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* &#9472;&#9472;&#9472; TABLET (768px &ndash; 991px) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+      @media screen and (max-width: 991px) {
+        .div-block {
+          height: 60vh;
+        }
+      }
+      /* &#9472;&#9472;&#9472; MOBILE (767px and below) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+      @media screen and (max-width: 767px) {
+        .div-block {
+          height: 50vh;
+        }
+        video {
+          width: 100%;
+          height: 100%;
+          object-fit: fill;
+        }
+      }
+      /* &#9472;&#9472;&#9472; DO NOT EDIT BELOW &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+      .safari-message {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        color: #6c757d;
+        font-size: 14px;
+        margin: 20px 0;
+      }
+      video::-webkit-media-controls,
+      video::-webkit-media-controls-enclosure,
+      video::-webkit-media-controls-panel { display: none !important; }
+    </style>
+                <script>
+      (function () {
+        var desktopUrl = {{ section.settings.text_video_url | json }};
+        var tabletUrl  = {{ section.settings.text_tablet_video_url | json }} || desktopUrl;
+        var mobileUrl  = {{ section.settings.text_mobile_video_url | json }} || tabletUrl;
+        function getUrlForBreakpoint() {
+          var w = window.innerWidth;
+          if (w <= 767) return mobileUrl;
+          if (w <= 991) return tabletUrl;
+          return desktopUrl;
+        }
+        var embed  = document.currentScript.closest('.code-embed-2');
+        var video  = embed.querySelector('video');
+        var source = embed.querySelector('source');
+        function updateVideo() {
+          var url = getUrlForBreakpoint();
+          if (source.getAttribute('src') !== url) {
+            source.setAttribute('src', url);
+            video.load();
+          }
+        }
+        updateVideo();
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(updateVideo, 150);
+        });
+        // Safari fallback
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if (isSafari) {
+          var safariMessage = embed.querySelector('.safari-message');
+          setTimeout(function () {
+            if (video.readyState === 0 || video.paused) {
+              video.style.display = 'none';
+              safariMessage.style.display = 'block';
+            }
+          }, 2000);
+        }
+      })();
+    </script>
+              </div>
+            </div>
+          </div>
+          <div class="text-block-3" href="{{ section.settings.url_video_link_url }}"> <div class="text-block-3" href="{{ section.settings.url_video_link_url }}">VideoLink</div> </div>
+          <div class="text-block-3">
+{{ section.settings.text_mobile_video_url }}
+</div>
+          <div class="text-block-3">
+{{ section.settings.text_tablet_video_url }}
+</div>
+          <div class="text-block-3">
+{{ section.settings.text_video_url }}
+</div>
         </div> {% schema %} {
     "tag": "div",
     "name": "Hero Video",
     "class": "div-block-3",
     "settings": [
-        {
-            "id": "url_destination_url",
-            "type": "url",
-            "label": "Destination URL"
-        },
         {
             "id": "url_video_link_url",
             "type": "url",
