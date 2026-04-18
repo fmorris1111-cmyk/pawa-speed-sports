@@ -1,0 +1,52 @@
+<div class="div-block-5">
+          <div class="footer_main-wrapper">
+            <div class="footer_link-grid">
+              {% for link in linklists[section.settings.footer_menu].links %}    <div li-for="link in linklists[section.settings.footer_menu].links" class="footer_link-column">
+                                    
+                
+                            <div li-object="link.title" class="footer-text-link">{{ link.title }}</div>
+                            
+              
+                        </div>
+{% endfor %}
+            </div>
+          </div>
+          <div class="footer-container">
+            <div class="footer_sub-footer"></div>
+            <div class="text-block-4">PAWA SPEED SPORTS ℗</div>
+          </div>
+        </div> {% schema %} {
+    "tag": "footer",
+    "name": "Footer",
+    "class": "section_footer",
+    "settings": [
+        {
+            "type": "text",
+            "id": "placeholder_text",
+            "label": "Placeholder Text",
+            "default": "Email address"
+        },
+        {
+            "type": "header",
+            "content": "Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "footer_menu",
+            "label": "Footer Menu",
+            "default": "footer"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Footer",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ],
+    "enabled_on": {
+        "groups": [
+            "*"
+        ]
+    }
+} {% endschema %}
