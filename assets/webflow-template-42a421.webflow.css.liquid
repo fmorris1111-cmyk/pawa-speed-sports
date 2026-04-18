@@ -4200,6 +4200,7 @@ figcaption {
 }
 
 .div-block-5 {
+  cursor: pointer;
   flex-flow: column;
   align-items: center;
   display: flex;
@@ -4207,6 +4208,7 @@ figcaption {
 
 .footer-text-link {
   color: var(--141414);
+  cursor: pointer;
   font-size: 14px;
   font-weight: 700;
   line-height: 22px;
@@ -5093,7 +5095,7 @@ figcaption {
     margin-top: auto;
     margin-left: 0;
     padding: 10px 20px;
-    position: fixed;
+    position: absolute;
     top: 82px;
     overflow: auto;
   }
@@ -6087,6 +6089,20 @@ figcaption {
     align-items: flex-start;
   }
 
+  .product-header_radio-button, .product-header_radio-button:active, .product-header_radio-button:lang(en) {
+    display: block;
+  }
+
+  .product-header_radio-button.w--redirected-checked {
+    border-width: 1px;
+    border-color: var(--text-link-hover);
+    display: block;
+  }
+
+  .product-header_radio-button.w--redirected-focus, .product-header_radio-button.w--redirected-focus-visible {
+    display: block;
+  }
+
   .product-header_slider-wrapper {
     height: 100%;
   }
@@ -6301,6 +6317,12 @@ figcaption {
   .text-block-5 {
     text-transform: uppercase;
     font-family: Nimbussanl Reg, Arial, sans-serif;
+  }
+
+  .atc_button {
+    border: 1px solid #000;
+    width: 9rem;
+    height: 3rem;
   }
 }
 
