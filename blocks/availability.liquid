@@ -1,0 +1,25 @@
+<div li-block="Availability" {{ block.shopify_attributes }}>
+                    
+                  
+                    <div class="product-header_shipping-wrapper">
+                    <template x-if="product.selected_or_first_available_variant.available == true">
+            <div li-js-if="product.selected_or_first_available_variant.available == true" class="product-header_shipping">
+        
+                      <div class="text-block-7">Delivery: <span>1–3 Days</span></div>
+                            </div>
+    </template>
+                    <div class="product-header_shipping"></div>
+                  </div>
+                    
+                
+                </div> {% schema %} {
+    "name": "Availability",
+    "settings": [],
+    "presets": [
+        {
+            "name": "Availability",
+            "blocks": []
+        }
+    ],
+    "tag": null
+} {% endschema %}

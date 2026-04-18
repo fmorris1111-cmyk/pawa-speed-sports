@@ -1,0 +1,44 @@
+{% for block in section.blocks %}
+    {% if block.type == "images" %}
+                    <div li-block="images" class="div-block-4">
+                                    
+          
+                                    <a href="{{ block.settings.url_image_link_url }}" class="link-block-4 w-inline-block"> {% if block.settings.image_image %} {{ block.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'image' }} {% else %} <img loading="lazy" alt="" src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" class="image"> {% endif %} </a>
+                                    
+        
+                            </div>
+            {% endif %}
+{% endfor %} {% schema %} {
+    "tag": "div",
+    "name": "Content Grid",
+    "class": "div-block-2",
+    "blocks": [
+        {
+            "name": "images",
+            "type": "images",
+            "settings": [
+                {
+                    "id": "url_image_link_url",
+                    "type": "url",
+                    "label": "Image Link URL"
+                },
+                {
+                    "id": "image_image",
+                    "type": "image_picker",
+                    "label": "IMAGE"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Content Grid",
+            "category": "Liquify",
+            "blocks": [
+                {
+                    "type": "images"
+                }
+            ]
+        }
+    ]
+} {% endschema %}
