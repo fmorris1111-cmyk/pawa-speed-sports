@@ -2480,6 +2480,10 @@ figcaption {
   inset: 0%;
 }
 
+.product-header_radio-button:active {
+  border: 1px solid var(--text-link-hover);
+}
+
 .product-header_radio-button.w--redirected-checked {
   border: 1px solid var(--text-link-hover);
   mix-blend-mode: normal;
@@ -2487,6 +2491,7 @@ figcaption {
 }
 
 .product-header_radio-button.w--redirected-focus {
+  border: 1px solid var(--text-link-hover);
   display: none;
 }
 
@@ -4266,6 +4271,11 @@ figcaption {
   height: 3.6rem;
 }
 
+.link-block-5 {
+  width: auto;
+  height: auto;
+}
+
 @media screen and (max-width: 991px) {
   .padding-medium {
     padding: 1.5rem;
@@ -4344,7 +4354,7 @@ figcaption {
     padding-right: 2rem;
   }
 
-  .button.is-link.hide-tablet {
+  .button.is-secondary, .button.is-link.hide-tablet {
     display: none;
   }
 
@@ -4392,13 +4402,8 @@ figcaption {
     padding-right: 2rem;
   }
 
-  .mini-cart_component {
-    z-index: 4;
-    position: relative;
-  }
-
-  .mini-cart_header {
-    z-index: 999;
+  .mini-cart_component, .mini-cart_header {
+    z-index: 1000;
     position: relative;
   }
 
@@ -4438,10 +4443,10 @@ figcaption {
   }
 
   .nav_logo-link {
-    z-index: 998;
+    z-index: 700;
     flex: 0 auto;
     justify-content: center;
-    position: static;
+    position: relative;
   }
 
   .nav_menu {
@@ -4586,6 +4591,10 @@ figcaption {
     position: relative;
   }
 
+  .nav_shop-icon {
+    align-self: center;
+  }
+
   .filter_product-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -4641,10 +4650,10 @@ figcaption {
   }
 
   .nav_logo {
-    z-index: 998;
+    z-index: 700;
     width: 3.6rem;
     height: 3.6rem;
-    position: static;
+    position: relative;
   }
 
   .swiper-container.is-product-gallery {
@@ -4944,6 +4953,10 @@ figcaption {
     padding-top: 75%;
   }
 
+  .nav_mini-cart {
+    align-self: center;
+  }
+
   .footer_sub-footer {
     grid-row-gap: 2em;
     grid-template-columns: 1fr 1fr;
@@ -4956,6 +4969,7 @@ figcaption {
 
   .text-block {
     z-index: 999;
+    padding-top: .2rem;
     position: relative;
   }
 
@@ -5013,7 +5027,7 @@ figcaption {
     margin-top: auto;
     margin-left: 0;
     padding: 10px 20px;
-    position: absolute;
+    position: fixed;
     top: 82px;
     overflow: auto;
   }
