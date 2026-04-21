@@ -1974,7 +1974,7 @@ figcaption {
 .swiper.is-product-thumbnail {
   height: auto;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .swiper-wrapper {
@@ -1989,8 +1989,9 @@ figcaption {
 .swiper-wrapper.is-product-thumbnail {
   grid-column-gap: .5rem;
   grid-row-gap: .5rem;
+  align-items: center;
   width: 100%;
-  height: auto;
+  height: 9rem;
 }
 
 .swiper-slide {
@@ -4706,7 +4707,7 @@ figcaption {
   }
 
   .swiper-wrapper.is-product-thumbnail {
-    height: 5rem;
+    height: 6rem;
   }
 
   .swiper-slide.is-product-thumbnail {
