@@ -31,12 +31,12 @@
                     <div li-for:inside="media in product.media" class="swiper-wrapper is-product-thumbnail">
         {% for media in product.media %}                            
                       
-                            {% if media.media_type == 'image' %}    <div li-if="media.media_type == 'image'" class="swiper-slide is-product-thumbnail">
+                            {% if media.media_type == 'image' %}    <div li-if="media.media_type == 'image'" class="swiper-slide is-product-thumbnail is-active">
     <img li-object:src="media | image_url: width: 200" li-object:alt="media.alt" alt="{{ media.alt }}" src="{{ media | image_url: width: 200 }}" loading="lazy" class="product-header_thumbnail-image">    </div>
 {% endif %}
                             
                       
-                            {% if media.media_type == 'video' %}    <div li-if="media.media_type == 'video'" class="swiper-slide is-product-thumbnail">
+                            {% if media.media_type == 'video' %}    <div li-if="media.media_type == 'video'" class="swiper-slide is-product-thumbnail is-active">
     <img li-object:src="media | image_url: width: 200" li-object:alt="media.alt" alt="{{ media.alt }}" src="{{ media | image_url: width: 200 }}" loading="lazy" class="product-header_thumbnail-image">
                         <div aria-hidden="true" class="product-header_play-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveaspectratio="xMidYMid meet" viewbox="0 0 24 24">
                             <path fill="currentColor" d="M8 5v14l11-7z"></path>

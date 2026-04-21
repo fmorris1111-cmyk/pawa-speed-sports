@@ -29,7 +29,6 @@
   --base-color-neutral--white: white;
   --base-color-neutral--neutral-darkest: #111;
   --base-color-neutral--neutral-lightest: #eee;
-  --accessible-components-dark-grey\<deleted\|variable-c4d8099c\>: #9b9b9b;
   --text-color--text-error: var(--base-color-system--error-red-dark);
   --text-link-hover: #818181;
   --base-color-system--success-green-dark: #17660f;
@@ -2012,11 +2011,8 @@ figcaption {
   position: relative;
 }
 
-.swiper-slide.is-product-thumbnail.is-active {
-  border: 1px solid var(--accessible-components-dark-grey\<deleted\|variable-c4d8099c\>);
-}
-
 .swiper-slide.is-product-thumbnail.is-active.hide {
+  border-style: none;
   border-width: 0;
 }
 
@@ -4349,7 +4345,13 @@ figcaption {
   line-height: 1;
 }
 
+.div-block-10 {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
 .image-3 {
+  object-fit: fill;
   width: 3.6rem;
   height: 3.6rem;
 }
