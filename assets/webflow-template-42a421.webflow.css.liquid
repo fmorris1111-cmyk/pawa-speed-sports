@@ -322,7 +322,7 @@ figcaption {
   align-items: flex-start;
   margin-bottom: 0;
   padding-left: 0;
-  display: flex;
+  display: none;
 }
 
 .form_checkbox-icon {
@@ -450,14 +450,22 @@ figcaption {
 }
 
 .container-small {
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 2.5rem;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
 }
 
 .heading-style-h1 {
-  font-size: 3.75rem;
+  text-transform: uppercase;
+  font-family: Nimbussanl Bol, Arial, sans-serif;
+  font-size: 3rem;
   font-weight: 600;
   line-height: 1.1;
 }
@@ -647,6 +655,10 @@ figcaption {
   line-height: 1;
 }
 
+.heading-style-h2.text-align-center {
+  display: none;
+}
+
 .page-wrapper {
   flex-flow: column;
   min-height: 100vh;
@@ -670,11 +682,14 @@ figcaption {
   background-color: var(--background-color--background-tertiary);
 }
 
-.container-large {
+.container-large-contact {
+  justify-content: center;
+  align-items: flex-start;
   height: auto;
   min-height: auto;
-  margin: 4rem 20px 60px 240px;
+  margin: 4rem 20px 60px;
   padding-top: 50px;
+  display: flex;
   position: relative;
 }
 
@@ -701,8 +716,10 @@ figcaption {
   background-color: var(--base-color-neutral--black);
   color: var(--text-color--text-alternate);
   text-align: center;
+  text-transform: uppercase;
   white-space: nowrap;
   padding: .65rem 1.5rem;
+  font-family: Nimbussanl Bol, Arial, sans-serif;
   font-weight: 400;
   display: block;
 }
@@ -784,6 +801,7 @@ figcaption {
 }
 
 .text-size-medium {
+  font-family: Nimbussanl Reg, Arial, sans-serif;
   font-size: 1.25rem;
 }
 
@@ -2136,6 +2154,14 @@ figcaption {
   display: grid;
 }
 
+.section_header {
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  margin-top: 6rem;
+  display: flex;
+}
+
 .text-color-red {
   color: var(--text-color--text-error);
 }
@@ -2619,19 +2645,34 @@ figcaption {
   display: flex;
 }
 
+.section_contact {
+  margin-top: 4rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 50px;
+}
+
 .contact_component {
   grid-column-gap: 5rem;
   grid-row-gap: 4rem;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
+  flex-flow: column;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr;
   grid-auto-columns: 1fr;
-  align-items: start;
-  display: grid;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.contact_content {
+  display: none;
 }
 
 .contact_form-block {
   flex-direction: column;
   align-items: stretch;
+  min-width: 100%;
+  max-width: 100%;
   margin-bottom: 0;
 }
 
@@ -4357,6 +4398,18 @@ figcaption {
   height: 3.6rem;
 }
 
+.link {
+  font-family: Nimbussanl Bol, Arial, sans-serif;
+}
+
+.image-4 {
+  width: 450px;
+}
+
+.image-5, .image-6 {
+  width: 30rem;
+}
+
 @media screen and (max-width: 991px) {
   .padding-medium {
     padding: 1.5rem;
@@ -4400,6 +4453,10 @@ figcaption {
     display: block;
   }
 
+  .heading-style-h1 {
+    font-size: 2rem;
+  }
+
   .padding-global.max-width-full {
     padding-left: 0;
     padding-right: 0;
@@ -4428,7 +4485,7 @@ figcaption {
     font-size: 2rem;
   }
 
-  .container-large {
+  .container-large-contact {
     margin-top: 6rem;
     padding-top: 1rem;
     padding-left: 2rem;
@@ -4437,6 +4494,10 @@ figcaption {
 
   .button.is-secondary, .button.is-link.hide-tablet {
     display: none;
+  }
+
+  .text-size-medium {
+    font-size: 1rem;
   }
 
   .li-styleguide_section {
@@ -5254,6 +5315,10 @@ figcaption {
   .atc_button {
     padding-top: 1rem;
   }
+
+  .image-6 {
+    width: 20rem;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -5316,7 +5381,7 @@ figcaption {
   }
 
   .heading-style-h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .padding-global {
@@ -5762,6 +5827,10 @@ figcaption {
   .product-name-link {
     max-width: 30ch;
   }
+
+  .image-6 {
+    width: 15rem;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -5813,7 +5882,7 @@ figcaption {
     font-size: 1.5rem;
   }
 
-  .container-large {
+  .container-large-contact {
     margin-top: 4rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -5999,12 +6068,12 @@ figcaption {
   }
 
   .product-header_product-details {
-    padding: 0 1rem;
+    padding: 0;
   }
 
   .product-header_default-state {
-    grid-column-gap: 1.4rem;
-    grid-row-gap: 1.4rem;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
   }
 
   .swiper.is-product-thumbnail {
@@ -6048,6 +6117,7 @@ figcaption {
   }
 
   .product-header_gallery-image {
+    object-fit: fill;
     height: 22rem;
   }
 
@@ -6055,6 +6125,11 @@ figcaption {
     width: 4rem;
     max-width: 100%;
     height: auto;
+  }
+
+  .section_header {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   .spacer-xsmall {
@@ -6079,8 +6154,8 @@ figcaption {
     clear: none;
     object-fit: fill;
     flex-flow: column;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
     display: flex;
   }
 
@@ -6346,6 +6421,10 @@ figcaption {
     align-self: center;
     width: 3.6rem;
     height: 3.6rem;
+  }
+
+  .image-6 {
+    height: 100%;
   }
 }
 
