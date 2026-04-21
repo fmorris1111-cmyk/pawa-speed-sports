@@ -12,7 +12,6 @@
     "hero_video": {
       "type": "hero_video",
       "settings": {
-        "url_destination_url": "shopify://collections/all",
         "url_video_link_url": "shopify://collections/all",
         "text_mobile_video_url": "https://cdn.shopify.com/videos/c/o/v/eb9123b60b1b475aad0059299aca9896.mp4",
         "text_tablet_video_url": "https://cdn.shopify.com/videos/c/o/v/6c4e8a03e5f442368c6aa313f00a8c2d.mp4",
