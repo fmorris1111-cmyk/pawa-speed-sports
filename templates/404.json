@@ -1,12 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "404": {
-            "type": "404"
-        }
-    },
-    "layout": "theme",
-    "wrapper": "main.main-wrapper",
-    "order": [
-        "404"
-    ]
+  "sections": {
+    "404": {
+      "type": "404",
+      "settings": {
+        "image_image": "shopify://shop_images/65b7ef8d08b09d691be7348a_SPEECH_BOYS-65.avif",
+        "text_heading": "Page Not Found",
+        "text_paragraph": "The page you are looking for doesn't exist or has been moved",
+        "text_button_text": "Back to Home"
+      }
+    }
+  },
+  "layout": "theme",
+  "wrapper": "main.main-wrapper",
+  "order": [
+    "404"
+  ]
 }

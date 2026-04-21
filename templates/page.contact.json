@@ -1,12 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "contact": {
-            "type": "contact"
-        }
-    },
-    "layout": "theme",
-    "wrapper": "main.main-wrapper",
-    "order": [
-        "contact"
-    ]
+  "sections": {
+    "contact": {
+      "type": "contact",
+      "settings": {
+        "image_image": "shopify://shop_images/65a29462d068c3c35007ec1a_CONTACT-55.avif",
+        "text_heading": "Contact us",
+        "text_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text_first_name": "First Name",
+        "text_last_name": "Last Name",
+        "text_email": "Email",
+        "text_message": "Message",
+        "richtext_i_accept_the_terms": "<p>I accept the Terms</p>"
+      }
+    }
+  },
+  "layout": "theme",
+  "wrapper": "main.main-wrapper",
+  "order": [
+    "contact"
+  ]
 }
