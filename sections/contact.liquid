@@ -1,10 +1,6 @@
 <div class="container-large-contact">
           <div class="w-layout-grid contact_component">
-            <div class="div-block-11">{% if section.settings.image_image %}
-{{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'image-4' }}
-{% else %}
-<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-4">
-{% endif %}</div>
+            <div class="div-block-11"><img src="{{ '65a29462d068c3c35007ec1a_CONTACT-55.avif' | asset_url }}" loading="lazy" alt="" class="image-4"></div>
             <div class="contact_content">
               <div class="margin-bottom margin-small">
                 <h1 class="heading-style-h2">
@@ -47,11 +43,6 @@
     "name": "Contact",
     "class": "section_contact",
     "settings": [
-        {
-            "id": "image_image",
-            "type": "image_picker",
-            "label": "IMAGE"
-        },
         {
             "id": "text_heading",
             "type": "text",
