@@ -1,20 +1,155 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "article_hero": {
-            "type": "article_hero"
-        },
-        "article_content": {
-            "type": "article_content"
-        },
-        "related_articles": {
-            "type": "related_articles"
-        }
+  "sections": {
+    "article_hero": {
+      "type": "article_hero",
+      "disabled": true,
+      "settings": {}
     },
-    "layout": "theme",
-    "wrapper": "main.main-wrapper",
-    "order": [
-        "article_hero",
-        "article_content",
-        "related_articles"
-    ]
+    "article_content": {
+      "type": "article_content",
+      "disabled": true,
+      "settings": {}
+    },
+    "related_articles": {
+      "type": "related_articles",
+      "disabled": true,
+      "settings": {
+        "text_heading": "Other Articles"
+      }
+    },
+    "content_grid_BXmExe": {
+      "type": "content_grid",
+      "blocks": {
+        "images_LtT9XX": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "shopify://products/p-check-knit-polo",
+            "image_image": "shopify://shop_images/69d7d2dc1ed998081a8ad64a_23_1.avif"
+          }
+        },
+        "images_TLLRdq": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "shopify://products/p-check-knit-polo",
+            "image_image": "shopify://shop_images/69a46ae18b2f1d82070ae097_pppp.jpg"
+          }
+        },
+        "images_bNTcf4": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/69a46ae18b2f1d82070ae097_pppp.jpg"
+          }
+        },
+        "images_mBpQbt": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_hXU3D6": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_ANzXpG": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_DG49qj": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_T49HAP": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_VbdWLr": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_Gew76K": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_z8cKD4": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_7JzfAy": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_8FCVgm": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_9BtQFD": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        },
+        "images_7QjFH7": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "images_LtT9XX",
+        "images_TLLRdq",
+        "images_bNTcf4",
+        "images_mBpQbt",
+        "images_hXU3D6",
+        "images_ANzXpG",
+        "images_DG49qj",
+        "images_T49HAP",
+        "images_VbdWLr",
+        "images_Gew76K",
+        "images_z8cKD4",
+        "images_7JzfAy",
+        "images_8FCVgm",
+        "images_9BtQFD",
+        "images_7QjFH7"
+      ],
+      "name": "Content Grid",
+      "settings": {}
+    }
+  },
+  "layout": "theme",
+  "wrapper": "main.main-wrapper",
+  "order": [
+    "article_hero",
+    "article_content",
+    "related_articles",
+    "content_grid_BXmExe"
+  ]
 }
