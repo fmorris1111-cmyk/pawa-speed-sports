@@ -1,12 +1,29 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "collection_products": {
-            "type": "collection_products"
-        }
+  "sections": {
+    "collection_products": {
+      "type": "collection_products",
+      "settings": {}
     },
-    "layout": "theme",
-    "wrapper": "main.main-wrapper",
-    "order": [
-        "collection_products"
-    ]
+    "mailer_embed_form_zqFTCJ": {
+      "type": "mailer_embed_form",
+      "custom_css": [],
+      "name": "Mailer Embed Form",
+      "settings": {}
+    }
+  },
+  "layout": "theme",
+  "wrapper": "main.main-wrapper",
+  "order": [
+    "collection_products",
+    "mailer_embed_form_zqFTCJ"
+  ]
 }
