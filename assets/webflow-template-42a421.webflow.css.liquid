@@ -2646,7 +2646,7 @@ figcaption {
 }
 
 .section_contact {
-  margin-top: 4rem;
+  margin-top: 0;
   margin-left: 20px;
   margin-right: 20px;
   padding-top: 50px;
@@ -4407,7 +4407,19 @@ figcaption {
 }
 
 .image-5, .image-6 {
+  object-fit: contain;
   width: 30rem;
+}
+
+.container-large-contact {
+  justify-content: center;
+  align-items: flex-start;
+  height: auto;
+  min-height: auto;
+  margin: 6rem 20px 60px;
+  padding-top: 50px;
+  display: flex;
+  position: relative;
 }
 
 @media screen and (max-width: 991px) {
@@ -5318,6 +5330,13 @@ figcaption {
 
   .image-6 {
     width: 20rem;
+  }
+
+  .container-large-contact {
+    margin-top: 6rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
@@ -6425,6 +6444,12 @@ figcaption {
 
   .image-6 {
     height: 100%;
+  }
+
+  .container-large-contact {
+    margin-top: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
