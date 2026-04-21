@@ -9,14 +9,24 @@
  */
 {
   "sections": {
-    "default": {
-      "type": "default",
+    "custom_liquid_MFXG6n": {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"full-width-bar\"></div>\n\n<style>\n  .full-width-bar {\n    width: 100vw;\n    height: 4rem;\n    position: relative;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n\n  @media screen and (max-width: 991px) {\n    .full-width-bar {\n      height: 6rem;\n    }\n  }\n</style>"
+      }
+    },
+    "mailer_embed_form_LYBwHk": {
+      "type": "mailer_embed_form",
+      "custom_css": [],
+      "name": "Mailer Embed Form",
       "settings": {}
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "default"
+    "custom_liquid_MFXG6n",
+    "mailer_embed_form_LYBwHk"
   ]
 }
