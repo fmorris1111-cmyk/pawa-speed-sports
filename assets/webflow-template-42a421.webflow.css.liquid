@@ -2654,7 +2654,7 @@ figcaption {
 
 .contact_component {
   grid-column-gap: 5rem;
-  grid-row-gap: 4rem;
+  grid-row-gap: 2rem;
   flex-flow: column;
   grid-template-rows: auto auto;
   grid-template-columns: 1fr;
@@ -4403,12 +4403,22 @@ figcaption {
 }
 
 .image-4 {
-  width: 450px;
+  object-fit: contain;
+  width: 300px;
+  max-height: 400px;
 }
 
-.image-5, .image-6 {
+.image-5 {
   object-fit: contain;
-  width: 30rem;
+  width: 300px;
+  max-width: 300px;
+}
+
+.image-6 {
+  aspect-ratio: auto;
+  object-fit: contain;
+  width: 300px;
+  max-width: 300px;
 }
 
 .container-large-contact {
@@ -4420,6 +4430,22 @@ figcaption {
   padding-top: 50px;
   display: flex;
   position: relative;
+}
+
+.div-block-11 {
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  max-width: 450px;
+  max-height: 400px;
+  display: flex;
+}
+
+.div-block-12 {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
 }
 
 @media screen and (max-width: 991px) {
