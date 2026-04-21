@@ -1,15 +1,7 @@
-<div class="container-small">{% if section.settings.image_image %}
-{{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'image-6' }}
-{% else %}
-<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-6">
-{% endif %}
+<div class="container-small"><img src="{{ '65b7ef8d08b09d691be7348a_SPEECH_BOYS-65.avif' | asset_url }}" loading="lazy" alt="" class="image-6">
           <div class="text-align-center">
             <div class="max-width-xlarge align-center">
-              <div class="margin-bottom margin-small">
-                <h1 class="heading-style-h1">
-{{ section.settings.text_heading }}
-</h1>
-              </div>
+              <div class="margin-bottom margin-small"></div>
               <p class="text-size-medium">
 {{ section.settings.text_paragraph }}
 </p>
@@ -27,17 +19,6 @@
     "name": "404",
     "class": "section_header",
     "settings": [
-        {
-            "id": "image_image",
-            "type": "image_picker",
-            "label": "IMAGE"
-        },
-        {
-            "id": "text_heading",
-            "type": "text",
-            "label": "Heading",
-            "default": "Page Not Found"
-        },
         {
             "id": "text_paragraph",
             "type": "text",
