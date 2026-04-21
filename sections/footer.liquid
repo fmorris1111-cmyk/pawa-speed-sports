@@ -15,21 +15,11 @@
             <div class="footer_sub-footer"></div>
             <div class="text-block-4">PAWA SPEED SPORTS ℗</div>
           </div>
-          <div class="div-block-10">{% if section.settings.image_image %}
-{{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'image-3' }}
-{% else %}
-<img src="{{ 'LIVERY-PAWA-22.png' | asset_url }}" loading="lazy" alt="" class="image-3">
-{% endif %}</div>
         </div> {% schema %} {
     "tag": "footer",
     "name": "Footer",
     "class": "section_footer",
     "settings": [
-        {
-            "id": "image_image",
-            "type": "image_picker",
-            "label": "IMAGE"
-        },
         {
             "type": "text",
             "id": "placeholder_text",
