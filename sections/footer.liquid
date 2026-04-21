@@ -4,7 +4,7 @@
               {% for link in linklists[section.settings.footer_menu].links %}    <div li-for="link in linklists[section.settings.footer_menu].links" class="footer_link-column">
                                     
                 
-                            <div li-object="link.title" class="footer-text-link">{{ link.title }}</div>
+                            <div li-object:href="" li-object="child_link.title" class="footer-text-link" href="{{  }}">{{ child_link.title }}</div>
                             
               
                         </div>
