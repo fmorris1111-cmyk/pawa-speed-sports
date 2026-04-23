@@ -1,18 +1,13 @@
 <div class="div-block-5">
-          <div class="footer_main-wrapper">
-            <div class="footer_link-grid">
-              <div class="footer_link-list">
-                {% for link in linklists[section.settings.footer_menu].links %}    <div li-for="link in linklists[section.settings.footer_menu].links" class="footer_link-column">
+          <div class="footer_link-grid">
+            {% for link in linklists[section.settings.footer_menu].links %}    <div li-for="link in linklists[section.settings.footer_menu].links" class="footer_link-column">
                                     
-                  
+              
                             <div li-object:href="link.url" li-object="link.title" class="footer-text-link" href="{{ link.url }}">{{ link.title }}</div>
                             
-                
+            
                         </div>
 {% endfor %}
-                <a li-object:href="link.url" li-object="link.title" href="{{ link.url }}" class="footer_link">{{ link.title }}</a>
-              </div>
-            </div>
           </div>
           <div class="footer-container">
             <div class="footer_sub-footer"></div>
