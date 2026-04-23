@@ -58,19 +58,11 @@
         "add-to-cart"
       ],
       "settings": {}
-    },
-    "recommended_products_FLjnUx": {
-      "type": "recommended_products",
-      "name": "Recommended Products",
-      "settings": {
-        "text_heading": "Recommended"
-      }
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "product_header",
-    "recommended_products_FLjnUx"
+    "product_header"
   ]
 }
