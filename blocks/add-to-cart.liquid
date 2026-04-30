@@ -25,7 +25,7 @@
                           </div>
                           <div class="div-block-9">
                             <template x-if="selected_or_first_available_variant.available">
-            <div li-js-if="selected_or_first_available_variant.available">
+            <div li-js-if="selected_or_first_available_variant.available" class="atc-div-button">
         
                               <a x-on:click="$nextTick(() => { document.querySelector('[data-minicart-trigger]').click() })" li-element="add-to-cart" href="#" class="atc_button w-button" @click="addToCart($event, true)" :disabled="!addToCartButton">Add To Cart</a>
                                     </div>
