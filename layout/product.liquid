@@ -124,8 +124,6 @@ please remove the `li-layout` tag from the body element.
 This will create a separate layout file for this page, allowing you to apply custom modifications.
 Learn more: https://www.liquify.pro/docu/getting-started#template-structure
  -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-  <script defer="" src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script src="{{ 'li_helper.js' | asset_url }}" type="text/javascript"></script>{{ content_for_header }}</head>
 <body li-page="product">
   <div class="page-wrapper">
@@ -139,15 +137,22 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
   {% render 'search_javascript' %}
   <script>
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.product-header_gallery-lightbox').forEach(el => {
-      const img = el.querySelector('img');
-      if (!img) return;
-      el.setAttribute('data-glightbox', '');
-      el.setAttribute('data-href', img.src);
-      el.style.cursor = 'zoom-in';
-    });
-    const lightbox = GLightbox({
-      selector: '.product-header_gallery-lightbox'
+    const input = document.querySelector('.Input_cart-quantity');
+    const subtract = document.querySelector('.quantity-selector_mobile_subtract');
+    function updateButton() {
+      if (parseInt(input.value) <= 1) {
+        subtract.style.pointerEvents = 'none';
+        subtract.style.opacity = '0.4';
+      } else {
+        subtract.style.pointerEvents = 'auto';
+        subtract.style.opacity = '1';
+      }
+    }
+    updateButton();
+    input.addEventListener('input', updateButton);
+    input.addEventListener('change', updateButton);
+    subtract.addEventListener('click', function() {
+      setTimeout(updateButton, 10);
     });
   });
 </script>
