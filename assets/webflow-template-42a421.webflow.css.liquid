@@ -1643,7 +1643,7 @@ figcaption {
   justify-content: space-between;
   align-items: flex-start;
   min-height: 5rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem .5rem;
   text-decoration: none;
   display: flex;
 }
@@ -1805,7 +1805,7 @@ figcaption {
   align-items: center;
   width: auto;
   height: auto;
-  padding: 9px 0 9px 5px;
+  padding: 0;
   display: flex;
 }
 
@@ -1830,7 +1830,7 @@ figcaption {
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Nimbussanl Reg, Arial, sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1rem;
@@ -2720,10 +2720,7 @@ figcaption {
   grid-template-columns: max-content 1fr;
   grid-auto-columns: 1fr;
   align-items: start;
-  height: auto;
-  min-height: 85vh;
-  margin-left: 240px;
-  margin-right: 20px;
+  margin-left: 0;
   display: block;
   position: relative;
 }
@@ -2843,6 +2840,10 @@ figcaption {
 
 .button-icon-left {
   margin-right: .5rem;
+}
+
+.filter_feed {
+  min-width: 80vw;
 }
 
 .filter_feed-header {
@@ -3735,6 +3736,10 @@ figcaption {
   overflow: hidden !important;
 }
 
+.nav_mini-cart {
+  padding: .5rem;
+}
+
 .predictive-search_search-button {
   cursor: pointer;
   justify-content: center;
@@ -3908,7 +3913,7 @@ figcaption {
 .text-block {
   text-align: right;
   align-self: center;
-  padding-top: .25rem;
+  padding-top: 0;
   font-family: Nimbussanl Reg, Arial, sans-serif;
   font-size: 16px;
   line-height: 16px;
@@ -4313,7 +4318,7 @@ figcaption {
   width: 1.5rem;
   height: 1.5rem;
   margin-left: .5rem;
-  padding-left: .1rem;
+  padding-left: 0;
   display: flex;
 }
 
@@ -4525,6 +4530,19 @@ figcaption {
 
 .atc-div-button:hover {
   background-color: var(--text-link-hover);
+}
+
+.container-large-plp {
+  justify-content: center;
+  align-items: flex-start;
+  height: auto;
+  min-height: auto;
+  margin-top: 4rem;
+  margin-bottom: 60px;
+  margin-left: 140px;
+  padding-top: 50px;
+  display: flex;
+  position: relative;
 }
 
 @media screen and (max-width: 991px) {
@@ -4959,6 +4977,18 @@ figcaption {
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
     grid-template-columns: 1fr;
+  }
+
+  .footer_link-grid {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    flex-flow: column;
+    grid-template-rows: min-content min-content;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    place-content: start space-between;
+    place-items: start center;
+    display: grid;
   }
 
   .contact_component {
@@ -5457,6 +5487,15 @@ figcaption {
     padding-right: 2rem;
   }
 
+  .div-block-13 {
+    width: 400px;
+    max-width: 40vw;
+  }
+
+  .image-7 {
+    max-width: 60%;
+  }
+
   .div-block-14 {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -5474,6 +5513,14 @@ figcaption {
 
   .container-large-product {
     margin-top: 6rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .container-large-plp {
+    margin-top: 6rem;
+    margin-left: 0;
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -5759,6 +5806,10 @@ figcaption {
     padding-bottom: 1rem;
   }
 
+  .filter_feed {
+    max-width: 80vw;
+  }
+
   .section_li-hero {
     padding-top: 4.1rem;
     padding-bottom: 4.1rem;
@@ -5995,6 +6046,11 @@ figcaption {
     margin-top: 2rem;
   }
 
+  .div-block-13 {
+    width: 400px;
+    max-width: 50vw;
+  }
+
   .div-block-14 {
     padding-left: 10rem;
     padding-right: 10rem;
@@ -6160,8 +6216,8 @@ figcaption {
   .product-item_text-link {
     min-height: 5rem;
     padding-top: .5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
     font-size: 12px;
   }
 
@@ -6395,6 +6451,11 @@ figcaption {
     grid-template-columns: 1fr;
   }
 
+  .filter_feed {
+    min-width: 95vw;
+    max-width: 95vw;
+  }
+
   .filter_feed-header {
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
@@ -6612,7 +6673,11 @@ figcaption {
 
   .div-block-13 {
     width: 400px;
-    max-width: 80vw;
+    max-width: 60vw;
+  }
+
+  .image-7 {
+    max-width: 80%;
   }
 
   .container-large-recs {
@@ -6626,6 +6691,12 @@ figcaption {
     margin-left: 20px;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .container-large-plp {
+    margin-top: 4rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
   }
 }
 
