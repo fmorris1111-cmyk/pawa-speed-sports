@@ -4951,10 +4951,19 @@ figcaption {
     display: flex;
   }
 
+  .product-header_gallery-lightbox {
+    object-fit: cover;
+    width: auto;
+    height: auto;
+    position: relative;
+  }
+
   .product-header_gallery-image {
     min-width: auto;
-    max-width: none;
+    max-width: 70vw;
     height: auto;
+    max-height: none;
+    position: relative;
   }
 
   .product-header_thumbnail-image {
@@ -5786,13 +5795,42 @@ figcaption {
 
   .product-header_product-details {
     padding-top: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
-  .swiper.is-product-thumbnail, .swiper-wrapper.is-product-thumbnail {
+  .swiper.is-product-thumbnail {
     height: 5rem;
   }
 
-  .swiper-slide.is-product-thumbnail, .product-header_thumbnail-image {
+  .swiper-wrapper.is-product-thumbnail {
+    flex-flow: row;
+    height: 5rem;
+    padding-left: .5rem;
+    padding-right: 0;
+  }
+
+  .swiper-slide.is-product-thumbnail {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .product-header_gallery-lightbox {
+    justify-content: flex-start;
+    display: flex;
+  }
+
+  .product-header_gallery-image {
+    float: none;
+    clear: none;
+    object-fit: cover;
+    max-width: 90vw;
+    max-height: 100%;
+    position: static;
+    overflow: auto;
+  }
+
+  .product-header_thumbnail-image {
     width: 5rem;
     height: 5rem;
   }
@@ -5806,6 +5844,13 @@ figcaption {
   .nav_logo {
     align-items: flex-start;
     width: 3.6rem;
+  }
+
+  .swiper-container.is-product-gallery {
+    flex-flow: column;
+    align-items: stretch;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .footer_icon-grid {
@@ -6067,6 +6112,16 @@ figcaption {
 
   .heading-style-h3-2 {
     font-size: 1.5rem;
+  }
+
+  .footer-container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .text-block-4 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .product-name-link {
@@ -6384,6 +6439,7 @@ figcaption {
   .product-header_gallery-image {
     object-fit: fill;
     width: 100%;
+    max-width: 90vw;
     height: 100%;
     max-height: none;
   }
