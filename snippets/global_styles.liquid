@@ -184,27 +184,68 @@
     background-color: unset;
     padding: unset;
   }
+.shopify-policy__container {
+  display: block;
+  margin: 4rem 240px 60px 240px;
+  padding-top: 50px;
+}
+
+.shopify-policy__title h1 {
+  margin-bottom: 2rem;
+  font-family: Nimbussanl Reg, Arial, sans-serif;
+}
+
+.shopify-policy__body {
+  font-family: Nimbussanl Reg, Arial, sans-serif;
+  max-width: 800px;
+}
+
+.shopify-policy__body h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.shopify-policy__body p {
+  margin-bottom: 1rem;
+}
+
+.shopify-policy__body ul,
+.shopify-policy__body ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.shopify-policy__body li {
+  margin-bottom: 0.5rem;
+}
+
+/* Tablet - 991px and below */
+@media screen and (max-width: 991px) {
   .shopify-policy__container {
-    margin: 4rem 20px 60px 240px;
-    padding-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    margin: 2rem 40px 60px 40px;
+    padding-top: 30px;
   }
-  .shopify-policy__title h1,
   .shopify-policy__body {
-    width: 100%;
-    max-width: 48rem;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: Nimbussanl Reg, Arial, sans-serif;
+    max-width: 100%;
   }
-  .shopify-policy__body p {
-    margin-bottom: 1rem;
+}
+
+/* Mobile landscape - 767px and below */
+@media screen and (max-width: 767px) {
+  .shopify-policy__container {
+    margin: 1.5rem 24px 40px 24px;
+    padding-top: 20px;
   }
-  @media screen and (max-width: 991px) {
-    .shopify-policy__container {
-      margin: 2rem 20px 60px;
-    }
+}
+
+/* Mobile portrait - 479px and below */
+@media screen and (max-width: 479px) {
+  .shopify-policy__container {
+    margin: 1rem 16px 30px 16px;
+    padding-top: 16px;
   }
+  .shopify-policy__body h2 {
+    margin-top: 1.5rem;
+  }
+}
 </style>
