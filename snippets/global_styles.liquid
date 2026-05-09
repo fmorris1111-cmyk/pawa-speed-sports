@@ -240,4 +240,15 @@
       padding: 6rem 16px 30px 16px !important;
     }
   }
+  /* Get rid of radio button visibility on atc size selector */
+  	.w-form-formradioinput.product-header_radio-button {
+      display: none !important;
+    }
+    .product-header_radio:has(input:checked) {
+      background-color: #ccc;
+      color: #000;
+    }
+    .product-header_radio:has(input:checked) .w-form-label {
+      color: #000;
+    }
 </style>
