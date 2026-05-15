@@ -1,72 +1,105 @@
 <div class="container-large-contact">
-  <div class="w-layout-grid contact_component">
-    <div class="div-block-11"><img src="{{ '65a29462d068c3c35007ec1a_CONTACT-55.avif' | asset_url }}" loading="lazy" alt="" class="image-4"></div>
-    <div class="contact_content">
-      <div class="margin-bottom margin-small">
-        <h1 class="heading-style-h2">{{ section.settings.text_heading }}</h1>
-      </div>
-      <p class="text-size-medium">{{ section.settings.text_paragraph }}</p>
-    </div>
-    <div class="contact_form-block w-form">
-
-      {% if form.posted_successfully? %}
-        <div class="success-message w-form-done" style="display:block;">
-          <div class="success-text">Thank you! Your submission has been received!</div>
-        </div>
-      {% else %}
-
-        {% form 'contact', class: 'contact_form', data-nocaptcha: 'true' %}
-
-          {% if form.errors %}
-            <div class="error-message w-form-fail" style="display:block;">
-              <div class="error-text">Oops! Something went wrong while submitting the form.</div>
+          <div class="w-layout-grid contact_component">
+            <div class="div-block-11">{% if section.settings.image_image %}
+{{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'image-4' }}
+{% else %}
+<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-4">
+{% endif %}</div>
+            <div class="contact_content">
+              <div class="margin-bottom margin-small">
+                <h1 class="heading-style-h2">
+{{ section.settings.text_heading }}
+</h1>
+              </div>
+              <p class="text-size-medium">
+{{ section.settings.text_paragraph }}
+</p>
             </div>
-          {% endif %}
-
-          <div class="form_field-wrapper">
-            <label for="First-Name-2" class="form_field-label">{{ section.settings.text_first_name }}</label>
-            <input class="form_input w-input" maxlength="256" name="contact[first_name]" data-name="First Name 2" placeholder="" type="text" id="First-Name-2" required="">
+            <div class="contact_form-block w-form">
+              {% form 'contact', return_to: '/', class: 'contact_form' %}
+<div class="form_field-wrapper"><label for="First-Name-2" class="form_field-label">
+{{ section.settings.text_first_name }}
+</label><input class="form_input w-input" maxlength="256" name="contact[first_name]" data-name="First Name 2" placeholder="" type="text" id="First-Name-2" required=""></div>
+                <div class="form_field-wrapper"><label for="Last-Name-2" class="form_field-label">
+{{ section.settings.text_last_name }}
+</label><input class="form_input w-input" maxlength="256" name="contact[last_name]" data-name="Last Name 2" placeholder="" type="text" id="Last-Name-2" required=""></div>
+                <div class="form_field-wrapper"><label for="Email-2" class="form_field-label">
+{{ section.settings.text_email }}
+</label><input class="form_input w-input" maxlength="256" name="contact[email]" data-name="Email 2" placeholder="" type="email" id="Email-2" required=""></div>
+                <div class="form_field-wrapper"><label for="Message-2" class="form_field-label">
+{{ section.settings.text_message }}
+</label><textarea class="form_input is-text-area w-input" maxlength="5000" name="contact[body]" data-name="Message 2" placeholder="" id="Message-2" required=""></textarea></div>
+                <div class="margin-bottom margin-xsmall"><label id="Contact-5-Checkbox" class="w-checkbox form_checkbox" name="contact[checkbox]">
+                    <div class="w-checkbox-input w-checkbox-input--inputType-custom form_checkbox-icon"></div><input id="Checkbox-2" type="checkbox" name="Checkbox-2" data-name="Checkbox 2" required="" style="opacity:0;position:absolute;z-index:-1"><div for="Checkbox-2" class="form_checkbox-label text-size-small w-form-label"> {{ section.settings.richtext_i_accept_the_terms }} </div>
+                  </label></div><input type="submit" data-wait="Please wait..." id="w-node-_6ca8e057-6645-9d42-e1be-60491d7bcc0d-1d7bcbea" class="button w-button" value="Submit">
+                <a href="mailto:contact@pawaspeedsports.com?subject=Pawa%20Speed%20Sports%20%7C%20General%20Enquiry" class="link">contact@pawaspeedsports.com</a>
+              {% endform %}
+              <div class="success-message w-form-done">
+                <div class="success-text">Thank you! Your submission has been received!</div>
+              </div>
+              <div class="error-message w-form-fail">
+                <div class="error-text">Oops! Something went wrong while submitting the form.</div>
+              </div>
+            </div>
           </div>
-          <div class="form_field-wrapper">
-            <label for="Last-Name-2" class="form_field-label">{{ section.settings.text_last_name }}</label>
-            <input class="form_input w-input" maxlength="256" name="contact[last_name]" data-name="Last Name 2" placeholder="" type="text" id="Last-Name-2" required="">
-          </div>
-          <div class="form_field-wrapper">
-            <label for="Email-2" class="form_field-label">{{ section.settings.text_email }}</label>
-            <input class="form_input w-input" maxlength="256" name="contact[email]" data-name="Email 2" placeholder="" type="email" id="Email-2" required="">
-          </div>
-          <div class="form_field-wrapper">
-            <label for="Message-2" class="form_field-label">{{ section.settings.text_message }}</label>
-            <textarea class="form_input is-text-area w-input" maxlength="5000" name="contact[body]" data-name="Message 2" placeholder="" id="Message-2" required=""></textarea>
-          </div>
-
-          <input type="submit" data-wait="Please wait..." id="w-node-_6ca8e057-6645-9d42-e1be-60491d7bcc0d-1d7bcbea" class="button w-button" value="Submit">
-          <a href="mailto:contact@pawaspeedsports.com?subject=Pawa%20Speed%20Sports%20%7C%20General%20Enquiry" class="link">contact@pawaspeedsports.com</a>
-
-        {% endform %}
-
-      {% endif %}
-
-    </div>
-  </div>
-</div>
-
-{% schema %}
-{
-  "tag": "section",
-  "name": "Contact",
-  "class": "section_contact",
-  "settings": [
-    { "id": "text_heading", "type": "text", "label": "Heading", "default": "Contact us" },
-    { "id": "text_paragraph", "type": "text", "label": "Paragraph", "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-    { "id": "text_first_name", "type": "text", "label": "First Name", "default": "First Name" },
-    { "id": "text_last_name", "type": "text", "label": "Last Name", "default": "Last Name" },
-    { "id": "text_email", "type": "text", "label": "Email", "default": "Email" },
-    { "id": "text_message", "type": "text", "label": "Message", "default": "Message" },
-    { "id": "richtext_i_accept_the_terms", "type": "richtext", "label": "I accept the Terms", "default": "<p>I accept the Terms<\/p>" }
-  ],
-  "presets": [
-    { "name": "Contact", "category": "Liquify", "blocks": [] }
-  ]
-}
-{% endschema %}
+        </div> {% schema %} {
+    "tag": "section",
+    "name": "Contact",
+    "class": "section_contact",
+    "settings": [
+        {
+            "id": "image_image",
+            "type": "image_picker",
+            "label": "IMAGE"
+        },
+        {
+            "id": "text_heading",
+            "type": "text",
+            "label": "Heading",
+            "default": "Contact us"
+        },
+        {
+            "id": "text_paragraph",
+            "type": "text",
+            "label": "Paragraph",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+            "id": "text_first_name",
+            "type": "text",
+            "label": "First Name",
+            "default": "First Name"
+        },
+        {
+            "id": "text_last_name",
+            "type": "text",
+            "label": "Last Name",
+            "default": "Last Name"
+        },
+        {
+            "id": "text_email",
+            "type": "text",
+            "label": "Email",
+            "default": "Email"
+        },
+        {
+            "id": "text_message",
+            "type": "text",
+            "label": "Message",
+            "default": "Message"
+        },
+        {
+            "id": "richtext_i_accept_the_terms",
+            "type": "richtext",
+            "label": "I accept the Terms",
+            "default": "<p>I accept the Terms<\/p>"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Contact",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ]
+} {% endschema %}
