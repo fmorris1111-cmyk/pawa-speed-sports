@@ -39,14 +39,7 @@
             <label for="Message-2" class="form_field-label">{{ section.settings.text_message }}</label>
             <textarea class="form_input is-text-area w-input" maxlength="5000" name="contact[body]" data-name="Message 2" placeholder="" id="Message-2" required=""></textarea>
           </div>
-          <div class="margin-bottom margin-xsmall">
-            <label id="Contact-5-Checkbox" class="w-checkbox form_checkbox">
-              <div class="w-checkbox-input w-checkbox-input--inputType-custom form_checkbox-icon" id="pawa-checkbox-icon"></div>
-              <input id="Checkbox-2" type="checkbox" name="Checkbox-2" data-name="Checkbox 2" style="opacity:0;position:absolute;z-index:-1">
-              <div class="form_checkbox-label text-size-small w-form-label">{{ section.settings.richtext_i_accept_the_terms }}</div>
-            </label>
-            <div id="pawa-checkbox-error" style="display:none; color:red; font-size:0.8em; margin-top:4px;">Please accept the terms to continue.</div>
-          </div>
+
           <input type="submit" data-wait="Please wait..." id="w-node-_6ca8e057-6645-9d42-e1be-60491d7bcc0d-1d7bcbea" class="button w-button" value="Submit">
           <a href="mailto:contact@pawaspeedsports.com?subject=Pawa%20Speed%20Sports%20%7C%20General%20Enquiry" class="link">contact@pawaspeedsports.com</a>
 
@@ -57,35 +50,6 @@
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var form = document.querySelector('.contact_form');
-    if (!form) return;
-
-    var checkboxIcon = document.getElementById('pawa-checkbox-icon');
-    var checkboxError = document.getElementById('pawa-checkbox-error');
-
-    form.addEventListener('submit', function (e) {
-      // Webflow JS adds 'w--redirected-checked' to the icon div when checked
-      // Fall back to checking the actual input if Webflow class isn't present
-      var isChecked = checkboxIcon.classList.contains('w--redirected-checked')
-                   || document.getElementById('Checkbox-2').checked;
-
-      if (!isChecked) {
-        e.preventDefault();
-        checkboxError.style.display = 'block';
-        checkboxIcon.style.outline = '2px solid red';
-        return;
-      }
-
-      checkboxError.style.display = 'none';
-      checkboxIcon.style.outline = '';
-      var btn = form.querySelector('[type="submit"]');
-      if (btn) btn.value = 'Please wait...';
-    });
-  });
-</script>
 
 {% schema %}
 {
