@@ -14,7 +14,8 @@
           <div class="success-text">Thank you! Your submission has been received!</div>
         </div>
       {% else %}
-        {% form 'contact', class: 'contact_form' %}
+
+        {% form 'contact', class: 'contact_form', data-nocaptcha: 'true' %}
 
           {% if form.errors %}
             <div class="error-message w-form-fail" style="display:block;">
@@ -49,6 +50,7 @@
           <a href="mailto:contact@pawaspeedsports.com?subject=Pawa%20Speed%20Sports%20%7C%20General%20Enquiry" class="link">contact@pawaspeedsports.com</a>
 
         {% endform %}
+
       {% endif %}
 
     </div>
