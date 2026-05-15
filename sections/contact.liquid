@@ -40,9 +40,9 @@
             <textarea class="form_input is-text-area w-input" maxlength="5000" name="contact[body]" data-name="Message 2" placeholder="" id="Message-2" required=""></textarea>
           </div>
           <div class="margin-bottom margin-xsmall">
-            <label id="Contact-5-Checkbox" class="w-checkbox form_checkbox" style="cursor:pointer;">
+            <label id="Contact-5-Checkbox" class="w-checkbox form_checkbox">
               <div class="w-checkbox-input w-checkbox-input--inputType-custom form_checkbox-icon" id="pawa-checkbox-icon"></div>
-              <input id="Checkbox-2" type="checkbox" name="Checkbox-2" data-name="Checkbox 2" style="display:none;">
+              <input id="Checkbox-2" type="checkbox" name="Checkbox-2" data-name="Checkbox 2" style="opacity:0;position:absolute;z-index:-1">
               <div class="form_checkbox-label text-size-small w-form-label">{{ section.settings.richtext_i_accept_the_terms }}</div>
             </label>
             <div id="pawa-checkbox-error" style="display:none; color:red; font-size:0.8em; margin-top:4px;">Please accept the terms to continue.</div>
@@ -63,29 +63,22 @@
     var form = document.querySelector('.contact_form');
     if (!form) return;
 
-    var checkbox = document.getElementById('Checkbox-2');
-    var checkboxLabel = document.getElementById('Contact-5-Checkbox');
     var checkboxIcon = document.getElementById('pawa-checkbox-icon');
     var checkboxError = document.getElementById('pawa-checkbox-error');
 
-    // Clicking anywhere on the label row toggles the checkbox
-    if (checkboxLabel) {
-      checkboxLabel.addEventListener('click', function (e) {
-        e.preventDefault(); // stop native label-for double-firing
-        checkbox.checked = !checkbox.checked;
-        checkboxIcon.style.backgroundColor = checkbox.checked ? '#000' : '';
-        checkboxIcon.style.outline = checkbox.checked ? '' : '';
-        if (checkbox.checked) checkboxError.style.display = 'none';
-      });
-    }
-
     form.addEventListener('submit', function (e) {
-      if (!checkbox.checked) {
+      // Webflow JS adds 'w--redirected-checked' to the icon div when checked
+      // Fall back to checking the actual input if Webflow class isn't present
+      var isChecked = checkboxIcon.classList.contains('w--redirected-checked')
+                   || document.getElementById('Checkbox-2').checked;
+
+      if (!isChecked) {
         e.preventDefault();
         checkboxError.style.display = 'block';
         checkboxIcon.style.outline = '2px solid red';
         return;
       }
+
       checkboxError.style.display = 'none';
       checkboxIcon.style.outline = '';
       var btn = form.querySelector('[type="submit"]');
