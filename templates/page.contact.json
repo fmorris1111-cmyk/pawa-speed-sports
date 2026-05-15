@@ -12,7 +12,7 @@
     "contact": {
       "type": "contact",
       "settings": {
-        "image_image": "shopify://shop_images/65a29462d068c3c35007ec1a_CONTACT-55.avif",
+        "image_image": "shopify://shop_images/65a29462d068c3c35007ec1a_CONTACT-55_215834b0-99cc-4f1c-ae87-64f5d3f7a15c.avif",
         "text_heading": "Contact us",
         "text_paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "text_first_name": "First Name",
@@ -21,11 +21,38 @@
         "text_message": "Message",
         "richtext_i_accept_the_terms": "<p>I accept the Terms</p>"
       }
+    },
+    "17788601145c1d1eec": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_aRnDqz": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "991923",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_aRnDqz"
+      ],
+      "settings": {}
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "contact"
+    "contact",
+    "17788601145c1d1eec"
   ]
 }
