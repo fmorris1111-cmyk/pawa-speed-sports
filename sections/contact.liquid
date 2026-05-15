@@ -15,6 +15,7 @@
 {{ section.settings.text_paragraph }}
 </p>
             </div>
+            {% comment %}
             <div class="contact_form-block w-form">
               {% form 'contact', return_to: '/', class: 'contact_form' %}
 <div class="form_field-wrapper"><label for="First-Name-2" class="form_field-label">
@@ -41,8 +42,11 @@
                 <div class="error-text">Oops! Something went wrong while submitting the form.</div>
               </div>
             </div>
+            {% endcomment %}
           </div>
-        </div> {% schema %} {
+        </div>
+
+{% schema %} {
     "tag": "section",
     "name": "Contact",
     "class": "section_contact",
