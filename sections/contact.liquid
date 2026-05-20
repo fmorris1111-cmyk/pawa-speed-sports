@@ -1,10 +1,6 @@
 <div class="container-large-contact">
           <div class="w-layout-grid contact_component">
-            <div class="div-block-11">{% if section.settings.image_image %}
-{{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'image-4' }}
-{% else %}
-<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-4">
-{% endif %}</div>
+            <div class="div-block-11"><img src="{{ '65a29462d068c3c35007ec1a_CONTACT-55.avif' | asset_url }}" loading="lazy" alt="" class="image-4"></div>
             <div class="contact_content">
               <div class="margin-bottom margin-small">
                 <h1 class="heading-style-h2">
@@ -15,26 +11,91 @@
 {{ section.settings.text_paragraph }}
 </p>
             </div>
-            {% comment %}
-            <div class="contact_form-block w-form">
-              {% form 'contact', return_to: '/', class: 'contact_form' %}
-<div class="form_field-wrapper"><label for="First-Name-2" class="form_field-label">
-{{ section.settings.text_first_name }}
-</label><input class="form_input w-input" maxlength="256" name="contact[first_name]" data-name="First Name 2" placeholder="" type="text" id="First-Name-2" required=""></div>
-                <div class="form_field-wrapper"><label for="Last-Name-2" class="form_field-label">
-{{ section.settings.text_last_name }}
-</label><input class="form_input w-input" maxlength="256" name="contact[last_name]" data-name="Last Name 2" placeholder="" type="text" id="Last-Name-2" required=""></div>
-                <div class="form_field-wrapper"><label for="Email-2" class="form_field-label">
-{{ section.settings.text_email }}
-</label><input class="form_input w-input" maxlength="256" name="contact[email]" data-name="Email 2" placeholder="" type="email" id="Email-2" required=""></div>
-                <div class="form_field-wrapper"><label for="Message-2" class="form_field-label">
-{{ section.settings.text_message }}
-</label><textarea class="form_input is-text-area w-input" maxlength="5000" name="contact[body]" data-name="Message 2" placeholder="" id="Message-2" required=""></textarea></div>
-                <div class="margin-bottom margin-xsmall"><label id="Contact-5-Checkbox" class="w-checkbox form_checkbox" name="contact[checkbox]">
-                    <div class="w-checkbox-input w-checkbox-input--inputType-custom form_checkbox-icon"></div><input id="Checkbox-2" type="checkbox" name="Checkbox-2" data-name="Checkbox 2" required="" style="opacity:0;position:absolute;z-index:-1"><div for="Checkbox-2" class="form_checkbox-label text-size-small w-form-label"> {{ section.settings.richtext_i_accept_the_terms }} </div>
-                  </label></div><input type="submit" data-wait="Please wait..." id="w-node-_6ca8e057-6645-9d42-e1be-60491d7bcc0d-1d7bcbea" class="button w-button" value="Submit">
+            <div class="w-embed w-script"><!--  Pawa Speed Sports Contact Form  -->
+              <!--  Paste this entire block into a Webflow HTML Embed element  -->
+              <!--  It posts to Shopify's /contact endpoint and handles success/error states via JS  -->
+              <form id="pawa-contact-form" action="/contact#contact_form" method="POST" accept-charset="UTF-8">
+                <!--  These hidden inputs are required by Shopify's contact form handler  -->
+                <input type="hidden" name="form_type" value="contact">
+                <input type="hidden" name="utf8" value="✓">
+                <div class="form_field-wrapper">
+                  <label for="pawa-first-name" class="form_field-label">First Name</label>
+                  <input class="form_input w-input" id="pawa-first-name" name="contact[first_name]" type="text" required="" maxlength="256">
+                </div>
+                <div class="form_field-wrapper">
+                  <label for="pawa-last-name" class="form_field-label">Last Name</label>
+                  <input class="form_input w-input" id="pawa-last-name" name="contact[last_name]" type="text" required="" maxlength="256">
+                </div>
+                <div class="form_field-wrapper">
+                  <label for="pawa-email" class="form_field-label">Email</label>
+                  <input class="form_input w-input" id="pawa-email" name="contact[email]" type="email" required="" maxlength="256">
+                </div>
+                <div class="form_field-wrapper">
+                  <label for="pawa-message" class="form_field-label">Message</label>
+                  <textarea class="form_input is-text-area w-input" id="pawa-message" name="contact[body]" required="" maxlength="5000"></textarea>
+                </div>
+                <div class="margin-bottom margin-xsmall">
+                  <label class="w-checkbox form_checkbox">
+                    <input type="checkbox" required="" style="opacity:0;position:absolute;z-index:-1">
+                    <div class="form_checkbox-icon w-checkbox-input w-checkbox-input--inputType-custom"></div>
+                    <span class="form_checkbox-label text-size-small w-form-label">
+                      I accept the Terms
+                    </span>
+                  </label>
+                </div>
+                <input type="submit" class="button w-button" value="Submit" id="pawa-submit-btn">
                 <a href="mailto:contact@pawaspeedsports.com?subject=Pawa%20Speed%20Sports%20%7C%20General%20Enquiry" class="link">contact@pawaspeedsports.com</a>
-              {% endform %}
+              </form>
+              <!--  Success message (hidden until form submitted successfully)  -->
+              <div id="pawa-success" class="success-message w-form-done" style="display:none;">
+                <div class="success-text">Thank you! Your submission has been received!</div>
+              </div>
+              <!--  Error message (hidden until a submission error occurs)  -->
+              <div id="pawa-error" class="error-message w-form-fail" style="display:none;">
+                <div class="error-text">Oops! Something went wrong while submitting the form.</div>
+              </div>
+              <script>
+  (function () {
+    var form = document.getElementById('pawa-contact-form');
+    var submitBtn = document.getElementById('pawa-submit-btn');
+    var successMsg = document.getElementById('pawa-success');
+    var errorMsg = document.getElementById('pawa-error');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault(); // Stop normal page redirect
+      // Reset messages
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+      // Disable button to prevent double submit
+      submitBtn.value = 'Sending&hellip;';
+      submitBtn.disabled = true;
+      var formData = new FormData(form);
+      try {
+        var response = await fetch('/contact', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: formData
+        });
+        if (response.ok) {
+          // Hide the form, show success
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          throw new Error('Non-OK response: ' + response.status);
+        }
+      } catch (err) {
+        // Show error, re-enable button
+        errorMsg.style.display = 'block';
+        submitBtn.value = 'Submit';
+        submitBtn.disabled = false;
+      }
+    });
+  })();
+</script>
+            </div>
+            <div class="contact_form-block w-form">
               <div class="success-message w-form-done">
                 <div class="success-text">Thank you! Your submission has been received!</div>
               </div>
@@ -42,20 +103,12 @@
                 <div class="error-text">Oops! Something went wrong while submitting the form.</div>
               </div>
             </div>
-            {% endcomment %}
           </div>
-        </div>
-
-{% schema %} {
+        </div> {% schema %} {
     "tag": "section",
     "name": "Contact",
     "class": "section_contact",
     "settings": [
-        {
-            "id": "image_image",
-            "type": "image_picker",
-            "label": "IMAGE"
-        },
         {
             "id": "text_heading",
             "type": "text",
@@ -67,36 +120,6 @@
             "type": "text",
             "label": "Paragraph",
             "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        },
-        {
-            "id": "text_first_name",
-            "type": "text",
-            "label": "First Name",
-            "default": "First Name"
-        },
-        {
-            "id": "text_last_name",
-            "type": "text",
-            "label": "Last Name",
-            "default": "Last Name"
-        },
-        {
-            "id": "text_email",
-            "type": "text",
-            "label": "Email",
-            "default": "Email"
-        },
-        {
-            "id": "text_message",
-            "type": "text",
-            "label": "Message",
-            "default": "Message"
-        },
-        {
-            "id": "richtext_i_accept_the_terms",
-            "type": "richtext",
-            "label": "I accept the Terms",
-            "default": "<p>I accept the Terms<\/p>"
         }
     ],
     "presets": [
