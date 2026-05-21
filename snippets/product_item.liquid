@@ -1,4 +1,4 @@
-<script src="{{ 'li_custom.js' | asset_url }}" type="text/javascript"></script>
+<script src="{{ 'li_custom.js' | asset_url }}" type="text/javascript" defer></script>
 <div li-element="product-variant-container" class="product-item_component" x-data="handleVariant({{ product | json | escape }}, {{ product.options_by_name | json | escape }}, {{ product.selected_or_first_available_variant | json | escape }})" x-init="$nextTick(() => { activateVariants() })" @setbundleitem.window="updateBundleItem($event.detail.product, $event.detail.quantity)">
   <div class="product-item_image-link">
     <a li-object:href="product.url" href="{{ product.url }}" class="product-item_image-wrapper w-inline-block">
@@ -11,6 +11,8 @@
                 {{ product.featured_image | image_url: width: 900 }} 900w,
                 {{ product.featured_image | image_url: width: 1200 }} 1200w"
         sizes="(max-width: 768px) 50vw, 25vw"
+        width="900"
+        height="900"
         alt="{{ product.featured_image.alt }}"
         class="product-item_image">
       <img
@@ -21,6 +23,8 @@
         srcset="{{ product.metafields.custom.hover_product_image | image_url: width: 450 }} 450w,
                 {{ product.metafields.custom.hover_product_image | image_url: width: 900 }} 900w"
         sizes="(max-width: 768px) 50vw, 25vw"
+        width="900"
+        height="900"
         alt="{{ product.featured_image.alt }}"
         class="product-item_image-hover">
     </a>
