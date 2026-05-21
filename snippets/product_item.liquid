@@ -5,20 +5,20 @@
       <img
         li-object:alt="product.featured_image.alt"
         loading="lazy"
-        li-object:src="product.featured_image | image_url: width: 800"
-        src="{{ product.featured_image | image_url: width: 800 }}"
-        srcset="{{ product.featured_image | image_url: width: 450 }} 450w,
-                {{ product.featured_image | image_url: width: 800 }} 800w,
-                {{ product.featured_image | image_url: width: 1200 }} 1200w"
-        sizes="(min-width: 1200px) 400px, (min-width: 768px) 33vw, 50vw"
+        li-object:src="product.featured_image | image_url: width: 900"
+        src="{{ product.featured_image | image_url: width: 900 }}"
+        srcset="{{ product.featured_image | image_url: width: 300 }} 300w,
+                {{ product.featured_image | image_url: width: 600 }} 600w,
+                {{ product.featured_image | image_url: width: 900 }} 900w"
+        sizes="(min-width: 768px) 300px, 50vw"
         alt="{{ product.featured_image.alt }}"
         class="product-item_image"
       >
       <img
         li-object:alt="product.featured_image.alt"
         loading="lazy"
-        li-object:src="product.metafields.custom.hover_product_image | image_url: width: 800"
-        src="{{ product.metafields.custom.hover_product_image | image_url: width: 800 }}"
+        li-object:src="product.metafields.custom.hover_product_image | image_url: width: 900"
+        src="{{ product.metafields.custom.hover_product_image | image_url: width: 900 }}"
         alt="{{ product.featured_image.alt }}"
         class="product-item_image-hover"
       >
