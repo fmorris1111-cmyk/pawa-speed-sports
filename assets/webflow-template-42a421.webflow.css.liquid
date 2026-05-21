@@ -1725,6 +1725,7 @@ figcaption {
   cursor: auto;
   flex: 1;
   align-self: flex-start;
+  max-width: 86px;
   display: flex;
 }
 
@@ -4784,12 +4785,13 @@ figcaption {
   }
 
   .nav_container {
-    grid-column-gap: 0rem;
-    grid-row-gap: 2rem;
+    grid-column-gap: 8rem;
+    grid-row-gap: 8rem;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-columns: 1fr;
     justify-content: space-between;
+    justify-items: center;
     display: grid;
   }
 
@@ -6377,6 +6379,8 @@ figcaption {
   }
 
   .nav_container {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
     justify-content: space-between;
     margin-left: 0;
     margin-right: 0;
