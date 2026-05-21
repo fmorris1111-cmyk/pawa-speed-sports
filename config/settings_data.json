@@ -24,5 +24,10 @@
         "settings": {}
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".product-header_thumbnail-image {pointer-events: none;}"
+    ]
   }
 }
