@@ -1,1 +1,27 @@
-{"type":"header","name":"Header Group","sections":{"header":{"type":"header","settings":{}}},"order":["header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "checkbox_show_announcement": true,
+        "url_link_url": "shopify://collections/all",
+        "text_announcement_text": "SALE NOW ON",
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
+}
