@@ -1,0 +1,81 @@
+<div class="announcement-bar_link-container">
+          {% for block in section.blocks %}
+    {% if block.type == "message" %}
+                    <div li-block="message">
+                                    
+            
+                                    <a href="{{ block.settings.url_link_url }}" class="announcement-bar_link"> {{ block.settings.text_announcement_text }} </a>
+                                    
+          
+                            </div>
+            {% endif %}
+{% endfor %}
+          {% for block in section.blocks %}    <div aria-hidden="true" li-for="block in section.blocks">
+                                    
+            
+                            <a href="#" class="announcement-bar_link">Text Link</a>
+                            
+          
+                        </div>
+{% endfor %}
+        </div>
+        <div class="w-embed">
+          <style>
+  .announcement-bar_container {
+    overflow: hidden;
+    width: 100%;
+  }
+  .announcement-bar_link-container {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    animation: marquee 12s linear infinite;
+  }
+  .announcement-bar_inner {
+    display: inline-flex;
+    align-items: center;
+  }
+  .announcement-bar_link {
+    padding: 0 40px;
+    white-space: nowrap;
+  }
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+        </div> {% schema %} {
+    "tag": "div",
+    "name": "Announcement Bar",
+    "class": "announcement-bar_container",
+    "blocks": [
+        {
+            "name": "message",
+            "type": "message",
+            "settings": [
+                {
+                    "id": "url_link_url",
+                    "type": "url",
+                    "label": "Link URL"
+                },
+                {
+                    "id": "text_announcement_text",
+                    "type": "text",
+                    "label": "Announcement Text",
+                    "default": "Text Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Announcement Bar",
+            "category": "Liquify",
+            "blocks": [
+                {
+                    "type": "message"
+                }
+            ]
+        }
+    ]
+} {% endschema %}
