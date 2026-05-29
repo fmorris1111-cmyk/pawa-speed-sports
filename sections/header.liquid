@@ -1,4 +1,8 @@
-<div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
+{% if section.settings.checkbox_show_announcement == true %}
+<div class="announcement-bar_container">
+          <a href="{{ section.settings.url_link_url }}" class="announcement-bar_link"> {{ section.settings.text_announcement_text }} </a>
+        </div>{% endif %}
+        <div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
           <nav role="navigation" class="nav_menu-2 w-nav-menu">
             {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links">
                                     
@@ -507,6 +511,23 @@
     "name": "Header",
     "class": "section_navbar",
     "settings": [
+        {
+            "id": "checkbox_show_announcement",
+            "type": "checkbox",
+            "label": "Show Announcement",
+            "default": true
+        },
+        {
+            "id": "url_link_url",
+            "type": "url",
+            "label": "Link URL"
+        },
+        {
+            "id": "text_announcement_text",
+            "type": "text",
+            "label": "Announcement Text",
+            "default": "Text Link"
+        },
         {
             "id": "image_logo",
             "type": "image_picker",
