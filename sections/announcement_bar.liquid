@@ -1,7 +1,7 @@
 <div class="announcement-bar_link-container">
           {% for block in section.blocks %}
     {% if block.type == "message" %}
-                    <div li-block="message">
+                    <div li-block="message" class="announcement-bar_inner">
                                     
             
                                     <a href="{{ block.settings.url_link_url }}" class="announcement-bar_link"> {{ block.settings.text_announcement_text }} </a>
@@ -10,40 +10,78 @@
                             </div>
             {% endif %}
 {% endfor %}
-          {% for block in section.blocks %}    <div aria-hidden="true" li-for="block in section.blocks">
+          {% for block in section.blocks %}    <div aria-hidden="true" li-for="block in section.blocks" class="announcement-bar_inner">
                                     
             
-                            <a href="#" class="announcement-bar_link">Text Link</a>
+                            <a li-object:href="block.settings.url_link_url" li-object="block.settings.text_announcement_text" href="{{ block.settings.url_link_url }}" class="announcement-bar_link">{{ block.settings.text_announcement_text }}</a>
                             
           
                         </div>
 {% endfor %}
         </div>
-        <div class="w-embed">
+        <div class="w-embed w-script">
           <style>
   .announcement-bar_container {
     overflow: hidden;
     width: 100%;
   }
   .announcement-bar_link-container {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    width: max-content;
-    animation: marquee 12s linear infinite;
+    display: flex;
+    will-change: transform;
   }
   .announcement-bar_inner {
-    display: inline-flex;
-    align-items: center;
+    display: contents;
   }
   .announcement-bar_link {
-    padding: 0 40px;
+    padding: 0 60px;
     white-space: nowrap;
-  }
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    display: inline-block;
+    flex-shrink: 0;
   }
 </style>
+          <script>
+window.addEventListener('load', function() {
+  var track = document.querySelector('.announcement-bar_link-container');
+  if (!track) return;
+  var container = track.parentElement;
+  var containerWidth = container.offsetWidth;
+  // Grab all original links before we clone anything
+  var originalLinks = Array.from(track.querySelectorAll('.announcement-bar_link'));
+  // Measure original set width
+  var originalSetWidth = 0;
+  originalLinks.forEach(function(link) {
+    originalSetWidth += link.getBoundingClientRect().width;
+  });
+  // Find reset point: smallest multiple of originalSetWidth >= containerWidth
+  var resetWidth = originalSetWidth;
+  while (resetWidth < containerWidth) {
+    resetWidth += originalSetWidth;
+  }
+  // Clone until we have at least resetWidth * 2 + containerWidth worth of content
+  // so there's always content ahead of the visible area
+  while (track.scrollWidth < resetWidth * 2 + containerWidth) {
+    originalLinks.forEach(function(link) {
+      track.appendChild(link.cloneNode(true));
+    });
+  }
+  var pos = 0;
+  var pixelsPerSecond = 60;
+  var lastTime = null;
+  function tick(timestamp) {
+    if (!lastTime) lastTime = timestamp;
+    var delta = timestamp - lastTime;
+    lastTime = timestamp;
+    pos += (pixelsPerSecond * delta) / 1000;
+    // Reset at resetWidth &mdash; snaps back to visually identical position
+    if (pos >= resetWidth) {
+      pos -= resetWidth;
+    }
+    track.style.transform = 'translateX(-' + pos + 'px)';
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+});
+</script>
         </div> {% schema %} {
     "tag": "div",
     "name": "Announcement Bar",
