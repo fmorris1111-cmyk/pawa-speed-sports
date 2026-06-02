@@ -39,6 +39,7 @@
         "message_KKekrx",
         "message_GDYN9a"
       ],
+      "disabled": true,
       "name": "Announcement Bar",
       "settings": {}
     }
