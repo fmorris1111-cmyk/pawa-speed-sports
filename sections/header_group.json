@@ -23,7 +23,7 @@
         "message_GDYN9a": {
           "type": "message",
           "settings": {
-            "url_link_url": "shopify://collections/all",
+            "url_link_url": "shopify://collections/sale",
             "text_announcement_text": "SUMMER SALE - 40% OFF SELECTED LINES"
           }
         }
