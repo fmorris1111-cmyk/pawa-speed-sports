@@ -20,13 +20,6 @@
     "announcement_bar_77yXQf": {
       "type": "announcement_bar",
       "blocks": {
-        "message_KKekrx": {
-          "type": "message",
-          "settings": {
-            "url_link_url": "shopify://collections/all",
-            "text_announcement_text": "FREE UK SHIPPING"
-          }
-        },
         "message_GDYN9a": {
           "type": "message",
           "settings": {
@@ -36,10 +29,8 @@
         }
       },
       "block_order": [
-        "message_KKekrx",
         "message_GDYN9a"
       ],
-      "disabled": true,
       "name": "Announcement Bar",
       "settings": {}
     }
