@@ -447,7 +447,7 @@
                                   <template x-if="product.price < product.original_price">
             <div li-js-if="product.price < product.original_price">
         
-                                    <div li-js-price="product.original_price" class="text-size-small text-style-strikethrough text-style-muted" x-text="LiquifyHelper.moneyFormat(product.original_price, true, '{{ shop.money_with_currency_format }}')">14,99 $</div>
+                                    <div li-object="product.compare_at_price | money" class="text-size-small text-style-strikethrough text-style-muted">{{ product.compare_at_price | money }}</div>
                                           </div>
     </template>
                                 </div>
