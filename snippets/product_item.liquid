@@ -9,7 +9,7 @@
                         <div li-object="product.title" class="product-name-link">{{ product.title }}</div>
                       </div>
                       <div class="product-item_price">
-                        {% if product.compare_at_price_max > product.price %}    <div li-if="product.compare_at_price_max > product.price">
+                        {% if product.compare_at_price > product.price %}    <div li-if="product.compare_at_price > product.price">
     
                           <div li-object="product.compare_at_price | money" class="text-size-regular text-style-strikethrough text-style-muted">{{ product.compare_at_price | money }}</div>
                             </div>
