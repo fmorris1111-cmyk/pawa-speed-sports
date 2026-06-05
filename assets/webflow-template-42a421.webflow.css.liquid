@@ -1524,6 +1524,7 @@ figcaption {
 
 .mini-cart_line-item.no-scrollbar {
   align-items: flex-start;
+  max-height: none;
   display: flex;
   overflow: scroll;
 }
@@ -6406,6 +6407,16 @@ figcaption {
 
   .mini-cart_component {
     width: 100%;
+  }
+
+  .mini-cart_footer {
+    flex: none;
+    margin-top: 0;
+  }
+
+  .mini-cart_line-item.no-scrollbar {
+    min-height: 0;
+    overflow: auto;
   }
 
   .product-item_text-link {
