@@ -109,7 +109,7 @@
         "images_7JzfAy": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "",
+            "url_image_link_url": "shopify://collections/all",
             "image_image": "shopify://shop_images/09.png"
           }
         },
