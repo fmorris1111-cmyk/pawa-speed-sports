@@ -22,6 +22,11 @@
         "type": "shopify://apps/super-pinch-zoom/blocks/star_rating/ab7c7f82-c7c7-4520-9f92-6394fd695a86",
         "disabled": true,
         "settings": {}
+      },
+      "1793219247286972479": {
+        "type": "shopify://apps/searchpie-seo-speed/blocks/sb-snippets/29f6c508-9bb9-4e93-9f98-b637b62f3552",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
