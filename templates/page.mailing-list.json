@@ -18,7 +18,9 @@
     },
     "mailer_embed_form_LYBwHk": {
       "type": "mailer_embed_form",
-      "custom_css": [],
+      "custom_css": [
+        "{padding-top: 4rem;}"
+      ],
       "name": "Mailer Embed Form",
       "settings": {}
     }
