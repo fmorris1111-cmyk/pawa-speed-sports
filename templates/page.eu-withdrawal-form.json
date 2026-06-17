@@ -13,15 +13,33 @@
       "type": "custom_liquid",
       "name": "Custom Liquid",
       "settings": {
-        "custom_liquid": "<div class=\"full-width-bar\"></div>\n\n<style>\n  .full-width-bar {\n    width: 100vw;\n    height: 4rem;\n    position: relative;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n\n  @media screen and (max-width: 991px) {\n    .full-width-bar {\n      height: 6rem;\n    }\n  }\n</style>"
+        "custom_liquid": "<div class=\"full-width-bar\"></div>\n\n<style>\n  .full-width-bar {\n    width: 100vw;\n    height: 10rem;\n    position: relative;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n\n  @media screen and (max-width: 991px) {\n    .full-width-bar {\n      height: 12\nrem;\n    }\n  }\n</style>"
       }
     },
-    "mailer_embed_form_LYBwHk": {
-      "type": "mailer_embed_form",
-      "custom_css": [
-        "{padding-top: 4rem;}"
+    "17817108580f6c5f47": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_Mj74AT": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "1035115",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 10,
+            "padding_bottom": 24,
+            "padding_right": 14,
+            "padding_left": 14
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_Mj74AT"
       ],
-      "name": "Mailer Embed Form",
       "settings": {}
     }
   },
@@ -29,6 +47,6 @@
   "wrapper": "main.main-wrapper",
   "order": [
     "custom_liquid_MFXG6n",
-    "mailer_embed_form_LYBwHk"
+    "17817108580f6c5f47"
   ]
 }
