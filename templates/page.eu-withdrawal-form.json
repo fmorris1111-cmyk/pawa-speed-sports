@@ -1,0 +1,34 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_MFXG6n": {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"full-width-bar\"></div>\n\n<style>\n  .full-width-bar {\n    width: 100vw;\n    height: 4rem;\n    position: relative;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n\n  @media screen and (max-width: 991px) {\n    .full-width-bar {\n      height: 6rem;\n    }\n  }\n</style>"
+      }
+    },
+    "mailer_embed_form_LYBwHk": {
+      "type": "mailer_embed_form",
+      "custom_css": [
+        "{padding-top: 4rem;}"
+      ],
+      "name": "Mailer Embed Form",
+      "settings": {}
+    }
+  },
+  "layout": "theme",
+  "wrapper": "main.main-wrapper",
+  "order": [
+    "custom_liquid_MFXG6n",
+    "mailer_embed_form_LYBwHk"
+  ]
+}
