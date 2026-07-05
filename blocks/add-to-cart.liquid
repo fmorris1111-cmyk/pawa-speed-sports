@@ -15,6 +15,122 @@
                         </div></template>
                           </div>
 {% endif %}
+                      <div>
+                        <div class="w-embed w-script"><!--   &#9472;&#9472; Size Guide Lightbox (no zoom) &mdash; pulls image from product metafield &#9472;&#9472;   -->
+                          {% if product.metafields.custom.size_chart != blank %}
+                          <div class="size-guide_wrapper">
+                            <a href="#" role="button" data-size-guide-trigger="" class="size-guide_trigger text-size-regular text-weight-semibold">Size Guide</a>
+                          </div>
+                          <div data-size-guide-lightbox="" class="size-guide_lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Size guide">
+                            <div data-size-guide-close="" class="size-guide_lightbox-backdrop"></div>
+                            <div class="size-guide_lightbox-content">
+                              <button type="button" data-size-guide-close="" class="size-guide_lightbox-close" aria-label="Close size guide">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                              </button>
+                              <img src="{{ product.metafields.custom.size_chart | image_url: width: 1600 }}" alt="{{ product.metafields.custom.size_chart.alt | default: 'Size guide' }}" class="size-guide_image" loading="lazy">
+                            </div>
+                          </div>
+                          {% endif %}
+                          <style>
+  .size-guide_wrapper {
+    display: inline-flex;
+    margin-left: 0.75em;
+  }
+  .size-guide_trigger {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .size-guide_lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  .size-guide_lightbox.is-open {
+    display: flex;
+  }
+  .size-guide_lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .size-guide_lightbox-content {
+    position: relative;
+    z-index: 1;
+    max-width: min(90vw, 800px);
+    max-height: 90vh;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+  }
+  .size-guide_image {
+    max-width: 100%;
+    max-height: calc(90vh - 40px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+  }
+  .size-guide_lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    padding: 0;
+  }
+  body.size-guide_no-scroll {
+    overflow: hidden;
+  }
+</style>
+                          <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-size-guide-trigger]').forEach(function (trigger) {
+      var lightbox = document.querySelector('[data-size-guide-lightbox]');
+      if (!lightbox) return;
+      function openLightbox(e) {
+        e.preventDefault();
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('size-guide_no-scroll');
+        var closeBtn = lightbox.querySelector('[data-size-guide-close]');
+        if (closeBtn) closeBtn.focus();
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('size-guide_no-scroll');
+        trigger.focus();
+      }
+      trigger.addEventListener('click', openLightbox);
+      lightbox.querySelectorAll('[data-size-guide-close]').forEach(function (closeEl) {
+        closeEl.addEventListener('click', closeLightbox);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    });
+  });
+</script>
+                        </div>
+                      </div>
                       <div class="product-header_add-to-cart-wrapper">
                         <template x-if="selected_or_first_available_variant.available">
             <div li-js-if="selected_or_first_available_variant.available" class="product-header_buy-wrappper">
