@@ -18,7 +18,7 @@
 <!--  ── Size Guide Lightbox (no zoom) — pulls image from product metafield ──  -->
 {% if product.metafields.custom.size_chart != blank %}
 <div class="size-guide_wrapper">
-  <a href="#" role="button" data-size-guide-trigger class="size-guide_trigger text-size-regular text-weight-semibold">Size Guide</a>
+  <a href="#" role="button" data-size-guide-trigger class="size-guide_trigger text-size-regular">Size Guide</a>
 </div>
 
 <div data-size-guide-lightbox class="size-guide_lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Size guide">
@@ -39,12 +39,17 @@
 
 <style>
   .size-guide_wrapper {
-    display: inline-flex;
-    margin-left: 0.75em;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
   }
   .size-guide_trigger {
     text-decoration: underline;
     cursor: pointer;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
   }
   .size-guide_lightbox {
     display: none;
