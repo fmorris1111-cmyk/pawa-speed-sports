@@ -14,13 +14,20 @@
                         </div>
 {% endfor %}
               <div class="nav_submenu-drawer">
-                <div li-object:data-panel="link.handle" li-for="link in linklists['main-menu'].links" class="nav_submenu-panel" data-panel="{{ link.handle }}">
-                  {% if link.links.size > 0 %}    <div li-if="link.links.size > 0">
+                {% for  %}    <div li-for="">
+                                    
+                  
+                            <div li-object:data-panel="link.handle" class="nav_submenu-panel" data-panel="{{ link.handle }}">
+                    {% if link.links.size > 0 %}    <div li-if="link.links.size > 0">
     
-                    <a li-object:href="child_link.url" li-for="child_link in link.links" li-object="child_link.title" href="{{ child_link.url }}">{{ child_link.title }}</a>
-                      </div>
+                      <a li-object:href="child_link.url" li-for="child_link in link.links" li-object="child_link.title" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                        </div>
 {% endif %}
-                </div>
+                  </div>
+                            
+                
+                        </div>
+{% endfor %}
               </div>
             </nav>
             <div id="w-node-_9132635a-7891-b0d1-9b20-ecb0d5a86e16-d5a86df8" class="nav_menu-button w-nav-button">
