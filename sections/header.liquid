@@ -13,22 +13,21 @@
               
                         </div>
 {% endfor %}
-              <div class="nav_submenu-drawer">
-                {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links">
-                                    
-                  
-                            <div li-object:data-panel="link.handle" class="nav_submenu-panel" data-panel="{{ link.handle }}">
-                    {% if link.links.size > 0 %}    <div li-if="link.links.size > 0" class="div-block-15">
-    
-                      <a li-object:href="child_link.url" li-for="child_link in link.links" li-object="child_link.title" href="{{ child_link.url }}" class="link-2">{{ child_link.title }}</a>
+                            <div class="nav_submenu-drawer">
+                {% for link in linklists['main-menu'].links %}
+                    <div li-for="link in linklists['main-menu'].links">
+                    <div li-object:data-panel="link.handle" class="nav_submenu-panel" data-panel="{{ link.handle }}">
+                        {% if link.links.size > 0 %}
+                        <div li-if="link.links.size > 0" class="div-block-15">
+                            {% for child_link in link.links %}
+                            <a li-object:href="child_link.url" li-for="child_link in link.links" li-object="child_link.title" href="{{ child_link.url }}" class="link-2">{{ child_link.title }}</a>
+                            {% endfor %}
                         </div>
-{% endif %}
-                  </div>
-                            
-                
-                        </div>
-{% endfor %}
-              </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                {% endfor %}
+                </div>
             </nav>
             <div id="w-node-_9132635a-7891-b0d1-9b20-ecb0d5a86e16-d5a86df8" class="nav_menu-button w-nav-button">
               <div class="menu-icon">
