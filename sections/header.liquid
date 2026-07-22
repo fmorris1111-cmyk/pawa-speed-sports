@@ -20,7 +20,7 @@
                             <div li-object:data-panel="link.handle" class="nav_submenu-panel" data-panel="{{ link.handle }}">
                     {% if link.links.size > 0 %}    <div li-if="link.links.size > 0">
     
-                      <a li-object:href="child_link.url" li-for="child_link in link.links" li-object="child_link.title" href="{{ child_link.url }}" class="link-2">{{ child_link.title }}</a>
+                      {% for child_link in link.links %}<a li-object:href="child_link.url" li-for="child_link in link.links" li-object="child_link.title" href="{{ child_link.url }}" class="link-2">{{ child_link.title }}</a>{% endfor %}
                         </div>
 {% endif %}
                   </div>
@@ -92,9 +92,6 @@
             this.getCart();
         },
 
-        /**
-         * Get the cart data.
-         */
         async getCart() {
             this.initAbortController()
             await fetch(window.Shopify.routes.root + 'cart.js', {
@@ -127,28 +124,14 @@
                 });
         },
 
-        /**
-         * @param key
-         * @param quantity
-         */
         increaseCartItemQuantity(key, quantity) {
             this.updateCartItemQuantity(key, parseInt(quantity) + 1);
         },
 
-        /**
-         * @param key
-         * @param quantity
-         */
         decreaseCartItemQuantity(key, quantity) {
             this.updateCartItemQuantity(key, parseInt(quantity) - 1);
         },
 
-        /**
-         * Update the cart item.
-         *
-         * @param key
-         * @param quantity
-         */
         updateCartItemQuantity(key, quantity) {
             this.initAbortController();
             console.log('updateCartItemQuantity(): key, quantity: ', key, quantity);
@@ -179,9 +162,6 @@
                 });
         },
 
-        /**
-         * Format monetary values.
-         */
         moneyFormat(value, minor = true) {
             return LiquifyHelper.moneyFormat(value, minor)
         },
@@ -190,10 +170,6 @@
             return LiquifyHelper.htmlspecialchars_decode(string)
         },
 
-        /**
-         * Shows the minicart api message
-         * @param event
-         */
         showCartMessage(event) {
             if(event?.detail?.status) {
                 this.cart.response.result = event.detail ?? {}
@@ -211,215 +187,41 @@
             this.$dispatch('currentcartitems', this.cart.items);
         },
 
-        /**
-         * @deprecated
-         */
-        set open(open) { // deprecated use  LiquifyHelper instead
-            //console.warn('Deprecated "set open" in mini_cart')
-        },
-        /**
-         * @deprecated
-         */
-        get open() { // deprecated use  LiquifyHelper instead
-            //console.warn('Deprecated "get open" in mini_cart')
-            return false;
-        },
-        /**
-         * @deprecated
-         */
-        set note(note) { // deprecated
-            //console.warn('Deprecated "set note" in mini_cart')
-            this.cart.note = note;
-        },
-        /**
-         * @deprecated
-         */
-        get note() { // deprecated
-            //console.warn('Deprecated "get note" in mini_cart')
-            return this.cart?.note;
-        },
-        /**
-         * @deprecated
-         */
-        set attributes(attributes) { // deprecated
-            //console.warn('Deprecated "set attributes" in mini_cart')
-            this.cart.attributes = attributes;
-        },
-        /**
-         * @deprecated
-         */
-        get attributes() { // deprecated
-            //console.warn('Deprecated "get attributes" in mini_cart')
-            return this.cart?.attributes;
-        },
-        /**
-         * @deprecated
-         */
-        set original_total_price(original_total_price) { //deprecated
-            //console.warn('Deprecated "set original_total_price" in mini_cart')
-            this.cart.original_total_price = original_total_price;
-        },
-        /**
-         * @deprecated
-         */
-        get original_total_price() { //deprecated
-            //console.warn('Deprecated "get original_total_price" in mini_cart')
-            return this.cart.original_total_price;
-        },
-        /**
-         * @deprecated
-         */
-        set total_price(total_price) { //deprecated
-            //console.warn('Deprecated "set total_price" in mini_cart')
-            this.cart.total_price = total_price;
-        },
-        /**
-         * @deprecated
-         */
-        get total_price() { //deprecated
-            //console.warn('Deprecated "get total_price" in mini_cart')
-            return this.cart.total_price;
-        },
-        /**
-         * @deprecated
-         */
-        set total_discount(total_discount) { //deprecated
-            //console.warn('Deprecated "set total_discount" in mini_cart')
-            this.cart.total_discount = total_discount;
-        },
-        /**
-         * @deprecated
-         */
-        get total_discount() { //deprecated
-            //console.warn('Deprecated "get total_discount" in mini_cart')
-            return this.cart.total_discount;
-        },
-        /**
-         * @deprecated
-         */
-        set total_weight(total_weight) { //deprecated
-            //console.warn('Deprecated "set total_weight" in mini_cart')
-            this.cart.total_discount = total_weight;
-        },
-        /**
-         * @deprecated
-         */
-        get total_weight() { //deprecated
-            //console.warn('Deprecated "get total_weight" in mini_cart')
-            return this.cart.total_weight;
-        },
-        /**
-         * @deprecated
-         */
-        set item_count(item_count) { //deprecated
-            //console.warn('Deprecated "set item_count" in mini_cart')
-            this.cart.total_discount = item_count;
-        },
-        /**
-         * @deprecated
-         */
-        get item_count() { //deprecated
-            //console.warn('Deprecated "get item_count" in mini_cart')
-            return this.cart.item_count;
-        },
-        /**
-         * @deprecated
-         */
-        set items_subtotal_price(items_subtotal_price) { //deprecated
-            //console.warn('Deprecated "set items_subtotal_price" in mini_cart')
-            this.cart.items_subtotal_price = items_subtotal_price;
-        },
-        /**
-         * @deprecated
-         */
-        get items_subtotal_price() { //deprecated
-            //console.warn('Deprecated "get items_subtotal_price" in mini_cart')
-            return this.cart.items_subtotal_price;
-        },
-        /**
-         * @deprecated
-         */
-        set products(products) {
-            //console.warn('Deprecated "set products" in mini_cart')
-            this.cart.items = products;
-        },
-        /**
-         * @deprecated
-         */
-        get products() {
-            //console.warn('Deprecated "get products" in mini_cart')
-            return this.cart.items;
-        },
-        /**
-         * @deprecated
-         */
-        set requires_shipping(requires_shipping) {
-            //console.warn('Deprecated "set requires_shipping" in mini_cart')
-        },
-        /**
-         * @deprecated
-         */
-        get requires_shipping() {
-            //console.warn('Deprecated "get requires_shipping" in mini_cart')
-            return false;
-        },
-        /**
-         * @deprecated
-         */
-        set currency(currency) { //deprecated
-            //console.warn('Deprecated "set currency" in mini_cart')
-            this.cart.currency = currency;
-        },
-        /**
-         * @deprecated
-         */
-        get currency() { //deprecated
-            //console.warn('Deprecated "get currency" in mini_cart')
-            return this.cart.currency;
-        },
-        /**
-         * @deprecated
-         */
-        set cart_level_discount_applications(cart_level_discount_applications) { //deprecated
-            //console.warn('Deprecated "set cart_level_discount_applications" in mini_cart')
-            this.cart.cart_level_discount_applications = cart_level_discount_applications;
-        },
-        /**
-         * @deprecated
-         */
-        get cart_level_discount_applications() { //deprecated
-            //console.warn('Deprecated "get cart_level_discount_applications" in mini_cart')
-            return this.cart.cart_level_discount_applications;
-        },
-        /**
-         * @deprecated
-         */
-        set cartApiResponse(cartApiResponse) { //deprecated
-            //console.warn('Deprecated "set cartApiResponse" in mini_cart')
-            this.cart.cartApiResponse = cartApiResponse;
-        },
-        /**
-         * @deprecated
-         */
-        get cartApiResponse() { //deprecated
-            //console.warn('Deprecated "get cartApiResponse" in mini_cart')
-            return this.cart.response;
-        },
-        /**
-         * @deprecated
-         */
-        set total(total) { //deprecated
-            //console.warn('Deprecated "set total" in mini_cart')
+        set open(open) {},
+        get open() { return false; },
+        set note(note) { this.cart.note = note; },
+        get note() { return this.cart?.note; },
+        set attributes(attributes) { this.cart.attributes = attributes; },
+        get attributes() { return this.cart?.attributes; },
+        set original_total_price(original_total_price) { this.cart.original_total_price = original_total_price; },
+        get original_total_price() { return this.cart.original_total_price; },
+        set total_price(total_price) { this.cart.total_price = total_price; },
+        get total_price() { return this.cart.total_price; },
+        set total_discount(total_discount) { this.cart.total_discount = total_discount; },
+        get total_discount() { return this.cart.total_discount; },
+        set total_weight(total_weight) { this.cart.total_discount = total_weight; },
+        get total_weight() { return this.cart.total_weight; },
+        set item_count(item_count) { this.cart.total_discount = item_count; },
+        get item_count() { return this.cart.item_count; },
+        set items_subtotal_price(items_subtotal_price) { this.cart.items_subtotal_price = items_subtotal_price; },
+        get items_subtotal_price() { return this.cart.items_subtotal_price; },
+        set products(products) { this.cart.items = products; },
+        get products() { return this.cart.items; },
+        set requires_shipping(requires_shipping) {},
+        get requires_shipping() { return false; },
+        set currency(currency) { this.cart.currency = currency; },
+        get currency() { return this.cart.currency; },
+        set cart_level_discount_applications(cart_level_discount_applications) { this.cart.cart_level_discount_applications = cart_level_discount_applications; },
+        get cart_level_discount_applications() { return this.cart.cart_level_discount_applications; },
+        set cartApiResponse(cartApiResponse) { this.cart.cartApiResponse = cartApiResponse; },
+        get cartApiResponse() { return this.cart.response; },
+        set total(total) {
             this.cart.item_count = total.items;
             this.cart.total_price = total.price;
             this.cart.total_weight = total.weight;
             this.cart.total_discount = total.discount;
         },
-        /**
-         * @deprecated
-         */
-        get total() { //deprecated
-            //console.warn('Deprecated "get total" in mini_cart')
+        get total() {
             return {
                 items: this.cart.item_count,
                 price: this.cart.total_price,
