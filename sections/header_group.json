@@ -8,35 +8,8 @@
  * ------------------------------------------------------------
  */
 {
+  "name": "header_group",
   "type": "header",
-  "name": "Header Group",
-  "sections": {
-    "header": {
-      "type": "header",
-      "settings": {
-        "menu": "main-menu"
-      }
-    },
-    "announcement_bar_77yXQf": {
-      "type": "announcement_bar",
-      "blocks": {
-        "message_GDYN9a": {
-          "type": "message",
-          "settings": {
-            "url_link_url": "shopify://collections/sale",
-            "text_announcement_text": "SUMMER SALE - 40% OFF SELECTED LINES"
-          }
-        }
-      },
-      "block_order": [
-        "message_GDYN9a"
-      ],
-      "name": "Announcement Bar",
-      "settings": {}
-    }
-  },
-  "order": [
-    "header",
-    "announcement_bar_77yXQf"
-  ]
+  "sections": {},
+  "order": []
 }
