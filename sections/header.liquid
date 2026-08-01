@@ -64,10 +64,10 @@
 {% endif %}
               {% if customer %}    <div li-if="customer" class="nav_account-links">
     
-                <a li-object:href="routes.account_register_url" href="{{ routes.account_register_url }}" class="nav_link-item w-inline-block">
+                <a li-object:href="routes.account_url" href="{{ routes.account_url }}" class="nav_link-item w-inline-block">
                   <div li-object:href="routes.account_url" class="nav_link" href="{{ routes.account_url }}">ACCOUNT</div>
                 </a>
-                <a li-object:href="routes.account_url" href="{{ routes.account_url }}" class="nav_link-item w-inline-block">
+                <a li-object:href="routes.account_register_url" href="{{ routes.account_register_url }}" class="nav_link-item w-inline-block">
                   <div li-object:href="routes.account_url" class="nav_link" href="{{ routes.account_url }}">LOGOUT</div>
                 </a>
                   </div>
@@ -556,5 +556,10 @@
             "category": "Liquify",
             "blocks": []
         }
-    ]
+    ],
+    "enabled_on": {
+        "groups": [
+            "*"
+        ]
+    }
 } {% endschema %}
