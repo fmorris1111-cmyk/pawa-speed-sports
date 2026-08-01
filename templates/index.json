@@ -18,6 +18,28 @@
         "text_video_url": "https://cdn.shopify.com/videos/c/o/v/6c4e8a03e5f442368c6aa313f00a8c2d.mp4"
       }
     },
+    "content_grid_home_jGYeFB": {
+      "type": "content_grid_home",
+      "blocks": {
+        "images_fniRza": {
+          "type": "images",
+          "settings": {
+            "image_image": "shopify://shop_images/pawa-speed-sports-p-check-knit-polo-black-harajuku-season-5.jpg",
+            "url_link_url": "shopify://collections/knitwear",
+            "text_link_text": "Knits",
+            "url_button_url": "shopify://collections/knitwear",
+            "text_button_text": "Shop",
+            "image_pos_x": 50,
+            "image_pos_y": 50
+          }
+        }
+      },
+      "block_order": [
+        "images_fniRza"
+      ],
+      "name": "Content Grid Home",
+      "settings": {}
+    },
     "content_grid": {
       "type": "content_grid",
       "blocks": {
@@ -84,6 +106,7 @@
   "wrapper": "main.main-wrapper",
   "order": [
     "hero_video",
+    "content_grid_home_jGYeFB",
     "content_grid",
     "featured_products_RRPnyj",
     "content_grid_VYrH8L"
