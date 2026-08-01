@@ -271,4 +271,115 @@
   color: white;
   text-decoration: none;
 	}
+  /* Search pill */
+.nav_search-pill {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Match the border-radius/border of your other pills */
+}
+.nav_search-trigger {
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav_search-expand {
+  display: flex;
+  align-items: center;
+}
+.nav_search-form {
+  display: flex;
+  align-items: center;
+}
+.nav_search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  width: 250px;
+  padding: 0 0.5rem;
+}
+.nav_search-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 0.25rem;
+  color: inherit;
+}
+/* Results dropdown */
+.nav_predictive-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: white;
+  color: black;
+  z-index: 200;
+  max-height: 480px;
+  overflow-y: auto;
+}
+.predictive-search_label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 0.75rem 1rem 0.25rem;
+  opacity: 0.5;
+}
+.predictive-search_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.predictive-search_line-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+.predictive-search_line-item:hover {
+  background: #f5f5f5;
+}
+.predictive-search_img-wrap {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.predictive-search_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.predictive-search_product-title {
+  font-size: 14px;
+}
+.predictive-search_see-all {
+  display: block;
+  text-align: center;
+  padding: 0.75rem;
+  background: black;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+.predictive-search_empty {
+  padding: 1rem;
+  font-size: 12px;
+  opacity: 0.6;
+}
+/* Make the .nav_search parent position:relative so the dropdown anchors to it */
+.nav_search {
+  position: relative;
+}
+  .nav_search-input {
+  font-size: 12px; /* controls both typed text and placeholder */
+}
+.nav_search-input::placeholder {
+  font-size: 12px; /* targets placeholder only, if you want it different */
+}
 </style>
