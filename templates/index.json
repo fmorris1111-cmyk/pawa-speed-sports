@@ -129,6 +129,17 @@
       "name": "Content Grid Home",
       "settings": {}
     },
+    "featured_products_XnQDeK": {
+      "type": "featured_products",
+      "name": "Featured products",
+      "settings": {
+        "text_heading": "SALE",
+        "url_button_link": "shopify://collections/sale",
+        "text_button_text": "SHOP ALL",
+        "collection_collection": "sale",
+        "collection_collection_limit": 4
+      }
+    },
     "content_grid_VYrH8L": {
       "type": "content_grid",
       "blocks": {
@@ -164,6 +175,7 @@
     "content_grid",
     "featured_products_RRPnyj",
     "content_grid_home_hdzyeT",
+    "featured_products_XnQDeK",
     "content_grid_VYrH8L"
   ]
 }
