@@ -136,6 +136,9 @@
   .nav_link-item:hover .nav_shop-quantity {
     text-decoration: underline;
   }
+  .nav_link-item {
+  transition: color 200ms ease, opacity 200ms ease, background-color 200ms ease;
+  }
   /* &#9472;&#9472; Nav: cart quantity superscript &#9472;&#9472; */
   .nav_shop-quantity::before { content: "("; }
   .nav_shop-quantity::after  { content: ")"; }
@@ -221,4 +224,9 @@
   }
   .nav_mini-cart-close { display: none !important; }
   .nav_dropdown-close-button { display: none !important; }
+  .nav_menu-3 {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  }
 </style>
