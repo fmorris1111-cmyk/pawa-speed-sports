@@ -32,10 +32,23 @@
             "image_pos_x": 50,
             "image_pos_y": 50
           }
+        },
+        "images_jqRhzT": {
+          "type": "images",
+          "settings": {
+            "image_image": "shopify://shop_images/69d7d2dc1ed998081a8ad62e_P_KEY-2.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50
+          }
         }
       },
       "block_order": [
-        "images_fniRza"
+        "images_fniRza",
+        "images_jqRhzT"
       ],
       "name": "Content Grid Home",
       "settings": {}
