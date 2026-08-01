@@ -54,17 +54,17 @@
             <div class="nav_right">
               <div x-data="{open: false}" class="nav_menu-search">
                 <div class="w-embed">
-                  <div x-show="open" x-cloak="" class="nav_search-expand">
+                  <div class="nav_search-expand">
                     <predictive-search>
                       <form action="/search" method="get" class="nav_search-form">
                         <input type="search" id="nav-search-input" name="q" placeholder="TYPE HERE" autocomplete="off" class="nav_search-input">
-                        <button type="button" false="" aria-label="Close" class="nav_search-close">
-                          <svg width="12" height="12" viewbox="0 0 15 15" fill="none">
+                        <button type="button" onclick="window.closeNavSearch()" aria-label="Close" class="nav_search-close">
+                          <svg width="10" height="10" viewbox="0 0 15 15" fill="none">
                             <path d="M1.848 14.178L.448 12.778l5.6-5.6-5.6-5.6L1.848.178l5.6 5.6 5.6-5.6 1.4 1.4-5.6 5.6 5.6 5.6-1.4 1.4-5.6-5.6-5.6 5.6z" fill="currentColor"></path>
                           </svg>
                         </button>
                       </form>
-                      <div id="predictive-search" class="nav_predictive-results" style="display:none;">
+                      <div id="predictive-search" class="nav_predictive-results">
                         <div li-section="predictive_search" class="predictive-search_wrap">
                           {% if predictive_search.performed %}    <div li-if="predictive_search.performed">
     
@@ -80,7 +80,7 @@
                                     <div class="predictive-search_img-wrap">
                                       <img li-object:src="product.featured_media | image_url: width: 150" li-object:alt="product.featured_image.alt" src="{{ product.featured_media | image_url: width: 150 }}" loading="lazy" alt="{{ product.featured_image.alt }}" class="predictive-search_img">
                                     </div>
-                                    <div li-object="product.title" class="predictive-search_product-title">{{ product.title }}</div>
+                                    <div li-object="product.title" class="predictive-search_product-title text-size_small">{{ product.title }}</div>
                                   </a>
                             
                                 
