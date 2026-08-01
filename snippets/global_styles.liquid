@@ -247,8 +247,17 @@
     transition: opacity 0.3s ease;
   }
   .content-grid_hover {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   .content-grid_item:hover .content-grid_overlay,
   .content-grid_item:hover .content-grid_hover {
