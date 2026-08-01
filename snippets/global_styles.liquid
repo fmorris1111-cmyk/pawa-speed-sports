@@ -183,7 +183,6 @@
     height: auto !important;
     max-height: 70vh !important;
     border-radius: 0 0 6px 6px !important;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16) !important;
     overflow: hidden !important;
   }
   /* Cart pill flattens bottom corners when open */
@@ -194,14 +193,31 @@
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
   }
-  .mini-cart_full { max-height: 70vh !important; overflow: hidden !important; }
-  .mini-cart_line-item.no-scrollbar { max-height: 200px !important; overflow-y: auto !important; }
-  /* No horizontal scroll on cart items */
-  .mini-cart_line-item_list,
-  .mini-cart_line-item_item {
+  /* &#9472;&#9472; Cart: scroll architecture &#9472;&#9472; */
+  .mini-cart_full {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+  .mini-cart_line-item,
+  .mini-cart_line-item.no-scrollbar {
+    flex: 1 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-y: auto !important;
     overflow-x: hidden !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+  }
+  .mini-cart_line-item_list {
+    overflow-x: hidden !important;
+    min-width: 0 !important;
+  }
+  .mini-cart_line-item_item {
+    max-height: none !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
   }
   .nav_mini-cart-close { display: none !important; }
   .nav_dropdown-close-button { display: none !important; }
