@@ -1,4 +1,9 @@
 <div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
+          <a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
+{{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
+{% else %}
+<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
+{% endif %}</a>
           <div class="nav_container">
             <nav role="navigation" class="nav_menu-2 w-nav-menu">
               {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="nav_links-row">
@@ -46,11 +51,6 @@
                 <div class="menu-icon_line-bottom"></div>
               </div>
             </div>
-            <a href="{{ routes.root_url }}" li-object:href="routes.root_url" id="w-node-_9132635a-7891-b0d1-9b20-ecb0d5a86dfb-d5a86df8" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
-{{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
-{% else %}
-<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
-{% endif %}</a>
             <div class="nav_menu-3">
               {% if customer==blank %}    <div li-if="customer==blank" class="nav_account-links">
     

@@ -531,7 +531,9 @@ figcaption {
 }
 
 .text-size-regular.text-weight-bold {
-  font-size: 1rem;
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1rem;
 }
 
@@ -591,7 +593,9 @@ figcaption {
 }
 
 .text-size-small {
-  font-size: 1rem;
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1rem;
 }
 
@@ -1564,7 +1568,7 @@ figcaption {
   border: 0px solid var(--base-color-neutral--neutral-lighter);
   background-color: var(--base-color-neutral--neutral-lightest);
   object-fit: contain;
-  max-height: 7rem;
+  max-height: 5rem;
   position: relative;
 }
 
@@ -1604,7 +1608,9 @@ figcaption {
   width: 2rem;
   height: 2rem;
   padding: 0;
+  font-family: Open Sans, sans-serif;
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1rem;
   display: flex;
 }
@@ -1717,6 +1723,7 @@ figcaption {
   height: auto;
   margin: 20px 1rem 10px;
   display: flex;
+  position: relative;
 }
 
 .nav_logo-link {
@@ -1726,7 +1733,8 @@ figcaption {
   flex: 1;
   align-self: flex-start;
   max-width: 86px;
-  display: flex;
+  display: block;
+  left: 50vw;
 }
 
 .nav_menu {
@@ -2391,6 +2399,7 @@ figcaption {
 }
 
 .nav_logo {
+  vertical-align: baseline;
   object-fit: contain;
   object-position: 0% 50%;
   flex-direction: column;
@@ -2398,9 +2407,8 @@ figcaption {
   align-items: center;
   max-width: none;
   height: auto;
-  display: inline-block;
-  position: absolute;
-  left: .5vw;
+  display: block;
+  position: relative;
 }
 
 .product-item_price {
@@ -4681,11 +4689,13 @@ figcaption {
 }
 
 .nav_submenu-panel {
-  grid-column-gap: 1.5rem;
-  grid-row-gap: 1.5rem;
+  grid-column-gap: .5rem;
+  grid-row-gap: .5rem;
   flex-flow: column;
   justify-content: flex-start;
   align-items: flex-start;
+  padding-top: .75rem;
+  padding-left: 1rem;
   display: flex;
 }
 
@@ -7380,10 +7390,6 @@ figcaption {
 }
 
 @media screen and (max-width: 479px) {
-  #w-node-_9132635a-7891-b0d1-9b20-ecb0d5a86dfb-d5a86df8 {
-    justify-self: center;
-  }
-
   #w-node-b20e30bd-9cd3-7da4-6e58-bb49e01bdeca-e01bde9f {
     grid-area: span 1 / span 1 / span 1 / span 1;
   }

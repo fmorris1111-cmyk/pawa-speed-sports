@@ -4,186 +4,79 @@
   html { font-size: calc(0.8125rem + 0.20833333333333331vw); }
   @media screen and (max-width:1920px) { html { font-size: calc(0.8125rem + 0.20833333333333337vw); } }
   @media screen and (max-width:1440px) { html { font-size: 1rem; } }
-  /* Make text look crisper and more legible in all browsers */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overscroll-behavior: none;
   }
-  /* Focus state style for keyboard navigation for the focusable elements */
   *[tabindex]:focus-visible,
   input[type="file"]:focus-visible {
     outline: 0.125rem solid #4d65ff;
     outline-offset: 0.125rem;
   }
-  /* Get rid of top margin on first element in any rich text element */
   .w-richtext > :not(div):first-child, .w-richtext > div:first-child > :first-child {
     margin-top: 0 !important;
   }
-  /* Get rid of bottom margin on last element in any rich text element */
   .w-richtext>:last-child, .w-richtext ol li:last-child, .w-richtext ul li:last-child {
     margin-bottom: 0 !important;
   }
-  /* Prevent all click and hover interaction with an element */
-  .pointer-events-off {
-    pointer-events: none;
-  }
-  /* Enables all click and hover interaction with an element */
-  .pointer-events-on {
-    pointer-events: auto;
-  }
-  /* Create a class of .div-square which maintains a 1:1 dimension of a div */
+  .pointer-events-off { pointer-events: none; }
+  .pointer-events-on  { pointer-events: auto; }
   .div-square::after {
     content: "";
     display: block;
     padding-bottom: 100%;
   }
-  /* Make sure containers never lose their center alignment */
-  .container-medium,.container-small, .container-large {
+  .container-medium, .container-small, .container-large {
     margin-right: auto !important;
     margin-left: auto !important;
   }
-  /* 
-  Make the following elements inherit typography styles from the parent and not have hardcoded values. 
-  Important: You will not be able to style for example "All Links" in Designer with this CSS applied.
-  Uncomment this CSS to use it in the project. Leave this message for future hand-off.
-  */
-  /*
-  a,
-  .w-input,
-  .w-select,
-  .w-tab-link,
-  .w-nav-link,
-  .w-dropdown-btn,
-  .w-dropdown-toggle,
-  .w-dropdown-link {
-  color: inherit;
-  text-decoration: inherit;
-  font-size: inherit;
-  }
-  */
-  /* Apply "..." after 3 lines of text */
   .text-style-3lines {
     display: -webkit-box;
     overflow: hidden;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
-  /* Apply "..." after 2 lines of text */
   .text-style-2lines {
     display: -webkit-box;
     overflow: hidden;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-  /* Adds inline flex display */
-  .display-inlineflex {
-    display: inline-flex;
-  }
-  /* These classes are never overwritten */
-  .hide {
-    display: none !important;
-  }
-  @media screen and (max-width: 991px) {
-    .hide, .hide-tablet {
-      display: none !important;
-    }
-  }
-  @media screen and (max-width: 767px) {
-    .hide-mobile-landscape{
-      display: none !important;
-    }
-  }
-  @media screen and (max-width: 479px) {
-    .hide-mobile{
-      display: none !important;
-    }
-  }
-  .margin-0 {
-    margin: 0rem !important;
-  }
-  .padding-0 {
-    padding: 0rem !important;
-  }
-  .spacing-clean {
-    padding: 0rem !important;
-    margin: 0rem !important;
-  }
-  .margin-top {
-    margin-right: 0rem !important;
-    margin-bottom: 0rem !important;
-    margin-left: 0rem !important;
-  }
-  .padding-top {
-    padding-right: 0rem !important;
-    padding-bottom: 0rem !important;
-    padding-left: 0rem !important;
-  }
-  .margin-right {
-    margin-top: 0rem !important;
-    margin-bottom: 0rem !important;
-    margin-left: 0rem !important;
-  }
-  .padding-right {
-    padding-top: 0rem !important;
-    padding-bottom: 0rem !important;
-    padding-left: 0rem !important;
-  }
-  .margin-bottom {
-    margin-top: 0rem !important;
-    margin-right: 0rem !important;
-    margin-left: 0rem !important;
-  }
-  .padding-bottom {
-    padding-top: 0rem !important;
-    padding-right: 0rem !important;
-    padding-left: 0rem !important;
-  }
-  .margin-left {
-    margin-top: 0rem !important;
-    margin-right: 0rem !important;
-    margin-bottom: 0rem !important;
-  }
-  .padding-left {
-    padding-top: 0rem !important;
-    padding-right: 0rem !important;
-    padding-bottom: 0rem !important;
-  }
-  .margin-horizontal {
-    margin-top: 0rem !important;
-    margin-bottom: 0rem !important;
-  }
-  .padding-horizontal {
-    padding-top: 0rem !important;
-    padding-bottom: 0rem !important;
-  }
-  .margin-vertical {
-    margin-right: 0rem !important;
-    margin-left: 0rem !important;
-  }
-  .padding-vertical {
-    padding-right: 0rem !important;
-    padding-left: 0rem !important;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    text-wrap: balance !important;
-  }
-  .page-wrapper {
-    overflow: clip !important;
-  }
-  body {
-    overscroll-behavior: none;
-  }
+  .display-inlineflex { display: inline-flex; }
+  .hide { display: none !important; }
+  @media screen and (max-width: 991px) { .hide, .hide-tablet { display: none !important; } }
+  @media screen and (max-width: 767px) { .hide-mobile-landscape { display: none !important; } }
+  @media screen and (max-width: 479px) { .hide-mobile { display: none !important; } }
+  .margin-0        { margin: 0rem !important; }
+  .padding-0       { padding: 0rem !important; }
+  .spacing-clean   { padding: 0rem !important; margin: 0rem !important; }
+  .margin-top      { margin-right: 0rem !important; margin-bottom: 0rem !important; margin-left: 0rem !important; }
+  .padding-top     { padding-right: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; }
+  .margin-right    { margin-top: 0rem !important; margin-bottom: 0rem !important; margin-left: 0rem !important; }
+  .padding-right   { padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; }
+  .margin-bottom   { margin-top: 0rem !important; margin-right: 0rem !important; margin-left: 0rem !important; }
+  .padding-bottom  { padding-top: 0rem !important; padding-right: 0rem !important; padding-left: 0rem !important; }
+  .margin-left     { margin-top: 0rem !important; margin-right: 0rem !important; margin-bottom: 0rem !important; }
+  .padding-left    { padding-top: 0rem !important; padding-right: 0rem !important; padding-bottom: 0rem !important; }
+  .margin-horizontal  { margin-top: 0rem !important; margin-bottom: 0rem !important; }
+  .padding-horizontal { padding-top: 0rem !important; padding-bottom: 0rem !important; }
+  .margin-vertical    { margin-right: 0rem !important; margin-left: 0rem !important; }
+  .padding-vertical   { padding-right: 0rem !important; padding-left: 0rem !important; }
+  h1, h2, h3, h4, h5, h6 { text-wrap: balance !important; }
+  .page-wrapper { overflow: clip !important; }
   .swiper-button-disabled {
     opacity: 50% !important;
     pointer-events: none !important;
   }
   button {
-  	color: unset;
+    color: unset;
     background-color: unset;
     padding: unset;
   }
+  /* &#9472;&#9472; Shopify policy pages &#9472;&#9472; */
   .shopify-policy__container {
     display: flex !important;
     flex-direction: column;
@@ -204,54 +97,25 @@
     font-family: Nimbussanl Reg, Arial, sans-serif;
     text-align: left;
   }
-  .shopify-policy__body h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  .shopify-policy__body p {
-    margin-bottom: 1rem;
-  }
+  .shopify-policy__body h2 { margin-top: 2rem; margin-bottom: 1rem; }
+  .shopify-policy__body p  { margin-bottom: 1rem; }
   .shopify-policy__body ul,
-  .shopify-policy__body ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-  }
-  .shopify-policy__body li {
-    margin-bottom: 0.5rem;
-  }
+  .shopify-policy__body ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+  .shopify-policy__body li { margin-bottom: 0.5rem; }
   @media screen and (max-width: 991px) {
-    .shopify-policy__container {
-      width: 90vw !important;
-      max-width: 90vw !important;
-      padding: 8rem 40px 60px 40px !important;
-    }
+    .shopify-policy__container { width: 90vw !important; max-width: 90vw !important; padding: 8rem 40px 60px 40px !important; }
   }
   @media screen and (max-width: 767px) {
-    .shopify-policy__container {
-      width: 95vw !important;
-      max-width: 95vw !important;
-      padding: 10rem 24px 40px 24px !important;
-    }
+    .shopify-policy__container { width: 95vw !important; max-width: 95vw !important; padding: 10rem 24px 40px 24px !important; }
   }
   @media screen and (max-width: 479px) {
-    .shopify-policy__container {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      padding: 10rem 16px 30px 16px !important;
-    }
+    .shopify-policy__container { width: 100vw !important; max-width: 100vw !important; padding: 10rem 16px 30px 16px !important; }
   }
-  /* Get rid of radio button visibility on atc size selector */
-  	.w-form-formradioinput.product-header_radio-button {
-      display: none !important;
-    }
-    .product-header_radio:has(input:checked) {
-      background-color: #ccc;
-      color: #000;
-    }
-    .product-header_radio:has(input:checked) .w-form-label {
-      color: #000;
-    }
-  /* Space below font characters fix */
+  /* &#9472;&#9472; Product size selector &#9472;&#9472; */
+  .w-form-formradioinput.product-header_radio-button { display: none !important; }
+  .product-header_radio:has(input:checked) { background-color: #ccc; color: #000; }
+  .product-header_radio:has(input:checked) .w-form-label { color: #000; }
+  /* &#9472;&#9472; Font descender fix &#9472;&#9472; */
   @font-face {
     font-family: 'Nimbussanl Bol';
     size-adjust: 100%;
@@ -259,63 +123,86 @@
     descent-override: 0%;
     line-gap-override: 0%;
   }
+  /* &#9472;&#9472; Nav: logo always screen-centered &#9472;&#9472; */
+  .nav_logo-link {
+    position: absolute !important;
+    left: 50vw !important;
+    transform: translateX(-50%) !important;
+    z-index: 1;
+  }
+  /* &#9472;&#9472; Nav: link hover underline &#9472;&#9472; */
   .nav_link-item:hover .nav-link,
   .nav_link-item:hover .nav_link,
   .nav_link-item:hover .nav_shop-quantity {
     text-decoration: underline;
   }
+  /* &#9472;&#9472; Nav: cart quantity superscript &#9472;&#9472; */
   .nav_shop-quantity::before { content: "("; }
   .nav_shop-quantity::after  { content: ")"; }
-.nav_shop-quantity {
-  font-size: 0.5em !important;
-  position: relative;
-  transform: translateY(-0.3em);
-}
-/* &#9472;&#9472; Cart: GSAP-animated dropdown, joins nav_menu-3 &#9472;&#9472; */
-/* Always block &mdash; GSAP controls height, not display */
-.nav_mini-cart-holder,
-.nav_mini-cart-holder.w--open {
-  display: block !important;
-}
-/* Positioning: spans full nav_menu-3 width, no gap */
-.nav_mini-cart-holder {
-  position: absolute !important;
-  inset: auto !important;
-  top: 100% !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  margin-top: 0 !important;
-  background-color: transparent !important;
-  height: 0;        /* no !important &mdash; GSAP overrides this inline when animating */
-  overflow: hidden; /* no !important &mdash; GSAP overrides this too */
-}
-/* Remove positioning context from cart toggle */
-.nav_dropdown.is-cart {
-  position: static !important;
-}
-/* Cart box: flat top (joins pill), rounded bottom */
-.mini-cart_component {
-  width: 100% !important;
-  height: auto !important;
-  max-height: 70vh !important;
-  border-radius: 0 0 6px 6px !important;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16) !important;
-  overflow: hidden !important;
-}
-/* Pill flattens bottom corners when cart is open */
-.nav_menu-3 {
-  transition: border-radius 0.15s ease;
-}
-.nav_menu-3.cart-is-open {
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-}
-.mini-cart_full { max-height: 70vh !important; overflow: hidden !important; }
-.mini-cart_line-item.no-scrollbar { max-height: 200px !important; overflow-y: auto !important; }
-/* No horizontal scroll */
-.mini-cart_line-item_list,
-.mini-cart_line-item_item { overflow-x: hidden !important; max-width: 100% !important; box-sizing: border-box !important; }
-.nav_mini-cart-close { display: none !important; }
-.nav_dropdown-close-button { display: none !important; }
+  .nav_shop-quantity {
+    font-size: 0.5em !important;
+    position: relative;
+    transform: translateY(-0.3em);
+  }
+  /* &#9472;&#9472; Nav: submenu pill join &#9472;&#9472; */
+  .nav_menu-2 {
+    transition: border-radius 0.15s ease;
+  }
+  .nav_menu-2.submenu-is-open {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  /* &#9472;&#9472; Nav: submenu link hover &#9472;&#9472; */
+  .nav_submenu-panel a:hover {
+    text-decoration: underline;
+  }
+  /* &#9472;&#9472; Cart: GSAP-animated dropdown &#9472;&#9472; */
+  /* Always block &mdash; GSAP controls height, not display */
+  .nav_mini-cart-holder,
+  .nav_mini-cart-holder.w--open {
+    display: block !important;
+  }
+  /* Positioning: spans full nav_menu-3 width, flush to pill */
+  .nav_mini-cart-holder {
+    position: absolute !important;
+    inset: auto !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    background-color: transparent !important;
+  }
+  /* Remove cart toggle as positioning context */
+  .nav_dropdown.is-cart {
+    position: static !important;
+  }
+  /* Cart box: flat top joins pill, rounded bottom */
+  .mini-cart_component {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 70vh !important;
+    border-radius: 0 0 6px 6px !important;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16) !important;
+    overflow: hidden !important;
+  }
+  /* Cart pill flattens bottom corners when open */
+  .nav_menu-3 {
+    transition: border-radius 0.15s ease;
+  }
+  .nav_menu-3.cart-is-open {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  .mini-cart_full { max-height: 70vh !important; overflow: hidden !important; }
+  .mini-cart_line-item.no-scrollbar { max-height: 200px !important; overflow-y: auto !important; }
+  /* No horizontal scroll on cart items */
+  .mini-cart_line-item_list,
+  .mini-cart_line-item_item {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .nav_mini-cart-close { display: none !important; }
+  .nav_dropdown-close-button { display: none !important; }
 </style>
