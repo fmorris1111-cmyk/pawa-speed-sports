@@ -262,5 +262,36 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var cartPill   = document.querySelector('.nav_menu-3');
+  var cartHolder = document.querySelector('.nav_mini-cart-holder');
+  var cartToggle = document.querySelector('.nav_dropdown.is-cart .w-dropdown-toggle');
+  if (!cartHolder || !cartToggle) return;
+  // Start closed &mdash; GSAP owns height from here
+  gsap.set(cartHolder, { height: 0, overflow: 'hidden' });
+  var closeTimer = null;
+  function openCart() {
+    clearTimeout(closeTimer);
+    if (cartPill) cartPill.classList.add('cart-is-open');
+    gsap.killTweensOf(cartHolder);
+    gsap.to(cartHolder, { height: cartHolder.scrollHeight, duration: 0.32, ease: 'power3.out' });
+  }
+  function closeCart() {
+    clearTimeout(closeTimer);
+    if (cartPill) cartPill.classList.remove('cart-is-open');
+    gsap.killTweensOf(cartHolder);
+    gsap.to(cartHolder, { height: 0, duration: 0.22, ease: 'power2.in' });
+  }
+  function scheduleClose() {
+    closeTimer = setTimeout(closeCart, 160);
+  }
+  cartToggle.addEventListener('mouseenter', openCart);
+  cartToggle.addEventListener('mouseleave', scheduleClose);
+  cartHolder.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+  cartHolder.addEventListener('mouseleave', scheduleClose);
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </body>
 </html>

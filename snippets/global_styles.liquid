@@ -259,4 +259,63 @@
     descent-override: 0%;
     line-gap-override: 0%;
   }
+  .nav_link-item:hover .nav-link,
+  .nav_link-item:hover .nav_link,
+  .nav_link-item:hover .nav_shop-quantity {
+    text-decoration: underline;
+  }
+  .nav_shop-quantity::before { content: "("; }
+  .nav_shop-quantity::after  { content: ")"; }
+.nav_shop-quantity {
+  font-size: 0.5em !important;
+  position: relative;
+  transform: translateY(-0.3em);
+}
+/* &#9472;&#9472; Cart: GSAP-animated dropdown, joins nav_menu-3 &#9472;&#9472; */
+/* Always block &mdash; GSAP controls height, not display */
+.nav_mini-cart-holder,
+.nav_mini-cart-holder.w--open {
+  display: block !important;
+}
+/* Positioning: spans full nav_menu-3 width, no gap */
+.nav_mini-cart-holder {
+  position: absolute !important;
+  inset: auto !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  margin-top: 0 !important;
+  background-color: transparent !important;
+  height: 0;        /* no !important &mdash; GSAP overrides this inline when animating */
+  overflow: hidden; /* no !important &mdash; GSAP overrides this too */
+}
+/* Remove positioning context from cart toggle */
+.nav_dropdown.is-cart {
+  position: static !important;
+}
+/* Cart box: flat top (joins pill), rounded bottom */
+.mini-cart_component {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 70vh !important;
+  border-radius: 0 0 6px 6px !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16) !important;
+  overflow: hidden !important;
+}
+/* Pill flattens bottom corners when cart is open */
+.nav_menu-3 {
+  transition: border-radius 0.15s ease;
+}
+.nav_menu-3.cart-is-open {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.mini-cart_full { max-height: 70vh !important; overflow: hidden !important; }
+.mini-cart_line-item.no-scrollbar { max-height: 200px !important; overflow-y: auto !important; }
+/* No horizontal scroll */
+.mini-cart_line-item_list,
+.mini-cart_line-item_item { overflow-x: hidden !important; max-width: 100% !important; box-sizing: border-box !important; }
+.nav_mini-cart-close { display: none !important; }
+.nav_dropdown-close-button { display: none !important; }
 </style>
