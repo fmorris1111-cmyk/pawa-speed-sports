@@ -78,6 +78,7 @@
         "images_T8LK8C",
         "images"
       ],
+      "disabled": true,
       "settings": {}
     },
     "featured_products_RRPnyj": {
@@ -90,6 +91,43 @@
         "collection_collection": "all",
         "collection_collection_limit": 4
       }
+    },
+    "content_grid_home_hdzyeT": {
+      "type": "content_grid_home",
+      "blocks": {
+        "images_QcEKHY": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "shopify://collections/t-shirts",
+            "image_image": "shopify://shop_images/karaoke-t-shirt-pawa-speed-sports-5.avif",
+            "url_link_url": "shopify://collections/t-shirts",
+            "text_link_text": "T-Shirts",
+            "url_button_url": "shopify://collections/t-shirts",
+            "text_button_text": "Shop",
+            "image_pos_x": 50,
+            "image_pos_y": 50
+          }
+        },
+        "images_KKyYBm": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "shopify://collections/sweats-hoodies",
+            "image_image": "shopify://shop_images/multi-monogram-zip-hoodie-pawa-speed-sports-4.avif",
+            "url_link_url": "shopify://collections/sweats-hoodies",
+            "text_link_text": "SWEATS",
+            "url_button_url": "shopify://collections/sweats-hoodies",
+            "text_button_text": "Shop",
+            "image_pos_x": 50,
+            "image_pos_y": 50
+          }
+        }
+      },
+      "block_order": [
+        "images_QcEKHY",
+        "images_KKyYBm"
+      ],
+      "name": "Content Grid Home",
+      "settings": {}
     },
     "content_grid_VYrH8L": {
       "type": "content_grid",
@@ -114,6 +152,7 @@
         "images_J6L9Dm",
         "images_qGfHHn"
       ],
+      "disabled": true,
       "settings": {}
     }
   },
@@ -124,6 +163,7 @@
     "content_grid_home_jGYeFB",
     "content_grid",
     "featured_products_RRPnyj",
+    "content_grid_home_hdzyeT",
     "content_grid_VYrH8L"
   ]
 }
