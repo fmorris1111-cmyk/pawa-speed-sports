@@ -3,10 +3,11 @@
                     <div li-block="images" class="div-block-4">
                                     
           
-                                    <div li-object:style="block.settings.image_pos_x | prepend: 'object-position: ' | append: '% ' | append: block.settings.image_pos_y | append: '%'" class="content-grid_item" style="{{ block.settings.image_pos_x | prepend: 'object-position: ' | append: '% ' | append: block.settings.image_pos_y | append: '%' }}">{% if block.settings.image_image %}
+                                    <div class="content-grid_item">
+            <a href="{{ block.settings.url_image_link_url }}" class="content-grid_cover-link w-inline-block"> </a>{% if block.settings.image_image %}
 {{ block.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'content-grid_image' }}
 {% else %}
-<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="content-grid_image">
+<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" li-object:style="" alt="" class="content-grid_image" style="{{ block.settings.style_ }}">
 {% endif %}
             <div class="content-grid_overlay"></div>
             <div class="content-grid_hover">
@@ -31,9 +32,18 @@
             "type": "images",
             "settings": [
                 {
+                    "id": "url_image_link_url",
+                    "type": "url",
+                    "label": "Image Link URL"
+                },
+                {
                     "id": "image_image",
                     "type": "image_picker",
                     "label": "Image"
+                },
+                {
+                    "id": "style",
+                    "type": "text"
                 },
                 {
                     "id": "url_link_url",
