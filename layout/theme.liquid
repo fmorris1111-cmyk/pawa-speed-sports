@@ -330,10 +330,11 @@ document.addEventListener('DOMContentLoaded', function () {
         window.openNavSearch();
       });
     }
-    document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && searchExpand.offsetWidth > 10) window.closeNavSearch();
     });
   }
+});
 </script>
 </body>
 </html>
