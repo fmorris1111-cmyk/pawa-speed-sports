@@ -42,12 +42,50 @@
         "images"
       ],
       "settings": {}
+    },
+    "featured_products_RRPnyj": {
+      "type": "featured_products",
+      "name": "Featured products",
+      "settings": {
+        "text_heading": "NEW ARRIVALS",
+        "url_button_link": "shopify://collections/all",
+        "text_button_text": "SHOP ALL",
+        "collection_collection": "all",
+        "collection_collection_limit": 4
+      }
+    },
+    "content_grid_VYrH8L": {
+      "type": "content_grid",
+      "blocks": {
+        "images_J6L9Dm": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "shopify://products/p-check-knit-polo",
+            "image_image": "shopify://shop_images/69a46c60d0d27cc538de98a7_doggodrag.jpg"
+          }
+        },
+        "images_qGfHHn": {
+          "type": "images",
+          "name": "images",
+          "settings": {
+            "url_image_link_url": "shopify://products/p-key-t-shirt",
+            "image_image": "shopify://shop_images/pawa-speed-sports-monogram-stripe-shirt-ghost-camo-knit-polo-tokyo-season-5.png"
+          }
+        }
+      },
+      "block_order": [
+        "images_J6L9Dm",
+        "images_qGfHHn"
+      ],
+      "settings": {}
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
     "hero_video",
-    "content_grid"
+    "content_grid",
+    "featured_products_RRPnyj",
+    "content_grid_VYrH8L"
   ]
 }
