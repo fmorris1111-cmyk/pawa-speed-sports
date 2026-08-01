@@ -1,0 +1,42 @@
+{% if predictive_search.performed %}    <div li-if="predictive_search.performed">
+    
+                            {% assign ps_count = predictive_search.resources.products.size %}
+                            {% if ps_count > 0 %}    <div li-if="ps_count > 0">
+    
+                              <p class="predictive-search_label">FIRST 10 RESULTS</p>
+                              <ul class="predictive-search_list w-list-unstyled">
+                                {% for product in predictive_search.resources.products %}    <li li-for="product in predictive_search.resources.products" class="predictive-search_item">
+                                    
+                                  
+                            <a li-object:href="product.url" href="{{ product.url }}" class="predictive-search_line-item w-inline-block">
+                                    <div class="predictive-search_img-wrap">
+                                      <img li-object:src="product.featured_media | image_url: width: 150" li-object:alt="product.featured_image.alt" src="{{ product.featured_media | image_url: width: 150 }}" loading="lazy" alt="{{ product.featured_image.alt }}" class="predictive-search_img">
+                                    </div>
+                                    <div li-object="product.title" class="predictive-search_product-title">{{ product.title }}</div>
+                                  </a>
+                            
+                                
+                        </li>
+{% endfor %}
+                              </ul>
+                              <a href="/search?type=product&q={{ predictive_search.terms | url_encode }}" class="predictive-search_see-all w-inline-block">SEE ALL</a>
+                                </div>
+{% endif %}
+                            {% if ps_count == 0 %}    <div li-if="ps_count == 0">
+    
+                              <p class="predictive-search_empty">No results for “<span li-object="predictive_search.terms">{{ predictive_search.terms }}</span>”</p>
+                                </div>
+{% endif %}
+                              </div>
+{% endif %} {% schema %} {
+    "tag": "div",
+    "name": "predictive_search",
+    "class": "predictive-search_wrap",
+    "presets": [
+        {
+            "name": "predictive_search",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ]
+} {% endschema %}
