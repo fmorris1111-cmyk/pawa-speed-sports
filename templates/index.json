@@ -24,6 +24,7 @@
         "images_fniRza": {
           "type": "images",
           "settings": {
+            "url_image_link_url": "",
             "image_image": "shopify://shop_images/pawa-speed-sports-p-check-knit-polo-black-harajuku-season-5.jpg",
             "url_link_url": "shopify://collections/knitwear",
             "text_link_text": "Knits",
@@ -36,11 +37,12 @@
         "images_jqRhzT": {
           "type": "images",
           "settings": {
-            "image_image": "shopify://shop_images/69d7d2dc1ed998081a8ad62e_P_KEY-2.jpg",
-            "url_link_url": "",
-            "text_link_text": "Lorem Ipsum",
-            "url_button_url": "",
-            "text_button_text": "Button Text",
+            "url_image_link_url": "shopify://collections/accessories",
+            "image_image": "shopify://shop_images/WhatsApp_Image_2026-07-25_at_11.39.54_1.jpg",
+            "url_link_url": "shopify://collections/accessories",
+            "text_link_text": "ACCESSORIES",
+            "url_button_url": "shopify://collections/accessories",
+            "text_button_text": "Shop",
             "image_pos_x": 50,
             "image_pos_y": 50
           }
