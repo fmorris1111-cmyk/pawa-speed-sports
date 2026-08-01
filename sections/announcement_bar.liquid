@@ -48,10 +48,11 @@ window.addEventListener('load', function() {
   // Grab all original links before we clone anything
   var originalLinks = Array.from(track.querySelectorAll('.announcement-bar_link'));
   // Measure original set width
-  var originalSetWidth = 0;
-  originalLinks.forEach(function(link) {
-    originalSetWidth += link.getBoundingClientRect().width;
-  });
+var originalSetWidth = 0;
+originalLinks.forEach(function(link) {
+  originalSetWidth += link.getBoundingClientRect().width;
+});
+if (originalSetWidth === 0) return;  // &larr; here, after the loop
   // Find reset point: smallest multiple of originalSetWidth >= containerWidth
   var resetWidth = originalSetWidth;
   while (resetWidth < containerWidth) {
