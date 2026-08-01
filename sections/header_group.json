@@ -13,11 +13,25 @@
   "sections": {
     "announcement_bar": {
       "type": "announcement_bar",
+      "blocks": {
+        "message_NGVXtk": {
+          "type": "message",
+          "settings": {
+            "url_link_url": "shopify://collections/sale",
+            "text_announcement_text": "Summer Sale: 40% Off"
+          }
+        }
+      },
+      "block_order": [
+        "message_NGVXtk"
+      ],
       "settings": {}
     },
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "menu": "main-menu"
+      }
     }
   },
   "order": [
