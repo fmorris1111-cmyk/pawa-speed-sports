@@ -68,7 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
       slideToClickedSlide: true,
       spaceBetween: "4%",
     });
-    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+        const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+      touchEventsTarget: 'container',
       mousewheel: {
         forceToAxis: true
       },
