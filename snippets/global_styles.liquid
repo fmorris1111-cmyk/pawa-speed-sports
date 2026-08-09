@@ -490,7 +490,9 @@
   animation: announcement-marquee var(--marquee-duration) linear infinite;
   will-change: transform;
 }
-.swiper-container.is-product-gallery {
-  max-height: 80vh;
+@media (min-width: 992px) {
+  .swiper-container.is-product-gallery {
+    max-height: 60vh;
+  }
 }
 </style>
