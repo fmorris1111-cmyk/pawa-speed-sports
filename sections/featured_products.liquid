@@ -14,7 +14,7 @@
                 </div>
               </div>
               <div>
-                <div class="product_list-wrapper swiper-is-fp-carousel w-dyn-list">
+                <div class="product_list-wrapper swiper is-fp-carousel _w-dyn-list w-dyn-list">
                   <div role="list" class="product_list swiper-wrapper w-dyn-items">
                     {% for product in section.settings.collection_collection.products limit: section.settings.collection_collection_limit %}
 <div role="listitem" class="product_list-item swiper-slide w-dyn-item">
@@ -34,15 +34,13 @@
                   <div class="fp-controls">
                     <button class="fp-prev" aria-label="Previous">
                       <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15,18 9,12 15,6"></polyline>
+                        <path d="M15 18L9 12L15 6" fill="none"></path>
                       </svg>
                     </button>
                     <div class="fp-pagination"></div>
-                    <button class="fp-next" aria-label="Next">
-                      <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9,18 15,12 9,6"></polyline>
-                      </svg>
-                    </button>
+                    <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9 18L15 12L9 6" fill="none"></path>
+                    </svg>
                   </div>
                 </div>
               </div>
