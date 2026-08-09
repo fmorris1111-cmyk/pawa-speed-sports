@@ -231,6 +231,10 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   }
+  .nav_menu-2 {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
     .content-grid_item {
     position: relative;
     aspect-ratio: 6 / 4;
@@ -367,7 +371,13 @@
 }
 .predictive-search_see-all:hover { background: #444; }
 .predictive-search_empty { padding: 1rem; font-size: 12px; opacity: 0.6; }
-  .predictive-search_item { background: transparent; }
+.predictive-search_see-all,
+.predictive-search_see-all.w-inline-block {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+ }
+.predictive-search_item { background: transparent; }
 .predictive-search_line-item,
 .predictive-search_line-item.w-inline-block {
   display: flex !important;
@@ -387,6 +397,11 @@
   text-align: left !important;
   flex: 1;
 }
+    .nav_predictive-results::-webkit-scrollbar { width: 4px; }
+  .nav_predictive-results::-webkit-scrollbar-track { background: transparent; }
+  .nav_predictive-results::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+  .nav_predictive-results::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
+  .nav_predictive-results { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
   /* &#9472;&#9472; Featured Products Carousel &#9472;&#9472; */
 .fp-carousel-wrap { position: relative; }
 .product_list-wrapper.swiper { overflow: hidden; }
