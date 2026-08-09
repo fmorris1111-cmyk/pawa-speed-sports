@@ -68,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
       slideToClickedSlide: true,
       spaceBetween: 8,
     });
+    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+      mousewheel: { forceToAxis: true },
       keyboard: { enabled: true, onlyInViewport: true },
       navigation: {
         nextEl: $(this).find(".swiper-next")[0],
