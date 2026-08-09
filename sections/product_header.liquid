@@ -72,28 +72,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryEl = $(this).find(".swiper.is-product-gallery")[0];
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
     if (isMobile) {
-  const thumbSlides = $(this).find(".swiper.is-product-thumbnail .swiper-slide").toArray();
-  const gallerySlides = $(galleryEl).find(".swiper-slide").toArray();
-  const galleryTrack = $(galleryEl).find(".swiper-wrapper")[0];
-
-  thumbSlides.forEach((thumb, i) => {
-    thumb.addEventListener('click', () => {
-      gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    });
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const idx = gallerySlides.indexOf(entry.target);
-      if (idx === -1) return;
-      thumbSlides.forEach(t => t.classList.remove('is-active'));
-      thumbSlides[idx].classList.add('is-active');
-    });
-  }, { root: galleryTrack, threshold: 0.6 });
-
-  gallerySlides.forEach(slide => observer.observe(slide));
-},
+        const thumbSlides = $(this).find(".swiper.is-product-thumbnail .swiper-slide").toArray();
+        const gallerySlides = $(galleryEl).find(".swiper-slide").toArray();
+        thumbSlides.forEach((thumb, i) => {
+          thumb.addEventListener('click', () => {
+            gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            thumbSlides.forEach(t => t.classList.remove('is-active'));
+            thumb.classList.add('is-active');
+          });
+        });
+      } else {
+      new Swiper(galleryEl, {
+        thumbs: { swiper: thumbsSwiper, slideThumbActiveClass: "is-active" },
+        keyboard: { enabled: true, onlyInViewport: true },
+        navigation: {
+          nextEl: $(this).find(".swiper-next")[0],
+          prevEl: $(this).find(".swiper-prev")[0],
+        },
       });
     }
   });
