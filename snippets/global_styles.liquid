@@ -464,6 +464,12 @@
 .swiper-slide.is-product-gallery {
   scroll-snap-align: start;
 }
+
+.swiper-wrapper.is-product-gallery {
+  height: 100%;
+  overflow-y: hidden;
+}
+
   @keyframes announcement-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-1 * var(--marquee-distance))); }
