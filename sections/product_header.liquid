@@ -60,7 +60,7 @@
           <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
           <script>
 document.addEventListener("DOMContentLoaded", () => {
-  $(".swiper-container").each(function (index) {
+  $(".swiper-container").each(function () {
     const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
       slidesPerView: "auto",
       rewind: false,
@@ -68,27 +68,19 @@ document.addEventListener("DOMContentLoaded", () => {
       slideToClickedSlide: true,
       spaceBetween: "4%",
     });
-        const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-          touchEventsTarget: 'container',
-          touchStartPreventDefault: false,
-          resistanceRatio: 0,
-          mousewheel: {
-            forceToAxis: true
-          },
-          thumbs: {
-            swiper: thumbsSwiper,
-            slideThumbActiveClass: "is-active",
-          },
-          keyboard: {
-            enabled: true,
-            onlyInViewport: true
-          },
-          navigation: {
-            nextEl: $(this).find(".swiper-next")[0],
-            prevEl: $(this).find(".swiper-prev")[0],
-          }
-        });
-  }); 
+    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+      mousewheel: { forceToAxis: true },
+      thumbs: {
+        swiper: thumbsSwiper,
+        slideThumbActiveClass: "is-active",
+      },
+      keyboard: { enabled: true, onlyInViewport: true },
+      navigation: {
+        nextEl: $(this).find(".swiper-next")[0],
+        prevEl: $(this).find(".swiper-prev")[0],
+      },
+    });
+  });
 });
 </script>
         </div> {% schema %} {
