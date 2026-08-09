@@ -460,17 +460,20 @@
   -webkit-touch-callout: none;
   user-select: none;
 }
-.swiper-wrapper.is-product-gallery {
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-.swiper-slide.is-product-gallery {
-  scroll-snap-align: start;
-}
+@media (max-width: 767px) {
+  .swiper-wrapper.is-product-gallery {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    height: 100%;
+    overflow-y: hidden;
+  }
+  .swiper-slide.is-product-gallery {
+    scroll-snap-align: start;
+  }
   .swiper-wrapper.is-product-gallery::-webkit-scrollbar {
-  display: none;
+    display: none;
+  }
 }
-
   .swiper-wrapper.is-product-gallery {
   height: 100%;
   overflow-y: hidden;
