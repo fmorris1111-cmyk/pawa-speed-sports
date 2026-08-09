@@ -67,19 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
       loopedSlides: 8,
       slideToClickedSlide: true,
       spaceBetween: 8,
+      allowTouchMove: false,
     });
+
     const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-  thumbs: {
-    swiper: thumbsSwiper,
-    slideThumbActiveClass: "is-active",
-  },
-  keyboard: { enabled: true, onlyInViewport: true },
-  navigation: {
-    nextEl: $(this).find(".swiper-next")[0],
-    prevEl: $(this).find(".swiper-prev")[0],
-  },
-  touchAngle: 70,
-});
+      thumbs: {
+        swiper: thumbsSwiper,
+        slideThumbActiveClass: "is-active",
+      },
+      keyboard: { enabled: true, onlyInViewport: true },
+      navigation: {
+        nextEl: $(this).find(".swiper-next")[0],
+        prevEl: $(this).find(".swiper-prev")[0],
+      },
+      touchAngle: 85,
+    });
   });
 });
 </script>
