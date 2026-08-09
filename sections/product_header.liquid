@@ -4,7 +4,18 @@
 <div li-element="product-variant-container" class="w-layout-grid product-header_layout" x-data="handleVariant({{ product | json | escape }}, {{ product.options_by_name | json | escape }}, {{ product.selected_or_first_available_variant | json | escape }})" x-init="$nextTick(() => { activateVariants() })" @setbundleitem.window="updateBundleItem($event.detail.product, $event.detail.quantity)">
               <div id="w-node-aaec4065-ff42-9417-cd74-abddd54400f1-d54400ec" class="swiper-container is-product-gallery">
                 <div class="product-header_slider-wrapper">
-                  <div class="swiper_button-wrapper is-product-slider pointer-events-off z-index-1 hide-mobile-landscape"></div>
+                  <div class="swiper_button-wrapper is-product-slider pointer-events-on z-index-1 hide-mobile-landscape">
+                    <button type="button" class="swiper-prev" aria-label="Previous image">
+                      <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18L9 12L15 6" fill="none"></path>
+                      </svg>
+                    </button>
+                    <button type="button" class="swiper-next" aria-label="Next image">
+                      <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18L15 12L9 6" fill="none"></path>
+                      </svg>
+                    </button>
+                  </div>
                   <div class="swiper is-product-thumbnail">
                     <div li-for:inside="media in product.media" class="swiper-wrapper is-product-thumbnail">
         {% for media in product.media %}                            
@@ -92,6 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { root: galleryTrack, threshold: 0.6 });
 
     gallerySlides.forEach(slide => observer.observe(slide));
+
+    const prevBtn = $(this).find(".swiper-prev")[0];
+    const nextBtn = $(this).find(".swiper-next")[0];
+
+    function currentGalleryIndex() {
+      const scrollPos = galleryTrack.scrollLeft;
+      return Math.round(scrollPos / galleryTrack.clientWidth);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+      const i = Math.max(0, currentGalleryIndex() - 1);
+      gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      const i = Math.min(gallerySlides.length - 1, currentGalleryIndex() + 1);
+      gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
   });
 });
           </script>
