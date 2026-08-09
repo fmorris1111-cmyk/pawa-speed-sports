@@ -32,7 +32,7 @@
                     
                             {% if media.media_type == 'image' %}    <div li-if="media.media_type == 'image'" class="swiper-slide is-product-gallery">
     
-                      <div class="product-header_gallery-lightbox"><img li-object:src="media | image_url: width: 1000" li-object:alt="media.alt" alt="{{ media.alt }}" src="{{ media | image_url: width: 1000 }}" loading="lazy" class="product-header_gallery-image"></div>
+                      <div class="product-header_gallery-lightbox"><img li-object:src="media | image_url: width: 1000" li-object:alt="media.alt" alt="{{ media.alt }}" src="{{ media | image_url: width: 1000 }}" loading="eager" class="product-header_gallery-image"></div>
                         </div>
 {% endif %}
                             
@@ -70,6 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
       mousewheel: { forceToAxis: true },
+      thumbs: {
+        swiper: thumbsSwiper,
+        slideThumbActiveClass: "is-active",
+      },
       keyboard: { enabled: true, onlyInViewport: true },
       navigation: {
         nextEl: $(this).find(".swiper-next")[0],
