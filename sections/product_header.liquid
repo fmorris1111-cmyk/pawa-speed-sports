@@ -56,36 +56,7 @@
             </div>
           </div>
         </div>
-        <div class="hide w-embed w-script">
-          <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-          <script>
-document.addEventListener("DOMContentLoaded", () => {
-  $(".swiper-container").each(function () {
-    const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
-      slidesPerView: "auto",
-      rewind: false,
-      loopedSlides: 8,
-      slideToClickedSlide: true,
-      spaceBetween: 8,
-      allowTouchMove: false,
-    });
-
-    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-      thumbs: {
-        swiper: thumbsSwiper,
-        slideThumbActiveClass: "is-active",
-      },
-      keyboard: { enabled: true, onlyInViewport: true },
-      navigation: {
-        nextEl: $(this).find(".swiper-next")[0],
-        prevEl: $(this).find(".swiper-prev")[0],
-      },
-      touchAngle: 85,
-    });
-  });
-});
-</script>
-        </div> {% schema %} {
+ {% schema %} {
     "tag": "section",
     "name": "Product Header",
     "class": "section_product-header",
