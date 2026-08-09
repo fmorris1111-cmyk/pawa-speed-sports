@@ -492,7 +492,14 @@
 }
 @media (min-width: 992px) {
   .swiper-container.is-product-gallery {
-    max-height: 60vh;
+    max-height: 80vh;
+  }
+  .swiper-container.is-product-gallery .product-header_gallery-lightbox,
+  .swiper-container.is-product-gallery img.product-header_gallery-image {
+    height: 100%;
+  }
+  .swiper-container.is-product-gallery img.product-header_gallery-image {
+    object-fit: contain;
   }
 }
 </style>
