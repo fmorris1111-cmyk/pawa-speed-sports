@@ -154,6 +154,17 @@
       ],
       "disabled": true,
       "settings": {}
+    },
+    "featured_products_RhtRKj": {
+      "type": "featured_products",
+      "name": "Featured products",
+      "settings": {
+        "text_heading": "NEW ARRIVALS",
+        "url_button_link": "shopify://collections/sale",
+        "text_button_text": "SHOP ALL",
+        "collection_collection": "sale",
+        "collection_collection_limit": 12
+      }
     }
   },
   "layout": "theme",
@@ -164,6 +175,7 @@
     "content_grid",
     "featured_products_RRPnyj",
     "content_grid_home_hdzyeT",
-    "content_grid_VYrH8L"
+    "content_grid_VYrH8L",
+    "featured_products_RhtRKj"
   ]
 }
