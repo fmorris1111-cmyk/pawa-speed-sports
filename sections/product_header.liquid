@@ -72,14 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleryEl = $(this).find(".swiper.is-product-gallery")[0];
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
     if (isMobile) {
-      const thumbSlides = $(this).find(".swiper.is-product-thumbnail .swiper-slide").toArray();
-      const gallerySlides = $(galleryEl).find(".swiper-slide").toArray();
-      thumbSlides.forEach((thumb, i) => {
-        thumb.addEventListener('click', () => {
-          gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        const thumbSlides = $(this).find(".swiper.is-product-thumbnail .swiper-slide").toArray();
+        const gallerySlides = $(galleryEl).find(".swiper-slide").toArray();
+        thumbSlides.forEach((thumb, i) => {
+          thumb.addEventListener('click', () => {
+            gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            thumbSlides.forEach(t => t.classList.remove('is-active'));
+            thumb.classList.add('is-active');
+          });
         });
-      });
-    } else {
+      } else {
       new Swiper(galleryEl, {
         thumbs: { swiper: thumbsSwiper, slideThumbActiveClass: "is-active" },
         keyboard: { enabled: true, onlyInViewport: true },
