@@ -449,8 +449,12 @@
 @media (max-width: 767px) {
   .fp-prev, .fp-next { display: none; }
 }
-  .swiper.is-product-gallery { touch-action: pan-y; }
-  .swiper.is-product-gallery img {
+.swiper.is-product-gallery { touch-action: pan-y; }
+  .swiper.is-product-gallery {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.swiper.is-product-gallery img {
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
