@@ -448,4 +448,9 @@
 @media (max-width: 1023px) { .product_list-item.swiper-slide { width: calc(50% - 8px); } }
 @media (max-width: 767px)  { .product_list-item.swiper-slide { width: 83%; } }
   .swiper.is-product-gallery { touch-action: pan-y; }
+  .swiper.is-product-gallery img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
 </style>
