@@ -60,8 +60,14 @@
           <script>
 document.addEventListener("DOMContentLoaded", () => {
   $(".swiper-container").each(function () {
-    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-      mousewheel: { forceToAxis: true },
+    const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
+      slidesPerView: "auto",
+      rewind: false,
+      loopedSlides: 8,
+      slideToClickedSlide: true,
+      spaceBetween: 8,
+    });
+        const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
       thumbs: {
         swiper: thumbsSwiper,
         slideThumbActiveClass: "is-active",
@@ -71,8 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
         nextEl: $(this).find(".swiper-next")[0],
         prevEl: $(this).find(".swiper-prev")[0],
       },
-      longSwipesRatio: 0.25,
-      longSwipesMs: 300,
+      touchAngle: 85,
+      simulateTouch: false,
     });
   });
 });
