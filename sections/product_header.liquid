@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
       spaceBetween: 8,
     });
     const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+      mousewheel: { forceToAxis: true },
       thumbs: {
         swiper: thumbsSwiper,
         slideThumbActiveClass: "is-active",
