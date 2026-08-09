@@ -58,30 +58,37 @@
         </div>
         <div class="hide w-embed w-script">
           <script>
-document.addEventListener("DOMContentLoaded", () => {
-  $(".swiper-container").each(function () {
-    const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
-      slidesPerView: "auto",
-      rewind: false,
-      loopedSlides: 8,
-      slideToClickedSlide: true,
-      spaceBetween: 8,
-    });
-        const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-      thumbs: {
-        swiper: thumbsSwiper,
-        slideThumbActiveClass: "is-active",
-      },
-      keyboard: { enabled: true, onlyInViewport: true },
-      navigation: {
-        nextEl: $(this).find(".swiper-next")[0],
-        prevEl: $(this).find(".swiper-prev")[0],
-      },
-      touchAngle: 85,
-      simulateTouch: false,
-    });
-  });
-});
+      document.addEventListener("DOMContentLoaded", () => {
+        $(".swiper-container").each(function () {
+          const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
+            slidesPerView: "auto",
+            rewind: false,
+            loopedSlides: 8,
+            slideToClickedSlide: true,
+            spaceBetween: 8,
+            allowTouchMove: false,
+          });
+
+          const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+            thumbs: {
+              swiper: thumbsSwiper,
+              slideThumbActiveClass: "is-active",
+            },
+            keyboard: { enabled: true, onlyInViewport: true },
+            navigation: {
+              nextEl: $(this).find(".swiper-next")[0],
+              prevEl: $(this).find(".swiper-prev")[0],
+            },
+            touchAngle: 85,
+            simulateTouch: false,
+          });
+
+          const galleryWrapperEl = swiper.wrapperEl;
+          galleryWrapperEl.addEventListener('pointerdown', function(e) {
+            try { galleryWrapperEl.setPointerCapture(e.pointerId); } catch (err) {}
+          });
+        });
+      });
 </script>
         </div> {% schema %} {
     "tag": "section",
