@@ -70,10 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
       mousewheel: { forceToAxis: true },
-      thumbs: {
-        swiper: thumbsSwiper,
-        slideThumbActiveClass: "is-active",
-      },
       keyboard: { enabled: true, onlyInViewport: true },
       navigation: {
         nextEl: $(this).find(".swiper-next")[0],
