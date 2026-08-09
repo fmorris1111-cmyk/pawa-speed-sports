@@ -343,26 +343,23 @@ document.addEventListener('DOMContentLoaded', function () {
   /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
      FEATURED PRODUCTS CAROUSEL
   &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
-  var fpEl = document.querySelector('.swiper.is-fp-carousel');
-  if (fpEl) {
-    new Swiper(fpEl, {
-      slidesPerView: 1.2,
-      spaceBetween: 16,
-      loop: false,
-      pagination: {
-        el: '.fp-pagination',
-        type: 'progressbar',
-      },
-      navigation: {
-        nextEl: '.fp-next',
-        prevEl: '.fp-prev',
-      },
-      breakpoints: {
-        768: { slidesPerView: 2.5, spaceBetween: 16 },
-        1024: { slidesPerView: 4, spaceBetween: 16 }
-      }
-    });
-  }
+ /* FEATURED PRODUCTS CAROUSEL */
+var fpEl = document.querySelector('.is-fp-carousel') ||
+           document.querySelector('.section_product .product_list-wrapper');
+if (fpEl) {
+  if (!fpEl.classList.contains('swiper')) fpEl.classList.add('swiper');
+  new Swiper(fpEl, {
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    loop: false,
+    pagination: { el: '.fp-pagination', type: 'progressbar' },
+    navigation: { nextEl: '.fp-next', prevEl: '.fp-prev' },
+    breakpoints: {
+      768: { slidesPerView: 2.5, spaceBetween: 16 },
+      1024: { slidesPerView: 4, spaceBetween: 16 }
+    }
+  });
+}
 });
 </script>
 </body>
