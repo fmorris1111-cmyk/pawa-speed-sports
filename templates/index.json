@@ -89,7 +89,7 @@
         "url_button_link": "shopify://collections/all",
         "text_button_text": "SHOP ALL",
         "collection_collection": "all",
-        "collection_collection_limit": 4
+        "collection_collection_limit": 12
       }
     },
     "content_grid_home_hdzyeT": {
@@ -137,7 +137,7 @@
         "url_button_link": "shopify://collections/sale",
         "text_button_text": "SHOP ALL",
         "collection_collection": "sale",
-        "collection_collection_limit": 4
+        "collection_collection_limit": 12
       }
     },
     "content_grid_VYrH8L": {
