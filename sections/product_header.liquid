@@ -57,36 +57,39 @@
           </div>
         </div>
         <div class="hide w-embed w-script">
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script>
+          <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+          <script>
 document.addEventListener("DOMContentLoaded", () => {
-  $(".swiper-container").each(function (index) {
+  $(".swiper-container").each(function () {
     const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
       slidesPerView: "auto",
       rewind: false,
       loopedSlides: 8,
       slideToClickedSlide: true,
-      spaceBetween: "4%",
+      spaceBetween: 8,
+      allowTouchMove: false,
     });
-
-    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-      mousewheel: {
-        forceToAxis: true
-      },
-      thumbs: {
-        swiper: thumbsSwiper,
-        slideThumbActiveClass: "is-active",
-      },
-      keyboard: {
-        enabled: true,
-        onlyInViewport: true
-      },
-      navigation: {
-        nextEl: $(this).find(".swiper-next")[0],
-        prevEl: $(this).find(".swiper-prev")[0],
-      }
-    });
-  }); 
+    const galleryEl = $(this).find(".swiper.is-product-gallery")[0];
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    if (isMobile) {
+      const thumbSlides = $(this).find(".swiper.is-product-thumbnail .swiper-slide").toArray();
+      const gallerySlides = $(galleryEl).find(".swiper-slide").toArray();
+      thumbSlides.forEach((thumb, i) => {
+        thumb.addEventListener('click', () => {
+          gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        });
+      });
+    } else {
+      new Swiper(galleryEl, {
+        thumbs: { swiper: thumbsSwiper, slideThumbActiveClass: "is-active" },
+        keyboard: { enabled: true, onlyInViewport: true },
+        navigation: {
+          nextEl: $(this).find(".swiper-next")[0],
+          prevEl: $(this).find(".swiper-prev")[0],
+        },
+      });
+    }
+  });
 });
 </script>
         </div> {% schema %} {

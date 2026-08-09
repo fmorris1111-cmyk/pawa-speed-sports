@@ -458,6 +458,12 @@
   -webkit-touch-callout: none;
   user-select: none;
 }
+.swiper-wrapper.is-product-gallery {
+  scroll-snap-type: x mandatory;
+}
+.swiper-slide.is-product-gallery {
+  scroll-snap-align: start;
+}
   @keyframes announcement-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-1 * var(--marquee-distance))); }
