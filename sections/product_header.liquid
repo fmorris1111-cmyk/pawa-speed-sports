@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
           nextEl: $(this).find(".swiper-next")[0],
           prevEl: $(this).find(".swiper-prev")[0],
         },
+        observer: true,
+        observeParents: true,
       });
     }
   });
