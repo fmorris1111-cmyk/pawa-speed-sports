@@ -459,4 +459,12 @@
   -webkit-touch-callout: none;
   user-select: none;
 }
+  @keyframes announcement-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--marquee-distance))); }
+}
+.announcement-bar_link-container.is-marquee-animated {
+  animation: announcement-marquee var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
 </style>

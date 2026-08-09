@@ -29,6 +29,13 @@
     display: flex;
     will-change: transform;
   }
+  .announcement-bar_link-container.is-marquee-animated {
+    animation: announcement-marquee var(--marquee-duration) linear infinite;
+  }
+  @keyframes announcement-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-1 * var(--marquee-distance))); }
+  }
   .announcement-bar_inner {
     display: contents;
   }
@@ -48,11 +55,11 @@ window.addEventListener('load', function() {
   // Grab all original links before we clone anything
   var originalLinks = Array.from(track.querySelectorAll('.announcement-bar_link'));
   // Measure original set width
-var originalSetWidth = 0;
-originalLinks.forEach(function(link) {
-  originalSetWidth += link.getBoundingClientRect().width;
-});
-if (originalSetWidth === 0) return;  // &larr; here, after the loop
+  var originalSetWidth = 0;
+  originalLinks.forEach(function(link) {
+    originalSetWidth += link.getBoundingClientRect().width;
+  });
+  if (originalSetWidth === 0) return;
   // Find reset point: smallest multiple of originalSetWidth >= containerWidth
   var resetWidth = originalSetWidth;
   while (resetWidth < containerWidth) {
@@ -65,22 +72,11 @@ if (originalSetWidth === 0) return;  // &larr; here, after the loop
       track.appendChild(link.cloneNode(true));
     });
   }
-  var pos = 0;
   var pixelsPerSecond = 60;
-  var lastTime = null;
-  function tick(timestamp) {
-    if (!lastTime) lastTime = timestamp;
-    var delta = timestamp - lastTime;
-    lastTime = timestamp;
-    pos += (pixelsPerSecond * delta) / 1000;
-    // Reset at resetWidth &mdash; snaps back to visually identical position
-    if (pos >= resetWidth) {
-      pos -= resetWidth;
-    }
-    track.style.transform = 'translateX(-' + pos + 'px)';
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+  var duration = resetWidth / pixelsPerSecond;
+  track.style.setProperty('--marquee-distance', resetWidth + 'px');
+  track.style.setProperty('--marquee-duration', duration + 's');
+  track.classList.add('is-marquee-animated');
 });
 </script>
         </div> {% schema %} {
