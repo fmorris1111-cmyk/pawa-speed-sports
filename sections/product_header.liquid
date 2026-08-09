@@ -111,11 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const scrollPos = galleryTrack.scrollLeft;
       return Math.round(scrollPos / galleryTrack.clientWidth);
     }
-    if (prevBtn) prevBtn.addEventListener('click', () => {
+    if (prevBtn) prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       const i = Math.max(0, currentGalleryIndex() - 1);
       gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     });
-    if (nextBtn) nextBtn.addEventListener('click', () => {
+    if (nextBtn) nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       const i = Math.min(gallerySlides.length - 1, currentGalleryIndex() + 1);
       gallerySlides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     });
