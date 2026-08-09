@@ -64,22 +64,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
       slidesPerView: "auto",
       rewind: false,
-      loopedSlides: 8,
-      slideToClickedSlide: true,
       spaceBetween: 8,
     });
-const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
-  thumbs: {
-    swiper: thumbsSwiper,
-    slideThumbActiveClass: "is-active",
-  },
-  keyboard: { enabled: true, onlyInViewport: true },
-  navigation: {
-    nextEl: $(this).find(".swiper-next")[0],
-    prevEl: $(this).find(".swiper-prev")[0],
-  },
-  touchAngle: 70,
-});
+
+    const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+      mousewheel: { forceToAxis: true },
+      keyboard: { enabled: true, onlyInViewport: true },
+      navigation: {
+        nextEl: $(this).find(".swiper-next")[0],
+        prevEl: $(this).find(".swiper-prev")[0],
+      },
+      longSwipesRatio: 0.25,
+      longSwipesMs: 300,
+    });
+
+    const thumbSlides = thumbsSwiper.slides;
+    function setActiveThumb(index) {
+      thumbSlides.forEach((el) => el.classList.remove("is-active"));
+      if (thumbSlides[index]) thumbSlides[index].classList.add("is-active");
+    }
+
+    swiper.on("slideChange", () => {
+      setActiveThumb(swiper.activeIndex);
+      thumbsSwiper.slideTo(swiper.activeIndex);
+    });
+
+    thumbSlides.forEach((slide, index) => {
+      slide.addEventListener("click", () => swiper.slideTo(index));
+    });
+
+    setActiveThumb(swiper.activeIndex);
   });
 });
 </script>
