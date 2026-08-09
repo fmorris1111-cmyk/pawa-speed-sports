@@ -57,246 +57,38 @@
           </div>
         </div>
         <div class="hide w-embed w-script">
-<style>
-  /* --- Main gallery --- */
-  .swiper.is-product-gallery { touch-action: pan-y; }
-  .swiper.is-product-gallery .swiper-slide { height: auto; }
-  .swiper.is-product-gallery img { -webkit-user-drag: none; user-select: none; }
+          <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        $(".swiper-container").each(function () {
+          const thumbsSwiper = new Swiper($(this).find(".swiper.is-product-thumbnail")[0], {
+            slidesPerView: "auto",
+            rewind: false,
+            loopedSlides: 8,
+            slideToClickedSlide: true,
+            spaceBetween: 8,
+            allowTouchMove: false,
+          });
 
-  /* --- Thumbnails: not a swiper any more --- */
-  .swiper.is-product-thumbnail {
-    overflow: auto !important;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .swiper.is-product-thumbnail::-webkit-scrollbar { display: none; }
+          const swiper = new Swiper($(this).find(".swiper.is-product-gallery")[0], {
+            thumbs: {
+              swiper: thumbsSwiper,
+              slideThumbActiveClass: "is-active",
+            },
+            keyboard: { enabled: true, onlyInViewport: true },
+            navigation: {
+              nextEl: $(this).find(".swiper-next")[0],
+              prevEl: $(this).find(".swiper-prev")[0],
+            },
+            touchAngle: 85,
+            simulateTouch: false,
+          });
 
-  .swiper.is-product-thumbnail .swiper-wrapper {
-    transform: none !important;
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  .swiper.is-product-thumbnail .swiper-slide {
-    flex: 0 0 auto;
-    cursor: pointer;
-    width: auto;
-    opacity: .55;
-    transition: opacity .2s ease, box-shadow .2s ease;
-  }
-  .swiper.is-product-thumbnail .swiper-slide:hover { opacity: .85; }
-  .swiper.is-product-thumbnail .swiper-slide.is-active {
-    opacity: 1;
-    box-shadow: inset 0 0 0 2px currentColor;
-  }
-  .swiper.is-product-thumbnail .swiper-slide.hide { display: none !important; }
-</style>
-
-<script>
-(function () {
-  'use strict';
-
-  var CONFIG = {
-    swiperJS:    'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
-    swiperCSS:   'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
-    gallerySel:  '.swiper.is-product-gallery',
-    thumbsSel:   '.swiper.is-product-thumbnail',
-    activeClass: 'is-active',
-    speed:       400,
-    thumbsScrollIntoView: true   // auto-scroll the strip so the active thumb is visible
-  };
-
-  /* ---------- Swiper loader (skips if Liquify already loaded it) ---------- */
-  function loadSwiper() {
-    return new Promise(function (resolve) {
-      if (window.Swiper) return resolve();
-      var css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = CONFIG.swiperCSS;
-      document.head.appendChild(css);
-
-      var js = document.createElement('script');
-      js.src = CONFIG.swiperJS;
-      js.onload = resolve;
-      js.onerror = function () { console.warn('[gallery] Swiper failed to load'); resolve(); };
-      document.head.appendChild(js);
-    });
-  }
-
-  /* ---------- helpers ---------- */
-  function slidesIn(wrapper) {
-    if (!wrapper) return [];
-    return Array.prototype.filter.call(
-      wrapper.children,
-      function (el) {
-        return el.classList.contains('swiper-slide') && !el.classList.contains('hide');
-      }
-    );
-  }
-
-  function killSwiperOn(el) {
-    if (!el) return;
-    if (el.swiper) { try { el.swiper.destroy(true, true); } catch (e) {} }
-    el.classList.remove(
-      'swiper-initialized', 'swiper-horizontal', 'swiper-vertical',
-      'swiper-backface-hidden', 'swiper-pointer-events'
-    );
-    var w = el.querySelector('.swiper-wrapper');
-    if (w) w.removeAttribute('style');
-    slidesIn(w).forEach(function (s) {
-      s.removeAttribute('style');
-      s.classList.remove('swiper-slide-active', 'swiper-slide-next', 'swiper-slide-prev',
-                         'swiper-slide-visible', 'swiper-slide-duplicate');
-    });
-  }
-
-  function scrollIntoStrip(container, el) {
-    if (!CONFIG.thumbsScrollIntoView || !container || !el) return;
-    var cr = container.getBoundingClientRect();
-    var er = el.getBoundingClientRect();
-
-    if (container.scrollWidth > container.clientWidth + 1) {
-      var dx = (er.left + er.width / 2) - (cr.left + cr.width / 2);
-      container.scrollTo({ left: container.scrollLeft + dx, behavior: 'smooth' });
-    }
-    if (container.scrollHeight > container.clientHeight + 1) {
-      var dy = (er.top + er.height / 2) - (cr.top + cr.height / 2);
-      container.scrollTo({ top: container.scrollTop + dy, behavior: 'smooth' });
-    }
-  }
-
-  /* ---------- init one gallery ---------- */
-  function initGallery(galleryEl) {
-    if (!window.Swiper) return;
-
-    var root      = galleryEl.closest('.swiper-container') || galleryEl.parentElement;
-    var thumbsEl  = root ? root.querySelector(CONFIG.thumbsSel) : null;
-    var thumbsWrp = thumbsEl ? thumbsEl.querySelector('.swiper-wrapper') : null;
-    var galWrp    = galleryEl.querySelector('.swiper-wrapper');
-
-    if (!galWrp || slidesIn(galWrp).length === 0) return false; // nothing rendered yet
-
-    // Make sure the thumbnails are NOT a carousel.
-    killSwiperOn(thumbsEl);
-
-    // Re-init the main gallery cleanly (drops any thumbs linkage Liquify set up).
-    if (galleryEl.swiper) { try { galleryEl.swiper.destroy(true, true); } catch (e) {} }
-
-    var nav = root ? {
-      next: root.querySelector('.swiper-button-next'),
-      prev: root.querySelector('.swiper-button-prev')
-    } : { next: null, prev: null };
-
-    var swiper = new Swiper(galleryEl, {
-      speed: CONFIG.speed,
-      slidesPerView: 1,
-      spaceBetween: 0,
-      grabCursor: true,
-      watchOverflow: true,
-      allowTouchMove: true,        // desktop + touch
-      simulateTouch: true,
-      threshold: 5,
-      preventClicks: true,
-      preventClicksPropagation: true,
-      keyboard: { enabled: true, onlyInViewport: true },
-      navigation: (nav.next || nav.prev)
-        ? { nextEl: nav.next, prevEl: nav.prev }
-        : false
-    });
-
-    /* ---------- thumbnail wiring ---------- */
-    function thumbs() { return slidesIn(thumbsWrp); }
-
-    function setActive(index) {
-      var list = thumbs();
-      list.forEach(function (t, i) {
-        var on = i === index;
-        t.classList.toggle(CONFIG.activeClass, on);
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.tabIndex = on ? 0 : -1;
-        if (on) scrollIntoStrip(thumbsEl, t);
-      });
-    }
-
-    function bindThumbs() {
-      var list = thumbs();
-      if (thumbsWrp) thumbsWrp.setAttribute('role', 'tablist');
-
-      list.forEach(function (t, i) {
-        t.setAttribute('role', 'tab');
-        if (!t.hasAttribute('aria-label')) {
-          t.setAttribute('aria-label', 'View image ' + (i + 1));
-        }
-        if (t.dataset.pgBound === '1') return;
-        t.dataset.pgBound = '1';
-
-        t.addEventListener('click', function (e) {
-          e.preventDefault();
-          swiper.slideTo(i);
-        });
-        t.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); swiper.slideTo(i); }
-          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); swiper.slideNext(); }
-          if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); swiper.slidePrev(); }
+          const galleryWrapperEl = swiper.wrapperEl;
+          galleryWrapperEl.addEventListener('pointerdown', function(e) {
+            try { galleryWrapperEl.setPointerCapture(e.pointerId); } catch (err) {}
+          });
         });
       });
-    }
-
-    bindThumbs();
-    setActive(swiper.activeIndex);
-    swiper.on('slideChange', function () { setActive(swiper.activeIndex); });
-
-    /* ---------- keep in sync if Alpine re-renders media (variant change) ---------- */
-    var t;
-    var mo = new MutationObserver(function () {
-      clearTimeout(t);
-      t = setTimeout(function () {
-        killSwiperOn(thumbsEl);        // in case li_custom.js re-inits it
-        swiper.update();
-        bindThumbs();
-        setActive(swiper.activeIndex);
-      }, 120);
-    });
-    if (root) mo.observe(root, { childList: true, subtree: true });
-
-    // Watchdog: if anything turns the thumb strip back into a swiper, undo it.
-    if (thumbsEl) {
-      new MutationObserver(function () {
-        if (thumbsEl.classList.contains('swiper-initialized')) {
-          killSwiperOn(thumbsEl);
-          bindThumbs();
-          setActive(swiper.activeIndex);
-        }
-      }).observe(thumbsEl, { attributes: true, attributeFilter: ['class'] });
-    }
-
-    galleryEl.dataset.pgInit = '1';
-    return true;
-  }
-
-  /* ---------- boot (retries until Liquify/Alpine has rendered the slides) ---------- */
-  function boot() {
-    var tries = 0;
-    (function attempt() {
-      var pending = false;
-      document.querySelectorAll(CONFIG.gallerySel).forEach(function (el) {
-        if (el.dataset.pgInit === '1') return;
-        if (initGallery(el) !== true) pending = true;
-      });
-      if ((pending || document.querySelectorAll(CONFIG.gallerySel).length === 0) && tries++ < 25) {
-        setTimeout(attempt, 200);
-      }
-    })();
-  }
-
-  loadSwiper().then(function () {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', boot);
-    } else {
-      boot();
-    }
-    window.addEventListener('load', boot);
-  });
-})();
 </script>
         </div> {% schema %} {
     "tag": "section",
