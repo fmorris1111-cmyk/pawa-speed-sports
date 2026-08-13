@@ -609,13 +609,21 @@
             
                         </div>
 {% endfor %}
+            <div data-mnav-panel="account" class="mobilenav_panel is-account">
+              {% if customer==blank %}    <div li-if="customer==blank" class="mobilenav_sublist">
+    
+                <a li-object:href="routes.account_login_url" href="{{ routes.account_login_url }}" class="mobilenav_sublink">LOGIN</a>
+                <a li-object:href="routes.account_register_url" href="{{ routes.account_register_url }}" class="mobilenav_sublink">REGISTER</a>
+                  </div>
+{% endif %}
+            </div>
           </div>
           <div class="mobilenav_bar">
             <div class="mobilenav_row is-level1">
               <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
                 <div class="mobilenav_label">MENU</div>
               </a>
-              <a data-mnav="account" href="#" class="mobilenav_item w-inline-block">
+              <a data-mnav="account" href="{% if customer %}{{ routes.account_url }}{% else %}#{% endif %}" class="mobilenav_item w-inline-block" data-logged-in="{% if customer %}1{% else %}0{% endif %}">
                 <div class="mobilenav_label">ACCOUNT</div>
               </a>
               <a data-mnav="search" href="#" class="mobilenav_item w-inline-block">
@@ -646,182 +654,30 @@
         
         <div class="w-embed w-script">
           <script>
-document.addEventListener('DOMContentLoaded', function () {
-  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
-     SHOP SUBMENU
-  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
-  var leftPill = document.querySelector('.nav_menu-2');
-  var drawer   = document.querySelector('.nav_submenu-drawer');
-  var panels   = document.querySelectorAll('.nav_submenu-panel');
-  var triggers = document.querySelectorAll('.nav_link-item[data-trigger]');
-  if (drawer) {
-    var subCloseTimer = null;
-    gsap.set(drawer, { height: 0, overflow: 'hidden' });
-    gsap.set(panels, { display: 'none' });
-    function openPanel(key) {
-      clearTimeout(subCloseTimer);
-      var panel = drawer.querySelector('[data-panel="' + key + '"]');
-      if (!panel || !panel.querySelector('a')) { closeDrawer(); return; }
-      gsap.set(panels, { display: 'none' });
-      gsap.set(panel, { display: 'block' });
-      gsap.killTweensOf(drawer);
-      if (leftPill) leftPill.classList.add('submenu-is-open');
-      gsap.to(drawer, { height: panel.scrollHeight, duration: 0.45, ease: 'power2.out' });
-    }
-    function closeDrawer() {
-      clearTimeout(subCloseTimer);
-      if (leftPill) leftPill.classList.remove('submenu-is-open');
-      gsap.killTweensOf(drawer);
-      gsap.to(drawer, {
-        height: 0, duration: 0.35, ease: 'power2.inOut',
-        onComplete: function () { gsap.set(panels, { display: 'none' }); }
-      });
-    }
-    function scheduleSubClose() { subCloseTimer = setTimeout(closeDrawer, 250); }
-    triggers.forEach(function (t) {
-      t.addEventListener('mouseenter', function () { openPanel(this.dataset.trigger); });
-      t.addEventListener('mouseleave', scheduleSubClose);
-    });
-    drawer.addEventListener('mouseenter', function () { clearTimeout(subCloseTimer); });
-    drawer.addEventListener('mouseleave', scheduleSubClose);
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.nav_menu-2')) closeDrawer();
-    });
-  }
-  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
-     MINI CART
-  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
-  var cartPill   = document.querySelector('.nav_menu-3');
-  var cartHolder = document.querySelector('.nav_mini-cart-holder');
-  var cartToggle = document.querySelector('.nav_dropdown.is-cart .w-dropdown-toggle');
-  if (cartHolder && cartToggle) {
-    gsap.set(cartHolder, { height: 0, overflow: 'hidden' });
-    var cartCloseTimer = null;
-    var autoCloseTimer = null;
-    var isHovering     = false;
-    cartToggle.setAttribute('data-minicart-trigger', '');
-    function openCart() {
-      clearTimeout(cartCloseTimer);
-      clearTimeout(autoCloseTimer);
-      if (cartPill) cartPill.classList.add('cart-is-open');
-      gsap.killTweensOf(cartHolder);
-      gsap.to(cartHolder, { height: 'auto', duration: 0.5, ease: 'power2.inOut' });
-    }
-    function closeCart() {
-      clearTimeout(cartCloseTimer);
-      clearTimeout(autoCloseTimer);
-      if (cartPill) cartPill.classList.remove('cart-is-open');
-      gsap.killTweensOf(cartHolder);
-      gsap.to(cartHolder, { height: 0, duration: 0.35, ease: 'power2.inOut' });
-    }
-    function scheduleCartClose() { cartCloseTimer = setTimeout(closeCart, 250); }
-    cartToggle.addEventListener('mouseenter', function () { isHovering = true;  openCart(); });
-    cartToggle.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
-    cartHolder.addEventListener('mouseenter', function () { isHovering = true;  clearTimeout(cartCloseTimer); });
-    cartHolder.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.nav_menu-3') && !e.target.closest('.nav_mini-cart-holder')) closeCart();
-    });
-    var _fetch = window.fetch;
-    window.fetch = function () {
-      var args = arguments;
-      var url  = typeof args[0] === 'string' ? args[0] : (args[0] && args[0].url) || '';
-      var p    = _fetch.apply(this, args);
-      if (url.includes('/cart/add')) {
-        p.then(function (r) {
-          if (r.ok) {
-            openCart();
-            clearTimeout(autoCloseTimer);
-            autoCloseTimer = setTimeout(function () { if (!isHovering) closeCart(); }, 3000);
-          }
-        });
+        var menuRect = mMenuBtn2.getBoundingClientRect();
+        mBar.style.setProperty('--mnav-fade-left', (menuRect.right - barRect.left) + 'px');
       }
-      return p;
-    };
-  }
-    /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
-     NAV SEARCH
-  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
-  var searchExpand  = document.querySelector('.nav_search-expand');
-  var searchInput   = document.getElementById('nav-search-input');
-  var searchTrigger = document.querySelector('.nav_menu-search .nav_link-item');
-  if (searchExpand && searchInput) {
-    gsap.set(searchExpand, { width: 0, overflow: 'hidden' });
-    window.openNavSearch = function() {
-      if (searchExpand.offsetWidth > 10) { searchInput.focus(); return; }
-      gsap.killTweensOf(searchExpand);
-      gsap.to(searchExpand, {
-        width: 'auto', duration: 0.35, ease: 'power2.out',
-        onComplete: function() { searchInput.focus(); }
-      });
-    };
-    window.closeNavSearch = function() {
-      var ps = document.querySelector('predictive-search');
-      if (ps) ps.close();
-      gsap.killTweensOf(searchExpand);
-      gsap.to(searchExpand, { width: 0, duration: 0.25, ease: 'power2.inOut' });
-      searchInput.value = '';
-    };
-    if (searchTrigger) {
-      searchTrigger.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.openNavSearch();
-      });
     }
-            document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && searchExpand.offsetWidth > 10) window.closeNavSearch();
-    });
-  }
-  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
-     MOBILE NAV  (&le;991px)
-  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
-  var mnav = document.querySelector('.mobilenav');
-  if (mnav) {
-    var mq        = window.matchMedia('(max-width: 991px)');
-    var mBar      = mnav.querySelector('.mobilenav_bar');
-    var mDrawer   = mnav.querySelector('.mobilenav_drawer');
-    var mPanels   = mnav.querySelectorAll('.mobilenav_panel');
-    var mMenuBtns = mnav.querySelectorAll('[data-mnav="menu"]');
-    var mMenuBtn2 = mnav.querySelector('.mobilenav_row.is-level2 [data-mnav="menu"]');
-    var mLevel1   = mnav.querySelector('.mobilenav_row.is-level1');
-    var mLevel2   = mnav.querySelector('.mobilenav_row.is-level2');
-    var mState    = 'idle';                       // idle | menu
-    var mPanelKey = null;
-    gsap.set(mLevel2, { display: 'none' });
-    gsap.set(mDrawer, { height: 0, overflow: 'hidden' });
-    gsap.set(mPanels, { display: 'none' });
-    /* ---- selection: one active item, persists until changed ---- */
-    function mClearActive() {
-      mnav.querySelectorAll('.mobilenav_item.is-active').forEach(function (i) {
-        i.classList.remove('is-active');
-        i.setAttribute('aria-expanded', 'false');
-      });
-    }
-    function mSetActive(el) {
-      mClearActive();
-      if (el) { el.classList.add('is-active'); el.setAttribute('aria-expanded', 'true'); }
-    }
-    /* MENU's own state is separate, so it can stay lit alongside a selected link */
-    function mSetMenuOpen(on) {
-      mMenuBtns.forEach(function (b) {
-        b.classList.toggle('is-open', on);
-        b.setAttribute('aria-expanded', on ? 'true' : 'false');
-      });
-    }
+    mLevel2.addEventListener('scroll', mUpdateFades, { passive: true });
+    window.addEventListener('resize', mUpdateFades);
     /* ---- row swap ---- */
     function mSetRow(level) {
       var show = level === 2 ? mLevel2 : mLevel1;
       var hide = level === 2 ? mLevel1 : mLevel2;
-      gsap.killTweensOf([show, hide]);
+      var kids = Array.prototype.filter.call(show.children, function (c) {
+        return !c.matches('[data-mnav="menu"]');
+      });
+      gsap.killTweensOf(kids);
       gsap.set(hide, { display: 'none' });
+      gsap.set(show, { clearProps: 'transform,opacity' });
       gsap.set(show, { display: 'flex' });
-      gsap.fromTo(show,
+      gsap.fromTo(kids,
         { opacity: 0, x: level === 2 ? 8 : -8 },
-        { opacity: 1, x: 0, duration: 0.2, ease: 'power2.out' });
+        { opacity: 1, x: 0, duration: 0.2, ease: 'power2.out', clearProps: 'transform' });
       if (level === 2) mLevel2.scrollLeft = 0;
+      requestAnimationFrame(mUpdateFades);
     }
-    /* ---- drawer: desktop's tween, inverted (grows upward) ---- */
+    /* ---- drawer (shop + account panels) ---- */
     function mOpenPanel(key, btn) {
       var panel = mDrawer.querySelector('.mobilenav_panel[data-mnav-panel="' + key + '"]');
       if (!panel || !panel.querySelector('a')) return false;
@@ -832,7 +688,6 @@ document.addEventListener('DOMContentLoaded', function () {
       mSetActive(btn);
       mBar.classList.add('drawer-is-open');
       gsap.killTweensOf(mDrawer);
-      /* offsetHeight, not scrollHeight &mdash; respects the 60dvh cap */
       gsap.to(mDrawer, { height: panel.offsetHeight, duration: 0.45, ease: 'power2.out' });
       return true;
     }
@@ -846,19 +701,74 @@ document.addEventListener('DOMContentLoaded', function () {
         onComplete: function () { gsap.set(mPanels, { display: 'none' }); }
       });
     }
-    function mOpenMenu() {
-      mState = 'menu';
-      mSetRow(2);
-      mClearActive();
-      mSetMenuOpen(true);
+    /* ---- search: same single instance as desktop, height instead of width ---- */
+    function mSearchIsOpen() { return !!searchExpand && searchExpand.offsetHeight > 4; }
+    function mOpenSearch() {
+      if (!searchExpand || !searchInput) return;
+      mSyncAnchors();
+      gsap.killTweensOf(searchExpand);
+      gsap.set(searchExpand, { overflow: 'hidden' });
+      gsap.to(searchExpand, {
+        height: 'auto', duration: 0.35, ease: 'power2.out',
+        onComplete: function () {
+          searchExpand.style.overflow = 'visible';   /* let results escape upward */
+          searchInput.focus();
+        }
+      });
+      mBar.classList.add('drawer-is-open');
     }
-    function mCloseMenu() {
-      mState = 'idle';
-      mCloseDrawer();
-      mSetRow(1);
-      mClearActive();
-      mSetMenuOpen(false);
+    function mCloseSearch() {
+      if (!searchExpand || !searchInput) return;
+      if (!mSearchIsOpen()) return;
+      var ps = document.querySelector('predictive-search');
+      if (ps && ps.close) ps.close();
+      searchInput.value = '';
+      searchInput.blur();
+      gsap.killTweensOf(searchExpand);
+      gsap.set(searchExpand, { overflow: 'hidden' });
+      gsap.to(searchExpand, { height: 0, duration: 0.25, ease: 'power2.inOut' });
+      if (mPanelKey === null) mBar.classList.remove('drawer-is-open');
     }
+    /* The form's close button and the Escape handler both call these globals,
+       so they must become breakpoint-aware rather than always tweening width */
+    var _openDesktop  = window.openNavSearch;
+    var _closeDesktop = window.closeNavSearch;
+    window.openNavSearch = function () {
+      if (mq.matches) { mOpenSearch(); mSetActive(mSearch); }
+      else if (_openDesktop) { _openDesktop(); }
+    };
+    window.closeNavSearch = function () {
+      if (mq.matches) { mCloseSearch(); mClearActive(); }
+      else if (_closeDesktop) { _closeDesktop(); }
+    };
+    /* ---- cart: mirror the shared instance's count and open state ---- */
+    function mCartIsOpen() { return !!mCartPill && mCartPill.classList.contains('cart-is-open'); }
+    if (mSrcCount && mCount) {
+      var mSyncCount = function () { mCount.textContent = mSrcCount.textContent.trim(); };
+      mSyncCount();
+      new MutationObserver(mSyncCount)
+        .observe(mSrcCount, { childList: true, characterData: true, subtree: true });
+    }
+    if (mCartPill) {
+      /* Covers manual opens AND the auto-open on /cart/add */
+      new MutationObserver(function () {
+        var open = mCartIsOpen();
+        if (mCart) {
+          mCart.classList.toggle('is-active', open);
+          mCart.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        mBar.classList.toggle('drawer-is-open', open || mPanelKey !== null || mSearchIsOpen());
+        if (open) mSyncAnchors();
+      }).observe(mCartPill, { attributes: true, attributeFilter: ['class'] });
+    }
+    /* ---- close everything except one ---- */
+    function mCloseAll(except) {
+      if (except !== 'drawer') mCloseDrawer();
+      if (except !== 'search') mCloseSearch();
+      if (except !== 'cart' && mCartIsOpen() && window.mnavCloseCart) window.mnavCloseCart();
+    }
+    function mOpenMenu()  { mState = 'menu'; mCloseAll(); mSetRow(2); mClearActive(); mSetMenuOpen(true); }
+    function mCloseMenu() { mState = 'idle'; mCloseAll(); mSetRow(1); mClearActive(); mSetMenuOpen(false); }
     /* ---- MENU ---- */
     mMenuBtns.forEach(function (btn) {
       btn.setAttribute('aria-expanded', 'false');
@@ -868,17 +778,42 @@ document.addEventListener('DOMContentLoaded', function () {
         if (mState === 'menu') { mCloseMenu(); } else { mOpenMenu(); }
       });
     });
-    /* ---- ACCOUNT / SEARCH / CART &mdash; selection only; panels land in stages 5-7 ---- */
-    mnav.querySelectorAll('.mobilenav_row.is-level1 .mobilenav_item:not([data-mnav="menu"])')
-        .forEach(function (btn) {
-          btn.setAttribute('aria-expanded', 'false');
-          btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            if (!mq.matches) return;
-            if (btn.classList.contains('is-active')) { mClearActive(); }
-            else { mSetActive(btn); }
-          });
-        });
+    /* ---- ACCOUNT ---- */
+    if (mAccount) {
+      mAccount.setAttribute('aria-expanded', 'false');
+      mAccount.addEventListener('click', function (e) {
+        if (!mq.matches) return;
+        if (mAccount.getAttribute('data-logged-in') === '1') return;   // real link
+        e.preventDefault();
+        if (mPanelKey === 'account') { mCloseDrawer(); mClearActive(); return; }
+        mCloseAll('drawer');
+        mOpenPanel('account', mAccount);
+      });
+    }
+    /* ---- SEARCH ---- */
+    if (mSearch) {
+      mSearch.setAttribute('aria-expanded', 'false');
+      mSearch.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!mq.matches) return;
+        if (mSearchIsOpen()) { mCloseSearch(); mClearActive(); return; }
+        mCloseAll('search');
+        mOpenSearch();
+        mSetActive(mSearch);
+      });
+    }
+    /* ---- CART ---- */
+    if (mCart) {
+      mCart.setAttribute('aria-expanded', 'false');
+      mCart.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!mq.matches) return;
+        if (mCartIsOpen()) { if (window.mnavCloseCart) window.mnavCloseCart(); return; }
+        mCloseAll('cart');
+        mSyncAnchors();
+        if (window.mnavOpenCart) window.mnavOpenCart();
+      });
+    }
     /* ---- level-2 links: drill down if the entry has children, else navigate ---- */
     mnav.querySelectorAll('.mobilenav_row.is-level2 .mobilenav_item[data-mnav-panel]')
         .forEach(function (btn) {
@@ -886,21 +821,29 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!mq.matches) return;
             var key   = btn.getAttribute('data-mnav-panel');
             var panel = mDrawer.querySelector('.mobilenav_panel[data-mnav-panel="' + key + '"]');
-            if (!panel || !panel.querySelector('a')) return;   // no children &rarr; follow href
+            if (!panel || !panel.querySelector('a')) return;
             e.preventDefault();
             if (mPanelKey === key) { mCloseDrawer(); mClearActive(); }
             else { mOpenPanel(key, btn); }
           });
         });
     document.addEventListener('click', function (e) {
-      if (!mq.matches || e.target.closest('.mobilenav')) return;
+      if (!mq.matches) return;
+      if (e.target.closest('.mobilenav') ||
+          e.target.closest('.nav_search-expand') ||
+          e.target.closest('.nav_mini-cart-holder')) return;
+      mCloseAll();
       if (mState === 'menu') { mCloseMenu(); } else { mClearActive(); }
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape') return;
+      if (e.key !== 'Escape' || !mq.matches) return;
+      mCloseAll();
       if (mState === 'menu') { mCloseMenu(); } else { mClearActive(); }
     });
-        mq.addEventListener('change', function (e) { if (!e.matches) mCloseMenu(); });
+    mq.addEventListener('change', function (e) {
+      if (!e.matches) { mCloseAll(); mCloseMenu(); }
+      else { mSyncAnchors(); }
+    });
   }
 });
 </script>
