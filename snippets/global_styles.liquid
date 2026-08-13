@@ -179,6 +179,11 @@
     margin-top: 0 !important;
     background-color: transparent !important;
   }
+    /* Cart: closed state at first paint &mdash; GSAP's inline height overrides this */
+  .nav_mini-cart-holder {
+    height: 0;
+    overflow: hidden;
+  }
   /* Remove cart toggle as positioning context */
   .nav_dropdown.is-cart {
     position: static !important;
@@ -501,5 +506,139 @@
   .swiper-container.is-product-gallery img.product-header_gallery-image {
     object-fit: contain;
   }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 1: neutralise desktop chrome &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* Pill 1 is fully replaced by the mobile component (its links + submenu
+     panels are pure Liquid, so they get duplicated rather than shared). */
+  .nav_menu-2 { display: none !important; }
+  /* Pills 2 & 3 stay in the DOM &mdash; the search form and mini-cart are shared
+     single instances (Architecture B). Collapse them to zero footprint. */
+  .nav_right {
+    position: fixed !important;
+    left: 0; right: 0; bottom: 0; top: auto !important;
+    height: 0 !important;
+    gap: 0 !important;
+    pointer-events: none;
+    z-index: 9994;
+  }
+  .nav_menu-search,
+  .nav_menu-3 {
+    background-color: transparent !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    transform: none !important;      /* kills translateZ(0) containing block */
+    backface-visibility: visible !important;
+  }
+  /* Desktop triggers off &mdash; the mobile bar drives these instead */
+  .nav_menu-search > .nav_link-item,
+  .nav_menu-3 .nav_account-links,
+  .nav_menu-3 .nav_shop-icon { display: none !important; }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 2: bar shell &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .mobilenav {
+    margin-bottom: env(safe-area-inset-bottom);   /* adds to the Designer's bottom value */
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Hover/active background lifted from .nav_link-item:hover */
+  .mobilenav_item {
+    transition: background-color .2s ease, color .2s ease;
+  }
+  .mobilenav_item.is-active .mobilenav_label { text-decoration: underline; }
+  /* Cart count &mdash; same superscript-in-parens treatment as .nav_shop-quantity */
+  .mobilenav_count::before { content: "("; }
+  .mobilenav_count::after  { content: ")"; }
+  .mobilenav_count {
+    font-size: .5em;
+    position: relative;
+    transform: translateY(-.3em);
+  }
+  /* Published bar height, for anchoring the shared cart/search panels later */
+  :root { --mnav-h: 2.5rem; }
+  /* Stop page content ending up underneath the bar */
+  .main-wrapper { padding-bottom: calc(4rem + env(safe-area-inset-bottom)); }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; drawer join (mirrors .submenu-is-open) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .mobilenav_drawer { margin-bottom: -4px; }          /* mirror of desktop's margin-top: -4px */
+  .mobilenav_bar { transition: border-radius .15s ease; }
+  .mobilenav_bar.drawer-is-open {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+}
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 3: rows + selection (revised) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .mobilenav_bar  { display: flex; align-items: center; }
+  .mobilenav_row  { flex: 1 1 auto; min-width: 0; }
+  .mobilenav_item { flex: 0 0 auto; white-space: nowrap; }
+  /* Level 1 &mdash; natural-width items, first flush left, last flush right */
+  .mobilenav_row.is-level1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /* Level 2 hidden at rest (no both-rows flash on page load) */
+  .mobilenav_row.is-level2 { display: none; }
+  .mobilenav_row.is-level2 {
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: .25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
+            mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
+  }
+  .mobilenav_row.is-level2::-webkit-scrollbar { display: none; }
+  .mobilenav_row.is-level2 > * { flex: 0 0 auto; scroll-snap-align: start; }
+  /* MENU pinned left while the links scroll behind it */
+  .mobilenav_row.is-level2 > [data-mnav="menu"] {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: #f3f3f3;          /* bar colour &mdash; links pass underneath */
+  }
+  /* Selection &mdash; class-driven only, so it persists until changed */
+  .mobilenav_item           { transition: background-color .2s ease; }
+  .mobilenav_item.is-active { background-color: #cacaca; }
+  .mobilenav_item.is-active .mobilenav_label { text-decoration: underline; }
+  /* Hover only where a real pointer exists &mdash; stops sticky hover on touch */
+  @media (hover: hover) {
+    .mobilenav_item:hover { background-color: #cacaca; }
+  }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 4: shop drawer &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* Bottom-anchored inside the height-animated drawer, so content is
+     revealed from the bottom up &mdash; the true inversion of the desktop drawer */
+  .mobilenav_panel {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    max-height: 60vh;
+    max-height: 60dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .mobilenav_panel::-webkit-scrollbar { display: none; }
+  .mobilenav_sublist {
+    padding-bottom: calc(1.25rem + 4px);   /* clears the 4px pill overlap */
+  }
+  @media (hover: hover) {
+    .mobilenav_sublink:hover { text-decoration: underline; }
+  }
+  /* MENU holds its own state while a sub-panel is selected &mdash; two active
+     levels at once, as in your screenshot 3 */
+  .mobilenav_item.is-open { background-color: #cacaca; }
+  .mobilenav_item.is-open .mobilenav_label { text-decoration: underline; }
 }
 </style>

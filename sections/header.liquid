@@ -1,4 +1,9 @@
-<div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
+<a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
+{{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
+{% else %}
+<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
+{% endif %}</a>
+        <div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="none" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
           <a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
 {{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
 {% else %}
@@ -585,6 +590,324 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="mobilenav">
+          <div class="mobilenav_drawer">
+            {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="mobilenav_panel-wrap">
+                                    
+              
+                            <div li-object:data-mnav-panel="link.handle" class="mobilenav_panel" data-mnav-panel="{{ link.handle }}">
+                {% if link.links.size > 0 %}    <div li-if="link.links.size > 0" class="mobilenav_sublist">
+    
+                  {% for child_link in link.links %}    <div li-for="child_link in link.links" class="mobilenav_sublink-wrap">
+                                    
+                    
+                            <a li-object="" li-object:href="child_link.url" href="{{ child_link.url }}" class="mobilenav_sublink">{{  }}</a>
+                            
+                  
+                        </div>
+{% endfor %}
+                    </div>
+{% endif %}
+              </div>
+                            
+            
+                        </div>
+{% endfor %}
+          </div>
+          <div class="mobilenav_bar">
+            <div class="mobilenav_row is-level1">
+              <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">MENU</div>
+              </a>
+              <a data-mnav="account" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">ACCOUNT</div>
+              </a>
+              <a data-mnav="search" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">SEARCH</div>
+              </a>
+              <a data-mnav="cart" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">CART</div>
+                <div class="mobilenav_count">0</div>
+              </a>
+            </div>
+            <div class="mobilenav_row is-level2">
+              <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">MENU</div>
+              </a>
+              {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="mobilenav_link-wrap">
+                                    
+                
+                            <a li-object:data-mnav-panel="link.handle" li-object:href="link.url" href="{{ link.url }}" class="mobilenav_item w-inline-block" data-mnav-panel="{{ link.handle }}">
+                  <div li-object="link.title" class="mobilenav_label">{{ link.title }}</div>
+                </a>
+                            
+              
+                        </div>
+{% endfor %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-embed w-script">
+          <script>
+document.addEventListener('DOMContentLoaded', function () {
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     SHOP SUBMENU
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var leftPill = document.querySelector('.nav_menu-2');
+  var drawer   = document.querySelector('.nav_submenu-drawer');
+  var panels   = document.querySelectorAll('.nav_submenu-panel');
+  var triggers = document.querySelectorAll('.nav_link-item[data-trigger]');
+  if (drawer) {
+    var subCloseTimer = null;
+    gsap.set(drawer, { height: 0, overflow: 'hidden' });
+    gsap.set(panels, { display: 'none' });
+    function openPanel(key) {
+      clearTimeout(subCloseTimer);
+      var panel = drawer.querySelector('[data-panel="' + key + '"]');
+      if (!panel || !panel.querySelector('a')) { closeDrawer(); return; }
+      gsap.set(panels, { display: 'none' });
+      gsap.set(panel, { display: 'block' });
+      gsap.killTweensOf(drawer);
+      if (leftPill) leftPill.classList.add('submenu-is-open');
+      gsap.to(drawer, { height: panel.scrollHeight, duration: 0.45, ease: 'power2.out' });
+    }
+    function closeDrawer() {
+      clearTimeout(subCloseTimer);
+      if (leftPill) leftPill.classList.remove('submenu-is-open');
+      gsap.killTweensOf(drawer);
+      gsap.to(drawer, {
+        height: 0, duration: 0.35, ease: 'power2.inOut',
+        onComplete: function () { gsap.set(panels, { display: 'none' }); }
+      });
+    }
+    function scheduleSubClose() { subCloseTimer = setTimeout(closeDrawer, 250); }
+    triggers.forEach(function (t) {
+      t.addEventListener('mouseenter', function () { openPanel(this.dataset.trigger); });
+      t.addEventListener('mouseleave', scheduleSubClose);
+    });
+    drawer.addEventListener('mouseenter', function () { clearTimeout(subCloseTimer); });
+    drawer.addEventListener('mouseleave', scheduleSubClose);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav_menu-2')) closeDrawer();
+    });
+  }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     MINI CART
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var cartPill   = document.querySelector('.nav_menu-3');
+  var cartHolder = document.querySelector('.nav_mini-cart-holder');
+  var cartToggle = document.querySelector('.nav_dropdown.is-cart .w-dropdown-toggle');
+  if (cartHolder && cartToggle) {
+    gsap.set(cartHolder, { height: 0, overflow: 'hidden' });
+    var cartCloseTimer = null;
+    var autoCloseTimer = null;
+    var isHovering     = false;
+    cartToggle.setAttribute('data-minicart-trigger', '');
+    function openCart() {
+      clearTimeout(cartCloseTimer);
+      clearTimeout(autoCloseTimer);
+      if (cartPill) cartPill.classList.add('cart-is-open');
+      gsap.killTweensOf(cartHolder);
+      gsap.to(cartHolder, { height: 'auto', duration: 0.5, ease: 'power2.inOut' });
+    }
+    function closeCart() {
+      clearTimeout(cartCloseTimer);
+      clearTimeout(autoCloseTimer);
+      if (cartPill) cartPill.classList.remove('cart-is-open');
+      gsap.killTweensOf(cartHolder);
+      gsap.to(cartHolder, { height: 0, duration: 0.35, ease: 'power2.inOut' });
+    }
+    function scheduleCartClose() { cartCloseTimer = setTimeout(closeCart, 250); }
+    cartToggle.addEventListener('mouseenter', function () { isHovering = true;  openCart(); });
+    cartToggle.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
+    cartHolder.addEventListener('mouseenter', function () { isHovering = true;  clearTimeout(cartCloseTimer); });
+    cartHolder.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav_menu-3') && !e.target.closest('.nav_mini-cart-holder')) closeCart();
+    });
+    var _fetch = window.fetch;
+    window.fetch = function () {
+      var args = arguments;
+      var url  = typeof args[0] === 'string' ? args[0] : (args[0] && args[0].url) || '';
+      var p    = _fetch.apply(this, args);
+      if (url.includes('/cart/add')) {
+        p.then(function (r) {
+          if (r.ok) {
+            openCart();
+            clearTimeout(autoCloseTimer);
+            autoCloseTimer = setTimeout(function () { if (!isHovering) closeCart(); }, 3000);
+          }
+        });
+      }
+      return p;
+    };
+  }
+    /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     NAV SEARCH
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var searchExpand  = document.querySelector('.nav_search-expand');
+  var searchInput   = document.getElementById('nav-search-input');
+  var searchTrigger = document.querySelector('.nav_menu-search .nav_link-item');
+  if (searchExpand && searchInput) {
+    gsap.set(searchExpand, { width: 0, overflow: 'hidden' });
+    window.openNavSearch = function() {
+      if (searchExpand.offsetWidth > 10) { searchInput.focus(); return; }
+      gsap.killTweensOf(searchExpand);
+      gsap.to(searchExpand, {
+        width: 'auto', duration: 0.35, ease: 'power2.out',
+        onComplete: function() { searchInput.focus(); }
+      });
+    };
+    window.closeNavSearch = function() {
+      var ps = document.querySelector('predictive-search');
+      if (ps) ps.close();
+      gsap.killTweensOf(searchExpand);
+      gsap.to(searchExpand, { width: 0, duration: 0.25, ease: 'power2.inOut' });
+      searchInput.value = '';
+    };
+    if (searchTrigger) {
+      searchTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.openNavSearch();
+      });
+    }
+            document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchExpand.offsetWidth > 10) window.closeNavSearch();
+    });
+  }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     MOBILE NAV  (&le;991px)
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var mnav = document.querySelector('.mobilenav');
+  if (mnav) {
+    var mq        = window.matchMedia('(max-width: 991px)');
+    var mBar      = mnav.querySelector('.mobilenav_bar');
+    var mDrawer   = mnav.querySelector('.mobilenav_drawer');
+    var mPanels   = mnav.querySelectorAll('.mobilenav_panel');
+    var mMenuBtns = mnav.querySelectorAll('[data-mnav="menu"]');
+    var mMenuBtn2 = mnav.querySelector('.mobilenav_row.is-level2 [data-mnav="menu"]');
+    var mLevel1   = mnav.querySelector('.mobilenav_row.is-level1');
+    var mLevel2   = mnav.querySelector('.mobilenav_row.is-level2');
+    var mState    = 'idle';                       // idle | menu
+    var mPanelKey = null;
+    gsap.set(mLevel2, { display: 'none' });
+    gsap.set(mDrawer, { height: 0, overflow: 'hidden' });
+    gsap.set(mPanels, { display: 'none' });
+    /* ---- selection: one active item, persists until changed ---- */
+    function mClearActive() {
+      mnav.querySelectorAll('.mobilenav_item.is-active').forEach(function (i) {
+        i.classList.remove('is-active');
+        i.setAttribute('aria-expanded', 'false');
+      });
+    }
+    function mSetActive(el) {
+      mClearActive();
+      if (el) { el.classList.add('is-active'); el.setAttribute('aria-expanded', 'true'); }
+    }
+    /* MENU's own state is separate, so it can stay lit alongside a selected link */
+    function mSetMenuOpen(on) {
+      mMenuBtns.forEach(function (b) {
+        b.classList.toggle('is-open', on);
+        b.setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+    }
+    /* ---- row swap ---- */
+    function mSetRow(level) {
+      var show = level === 2 ? mLevel2 : mLevel1;
+      var hide = level === 2 ? mLevel1 : mLevel2;
+      gsap.killTweensOf([show, hide]);
+      gsap.set(hide, { display: 'none' });
+      gsap.set(show, { display: 'flex' });
+      gsap.fromTo(show,
+        { opacity: 0, x: level === 2 ? 8 : -8 },
+        { opacity: 1, x: 0, duration: 0.2, ease: 'power2.out' });
+      if (level === 2) mLevel2.scrollLeft = 0;
+    }
+    /* ---- drawer: desktop's tween, inverted (grows upward) ---- */
+    function mOpenPanel(key, btn) {
+      var panel = mDrawer.querySelector('.mobilenav_panel[data-mnav-panel="' + key + '"]');
+      if (!panel || !panel.querySelector('a')) return false;
+      gsap.set(mPanels, { display: 'none' });
+      gsap.set(panel, { display: 'block' });
+      panel.scrollTop = 0;
+      mPanelKey = key;
+      mSetActive(btn);
+      mBar.classList.add('drawer-is-open');
+      gsap.killTweensOf(mDrawer);
+      /* offsetHeight, not scrollHeight &mdash; respects the 60dvh cap */
+      gsap.to(mDrawer, { height: panel.offsetHeight, duration: 0.45, ease: 'power2.out' });
+      return true;
+    }
+    function mCloseDrawer() {
+      if (mPanelKey === null) return;
+      mPanelKey = null;
+      mBar.classList.remove('drawer-is-open');
+      gsap.killTweensOf(mDrawer);
+      gsap.to(mDrawer, {
+        height: 0, duration: 0.35, ease: 'power2.inOut',
+        onComplete: function () { gsap.set(mPanels, { display: 'none' }); }
+      });
+    }
+    function mOpenMenu() {
+      mState = 'menu';
+      mSetRow(2);
+      mClearActive();
+      mSetMenuOpen(true);
+    }
+    function mCloseMenu() {
+      mState = 'idle';
+      mCloseDrawer();
+      mSetRow(1);
+      mClearActive();
+      mSetMenuOpen(false);
+    }
+    /* ---- MENU ---- */
+    mMenuBtns.forEach(function (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!mq.matches) return;
+        if (mState === 'menu') { mCloseMenu(); } else { mOpenMenu(); }
+      });
+    });
+    /* ---- ACCOUNT / SEARCH / CART &mdash; selection only; panels land in stages 5-7 ---- */
+    mnav.querySelectorAll('.mobilenav_row.is-level1 .mobilenav_item:not([data-mnav="menu"])')
+        .forEach(function (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (!mq.matches) return;
+            if (btn.classList.contains('is-active')) { mClearActive(); }
+            else { mSetActive(btn); }
+          });
+        });
+    /* ---- level-2 links: drill down if the entry has children, else navigate ---- */
+    mnav.querySelectorAll('.mobilenav_row.is-level2 .mobilenav_item[data-mnav-panel]')
+        .forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            if (!mq.matches) return;
+            var key   = btn.getAttribute('data-mnav-panel');
+            var panel = mDrawer.querySelector('.mobilenav_panel[data-mnav-panel="' + key + '"]');
+            if (!panel || !panel.querySelector('a')) return;   // no children &rarr; follow href
+            e.preventDefault();
+            if (mPanelKey === key) { mCloseDrawer(); mClearActive(); }
+            else { mOpenPanel(key, btn); }
+          });
+        });
+    document.addEventListener('click', function (e) {
+      if (!mq.matches || e.target.closest('.mobilenav')) return;
+      if (mState === 'menu') { mCloseMenu(); } else { mClearActive(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (mState === 'menu') { mCloseMenu(); } else { mClearActive(); }
+    });
+    mq.addEventListener('change', function (e) { if (!e.matches) mCloseMenu(); });
+  }
+  </script>
         </div> {% schema %} {
     "tag": "div",
     "name": "Header",
