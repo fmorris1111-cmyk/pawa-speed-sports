@@ -4,11 +4,6 @@
 <img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
 {% endif %}</a>
         <div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="none" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
-          <a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
-{{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
-{% else %}
-<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
-{% endif %}</a>
           <div class="nav_container">
             <nav role="navigation" class="nav_menu-2 w-nav-menu">
               {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="nav_links-row">
@@ -602,7 +597,7 @@
                   {% for child_link in link.links %}    <div li-for="child_link in link.links" class="mobilenav_sublink-wrap">
                                     
                     
-                            <a li-object="" li-object:href="child_link.url" href="{{ child_link.url }}" class="mobilenav_sublink">{{  }}</a>
+                            <a li-object="child_link.title" li-object:href="child_link.url" href="{{ child_link.url }}" class="mobilenav_sublink">{{ child_link.title }}</a>
                             
                   
                         </div>
@@ -905,9 +900,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key !== 'Escape') return;
       if (mState === 'menu') { mCloseMenu(); } else { mClearActive(); }
     });
-    mq.addEventListener('change', function (e) { if (!e.matches) mCloseMenu(); });
+        mq.addEventListener('change', function (e) { if (!e.matches) mCloseMenu(); });
   }
-  </script>
+});
+</script>
         </div> {% schema %} {
     "tag": "div",
     "name": "Header",
