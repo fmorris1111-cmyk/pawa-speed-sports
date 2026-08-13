@@ -593,9 +593,33 @@
     scroll-snap-type: x proximity;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
-            mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
   }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; edge fades &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* Overlays on the bar, not a mask on the scroller &mdash; so the sticky
+     MENU stays fully opaque and the left fade starts to the right of it */
+  .mobilenav_bar::before,
+  .mobilenav_bar::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1.5rem;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+  .mobilenav_bar::before {
+    left: var(--mnav-fade-left, 0px);
+    background: linear-gradient(to right, #f3f3f3, rgba(243,243,243,0));
+  }
+  .mobilenav_bar::after {
+    right: var(--mnav-fade-right, 0px);
+    background: linear-gradient(to left, #f3f3f3, rgba(243,243,243,0));
+  }
+  .mobilenav_bar.can-scroll-left::before  { opacity: 1; }
+  .mobilenav_bar.can-scroll-right::after  { opacity: 1; }
+}
   .mobilenav_row.is-level2::-webkit-scrollbar { display: none; }
   .mobilenav_row.is-level2 > * { flex: 0 0 auto; scroll-snap-align: start; }
   /* MENU pinned left while the links scroll behind it */
@@ -638,7 +662,83 @@
   }
   /* MENU holds its own state while a sub-panel is selected &mdash; two active
      levels at once, as in your screenshot 3 */
-  .mobilenav_item.is-open { background-color: #cacaca; }
+    /* Must out-rank the sticky MENU's base background (0,3,0) */
+  .mobilenav_row.is-level2 > [data-mnav="menu"].is-open,
+  .mobilenav_row.is-level2 > [data-mnav="menu"].is-active,
+  .mobilenav_item.is-open,
+  .mobilenav_item.is-active { background-color: #cacaca; }
   .mobilenav_item.is-open .mobilenav_label { text-decoration: underline; }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; top bar collapse &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .nav_component {
+    background-color: transparent !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    pointer-events: none;
+  }
+  .nav_container {
+    margin: 0 !important;
+    min-height: 0 !important;
+    height: 0 !important;
+  }
+}
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stages 6 & 7: shared search + cart &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* ---------- SEARCH ---------- */
+  predictive-search { display: block; }
+  .nav_search-expand {
+    position: fixed !important;
+    top: auto !important;
+    bottom: var(--mnav-bar-top, 4rem);
+    left:   var(--mnav-left,  1rem);
+    right:  var(--mnav-right, 1rem);
+    width: auto !important;
+    height: 0;
+    display: block !important;
+    background-color: #f3f3f3;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    pointer-events: auto;
+    z-index: 10;
+  }
+  .nav_search-form {
+    width: 100%;
+    padding: 1rem 1.25rem calc(1rem + 4px);   /* +4px clears the pill overlap */
+  }
+  .nav_search-input {
+    flex: 1 1 auto;
+    width: auto;
+    border-bottom: 1px dashed currentColor;
+    padding-bottom: .35rem;
+  }
+  /* Results open upward, above the input */
+  .nav_predictive-results {
+    top: auto !important;
+    bottom: 100%;
+    margin-bottom: .5rem;
+    border-radius: 4px;
+    max-height: 50vh;
+    max-height: 50dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  /* ---------- CART ---------- */
+  .nav_mini-cart-holder {
+    position: fixed !important;
+    top: auto !important;
+    bottom: var(--mnav-bar-top, 4rem) !important;
+    left:   var(--mnav-left,  1rem) !important;
+    right:  var(--mnav-right, 1rem) !important;
+    width: auto !important;
+    pointer-events: auto;
+    z-index: 10;
+  }
+  .mini-cart_component {
+    border-radius: 4px 4px 0 0 !important;    /* inverted */
+    max-height: 60vh !important;
+    max-height: 60dvh !important;
+  }
 }
 </style>
