@@ -948,9 +948,12 @@ if (mnav) {
   new MutationObserver(function () {
    var open = mCartIsOpen();
    if (mCart) {
-    mCart.classList.toggle('is-active', open);
-    mCart.setAttribute('aria-expanded', open ? 'true' : 'false');
-   }
+    if (open) { mSetActive(mCart); }
+    else {
+      mCart.classList.remove('is-active');
+      mCart.setAttribute('aria-expanded', 'false');
+    }
+    }
    mBar.classList.toggle('drawer-is-open', open || mPanelKey !== null || mSearchIsOpen());
    if (open) mSyncAnchors();
   }).observe(mCartPill, {attributes: true, attributeFilter: ['class'] });
