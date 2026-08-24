@@ -511,7 +511,8 @@
 @media screen and (max-width: 991px) {
   /* Pill 1 is fully replaced by the mobile component (its links + submenu
      panels are pure Liquid, so they get duplicated rather than shared). */
-  .nav_menu-2 { display: none !important; }
+     .nav_component { display: flex !important; }
+     .nav_menu-2 { display: none !important; }
   /* Pills 2 & 3 stay in the DOM &mdash; the search form and mini-cart are shared
      single instances (Architecture B). Collapse them to zero footprint. */
   .nav_right {
