@@ -737,6 +737,20 @@
     pointer-events: auto;
     z-index: 10;
   }
+
+    /* Cart box hugs its content; list scrolls only when it overflows */
+  .nav_dropdown.is-cart .mini-cart_component,
+  .nav_dropdown.is-cart .mini-cart_full {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  .nav_dropdown.is-cart .mini-cart_component { max-height: 60dvh !important; }
+  .nav_dropdown.is-cart .mini-cart_full      { max-height: none !important; }
+  .nav_dropdown.is-cart .mini-cart_line-item {
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+  }
   
   /* w-dropdown-list floors width at 100% of the viewport — release it */
   .nav_dropdown.is-cart .nav_mini-cart-holder {
