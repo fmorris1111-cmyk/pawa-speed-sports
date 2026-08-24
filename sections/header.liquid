@@ -730,6 +730,11 @@ document.addEventListener('DOMContentLoaded', function () {
     cartHolder.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
     window.mnavOpenCart  = openCart;
     window.mnavCloseCart = closeCart;
+        function cancelAutoClose() { clearTimeout(autoCloseTimer); }
+    window.mnavCancelCartAutoClose = cancelAutoClose;
+    ['pointerdown', 'touchstart', 'touchmove', 'wheel', 'scroll', 'keydown'].forEach(function (evt) {
+      cartHolder.addEventListener(evt, cancelAutoClose, { passive: true, capture: true });
+    });
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.nav_menu-3') &&
           !e.target.closest('.nav_mini-cart-holder') &&
