@@ -736,6 +736,12 @@
     pointer-events: auto;
     z-index: 10;
   }
+  
+    /* Out-ranks the unscoped desktop rule's width: 100% !important */
+  .nav_dropdown.is-cart .nav_mini-cart-holder {
+    width: calc(100% - var(--mnav-left, 1rem) - var(--mnav-right, 1rem)) !important;
+  }
+  
   .mini-cart_component {
     border-radius: 4px 4px 0 0 !important;    /* inverted */
     max-height: 60vh !important;
