@@ -537,15 +537,6 @@
   .nav_menu-3 .nav_account-links,
   .nav_menu-3 .nav_shop-icon { display: none !important; }
 }
-
-  .nav_component,
-  .nav_right,
-  .nav_menu-search,
-  .nav_menu-3 {
-    transform: none !important;
-    backface-visibility: visible !important;
-  }
-  
   /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 2: bar shell &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
 @media screen and (max-width: 991px) {
   .mobilenav {
@@ -747,8 +738,9 @@
     z-index: 10;
   }
   
-    /* Out-ranks the unscoped desktop rule's width: 100% !important */
+  /* w-dropdown-list floors width at 100% of the viewport — release it */
   .nav_dropdown.is-cart .nav_mini-cart-holder {
+    min-width: 0 !important;
     width: calc(100% - var(--mnav-left, 1rem) - var(--mnav-right, 1rem)) !important;
   }
 
