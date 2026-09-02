@@ -511,8 +511,8 @@
 @media screen and (max-width: 991px) {
   /* Pill 1 is fully replaced by the mobile component (its links + submenu
      panels are pure Liquid, so they get duplicated rather than shared). */
-     .nav_component { display: flex !important; }
-     .nav_menu-2 { display: none !important; }
+  .nav_component { display: flex !important; }
+  .nav_menu-2 { display: none !important; }
   /* Pills 2 & 3 stay in the DOM &mdash; the search form and mini-cart are shared
      single instances (Architecture B). Collapse them to zero footprint. */
   .nav_right {
@@ -522,7 +522,7 @@
     gap: 0 !important;
     pointer-events: none;
     z-index: 9994;
-    transform: none !important;
+   	transform: none !important;
   }
   .nav_menu-search,
   .nav_menu-3 {
@@ -737,27 +737,11 @@
     pointer-events: auto;
     z-index: 10;
   }
-
-    /* Cart box hugs its content; list scrolls only when it overflows */
-  .nav_dropdown.is-cart .mini-cart_component,
-  .nav_dropdown.is-cart .mini-cart_full {
-    height: auto !important;
-    min-height: 0 !important;
-  }
-  .nav_dropdown.is-cart .mini-cart_component { max-height: 60dvh !important; }
-  .nav_dropdown.is-cart .mini-cart_full      { max-height: none !important; }
-  .nav_dropdown.is-cart .mini-cart_line-item {
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow-y: auto !important;
-  }
-  
-  /* w-dropdown-list floors width at 100% of the viewport — release it */
+     /* w-dropdown-list floors width at 100% of the viewport &mdash; release it */
   .nav_dropdown.is-cart .nav_mini-cart-holder {
     min-width: 0 !important;
     width: calc(100% - var(--mnav-left, 1rem) - var(--mnav-right, 1rem)) !important;
   }
-
   .mini-cart_component {
     border-radius: 4px 4px 0 0 !important;    /* inverted */
     max-height: 60vh !important;

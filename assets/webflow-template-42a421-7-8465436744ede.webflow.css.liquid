@@ -732,6 +732,7 @@ figcaption {
 
 .main-wrapper {
   flex-direction: column;
+  margin-top: 6rem;
 }
 
 .align-center {
@@ -4624,6 +4625,7 @@ figcaption {
 
 .image-7 {
   width: 300px;
+  display: none;
 }
 
 .div-block-14 {
@@ -4633,7 +4635,7 @@ figcaption {
 }
 
 .code-embed-3 {
-  width: 100%;
+  width: auto;
 }
 
 .container-large-recs {
@@ -4891,6 +4893,27 @@ figcaption {
 
 .mobilenav {
   display: none;
+}
+
+.div-block-16 {
+  padding-top: 2rem;
+}
+
+.password_body {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.login_link-text {
+  margin-top: 6rem;
+  transition: color .2s;
+  position: relative;
+}
+
+.login_link-text:hover {
+  color: var(--text-link-hover);
+  text-decoration: none;
 }
 
 @media screen and (max-width: 991px) {
@@ -5856,9 +5879,9 @@ figcaption {
     max-width: 60%;
   }
 
-  .div-block-14 {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  .code-embed-3 {
+    width: auto;
+    max-width: 100%;
   }
 
   .container-large-recs {
@@ -6674,6 +6697,10 @@ figcaption {
     padding-right: 1rem;
   }
 
+  .main-wrapper {
+    margin-top: 8rem;
+  }
+
   .button.is-secondary.is-icon {
     padding: .5rem;
   }
@@ -6759,6 +6786,7 @@ figcaption {
 
   .login_form {
     border-style: none;
+    margin-top: 1rem;
     margin-bottom: 1em;
     padding: 0;
   }
@@ -7254,6 +7282,10 @@ figcaption {
     max-width: 80%;
   }
 
+  .code-embed-3 {
+    max-width: 80vw;
+  }
+
   .container-large-recs {
     margin-top: 0;
     padding-left: 1rem;
@@ -7289,6 +7321,10 @@ figcaption {
 
   .mobilenav_label {
     font-size: 14px;
+  }
+
+  .password_body {
+    font-size: .9rem;
   }
 }
 
