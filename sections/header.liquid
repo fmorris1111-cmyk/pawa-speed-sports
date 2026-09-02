@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cartHolder.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
     window.mnavOpenCart  = openCart;
     window.mnavCloseCart = closeCart;
-        function cancelAutoClose() { clearTimeout(autoCloseTimer); }
+	function cancelAutoClose() { clearTimeout(autoCloseTimer); }
     window.mnavCancelCartAutoClose = cancelAutoClose;
     ['pointerdown', 'touchstart', 'touchmove', 'wheel', 'scroll', 'keydown'].forEach(function (evt) {
       cartHolder.addEventListener(evt, cancelAutoClose, { passive: true, capture: true });
@@ -953,11 +953,11 @@ if (mnav) {
   new MutationObserver(function () {
    var open = mCartIsOpen();
    if (mCart) {
-    if (open) { mSetActive(mCart); }
-    else {
+     if (open) { mSetActive(mCart); }
+     else {
       mCart.classList.remove('is-active');
       mCart.setAttribute('aria-expanded', 'false');
-    }
+     }
     }
    mBar.classList.toggle('drawer-is-open', open || mPanelKey !== null || mSearchIsOpen());
    if (open) mSyncAnchors();
