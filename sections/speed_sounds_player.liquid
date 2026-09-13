@@ -1,0 +1,74 @@
+{% if article.metafields.custom.youtube_id != blank %}    <div li-if="article.metafields.custom.youtube_id != blank" class="speed_player_wrap">
+    
+          <div class="w-embed">
+            <div class="speed-player_frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/{{ article.metafields.custom.youtube_id }}?rel=0&iv_load_policy=3&playsinline=1" title="{{ article.title | escape }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <style>
+  .speed-player_frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .speed-player_frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+          </div>
+            </div>
+{% endif %}
+        <div class="speed_info-wrapper">
+          <div class="speed_title-wrap">
+            <div class="speed_title">
+              <div class="speed_info-wrap">
+                <div li-object="article.published_at | date: '%d %b %Y'" class="text-size-regular">{{ article.published_at | date: '%d %b %Y' }}</div>
+                <div>·</div>
+                <div li-object="article.metafields.custom.location" class="text-size-regular">{{ article.metafields.custom.location }}</div>
+              </div>
+              <div li-object="article.title" class="heading-style-h2">{{ article.title }}</div>
+            </div>
+          </div>
+          <div class="speed_sharing_wrap">
+            <a li-object:href="article.metafields.custom.youtube_url" href="{{ article.metafields.custom.youtube_url }}" class="footer_social-link w-inline-block"><img src="{{ 'youtube-svgrepo-com-2.svg' | asset_url }}" loading="lazy" alt="Youtube" class="footer_social-icon"></a>
+            <a href="#" class="speed-meta_share w-inline-block"><img src="{{ 'share-svgrepo-com.svg' | asset_url }}" loading="lazy" alt="" class="footer_social-icon"></a>
+          </div>
+        </div>
+        <div class="w-embed w-script">
+          <script>
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('[data-share]');
+  if (!btn) return;
+  e.preventDefault();
+  var data = { title: document.title, url: window.location.href };
+  if (navigator.share) {
+    navigator.share(data).catch(function () {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(data.url).then(function () {
+      btn.classList.add('is-copied');
+      setTimeout(function () { btn.classList.remove('is-copied'); }, 1500);
+    });
+  }
+});
+</script>
+        </div> {% schema %} {
+    "tag": "div",
+    "name": "Speed Sounds Player",
+    "class": "section_speed-player",
+    "presets": [
+        {
+            "name": "Speed Sounds Player",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ],
+    "enabled_on": {
+        "templates": [
+            "article"
+        ]
+    }
+} {% endschema %}
