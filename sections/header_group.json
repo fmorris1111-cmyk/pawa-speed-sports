@@ -36,7 +36,7 @@
     "blog_speed_sounds_JMAK3L": {
       "type": "blog_speed_sounds",
       "custom_css": [
-        ".padding-global {margin-top: 6rem; margin-bottom: 6rem;}"
+        ".padding-global {margin-top: 4rem; margin-bottom: 4rem;}"
       ],
       "name": "Blog Speed Sounds",
       "settings": {}
