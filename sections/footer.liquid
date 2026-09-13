@@ -189,7 +189,8 @@
         </div>
         
         
-<style>
+        <div class="w-embed w-script">
+          <style>
 @media screen and (max-width: 767px) {
   .footer_link-header { cursor: pointer; }
   .footer_link-chevron { transition: transform .25s ease; }
@@ -197,12 +198,11 @@
   .footer_sublink-list { padding: 0; }
 }
 </style>
-<script>
+          <script>
 (function () {
   var mq = window.matchMedia('(max-width: 767px)');
   function lists()   { return document.querySelectorAll('.footer_sublink-list'); }
   function headers() { return document.querySelectorAll('.footer_link-header'); }
-
   function applyMode() {
     if (typeof gsap === 'undefined') return;
     if (mq.matches) {
@@ -231,7 +231,6 @@
       });
     }
   }
-
   document.addEventListener('click', function (e) {
     var header = e.target.closest('.footer_link-header');
     if (!header || !mq.matches) return;
@@ -243,7 +242,6 @@
     gsap.killTweensOf(list);
     gsap.to(list, { height: open ? 'auto' : 0, duration: 0.3, ease: 'power2.out' });
   });
-
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     var header = e.target.closest('.footer_link-header');
@@ -251,7 +249,6 @@
     e.preventDefault();
     header.click();
   });
-
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', applyMode);
   } else {
@@ -261,8 +258,6 @@
   document.addEventListener('shopify:section:load', applyMode);
 })();
 </script>
-
-
         </div> {% schema %} {
     "tag": "footer",
     "name": "Footer",
