@@ -125,7 +125,19 @@
     opacity: 1;
   }
 </style>
-<script src="{{ 'li_helper.js' | asset_url }}" type="text/javascript"></script>{{ content_for_header }}</head>
+<script src="{{ 'li_helper.js' | asset_url }}" type="text/javascript"></script>{{ content_for_header }}
+
+<script>
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('[data-back-to-top]');
+  if (!btn) return;
+  e.preventDefault();
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+});
+</script>
+
+</head>
 <body>
   <div class="page-wrapper">
     {% render 'global_styles' %}
@@ -241,12 +253,5 @@
   document.addEventListener('shopify:section:load', function (e) { initFpCarousels(e.target); });
 })();
 </script>
-
-<style>
-  @media (prefers-reduced-motion: no-preference) {
-    html { scroll-behavior: smooth; }
-  }
-</style>
-
 </body>
 </html>
