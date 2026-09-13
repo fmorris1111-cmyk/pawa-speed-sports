@@ -151,19 +151,23 @@
                 {% for link in linklists[section.settings.footer_menu].links %}    <div li-for="link in linklists[section.settings.footer_menu].links" class="footer_link-column">
                                     
                   
-                            <div li-object="link.title" class="footer_link-heading">{{ link.title }}</div>
+                            <div class="footer_link-header">
+                    <div li-object="link.title" class="footer_link-heading">{{ link.title }}</div><img src="{{ 'down-chevron-svgrepo-com.svg' | asset_url }}" loading="lazy" alt="" class="footer_link-chevron">
+                  </div>
                             
                   
                             {% if link.links.size > 0 %}    <div li-if="link.links.size > 0" class="footer_sublink-list">
     
-                    {% for child_link in link.links %}    <div li-for="child_link in link.links" class="footer_sublink-wrap">
+                    <div class="footer_sublink-inner">
+                      {% for child_link in link.links %}    <div li-for="child_link in link.links" class="footer_sublink-wrap">
                                     
-                      
-                            <a li-object:href="child_link.url" li-object="child_link.title" href="{{ child_link.url }}" class="footer-text-link">{{ child_link.title }}</a>
+                        
+                            <a li-object:href="child_link.url" li-object="child_link.title" href="{{ child_link.url }}" class="footer_link">{{ child_link.title }}</a>
                             
-                    
+                      
                         </div>
 {% endfor %}
+                    </div>
                       </div>
 {% endif %}
                             
@@ -182,6 +186,64 @@
             </div>
             <div class="text-block-4">PAWA SPEED SPORTS ℗ · 2026</div>
           </div>
+        </div>
+        
+        
+        <div class="w-embed w-script">
+          <script>
+(function () {
+  var mq = window.matchMedia('(max-width: 767px)');
+  function syncHeaders() {
+    document.querySelectorAll('.footer_link-header').forEach(function (h) {
+      if (mq.matches) {
+        h.setAttribute('tabindex', '0');
+        h.setAttribute('role', 'button');
+        if (!h.hasAttribute('aria-expanded')) h.setAttribute('aria-expanded', 'false');
+      } else {
+        h.removeAttribute('tabindex');
+        h.removeAttribute('role');
+        h.removeAttribute('aria-expanded');
+      }
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var header = e.target.closest('.footer_link-header');
+    if (!header || !mq.matches) return;
+    var col = header.closest('.footer_link-column');
+    if (!col) return;
+    col.classList.toggle('is-open');
+    header.setAttribute('aria-expanded', col.classList.contains('is-open') ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var header = e.target.closest('.footer_link-header');
+    if (!header || !mq.matches) return;
+    e.preventDefault();
+    header.click();
+  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncHeaders);
+  } else {
+    syncHeaders();
+  }
+  mq.addEventListener('change', syncHeaders);
+  document.addEventListener('shopify:section:load', syncHeaders);
+})();
+</script>
+          <style>
+@media screen and (max-width: 767px) {
+  .footer_link-header { cursor: pointer; }
+  .footer_link-chevron { transition: transform .25s ease; }
+  .footer_link-column.is-open .footer_link-chevron { transform: rotate(180deg); }
+  .footer_sublink-list {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .3s ease;
+  }
+  .footer_link-column.is-open .footer_sublink-list { grid-template-rows: 1fr; }
+  .footer_sublink-inner { overflow: hidden; min-height: 0; }
+}
+</style>
         </div> {% schema %} {
     "tag": "footer",
     "name": "Footer",
