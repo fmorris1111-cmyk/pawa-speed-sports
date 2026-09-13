@@ -241,5 +241,12 @@
   document.addEventListener('shopify:section:load', function (e) { initFpCarousels(e.target); });
 })();
 </script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
 </body>
 </html>
