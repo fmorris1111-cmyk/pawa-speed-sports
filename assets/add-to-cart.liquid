@@ -1,0 +1,184 @@
+<div li-block="Add to Cart" {{ block.shopify_attributes }}>
+                    
+                  
+                    <div class="product-header_form-block w-form">
+                    {% form 'product', product, class: 'product-header_default-state' %}
+{% if product.has_only_default_variant != true %}    <div li-if="product.has_only_default_variant != true" class="product-header_option-list">
+    
+                        <template x-for="(option, optionKey) in product.options" :key="optionKey">
+    <div li-element="product-options-loop" class="product-header_option" data-ProductVariantsLoop="true">
+                          <div li-element="product-options-name" class="text-block-6" x-text="option">Variant</div>
+                          <div class="product-header_radio-list"><template x-for="(variantName, variantKey) in options_by_name[option].option.values" :key="variantName">
+    <label li-element="product-option-loop" class="product-header_radio w-radio">
+                              <div class="w-form-formradioinput w-form-formradioinput--inputType-custom product-header_radio-button w-radio-input"></div><input type="radio" li-element="product-option-input" style="opacity:0;position:absolute;z-index:-1" x-on:click="setVariant" :name="option" :data-name="option" :value="variantName" :id="variantName.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-')" :checked="selected_or_first_available_variant?.options.includes(variantName)" data-selectorType="radio" :class="firstOptionHasAvailableChildren[variantName] ? '' : 'data-disabled'"><span li-element="product-option-name" class="text-size-regular text-weight-semibold w-form-label" for="radio-6" x-text="variantName" :for="variantName">XS</span>
+                            </label></template></div>
+                        </div></template>
+                          </div>
+{% endif %}
+                      <div>
+                        <div class="w-embed w-script"><!--   &#9472;&#9472; Size Guide Lightbox (no zoom) &mdash; pulls image from product metafield &#9472;&#9472;   -->
+                          {% if product.metafields.custom.size_chart != blank %}
+                          <div class="size-guide_wrapper">
+                            <a href="#" role="button" data-size-guide-trigger="" class="size-guide_trigger text-size-regular">Size Guide</a>
+                          </div>
+                          <div data-size-guide-lightbox="" class="size-guide_lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Size guide">
+                            <div data-size-guide-close="" class="size-guide_lightbox-backdrop"></div>
+                            <div class="size-guide_lightbox-content">
+                              <button type="button" data-size-guide-close="" class="size-guide_lightbox-close" aria-label="Close size guide">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                              </button>
+                              <img src="{{ product.metafields.custom.size_chart | image_url: width: 1600 }}" alt="{{ product.metafields.custom.size_chart.alt | default: 'Size guide' }}" class="size-guide_image" loading="lazy">
+                            </div>
+                          </div>
+                          {% endif %}
+                          <style>
+  .size-guide_wrapper {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+  .size-guide_trigger {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+  }
+  .size-guide_lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  .size-guide_lightbox.is-open {
+    display: flex;
+  }
+  .size-guide_lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .size-guide_lightbox-content {
+    position: relative;
+    z-index: 1;
+    max-width: min(90vw, 800px);
+    max-height: 90vh;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+  }
+  .size-guide_image {
+    max-width: 100%;
+    max-height: calc(90vh - 40px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+  }
+  .size-guide_lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    padding: 0;
+  }
+  body.size-guide_no-scroll {
+    overflow: hidden;
+  }
+</style>
+                          <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-size-guide-trigger]').forEach(function (trigger) {
+      var lightbox = document.querySelector('[data-size-guide-lightbox]');
+      if (!lightbox) return;
+      function openLightbox(e) {
+        e.preventDefault();
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('size-guide_no-scroll');
+        var closeBtn = lightbox.querySelector('[data-size-guide-close]');
+        if (closeBtn) closeBtn.focus();
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('size-guide_no-scroll');
+        trigger.focus();
+      }
+      trigger.addEventListener('click', openLightbox);
+      lightbox.querySelectorAll('[data-size-guide-close]').forEach(function (closeEl) {
+        closeEl.addEventListener('click', closeLightbox);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    });
+  });
+</script>
+                        </div>
+                      </div>
+                      <div class="product-header_add-to-cart-wrapper">
+                        <template x-if="selected_or_first_available_variant.available">
+            <div li-js-if="selected_or_first_available_variant.available" class="product-header_buy-wrappper">
+        
+                          <div class="div-block-8">
+                            <a x-on:click="quantity = Math.min(quantity - 1)" href="#" class="quantity-selector_mobile-_subtract w-inline-block"><img src="{{ '679fcfb0dade609036261e61_blockmine-substract.svg' | asset_url }}" loading="lazy" alt="" class="quantity-icon"></a><input li-element="add-to-cart-quantity" class="input_cart-quantity" value="1" x-model="quantity">
+                            <a x-on:click="quantity = Math.min(quantity + 1)" href="#" class="quantity-selector_mobile w-inline-block"><img src="{{ '679fcfa0b2a6908facabf998_blockmine-add.svg' | asset_url }}" loading="lazy" alt="" class="quantity-icon"></a>
+                          </div>
+                          <div class="div-block-9">
+                            <template x-if="selected_or_first_available_variant.available">
+            <div li-js-if="selected_or_first_available_variant.available" class="atc-div-button">
+        
+                              <a x-on:click="$nextTick(() => { document.querySelector('[data-minicart-trigger]').click() })" li-element="add-to-cart" href="#" class="atc_button w-button" @click="addToCart($event, true)" :disabled="!addToCartButton">Add To Cart</a>
+                                    </div>
+    </template>
+                          </div>
+                                </div>
+    </template>
+                        <template x-if="!selected_or_first_available_variant.available">
+            <div li-js-if="!selected_or_first_available_variant.available" class="product-header_out-of-stock">
+        
+                          <a href="#" class="button is-secondary max-width-full pointer-events-off w-button">Not in Stock</a>
+                                </div>
+    </template>
+                      </div>
+                    {% endform %}
+                    <div class="hide w-form-done">
+                      <div>Thank you! Your submission has been received!</div>
+                    </div>
+                    <div class="hide w-form-fail">
+                      <div>Oops! Something went wrong while submitting the form.</div>
+                    </div>
+                  </div>
+                    
+                
+                </div> {% schema %} {
+    "name": "Add to Cart",
+    "settings": [],
+    "presets": [
+        {
+            "name": "Add to Cart",
+            "blocks": []
+        }
+    ],
+    "tag": null
+} {% endschema %}

@@ -1,0 +1,16 @@
+{
+    "sections": {
+        "collection_products": {
+            "type": "collection_products"
+        },
+        "mailer_embed_form": {
+            "type": "mailer_embed_form"
+        }
+    },
+    "layout": "theme",
+    "wrapper": "main.main-wrapper",
+    "order": [
+        "collection_products",
+        "mailer_embed_form"
+    ]
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<script>
+  class PredictiveSearch extends HTMLElement {
+    constructor() {
+      super();
+      this.input = this.querySelector('input[type="search"]');
+      this.predictiveSearchResults = this.querySelector('#predictive-search');
+      this.input.addEventListener('input', this.debounce((event) => {
+        this.onChange(event);
+      }, 300).bind(this));
+    }
+    onChange() {
+      const searchTerm = this.input.value.trim();
+      if (!searchTerm.length) { this.close(); return; }
+      this.getSearchResults(searchTerm);
+    }
+    getSearchResults(searchTerm) {
+      fetch(`{% unless request.locale.root_url == '/' %}{{ request.locale.root_url }}{% endunless %}/search/suggest?q=${searchTerm}&amp;section_id=predictive_search&amp;resources[type]=product&amp;resources[limit]=10`)
+        .then((response) => {
+          if (!response.ok) { var error = new Error(response.status); this.close(); throw error; }
+          return response.text();
+        })
+        .then((text) => {
+          const resultsMarkup = new DOMParser().parseFromString(text, 'text/html').querySelector('#shopify-section-predictive_search').innerHTML;
+          this.predictiveSearchResults.innerHTML = resultsMarkup;
+          this.open();
+        })
+        .catch((error) => { this.close(); throw error; });
+    }
+        open() {
+  var el = this.predictiveSearchResults;
+  var pill = document.querySelector('.nav_menu-search');
+  if (pill) pill.classList.add('search-results-open');
+  el.style.display = 'block';
+  el.style.overflow = 'hidden';
+  el.style.maxHeight = '420px';
+  gsap.killTweensOf(el);
+  gsap.fromTo(el, { height: 0 }, {
+    height: Math.min(el.scrollHeight, 420), duration: 0.3, ease: 'power2.out',
+    onComplete: function() { el.style.overflow = 'auto'; }
+  });
+}
+    close() {
+  var el = this.predictiveSearchResults;
+  var pill = document.querySelector('.nav_menu-search');
+  if (pill) pill.classList.remove('search-results-open');
+  el.style.overflow = 'hidden';
+  gsap.killTweensOf(el);
+  gsap.to(el, { height: 0, duration: 0.2, ease: 'power2.inOut',
+    onComplete: function() { el.style.display = 'none'; el.style.maxHeight = ''; }
+  });
+}
+    debounce(fn, wait) {
+      let t;
+      return (...args) => { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), wait); };
+    }
+  }
+  customElements.define('predictive-search', PredictiveSearch);
+</script>

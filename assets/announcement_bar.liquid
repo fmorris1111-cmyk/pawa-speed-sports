@@ -1,0 +1,116 @@
+<div class="announcement-bar_link-container">
+          {% for block in section.blocks %}
+    {% if block.type == "message" %}
+                    <div li-block="message" class="announcement-bar_inner">
+                                    
+            
+                                    <a href="{{ block.settings.url_link_url }}" class="announcement-bar_link"> {{ block.settings.text_announcement_text }} </a>
+                                    
+          
+                            </div>
+            {% endif %}
+{% endfor %}
+          {% for block in section.blocks %}    <div aria-hidden="true" li-for="block in section.blocks" class="announcement-bar_inner">
+                                    
+            
+                            <a li-object:href="block.settings.url_link_url" li-object="block.settings.text_announcement_text" href="{{ block.settings.url_link_url }}" class="announcement-bar_link">{{ block.settings.text_announcement_text }}</a>
+                            
+          
+                        </div>
+{% endfor %}
+        </div>
+        <div class="w-embed w-script">
+          <style>
+  .announcement-bar_container {
+    overflow: hidden;
+    width: 100%;
+  }
+  .announcement-bar_link-container {
+    display: flex;
+    will-change: transform;
+  }
+  .announcement-bar_link-container.is-marquee-animated {
+    animation: announcement-marquee var(--marquee-duration) linear infinite;
+  }
+  @keyframes announcement-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-1 * var(--marquee-distance))); }
+  }
+  .announcement-bar_inner {
+    display: contents;
+  }
+  .announcement-bar_link {
+    padding: 0 60px;
+    white-space: nowrap;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+</style>
+          <script>
+window.addEventListener('load', function() {
+  var track = document.querySelector('.announcement-bar_link-container');
+  if (!track) return;
+  var container = track.parentElement;
+  var containerWidth = container.offsetWidth;
+  // Grab all original links before we clone anything
+  var originalLinks = Array.from(track.querySelectorAll('.announcement-bar_link'));
+  // Measure original set width
+  var originalSetWidth = 0;
+  originalLinks.forEach(function(link) {
+    originalSetWidth += link.getBoundingClientRect().width;
+  });
+  if (originalSetWidth === 0) return;
+  // Find reset point: smallest multiple of originalSetWidth >= containerWidth
+  var resetWidth = originalSetWidth;
+  while (resetWidth < containerWidth) {
+    resetWidth += originalSetWidth;
+  }
+  // Clone until we have at least resetWidth * 2 + containerWidth worth of content
+  // so there's always content ahead of the visible area
+  while (track.scrollWidth < resetWidth * 2 + containerWidth) {
+    originalLinks.forEach(function(link) {
+      track.appendChild(link.cloneNode(true));
+    });
+  }
+  var pixelsPerSecond = 60;
+  var duration = resetWidth / pixelsPerSecond;
+  track.style.setProperty('--marquee-distance', resetWidth + 'px');
+  track.style.setProperty('--marquee-duration', duration + 's');
+  track.classList.add('is-marquee-animated');
+});
+</script>
+        </div> {% schema %} {
+    "tag": "div",
+    "name": "Announcement Bar",
+    "class": "announcement-bar_container",
+    "blocks": [
+        {
+            "name": "message",
+            "type": "message",
+            "settings": [
+                {
+                    "id": "url_link_url",
+                    "type": "url",
+                    "label": "Link URL"
+                },
+                {
+                    "id": "text_announcement_text",
+                    "type": "text",
+                    "label": "Announcement Text",
+                    "default": "Text Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Announcement Bar",
+            "category": "Liquify",
+            "blocks": [
+                {
+                    "type": "message"
+                }
+            ]
+        }
+    ]
+} {% endschema %}
