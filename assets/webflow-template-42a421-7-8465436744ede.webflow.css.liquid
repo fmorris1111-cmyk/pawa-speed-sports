@@ -3749,6 +3749,7 @@ figcaption {
 }
 
 .blog_featured-image-wrapper {
+  aspect-ratio: 1;
   width: 100%;
   padding-top: 66%;
   position: relative;
@@ -3772,9 +3773,17 @@ figcaption {
 }
 
 .blog_overlay {
+  opacity: 0;
   background-image: linear-gradient(204deg, #00000024, #32323275);
+  transition: opacity .2s;
+  display: block;
   position: absolute;
   inset: 0%;
+}
+
+.blog_overlay:hover {
+  opacity: 1;
+  display: block;
 }
 
 .blog_two-articles {
@@ -5808,7 +5817,7 @@ figcaption {
     flex: none;
   }
 
-  .more_liste {
+  .more_liste, .blog_component {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -7449,6 +7458,10 @@ figcaption {
   .product_button-row.mobile_portrait {
     margin-top: 1.5rem;
     display: block;
+  }
+
+  .blog_component {
+    grid-template-columns: 1fr;
   }
 
   .blog_titel-wrapper {
