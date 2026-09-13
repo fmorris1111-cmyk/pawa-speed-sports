@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "blog_hero": {
-      "type": "blog_hero",
-      "settings": {}
-    },
     "blog_articles": {
       "type": "blog_articles",
       "settings": {}
@@ -23,14 +19,13 @@
       "settings": {
         "article_article": "",
         "blog_blog": "speed-sounds",
-        "post_limit_blog": 3
+        "post_limit_blog": 12
       }
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "blog_hero",
     "blog_articles",
     "blog_posts_speed_sou_NzaEm7"
   ]
