@@ -239,9 +239,16 @@
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows .3s ease;
+    overflow: hidden;
+    padding: 0;
+    row-gap: 0;
   }
   .footer_link-column.is-open .footer_sublink-list { grid-template-rows: 1fr; }
-  .footer_sublink-inner { overflow: hidden; min-height: 0; }
+  .footer_sublink-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: .5rem;
+  }
 }
 </style>
         </div> {% schema %} {
