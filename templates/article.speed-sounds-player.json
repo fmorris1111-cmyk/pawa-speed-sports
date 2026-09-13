@@ -131,11 +131,25 @@
       "custom_css": [],
       "name": "Content Grid",
       "settings": {}
+    },
+    "speed_sounds_player_3cjg94": {
+      "type": "speed_sounds_player",
+      "name": "Speed Sounds Player",
+      "settings": {}
+    },
+    "related_articles_UNqGYR": {
+      "type": "related_articles",
+      "name": "Related Articles",
+      "settings": {
+        "text_heading": "Other Articles"
+      }
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "content_grid_BXmExe"
+    "content_grid_BXmExe",
+    "speed_sounds_player_3cjg94",
+    "related_articles_UNqGYR"
   ]
 }
