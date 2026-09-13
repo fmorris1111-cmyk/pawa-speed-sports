@@ -2,7 +2,7 @@
           <div class="blog_component">
             <div class="blog_featured-item">
               <div class="blog_featured-image-link">{% assign article = articles[section.settings.article_article] %} 
-                <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-image-wrapper w-inline-block"><img alt="" loading="lazy" li-object:src="article.image.src | image_url: width: 600" src="{{ article.image.src | image_url: width: 600 }}" class="blog_featured-image">
+                <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-image-wrapper w-inline-block"><img alt="" loading="lazy" li-object:src="article.image | image_url: width: 600" src="{{ article.image.src | image_url: width: 600 }}" class="blog_featured-image">
                   <div class="blog_overlay"></div>
                 </a>
               </div>
