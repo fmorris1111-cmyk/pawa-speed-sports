@@ -129,7 +129,7 @@
 
 <script>
 document.addEventListener('click', function (e) {
-  var btn = e.target.closest('[data-back-to-top]');
+  var btn = e.target.closest('[data-back-to-top], a[href="#top"]');
   if (!btn) return;
   e.preventDefault();
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
