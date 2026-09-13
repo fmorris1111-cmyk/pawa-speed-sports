@@ -1,0 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "favicon": "shopify://shop_images/62110887ad797e587251ecc8_Pawa_Boy_Webclip.avif",
+    "apple_touch_icon": "shopify://shop_images/62110887ad797e587251ecc8_Pawa_Boy_Webclip.avif",
+    "content_for_index": [],
+    "blocks": {
+      "18131037017812181619": {
+        "type": "shopify://apps/mailchimp-email-sms/blocks/mailchimp_for_shopify_script/e3b67dce-fd41-4b61-b3cf-961c12344cde",
+        "disabled": false,
+        "settings": {}
+      },
+      "1900010302808700452": {
+        "type": "shopify://apps/super-pinch-zoom/blocks/star_rating/ab7c7f82-c7c7-4520-9f92-6394fd695a86",
+        "disabled": true,
+        "settings": {}
+      },
+      "1793219247286972479": {
+        "type": "shopify://apps/searchpie-seo-speed/blocks/sb-snippets/29f6c508-9bb9-4e93-9f98-b637b62f3552",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".product-header_thumbnail-image {pointer-events: none;}"
+    ]
+  }
+}

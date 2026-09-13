@@ -1,0 +1,752 @@
+<!doctype html>
+<style>
+  [li-cloak_disabled="hide"] { display: none !important; }
+  [x-cloak] { display: none !important; }
+  html { font-size: calc(0.8125rem + 0.20833333333333331vw); }
+  @media screen and (max-width:1920px) { html { font-size: calc(0.8125rem + 0.20833333333333337vw); } }
+  @media screen and (max-width:1440px) { html { font-size: 1rem; } }
+  * {
+  font-family: 'Roboto Mono', monospace !important;
+	}
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior: none;
+  }
+  *[tabindex]:focus-visible,
+  input[type="file"]:focus-visible {
+    outline: 0.125rem solid #4d65ff;
+    outline-offset: 0.125rem;
+  }
+  .w-richtext > :not(div):first-child, .w-richtext > div:first-child > :first-child {
+    margin-top: 0 !important;
+  }
+  .w-richtext>:last-child, .w-richtext ol li:last-child, .w-richtext ul li:last-child {
+    margin-bottom: 0 !important;
+  }
+  .pointer-events-off { pointer-events: none; }
+  .pointer-events-on  { pointer-events: auto; }
+  .div-square::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  .container-medium, .container-small, .container-large {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  .text-style-3lines {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .text-style-2lines {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .display-inlineflex { display: inline-flex; }
+  .hide { display: none !important; }
+  @media screen and (max-width: 991px) { .hide, .hide-tablet { display: none !important; } }
+  @media screen and (max-width: 767px) { .hide-mobile-landscape { display: none !important; } }
+  @media screen and (max-width: 479px) { .hide-mobile { display: none !important; } }
+  .margin-0        { margin: 0rem !important; }
+  .padding-0       { padding: 0rem !important; }
+  .spacing-clean   { padding: 0rem !important; margin: 0rem !important; }
+  .margin-top      { margin-right: 0rem !important; margin-bottom: 0rem !important; margin-left: 0rem !important; }
+  .padding-top     { padding-right: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; }
+  .margin-right    { margin-top: 0rem !important; margin-bottom: 0rem !important; margin-left: 0rem !important; }
+  .padding-right   { padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; }
+  .margin-bottom   { margin-top: 0rem !important; margin-right: 0rem !important; margin-left: 0rem !important; }
+  .padding-bottom  { padding-top: 0rem !important; padding-right: 0rem !important; padding-left: 0rem !important; }
+  .margin-left     { margin-top: 0rem !important; margin-right: 0rem !important; margin-bottom: 0rem !important; }
+  .padding-left    { padding-top: 0rem !important; padding-right: 0rem !important; padding-bottom: 0rem !important; }
+  .margin-horizontal  { margin-top: 0rem !important; margin-bottom: 0rem !important; }
+  .padding-horizontal { padding-top: 0rem !important; padding-bottom: 0rem !important; }
+  .margin-vertical    { margin-right: 0rem !important; margin-left: 0rem !important; }
+  .padding-vertical   { padding-right: 0rem !important; padding-left: 0rem !important; }
+  h1, h2, h3, h4, h5, h6 { text-wrap: balance !important; }
+  .page-wrapper { overflow: clip !important; }
+  .swiper-button-disabled {
+    opacity: 50% !important;
+    pointer-events: none !important;
+  }
+  button {
+    color: unset;
+    background-color: unset;
+    padding: unset;
+  }
+  /* &#9472;&#9472; Shopify policy pages &#9472;&#9472; */
+  .shopify-policy__container {
+    display: flex !important;
+    flex-direction: column;
+    padding: 8rem 80px 60px 80px !important;
+    width: 60vw !important;
+    max-width: 60vw !important;
+    box-sizing: border-box;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .shopify-policy__body {
+    font-family: Nimbussanl Reg, Arial, sans-serif;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .shopify-policy__title h1 {
+    margin-bottom: 2rem;
+    font-family: Nimbussanl Reg, Arial, sans-serif;
+    text-align: left;
+  }
+  .shopify-policy__body h2 { margin-top: 2rem; margin-bottom: 1rem; }
+  .shopify-policy__body p  { margin-bottom: 1rem; }
+  .shopify-policy__body ul,
+  .shopify-policy__body ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+  .shopify-policy__body li { margin-bottom: 0.5rem; }
+  @media screen and (max-width: 991px) {
+    .shopify-policy__container { width: 90vw !important; max-width: 90vw !important; padding: 8rem 40px 60px 40px !important; }
+  }
+  @media screen and (max-width: 767px) {
+    .shopify-policy__container { width: 95vw !important; max-width: 95vw !important; padding: 10rem 24px 40px 24px !important; }
+  }
+  @media screen and (max-width: 479px) {
+    .shopify-policy__container { width: 100vw !important; max-width: 100vw !important; padding: 10rem 16px 30px 16px !important; }
+  }
+  /* &#9472;&#9472; Product size selector &#9472;&#9472; */
+  .w-form-formradioinput.product-header_radio-button { display: none !important; }
+  .product-header_radio:has(input:checked) { background-color: #ccc; color: #000; }
+  .product-header_radio:has(input:checked) .w-form-label { color: #000; }
+  /* &#9472;&#9472; Font descender fix &#9472;&#9472; */
+  @font-face {
+    font-family: 'Nimbussanl Bol';
+    size-adjust: 100%;
+    ascent-override: 90%;
+    descent-override: 0%;
+    line-gap-override: 0%;
+  }
+  /* &#9472;&#9472; Nav: logo always screen-centered &#9472;&#9472; */
+  .nav_logo-link {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1;
+  }
+  /* &#9472;&#9472; Nav: link hover underline &#9472;&#9472; */
+  .nav_link-item:hover .nav-link,
+  .nav_link-item:hover .nav_link,
+  .nav_link-item:hover .nav_shop-quantity {
+    text-decoration: underline;
+  }
+  .nav_link-item {
+  transition: color 200ms ease, opacity 200ms ease, background-color 200ms ease;
+  }
+  /* &#9472;&#9472; Nav: cart quantity superscript &#9472;&#9472; */
+  .nav_shop-quantity::before { content: "("; }
+  .nav_shop-quantity::after  { content: ")"; }
+  .nav_shop-quantity {
+    font-size: 0.5em !important;
+    position: relative;
+    transform: translateY(-0.3em);
+  }
+  /* &#9472;&#9472; Nav: submenu pill join &#9472;&#9472; */
+  .nav_menu-2 {
+    transition: border-radius 0.15s ease;
+  }
+  .nav_menu-2.submenu-is-open {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  /* &#9472;&#9472; Nav: submenu link hover &#9472;&#9472; */
+  .nav_submenu-panel a:hover {
+    text-decoration: underline;
+  }
+  /* &#9472;&#9472; Cart: GSAP-animated dropdown &#9472;&#9472; */
+  /* Always block &mdash; GSAP controls height, not display */
+  .nav_mini-cart-holder,
+  .nav_mini-cart-holder.w--open {
+    display: block !important;
+  }
+  /* Positioning: spans full nav_menu-3 width, flush to pill */
+  .nav_mini-cart-holder {
+    position: absolute !important;
+    inset: auto !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    background-color: transparent !important;
+  }
+    /* Cart: closed state at first paint &mdash; GSAP's inline height overrides this */
+  .nav_mini-cart-holder {
+    height: 0;
+    overflow: hidden;
+  }
+  /* Remove cart toggle as positioning context */
+  .nav_dropdown.is-cart {
+    position: static !important;
+  }
+  /* Cart box: flat top joins pill, rounded bottom */
+  .mini-cart_component {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 70vh !important;
+    border-radius: 0 0 6px 6px !important;
+    overflow: hidden !important;
+  }
+  /* Cart pill flattens bottom corners when open */
+  .nav_menu-3 {
+    transition: border-radius 0.15s ease;
+  }
+  .nav_menu-3.cart-is-open {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  /* &#9472;&#9472; Cart: scroll architecture &#9472;&#9472; */
+  .mini-cart_full {
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+  .mini-cart_line-item,
+  .mini-cart_line-item.no-scrollbar {
+    flex: 1 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  .mini-cart_line-item_list {
+    overflow-x: hidden !important;
+    min-width: 0 !important;
+  }
+  .mini-cart_line-item_item {
+    max-height: none !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .nav_mini-cart-close { display: none !important; }
+  .nav_dropdown-close-button { display: none !important; }
+  .nav_menu-3 {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  }
+  .nav_menu-2 {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+    .content-grid_item {
+    position: relative;
+    aspect-ratio: 6 / 4;
+    overflow: hidden;
+  }
+  .content-grid_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--img-x, 50%) var(--img-y, 50%);
+  }
+  .content-grid_overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 55%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .content-grid_hover {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+   @media (hover: none), (pointer: coarse) {
+    .content-grid_overlay,
+    .content-grid_hover {
+      opacity: 1;
+    }
+  }
+  .content-grid_item:hover .content-grid_overlay,
+  .content-grid_item:hover .content-grid_hover {
+    opacity: 1;
+  }
+  .content-grid_text-link {
+  color: white;
+  text-decoration: none;
+	}
+ /* Search */
+.nav_search-expand {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 0;
+}
+.nav_search-form {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.nav_search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  width: 200px;
+  padding: 0 0.5rem;
+}
+.nav_search-input::placeholder { font-size: 12px; }
+.nav_search-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 0.25rem;
+  color: inherit;
+  flex-shrink: 0;
+}
+.nav_predictive-results {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  min-width: 280px;
+  background: #f3f3f3;
+  color: black;
+  z-index: 200;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+.nav_menu-search.search-results-open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.predictive-search_label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 0.75rem 1rem 0.25rem;
+  opacity: 0.5;
+}
+.predictive-search_list { list-style: none; margin: 0; padding: 0; }
+.predictive-search_line-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+.predictive-search_line-item:hover { background: #ffffff; }
+.predictive-search_img-wrap {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.predictive-search_img { width: 100%; height: 100%; object-fit: cover; }
+.predictive-search_product-title { 
+  text-align: left;
+  font-size: 12px;
+  font-weight:600px;
+}
+.predictive-search_see-all {
+  display: block;
+  text-align: center;
+  padding: 0.75rem;
+  background: black;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  transition: background 0.2s ease;
+}
+.predictive-search_see-all:hover { background: #444; }
+.predictive-search_empty { padding: 1rem; font-size: 12px; opacity: 0.6; }
+.predictive-search_see-all,
+.predictive-search_see-all.w-inline-block {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+ }
+.predictive-search_item { background: transparent; }
+.predictive-search_line-item,
+.predictive-search_line-item.w-inline-block {
+  display: flex !important;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+}
+.predictive-search_line-item:hover,
+.predictive-search_line-item.w-inline-block:hover { background: #e8e8e8; }
+  .predictive-search_product-title,
+.predictive-search_product-title.text-size_small {
+  text-align: left !important;
+  flex: 1;
+}
+    .nav_predictive-results::-webkit-scrollbar { width: 4px; }
+  .nav_predictive-results::-webkit-scrollbar-track { background: transparent; }
+  .nav_predictive-results::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+  .nav_predictive-results::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
+  .nav_predictive-results { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
+  /* &#9472;&#9472; Featured Products Carousel &#9472;&#9472; */
+.fp-carousel-wrap { position: relative; }
+.product_list.swiper-wrapper {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  grid-template-columns: unset !important;
+  grid-row-gap: 0 !important;
+  column-gap: 0 !important;
+}
+.product_list-item.swiper-slide { height: auto; flex-shrink: 0; }
+.fp-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
+.fp-prev, .fp-next {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: black;
+  flex-shrink: 0;
+}
+.fp-prev:hover, .fp-next:hover { opacity: 0.6; }
+.fp-pagination {
+  flex: 1;
+  height: 2px !important;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative !important;
+}
+.fp-pagination .swiper-pagination-progressbar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  border-radius: 2px;
+  transform-origin: left top;
+}
+@media (max-width: 767px) {
+  .fp-prev, .fp-next { display: none; }
+}
+  .swiper.is-product-gallery {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.swiper.is-product-gallery img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+  .swiper-wrapper.is-product-gallery {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    height: 100%;
+    overflow-y: hidden;
+  }
+  .swiper-slide.is-product-gallery {
+    scroll-snap-align: start;
+  }
+  .swiper-wrapper.is-product-gallery::-webkit-scrollbar {
+    display: none;
+  }
+  .swiper-wrapper.is-product-gallery {
+  height: 100%;
+  overflow-y: hidden;
+}
+  .swiper-wrapper.is-product-gallery,
+.swiper.is-product-gallery {
+  scrollbar-width: none;
+}
+.swiper-wrapper.is-product-gallery::-webkit-scrollbar,
+.swiper.is-product-gallery::-webkit-scrollbar {
+  display: none;
+}
+  @keyframes announcement-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--marquee-distance))); }
+}
+.announcement-bar_link-container.is-marquee-animated {
+  animation: announcement-marquee var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
+@media (min-width: 992px) {
+  .swiper-container.is-product-gallery {
+    max-height: 80vh;
+  }
+  .swiper-container.is-product-gallery .product-header_gallery-lightbox,
+  .swiper-container.is-product-gallery img.product-header_gallery-image {
+    height: 100%;
+  }
+  .swiper-container.is-product-gallery img.product-header_gallery-image {
+    object-fit: contain;
+  }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 1: neutralise desktop chrome &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* Pill 1 is fully replaced by the mobile component (its links + submenu
+     panels are pure Liquid, so they get duplicated rather than shared). */
+  .nav_component { display: flex !important; }
+  .nav_menu-2 { display: none !important; }
+  /* Pills 2 & 3 stay in the DOM &mdash; the search form and mini-cart are shared
+     single instances (Architecture B). Collapse them to zero footprint. */
+  .nav_right {
+    position: fixed !important;
+    left: 0; right: 0; bottom: 0; top: auto !important;
+    height: 0 !important;
+    gap: 0 !important;
+    pointer-events: none;
+    z-index: 9994;
+   	transform: none !important;
+  }
+  .nav_menu-search,
+  .nav_menu-3 {
+    background-color: transparent !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    transform: none !important;      /* kills translateZ(0) containing block */
+    backface-visibility: visible !important;
+  }
+  /* Desktop triggers off &mdash; the mobile bar drives these instead */
+  .nav_menu-search > .nav_link-item,
+  .nav_menu-3 .nav_account-links,
+  .nav_menu-3 .nav_shop-icon { display: none !important; }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 2: bar shell &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .mobilenav {
+    margin-bottom: env(safe-area-inset-bottom);   /* adds to the Designer's bottom value */
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Hover/active background lifted from .nav_link-item:hover */
+  .mobilenav_item {
+    transition: background-color .2s ease, color .2s ease;
+  }
+  .mobilenav_item.is-active .mobilenav_label { text-decoration: underline; }
+  /* Cart count &mdash; same superscript-in-parens treatment as .nav_shop-quantity */
+  .mobilenav_count::before { content: "("; }
+  .mobilenav_count::after  { content: ")"; }
+  .mobilenav_count {
+    font-size: .5em;
+    position: relative;
+    transform: translateY(-.3em);
+  }
+  /* Published bar height, for anchoring the shared cart/search panels later */
+  :root { --mnav-h: 2.5rem; }
+  /* Stop page content ending up underneath the bar */
+  .main-wrapper { padding-bottom: calc(4rem + env(safe-area-inset-bottom)); }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; drawer join (mirrors .submenu-is-open) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .mobilenav_drawer { margin-bottom: -4px; }          /* mirror of desktop's margin-top: -4px */
+  .mobilenav_bar { transition: border-radius .15s ease; }
+  .mobilenav_bar.drawer-is-open {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+}
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 3: rows + selection (revised) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .mobilenav_bar  { display: flex; align-items: center; }
+  .mobilenav_row  { flex: 1 1 auto; min-width: 0; }
+  .mobilenav_item { flex: 0 0 auto; white-space: nowrap; }
+  /* Level 1 &mdash; natural-width items, first flush left, last flush right */
+  .mobilenav_row.is-level1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /* Level 2 hidden at rest (no both-rows flash on page load) */
+  .mobilenav_row.is-level2 { display: none; }
+  .mobilenav_row.is-level2 {
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: .25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; edge fades &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* Overlays on the bar, not a mask on the scroller &mdash; so the sticky
+     MENU stays fully opaque and the left fade starts to the right of it */
+  .mobilenav_bar::before,
+  .mobilenav_bar::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1.5rem;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+  .mobilenav_bar::before {
+    left: var(--mnav-fade-left, 0px);
+    background: linear-gradient(to right, #f3f3f3, rgba(243,243,243,0));
+  }
+  .mobilenav_bar::after {
+    right: var(--mnav-fade-right, 0px);
+    background: linear-gradient(to left, #f3f3f3, rgba(243,243,243,0));
+  }
+  .mobilenav_bar.can-scroll-left::before  { opacity: 1; }
+  .mobilenav_bar.can-scroll-right::after  { opacity: 1; }
+}
+  .mobilenav_row.is-level2::-webkit-scrollbar { display: none; }
+  .mobilenav_row.is-level2 > * { flex: 0 0 auto; scroll-snap-align: start; }
+  /* MENU pinned left while the links scroll behind it */
+  .mobilenav_row.is-level2 > [data-mnav="menu"] {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: #f3f3f3;          /* bar colour &mdash; links pass underneath */
+  }
+  /* Selection &mdash; class-driven only, so it persists until changed */
+  .mobilenav_item           { transition: background-color .2s ease; }
+  .mobilenav_item.is-active { background-color: #cacaca; }
+  .mobilenav_item.is-active .mobilenav_label { text-decoration: underline; }
+  /* Hover only where a real pointer exists &mdash; stops sticky hover on touch */
+  @media (hover: hover) {
+    .mobilenav_item:hover { background-color: #cacaca; }
+  }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 4: shop drawer &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* Bottom-anchored inside the height-animated drawer, so content is
+     revealed from the bottom up &mdash; the true inversion of the desktop drawer */
+  .mobilenav_panel {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    max-height: 60vh;
+    max-height: 60dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .mobilenav_panel::-webkit-scrollbar { display: none; }
+  .mobilenav_sublist {
+    padding-bottom: calc(1.25rem + 4px);   /* clears the 4px pill overlap */
+  }
+  @media (hover: hover) {
+    .mobilenav_sublink:hover { text-decoration: underline; }
+  }
+  /* MENU holds its own state while a sub-panel is selected &mdash; two active
+     levels at once, as in your screenshot 3 */
+    /* Must out-rank the sticky MENU's base background (0,3,0) */
+  .mobilenav_row.is-level2 > [data-mnav="menu"].is-open,
+  .mobilenav_row.is-level2 > [data-mnav="menu"].is-active,
+  .mobilenav_item.is-open,
+  .mobilenav_item.is-active { background-color: #cacaca; }
+  .mobilenav_item.is-open .mobilenav_label { text-decoration: underline; }
+}
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; top bar collapse &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  .nav_component {
+    background-color: transparent !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    pointer-events: none;
+  }
+  .nav_container {
+    margin: 0 !important;
+    min-height: 0 !important;
+    height: 0 !important;
+  }
+}
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stages 6 & 7: shared search + cart &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (max-width: 991px) {
+  /* ---------- SEARCH ---------- */
+  predictive-search { display: block; }
+  .nav_search-expand {
+    position: fixed !important;
+    top: auto !important;
+    bottom: var(--mnav-bar-top, 4rem);
+    left:   var(--mnav-left,  1rem);
+    right:  var(--mnav-right, 1rem);
+    width: auto !important;
+    height: 0;
+    display: block !important;
+    background-color: #f3f3f3;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    pointer-events: auto;
+    z-index: 10;
+  }
+  .nav_search-form {
+    width: 100%;
+    padding: 1rem 1.25rem calc(1rem + 4px);   /* +4px clears the pill overlap */
+  }
+  .nav_search-input {
+    flex: 1 1 auto;
+    width: auto;
+    border-bottom: 1px dashed currentColor;
+    padding-bottom: .35rem;
+  }
+  /* Results open upward, above the input */
+  .nav_predictive-results {
+    top: auto !important;
+    bottom: 100%;
+    margin-bottom: .5rem;
+    border-radius: 4px;
+    max-height: 50vh;
+    max-height: 50dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  /* ---------- CART ---------- */
+  .nav_mini-cart-holder {
+    position: fixed !important;
+    top: auto !important;
+    bottom: var(--mnav-bar-top, 4rem) !important;
+    left:   var(--mnav-left,  1rem) !important;
+    right:  var(--mnav-right, 1rem) !important;
+    width: auto !important;
+    pointer-events: auto;
+    z-index: 10;
+  }
+     /* w-dropdown-list floors width at 100% of the viewport &mdash; release it */
+  .nav_dropdown.is-cart .nav_mini-cart-holder {
+    min-width: 0 !important;
+    width: calc(100% - var(--mnav-left, 1rem) - var(--mnav-right, 1rem)) !important;
+  }
+  .mini-cart_component {
+    border-radius: 4px 4px 0 0 !important;    /* inverted */
+    max-height: 60vh !important;
+    max-height: 60dvh !important;
+  }
+}
+</style>

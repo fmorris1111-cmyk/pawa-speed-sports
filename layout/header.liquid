@@ -1,0 +1,1482 @@
+<!doctype html>
+<a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
+{{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
+{% else %}
+<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
+{% endif %}</a>
+        <div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="none" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
+          <div class="nav_container">
+            <nav role="navigation" class="nav_menu-2 w-nav-menu">
+              {% for link in linklists['main-menu'].links %}    {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="nav_links-row">
+                                    
+                                    
+                
+                            
+                            <a li-object:data-trigger="link.handle" li-object:href="link.url" href="{{ link.url }}" class="nav_link-item w-inline-block" data-trigger="{{ link.handle }}">
+                  <div>
+                    <div li-object="link.title" class="nav-link">{{ link.title }}</div>
+                  </div>
+                </a>
+                            
+                            
+              
+                        
+                        </div>
+{% endfor %}
+{% endfor %}
+              <div class="nav_submenu-drawer">
+                {% for link in linklists['main-menu'].links %}    {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links">
+                                    
+                                    
+                  
+                            
+                            <div li-object:data-panel="link.handle" class="nav_submenu-panel" data-panel="{{ link.handle }}">
+                    {% if link.links.size > 0 %}    {% if link.links.size > 0 %}    <div li-if="link.links.size > 0" class="div-block-15">
+    
+    
+                      {% for child_link in link.links %}    {% for child_link in link.links %}    <div li-for="child_link in link.links">
+                                    
+                                    
+                        
+                            
+                            <a li-object:href="child_link.url" li-object="child_link.title" href="{{ child_link.url }}" class="nav_submenu-link">{{ child_link.title }}</a>
+                            
+                            
+                      
+                        
+                        </div>
+{% endfor %}
+{% endfor %}
+                            </div>
+{% endif %}
+{% endif %}
+                  </div>
+                            
+                            
+                
+                        
+                        </div>
+{% endfor %}
+{% endfor %}
+              </div>
+            </nav>
+            <div id="w-node-_9132635a-7891-b0d1-9b20-ecb0d5a86e16-d5a86df8" class="nav_menu-button w-nav-button">
+              <div class="menu-icon">
+                <div class="menu-icon_line-top"></div>
+                <div class="menu-icon_line-middle">
+                  <div class="menu-icon_line-middle-inner"></div>
+                </div>
+                <div class="menu-icon_line-bottom"></div>
+              </div>
+            </div>
+            <div class="nav_right">
+              <div x-data="{open: false}" class="nav_menu-search">
+                <div class="w-embed">
+                  <div class="nav_search-expand">
+                    <predictive-search>
+                      <form action="/search" method="get" class="nav_search-form">
+                        <input type="search" id="nav-search-input" name="q" placeholder="TYPE HERE" autocomplete="off" class="nav_search-input">
+                        <button type="button" onclick="window.closeNavSearch()" aria-label="Close" class="nav_search-close">
+                          <svg width="10" height="10" viewbox="0 0 15 15" fill="none">
+                            <path d="M1.848 14.178L.448 12.778l5.6-5.6-5.6-5.6L1.848.178l5.6 5.6 5.6-5.6 1.4 1.4-5.6 5.6 5.6 5.6-1.4 1.4-5.6-5.6-5.6 5.6z" fill="currentColor"></path>
+                          </svg>
+                        </button>
+                      </form>
+                      <div id="predictive-search" class="nav_predictive-results">
+                        {% section 'predictive_search' %}
+                      </div>
+                    </predictive-search>
+                  </div>
+                </div>
+                <a x-on:click="open = !open; $nextTick(() => document.getElementById('nav-search-input').focus())" href="#" class="nav_link-item w-inline-block">
+                  <div class="nav_link">SEARCH</div>
+                </a>
+              </div>
+              <div class="nav_menu-3">
+                {% if customer==blank %}    {% if customer==blank %}    <div li-if="customer==blank" class="nav_account-links">
+    
+    
+                  <a li-object:href="routes.account_login_url" href="{{ routes.account_login_url }}" class="nav_link-item w-inline-block">
+                    <div class="nav_link">LOGIN</div>
+                  </a>
+                  <a li-object:href="routes.account_register_url" href="{{ routes.account_register_url }}" class="nav_link-item w-inline-block">
+                    <div class="nav_link">REGISTER</div>
+                  </a>
+                        </div>
+{% endif %}
+{% endif %}
+                {% if customer %}    {% if customer %}    <div li-if="customer" class="nav_account-links">
+    
+    
+                  <a li-object:href="routes.account_url" href="{{ routes.account_url }}" class="nav_link-item w-inline-block">
+                    <div li-object:href="routes.account_url" class="nav_link" href="{{ routes.account_url }}">ACCOUNT</div>
+                  </a>
+                  <a li-object:href="routes.account_register_url" href="{{ routes.account_register_url }}" class="nav_link-item w-inline-block">
+                    <div li-object:href="routes.account_url" class="nav_link" href="{{ routes.account_url }}">LOGOUT</div>
+                  </a>
+                        </div>
+{% endif %}
+{% endif %}
+                <div>
+                  <script>
+    document.addEventListener('alpine:init', () => {
+
+    Alpine.data('handleMinicart', () => ({
+        init() {
+            console.log('handleMinicart init')
+        },
+        cart: {
+            note: null,
+            attributes: {},
+            items: [],
+            currency: window.Shopify.currency.active,
+            cart_level_discount_applications: [],
+            response: {
+                result : {},
+                show : false,
+                timeout : 5000,
+            },
+            item_count: 0,
+            total_price:0,
+            total_weight: 0,
+            total_discount: 0,
+            original_total_price: 0,
+            items_subtotal_price: 0
+        },
+        _abortController : null,
+        initAbortController() {
+            if(this._abortController) {
+                this._abortController.abort('abort previous request');
+            }
+            this._abortController = new AbortController()
+        },
+        getAbortControllerSignal() {
+            return this._abortController.signal
+        },
+        resetAbortController() {
+            this._abortController = null;
+        },
+        toggleMiniCart() {
+            console.log('(minicart.js) toggleMiniCart called');
+
+            LiquifyHelper.handleTriggerClick();
+
+            this.getCart();
+        },
+
+        /**
+         * Get the cart data.
+         */
+        async getCart() {
+            this.initAbortController()
+            await fetch(window.Shopify.routes.root + 'cart.js', {
+                method: 'GET',
+                signal: this.getAbortControllerSignal(),
+                headers: {'Content-Type': 'application/json'},
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.resetAbortController();
+
+                    this.cart.item_count = data.item_count;
+
+                    this.cart.items = data.items.map((item) => {
+                        item.title = this.htmlspecialchars_decode(item.title)
+                        return item
+                    })
+
+
+                    this.cart.total_price = data.total_price;
+                    this.cart.total_weight = data.total_weight;
+                    this.cart.total_discount = data.total_discount;
+                    this.cart.original_total_price = data.original_total_price;
+
+                    this.$dispatch('carttotalitems', data.item_count);
+                    this.$dispatch('currentcartitems', this.cart.items);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        },
+
+        /**
+         * @param key
+         * @param quantity
+         */
+        increaseCartItemQuantity(key, quantity) {
+            this.updateCartItemQuantity(key, parseInt(quantity) + 1);
+        },
+
+        /**
+         * @param key
+         * @param quantity
+         */
+        decreaseCartItemQuantity(key, quantity) {
+            this.updateCartItemQuantity(key, parseInt(quantity) - 1);
+        },
+
+        /**
+         * Update the cart item.
+         *
+         * @param key
+         * @param quantity
+         */
+        updateCartItemQuantity(key, quantity) {
+            this.initAbortController();
+            console.log('updateCartItemQuantity(): key, quantity: ', key, quantity);
+            this.cart.items.filter((product)  => {
+                if(product.key === key) {
+                    product.quantity = quantity
+                }
+            })
+            let updates = {};
+            updates[key] = quantity;
+            fetch(window.Shopify.routes.root + 'cart/update.js', {
+                method: 'POST',
+                signal: this.getAbortControllerSignal(),
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ updates }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.resetAbortController();
+                    console.log('updateCartItemQuantity(): ', data);
+
+                    this.$dispatch('cartupdated', this.cart.items);
+                    this.$dispatch('showcartmessage', { status: data.status, message: data.message, description: data.description });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    this.$dispatch('showcartmessage', { status: error?.status, message: error, description: error });
+                });
+        },
+
+        /**
+         * Format monetary values.
+         */
+        moneyFormat(value, minor = true) {
+            return LiquifyHelper.moneyFormat(value, minor)
+        },
+
+        htmlspecialchars_decode(string) {
+            return LiquifyHelper.htmlspecialchars_decode(string)
+        },
+
+        /**
+         * Shows the minicart api message
+         * @param event
+         */
+        showCartMessage(event) {
+            if(event?.detail?.status) {
+                this.cart.response.result = event.detail ?? {}
+                this.cart.response.show = true
+                setTimeout(() => {
+                    this.cart.response.result = {};
+                    this.cart.response.show = false
+                }, this.cart.response.timeout ?? 5000)
+            }
+        },
+
+        async returnCartItems() {
+            await this.getCart();
+
+            this.$dispatch('currentcartitems', this.cart.items);
+        },
+
+        /**
+         * @deprecated
+         */
+        set open(open) { // deprecated use  LiquifyHelper instead
+            //console.warn('Deprecated "set open" in mini_cart')
+        },
+        /**
+         * @deprecated
+         */
+        get open() { // deprecated use  LiquifyHelper instead
+            //console.warn('Deprecated "get open" in mini_cart')
+            return false;
+        },
+        /**
+         * @deprecated
+         */
+        set note(note) { // deprecated
+            //console.warn('Deprecated "set note" in mini_cart')
+            this.cart.note = note;
+        },
+        /**
+         * @deprecated
+         */
+        get note() { // deprecated
+            //console.warn('Deprecated "get note" in mini_cart')
+            return this.cart?.note;
+        },
+        /**
+         * @deprecated
+         */
+        set attributes(attributes) { // deprecated
+            //console.warn('Deprecated "set attributes" in mini_cart')
+            this.cart.attributes = attributes;
+        },
+        /**
+         * @deprecated
+         */
+        get attributes() { // deprecated
+            //console.warn('Deprecated "get attributes" in mini_cart')
+            return this.cart?.attributes;
+        },
+        /**
+         * @deprecated
+         */
+        set original_total_price(original_total_price) { //deprecated
+            //console.warn('Deprecated "set original_total_price" in mini_cart')
+            this.cart.original_total_price = original_total_price;
+        },
+        /**
+         * @deprecated
+         */
+        get original_total_price() { //deprecated
+            //console.warn('Deprecated "get original_total_price" in mini_cart')
+            return this.cart.original_total_price;
+        },
+        /**
+         * @deprecated
+         */
+        set total_price(total_price) { //deprecated
+            //console.warn('Deprecated "set total_price" in mini_cart')
+            this.cart.total_price = total_price;
+        },
+        /**
+         * @deprecated
+         */
+        get total_price() { //deprecated
+            //console.warn('Deprecated "get total_price" in mini_cart')
+            return this.cart.total_price;
+        },
+        /**
+         * @deprecated
+         */
+        set total_discount(total_discount) { //deprecated
+            //console.warn('Deprecated "set total_discount" in mini_cart')
+            this.cart.total_discount = total_discount;
+        },
+        /**
+         * @deprecated
+         */
+        get total_discount() { //deprecated
+            //console.warn('Deprecated "get total_discount" in mini_cart')
+            return this.cart.total_discount;
+        },
+        /**
+         * @deprecated
+         */
+        set total_weight(total_weight) { //deprecated
+            //console.warn('Deprecated "set total_weight" in mini_cart')
+            this.cart.total_discount = total_weight;
+        },
+        /**
+         * @deprecated
+         */
+        get total_weight() { //deprecated
+            //console.warn('Deprecated "get total_weight" in mini_cart')
+            return this.cart.total_weight;
+        },
+        /**
+         * @deprecated
+         */
+        set item_count(item_count) { //deprecated
+            //console.warn('Deprecated "set item_count" in mini_cart')
+            this.cart.total_discount = item_count;
+        },
+        /**
+         * @deprecated
+         */
+        get item_count() { //deprecated
+            //console.warn('Deprecated "get item_count" in mini_cart')
+            return this.cart.item_count;
+        },
+        /**
+         * @deprecated
+         */
+        set items_subtotal_price(items_subtotal_price) { //deprecated
+            //console.warn('Deprecated "set items_subtotal_price" in mini_cart')
+            this.cart.items_subtotal_price = items_subtotal_price;
+        },
+        /**
+         * @deprecated
+         */
+        get items_subtotal_price() { //deprecated
+            //console.warn('Deprecated "get items_subtotal_price" in mini_cart')
+            return this.cart.items_subtotal_price;
+        },
+        /**
+         * @deprecated
+         */
+        set products(products) {
+            //console.warn('Deprecated "set products" in mini_cart')
+            this.cart.items = products;
+        },
+        /**
+         * @deprecated
+         */
+        get products() {
+            //console.warn('Deprecated "get products" in mini_cart')
+            return this.cart.items;
+        },
+        /**
+         * @deprecated
+         */
+        set requires_shipping(requires_shipping) {
+            //console.warn('Deprecated "set requires_shipping" in mini_cart')
+        },
+        /**
+         * @deprecated
+         */
+        get requires_shipping() {
+            //console.warn('Deprecated "get requires_shipping" in mini_cart')
+            return false;
+        },
+        /**
+         * @deprecated
+         */
+        set currency(currency) { //deprecated
+            //console.warn('Deprecated "set currency" in mini_cart')
+            this.cart.currency = currency;
+        },
+        /**
+         * @deprecated
+         */
+        get currency() { //deprecated
+            //console.warn('Deprecated "get currency" in mini_cart')
+            return this.cart.currency;
+        },
+        /**
+         * @deprecated
+         */
+        set cart_level_discount_applications(cart_level_discount_applications) { //deprecated
+            //console.warn('Deprecated "set cart_level_discount_applications" in mini_cart')
+            this.cart.cart_level_discount_applications = cart_level_discount_applications;
+        },
+        /**
+         * @deprecated
+         */
+        get cart_level_discount_applications() { //deprecated
+            //console.warn('Deprecated "get cart_level_discount_applications" in mini_cart')
+            return this.cart.cart_level_discount_applications;
+        },
+        /**
+         * @deprecated
+         */
+        set cartApiResponse(cartApiResponse) { //deprecated
+            //console.warn('Deprecated "set cartApiResponse" in mini_cart')
+            this.cart.cartApiResponse = cartApiResponse;
+        },
+        /**
+         * @deprecated
+         */
+        get cartApiResponse() { //deprecated
+            //console.warn('Deprecated "get cartApiResponse" in mini_cart')
+            return this.cart.response;
+        },
+        /**
+         * @deprecated
+         */
+        set total(total) { //deprecated
+            //console.warn('Deprecated "set total" in mini_cart')
+            this.cart.item_count = total.items;
+            this.cart.total_price = total.price;
+            this.cart.total_weight = total.weight;
+            this.cart.total_discount = total.discount;
+        },
+        /**
+         * @deprecated
+         */
+        get total() { //deprecated
+            //console.warn('Deprecated "get total" in mini_cart')
+            return {
+                items: this.cart.item_count,
+                price: this.cart.total_price,
+                weight: this.cart.total_weight,
+                discount: this.cart.total_discount,
+            };
+        }
+    }))
+
+
+});
+
+</script>
+<script>
+    document.addEventListener('alpine:init', () => {
+
+    Alpine.data('handleMinicart', () => ({
+        init() {
+            console.log('handleMinicart init')
+        },
+        cart: {
+            note: null,
+            attributes: {},
+            items: [],
+            currency: window.Shopify.currency.active,
+            cart_level_discount_applications: [],
+            response: {
+                result : {},
+                show : false,
+                timeout : 5000,
+            },
+            item_count: 0,
+            total_price:0,
+            total_weight: 0,
+            total_discount: 0,
+            original_total_price: 0,
+            items_subtotal_price: 0
+        },
+        _abortController : null,
+        initAbortController() {
+            if(this._abortController) {
+                this._abortController.abort('abort previous request');
+            }
+            this._abortController = new AbortController()
+        },
+        getAbortControllerSignal() {
+            return this._abortController.signal
+        },
+        resetAbortController() {
+            this._abortController = null;
+        },
+        toggleMiniCart() {
+            console.log('(minicart.js) toggleMiniCart called');
+
+            LiquifyHelper.handleTriggerClick();
+
+            this.getCart();
+        },
+
+        /**
+         * Get the cart data.
+         */
+        async getCart() {
+            this.initAbortController()
+            await fetch(window.Shopify.routes.root + 'cart.js', {
+                method: 'GET',
+                signal: this.getAbortControllerSignal(),
+                headers: {'Content-Type': 'application/json'},
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.resetAbortController();
+
+                    this.cart.item_count = data.item_count;
+
+                    this.cart.items = data.items.map((item) => {
+                        item.title = this.htmlspecialchars_decode(item.title)
+                        return item
+                    })
+
+
+                    this.cart.total_price = data.total_price;
+                    this.cart.total_weight = data.total_weight;
+                    this.cart.total_discount = data.total_discount;
+                    this.cart.original_total_price = data.original_total_price;
+
+                    this.$dispatch('carttotalitems', data.item_count);
+                    this.$dispatch('currentcartitems', this.cart.items);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        },
+
+        /**
+         * @param key
+         * @param quantity
+         */
+        increaseCartItemQuantity(key, quantity) {
+            this.updateCartItemQuantity(key, parseInt(quantity) + 1);
+        },
+
+        /**
+         * @param key
+         * @param quantity
+         */
+        decreaseCartItemQuantity(key, quantity) {
+            this.updateCartItemQuantity(key, parseInt(quantity) - 1);
+        },
+
+        /**
+         * Update the cart item.
+         *
+         * @param key
+         * @param quantity
+         */
+        updateCartItemQuantity(key, quantity) {
+            this.initAbortController();
+            console.log('updateCartItemQuantity(): key, quantity: ', key, quantity);
+            this.cart.items.filter((product)  => {
+                if(product.key === key) {
+                    product.quantity = quantity
+                }
+            })
+            let updates = {};
+            updates[key] = quantity;
+            fetch(window.Shopify.routes.root + 'cart/update.js', {
+                method: 'POST',
+                signal: this.getAbortControllerSignal(),
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ updates }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.resetAbortController();
+                    console.log('updateCartItemQuantity(): ', data);
+
+                    this.$dispatch('cartupdated', this.cart.items);
+                    this.$dispatch('showcartmessage', { status: data.status, message: data.message, description: data.description });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    this.$dispatch('showcartmessage', { status: error?.status, message: error, description: error });
+                });
+        },
+
+        /**
+         * Format monetary values.
+         */
+        moneyFormat(value, minor = true) {
+            return LiquifyHelper.moneyFormat(value, minor)
+        },
+
+        htmlspecialchars_decode(string) {
+            return LiquifyHelper.htmlspecialchars_decode(string)
+        },
+
+        /**
+         * Shows the minicart api message
+         * @param event
+         */
+        showCartMessage(event) {
+            if(event?.detail?.status) {
+                this.cart.response.result = event.detail ?? {}
+                this.cart.response.show = true
+                setTimeout(() => {
+                    this.cart.response.result = {};
+                    this.cart.response.show = false
+                }, this.cart.response.timeout ?? 5000)
+            }
+        },
+
+        async returnCartItems() {
+            await this.getCart();
+
+            this.$dispatch('currentcartitems', this.cart.items);
+        },
+
+        /**
+         * @deprecated
+         */
+        set open(open) { // deprecated use  LiquifyHelper instead
+            //console.warn('Deprecated "set open" in mini_cart')
+        },
+        /**
+         * @deprecated
+         */
+        get open() { // deprecated use  LiquifyHelper instead
+            //console.warn('Deprecated "get open" in mini_cart')
+            return false;
+        },
+        /**
+         * @deprecated
+         */
+        set note(note) { // deprecated
+            //console.warn('Deprecated "set note" in mini_cart')
+            this.cart.note = note;
+        },
+        /**
+         * @deprecated
+         */
+        get note() { // deprecated
+            //console.warn('Deprecated "get note" in mini_cart')
+            return this.cart?.note;
+        },
+        /**
+         * @deprecated
+         */
+        set attributes(attributes) { // deprecated
+            //console.warn('Deprecated "set attributes" in mini_cart')
+            this.cart.attributes = attributes;
+        },
+        /**
+         * @deprecated
+         */
+        get attributes() { // deprecated
+            //console.warn('Deprecated "get attributes" in mini_cart')
+            return this.cart?.attributes;
+        },
+        /**
+         * @deprecated
+         */
+        set original_total_price(original_total_price) { //deprecated
+            //console.warn('Deprecated "set original_total_price" in mini_cart')
+            this.cart.original_total_price = original_total_price;
+        },
+        /**
+         * @deprecated
+         */
+        get original_total_price() { //deprecated
+            //console.warn('Deprecated "get original_total_price" in mini_cart')
+            return this.cart.original_total_price;
+        },
+        /**
+         * @deprecated
+         */
+        set total_price(total_price) { //deprecated
+            //console.warn('Deprecated "set total_price" in mini_cart')
+            this.cart.total_price = total_price;
+        },
+        /**
+         * @deprecated
+         */
+        get total_price() { //deprecated
+            //console.warn('Deprecated "get total_price" in mini_cart')
+            return this.cart.total_price;
+        },
+        /**
+         * @deprecated
+         */
+        set total_discount(total_discount) { //deprecated
+            //console.warn('Deprecated "set total_discount" in mini_cart')
+            this.cart.total_discount = total_discount;
+        },
+        /**
+         * @deprecated
+         */
+        get total_discount() { //deprecated
+            //console.warn('Deprecated "get total_discount" in mini_cart')
+            return this.cart.total_discount;
+        },
+        /**
+         * @deprecated
+         */
+        set total_weight(total_weight) { //deprecated
+            //console.warn('Deprecated "set total_weight" in mini_cart')
+            this.cart.total_discount = total_weight;
+        },
+        /**
+         * @deprecated
+         */
+        get total_weight() { //deprecated
+            //console.warn('Deprecated "get total_weight" in mini_cart')
+            return this.cart.total_weight;
+        },
+        /**
+         * @deprecated
+         */
+        set item_count(item_count) { //deprecated
+            //console.warn('Deprecated "set item_count" in mini_cart')
+            this.cart.total_discount = item_count;
+        },
+        /**
+         * @deprecated
+         */
+        get item_count() { //deprecated
+            //console.warn('Deprecated "get item_count" in mini_cart')
+            return this.cart.item_count;
+        },
+        /**
+         * @deprecated
+         */
+        set items_subtotal_price(items_subtotal_price) { //deprecated
+            //console.warn('Deprecated "set items_subtotal_price" in mini_cart')
+            this.cart.items_subtotal_price = items_subtotal_price;
+        },
+        /**
+         * @deprecated
+         */
+        get items_subtotal_price() { //deprecated
+            //console.warn('Deprecated "get items_subtotal_price" in mini_cart')
+            return this.cart.items_subtotal_price;
+        },
+        /**
+         * @deprecated
+         */
+        set products(products) {
+            //console.warn('Deprecated "set products" in mini_cart')
+            this.cart.items = products;
+        },
+        /**
+         * @deprecated
+         */
+        get products() {
+            //console.warn('Deprecated "get products" in mini_cart')
+            return this.cart.items;
+        },
+        /**
+         * @deprecated
+         */
+        set requires_shipping(requires_shipping) {
+            //console.warn('Deprecated "set requires_shipping" in mini_cart')
+        },
+        /**
+         * @deprecated
+         */
+        get requires_shipping() {
+            //console.warn('Deprecated "get requires_shipping" in mini_cart')
+            return false;
+        },
+        /**
+         * @deprecated
+         */
+        set currency(currency) { //deprecated
+            //console.warn('Deprecated "set currency" in mini_cart')
+            this.cart.currency = currency;
+        },
+        /**
+         * @deprecated
+         */
+        get currency() { //deprecated
+            //console.warn('Deprecated "get currency" in mini_cart')
+            return this.cart.currency;
+        },
+        /**
+         * @deprecated
+         */
+        set cart_level_discount_applications(cart_level_discount_applications) { //deprecated
+            //console.warn('Deprecated "set cart_level_discount_applications" in mini_cart')
+            this.cart.cart_level_discount_applications = cart_level_discount_applications;
+        },
+        /**
+         * @deprecated
+         */
+        get cart_level_discount_applications() { //deprecated
+            //console.warn('Deprecated "get cart_level_discount_applications" in mini_cart')
+            return this.cart.cart_level_discount_applications;
+        },
+        /**
+         * @deprecated
+         */
+        set cartApiResponse(cartApiResponse) { //deprecated
+            //console.warn('Deprecated "set cartApiResponse" in mini_cart')
+            this.cart.cartApiResponse = cartApiResponse;
+        },
+        /**
+         * @deprecated
+         */
+        get cartApiResponse() { //deprecated
+            //console.warn('Deprecated "get cartApiResponse" in mini_cart')
+            return this.cart.response;
+        },
+        /**
+         * @deprecated
+         */
+        set total(total) { //deprecated
+            //console.warn('Deprecated "set total" in mini_cart')
+            this.cart.item_count = total.items;
+            this.cart.total_price = total.price;
+            this.cart.total_weight = total.weight;
+            this.cart.total_discount = total.discount;
+        },
+        /**
+         * @deprecated
+         */
+        get total() { //deprecated
+            //console.warn('Deprecated "get total" in mini_cart')
+            return {
+                items: this.cart.item_count,
+                price: this.cart.total_price,
+                weight: this.cart.total_weight,
+                discount: this.cart.total_discount,
+            };
+        }
+    }))
+
+
+});
+
+</script>
+<div data-hover="false" data-delay="0" li-element="mini-cart" class="nav_dropdown is-cart w-dropdown" x-data="handleMinicart()" x-init="getCart()" @cartupdated.window="getCart()" @setcartitem.window="updateCartItemQuantity($event.detail.product, $event.detail.quantity)" @increasecartitem.window="increaseCartItemQuantity($event.detail.product, $event.detail.quantity)" @decreasecartitem.window="decreaseCartItemQuantity($event.detail.product, $event.detail.quantity)" @toggleminicart.window="toggleMiniCart()" @showcartmessage.window="showCartMessage" @getcartitems.window="returnCartItems">
+                    <div li-element="mini-cart-toggle" class="nav_shop-icon w-dropdown-toggle" @click="$dispatch('cartupdated.window')">
+                      <div class="nav_link-item">
+                        <div class="nav-link">CART</div>
+                        <div li-element="mini-cart-item-count" class="nav_shop-quantity" x-data="{ items: 0 }" x-text="items" event.detail="" @carttotalitems.window="items = event.detail">0</div>
+                      </div>
+                    </div>
+                    <nav li-element="mini-cart-container" class="nav_mini-cart-holder w-dropdown-list" :class="open || 'mini-cart-closed'">
+                      <div li-element="dropdown-toggle" class="nav_mini-cart-close" data-dropdowntoggle="" @click="LiquifyHelper.triggerClick($event.target.closest('.w-dropdown').querySelector('.w-dropdown-toggle.w--open'))"></div>
+                      <div class="mini-cart_component">
+                        <div li-element="mini-cart-full" class="mini-cart_full" :style="total.items < 1 && { display: 'none' }">
+                          <div class="mini-cart_line-item no-scrollbar">
+                            <ul role="list" class="mini-cart_line-item_list w-list-unstyled">
+                              <template x-for="product in products" :key="product.key">
+    <template x-for="product in products" :key="product.key">
+    <li li-element="mini-cart-item" class="mini-cart_line-item_item"><img src="../images/product-apparel-2.svg" loading="lazy" alt="" class="mini-cart_line-item_img" x-bind:src="product.image">
+                                <div class="mini-cart_line-item_product-info">
+                                  <div li-js-object="product.title" class="text-size-small" x-text="product.title">Product Title</div>
+                                  <div class="mini-cart_line-item_quantity-text">
+                                    <div class="text-size-small">QTY:  <br></div>
+                                    <div li-js-object="product.quantity" class="text-size-small" x-text="product.quantity">1</div>
+                                  </div>
+                                  <div class="mini-cart_line-item_price">
+                                    <div li-js-price="product.price" class="text-size-small" x-text="LiquifyHelper.moneyFormat(product.price, true, '{{ shop.money_with_currency_format }}')">14,99 $</div>
+                                    <template x-if="product.price < product.original_price">
+            <template x-if="product.price < product.original_price">
+            <div li-js-if="product.price < product.original_price">
+        
+        
+                                      <div li-js-price="product.original_price" class="text-size-small text-style-strikethrough text-style-muted" x-text="LiquifyHelper.moneyFormat(product.original_price, true, '{{ shop.money_with_currency_format }}')">14,99 $</div>
+                                                    </div>
+    </template>
+    </template>
+                                  </div>
+                                  <div li-element="mini-cart-item-remove" class="text-size-tiny text-color-grey text-style-link" :productprop="product" product:="" product.key="" quantity:="" @click="$dispatch('setcartitem', { product: product.key, quantity: 0 })">Remove</div>
+                                </div>
+                              </li></template></template>
+                            </ul>
+                          </div>
+                          <div class="mini-cart_footer">
+                            <div class="mini-cart_footer-total">
+                              <div class="text-size-regular text-weight-bold">Subtotal</div>
+                              <div class="mini-cart_footer-price">
+                                <div li-js-price="total.price" class="text-size-regular text-weight-bold" x-text="LiquifyHelper.moneyFormat(total.price, true, '{{ shop.money_with_currency_format }}')">14,99 $</div>
+                                <template x-if="total.price < original_total_price">
+            <template x-if="total.price < original_total_price">
+            <div li-js-if="total.price < original_total_price" class="mini-cart_conditional">
+        
+        
+                                  <div li-js-price="original_total_price" class="text-size-regular text-weight-bold text-style-strikethrough text-style-muted" x-text="LiquifyHelper.moneyFormat(original_total_price, true, '{{ shop.money_with_currency_format }}')">14,99 $</div>
+                                                </div>
+    </template>
+    </template>
+                              </div>
+                            </div>
+                            <div li-element="mini-cart-api-response" class="mini-cart_footer-message hide">
+                              <div class="mini-cart_footer-message-item">
+                                <div class="text-size-regular text-weight-bold">Message</div>
+                                <div li-js-object="cartApiResponse?.result?.message" class="text-size-regular text-weight-bold" x-text="cartApiResponse?.result?.message">14,99 $</div>
+                              </div>
+                            </div>
+                            <a x-bind:href="'/checkout'" href="#" class="button w-button">Checkout</a>
+                            <a li-object:href="routes.cart_url" href="{{ routes.cart_url }}" class="button is-secondary w-button">View Cart</a>
+                          </div>
+                        </div>
+                        <div li-cloak="hide" li-element="mini-cart-empty" class="mini-cart_empty" :style="total.items && { display: 'none' }">
+                          <div class="mini-cart_empty-content">
+                            <div class="text-size-regular">No Products selected</div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mobilenav">
+          <div class="mobilenav_drawer">
+            {% for link in linklists['main-menu'].links %}    {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="mobilenav_panel-wrap">
+                                    
+                                    
+              
+                            
+                            <div li-object:data-mnav-panel="link.handle" class="mobilenav_panel" data-mnav-panel="{{ link.handle }}">
+                {% if link.links.size > 0 %}    {% if link.links.size > 0 %}    <div li-if="link.links.size > 0" class="mobilenav_sublist">
+    
+    
+                  {% for child_link in link.links %}    {% for child_link in link.links %}    <div li-for="child_link in link.links" class="mobilenav_sublink-wrap">
+                                    
+                                    
+                    
+                            
+                            <a li-object="child_link.title" li-object:href="child_link.url" href="{{ child_link.url }}" class="mobilenav_sublink">{{ child_link.title }}</a>
+                            
+                            
+                  
+                        
+                        </div>
+{% endfor %}
+{% endfor %}
+                        </div>
+{% endif %}
+{% endif %}
+              </div>
+                            
+                            
+            
+                        
+                        </div>
+{% endfor %}
+{% endfor %}
+            <div data-mnav-panel="account" class="mobilenav_panel is-account">
+              {% if customer==blank %}    {% if customer==blank %}    <div li-if="customer==blank" class="mobilenav_sublist">
+    
+    
+                <a li-object:href="routes.account_login_url" href="{{ routes.account_login_url }}" class="mobilenav_sublink">LOGIN</a>
+                <a li-object:href="routes.account_register_url" href="{{ routes.account_register_url }}" class="mobilenav_sublink">REGISTER</a>
+                      </div>
+{% endif %}
+{% endif %}
+            </div>
+          </div>
+          <div class="mobilenav_bar">
+            <div class="mobilenav_row is-level1">
+              <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">MENU</div>
+              </a>
+              <a data-mnav="account" href="{% if customer %}{{ routes.account_url }}{% else %}#{% endif %}" class="mobilenav_item w-inline-block" data-logged-in="{% if customer %}1{% else %}0{% endif %}">
+                <div class="mobilenav_label">ACCOUNT</div>
+              </a>
+              <a data-mnav="search" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">SEARCH</div>
+              </a>
+              <a data-mnav="cart" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">CART</div>
+                <div class="mobilenav_count">0</div>
+              </a>
+            </div>
+            <div class="mobilenav_row is-level2">
+              <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
+                <div class="mobilenav_label">MENU</div>
+              </a>
+              {% for link in linklists['main-menu'].links %}    {% for link in linklists['main-menu'].links %}    <div li-for="link in linklists['main-menu'].links" class="mobilenav_link-wrap">
+                                    
+                                    
+                
+                            
+                            <a li-object:data-mnav-panel="link.handle" li-object:href="link.url" href="{{ link.url }}" class="mobilenav_item w-inline-block" data-mnav-panel="{{ link.handle }}">
+                  <div li-object="link.title" class="mobilenav_label">{{ link.title }}</div>
+                </a>
+                            
+                            
+              
+                        
+                        </div>
+{% endfor %}
+{% endfor %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-embed w-script">
+          <script>
+document.addEventListener('DOMContentLoaded', function () {
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     SHOP SUBMENU
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var leftPill = document.querySelector('.nav_menu-2');
+  var drawer   = document.querySelector('.nav_submenu-drawer');
+  var panels   = document.querySelectorAll('.nav_submenu-panel');
+  var triggers = document.querySelectorAll('.nav_link-item[data-trigger]');
+  if (drawer) {
+    var subCloseTimer = null;
+    gsap.set(drawer, { height: 0, overflow: 'hidden' });
+    gsap.set(panels, { display: 'none' });
+    function openPanel(key) {
+      clearTimeout(subCloseTimer);
+      var panel = drawer.querySelector('[data-panel="' + key + '"]');
+      if (!panel || !panel.querySelector('a')) { closeDrawer(); return; }
+      gsap.set(panels, { display: 'none' });
+      gsap.set(panel, { display: 'block' });
+      gsap.killTweensOf(drawer);
+      if (leftPill) leftPill.classList.add('submenu-is-open');
+      gsap.to(drawer, { height: panel.scrollHeight, duration: 0.45, ease: 'power2.out' });
+    }
+    function closeDrawer() {
+      clearTimeout(subCloseTimer);
+      if (leftPill) leftPill.classList.remove('submenu-is-open');
+      gsap.killTweensOf(drawer);
+      gsap.to(drawer, {
+        height: 0, duration: 0.35, ease: 'power2.inOut',
+        onComplete: function () { gsap.set(panels, { display: 'none' }); }
+      });
+    }
+    function scheduleSubClose() { subCloseTimer = setTimeout(closeDrawer, 250); }
+    triggers.forEach(function (t) {
+      t.addEventListener('mouseenter', function () { openPanel(this.dataset.trigger); });
+      t.addEventListener('mouseleave', scheduleSubClose);
+    });
+    drawer.addEventListener('mouseenter', function () { clearTimeout(subCloseTimer); });
+    drawer.addEventListener('mouseleave', scheduleSubClose);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav_menu-2') && !e.target.closest('.mobilenav')) closeDrawer();
+    });
+  }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     MINI CART
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var cartPill   = document.querySelector('.nav_menu-3');
+  var cartHolder = document.querySelector('.nav_mini-cart-holder');
+  var cartToggle = document.querySelector('.nav_dropdown.is-cart .w-dropdown-toggle');
+  if (cartHolder && cartToggle) {
+    gsap.set(cartHolder, { height: 0, overflow: 'hidden' });
+    var cartCloseTimer = null;
+    var autoCloseTimer = null;
+    var isHovering     = false;
+    cartToggle.setAttribute('data-minicart-trigger', '');
+    function openCart() {
+      clearTimeout(cartCloseTimer);
+      clearTimeout(autoCloseTimer);
+      if (cartPill) cartPill.classList.add('cart-is-open');
+      gsap.killTweensOf(cartHolder);
+      gsap.to(cartHolder, { height: 'auto', duration: 0.5, ease: 'power2.inOut' });
+    }
+    function closeCart() {
+      clearTimeout(cartCloseTimer);
+      clearTimeout(autoCloseTimer);
+      if (cartPill) cartPill.classList.remove('cart-is-open');
+      gsap.killTweensOf(cartHolder);
+      gsap.to(cartHolder, { height: 0, duration: 0.35, ease: 'power2.inOut' });
+    }
+    function scheduleCartClose() { cartCloseTimer = setTimeout(closeCart, 250); }
+    cartToggle.addEventListener('mouseenter', function () { isHovering = true;  openCart(); });
+    cartToggle.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
+    cartHolder.addEventListener('mouseenter', function () { isHovering = true;  clearTimeout(cartCloseTimer); });
+    cartHolder.addEventListener('mouseleave', function () { isHovering = false; scheduleCartClose(); });
+    window.mnavOpenCart  = openCart;
+    window.mnavCloseCart = closeCart;
+	function cancelAutoClose() { clearTimeout(autoCloseTimer); }
+    window.mnavCancelCartAutoClose = cancelAutoClose;
+    ['pointerdown', 'touchstart', 'touchmove', 'wheel', 'scroll', 'keydown'].forEach(function (evt) {
+      cartHolder.addEventListener(evt, cancelAutoClose, { passive: true, capture: true });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav_menu-3') &&
+          !e.target.closest('.nav_mini-cart-holder') &&
+          !e.target.closest('.mobilenav')) closeCart();
+    });
+    var _fetch = window.fetch;
+    window.fetch = function () {
+      var args = arguments;
+      var url  = typeof args[0] === 'string' ? args[0] : (args[0] && args[0].url) || '';
+      var p    = _fetch.apply(this, args);
+      if (url.includes('/cart/add')) {
+        p.then(function (r) {
+          if (r.ok) {
+            openCart();
+            clearTimeout(autoCloseTimer);
+            autoCloseTimer = setTimeout(function () { if (!isHovering) closeCart(); }, 3000);
+          }
+        });
+      }
+      return p;
+    };
+  }
+    /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     NAV SEARCH
+  &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  var searchExpand  = document.querySelector('.nav_search-expand');
+  var searchInput   = document.getElementById('nav-search-input');
+  var searchTrigger = document.querySelector('.nav_menu-search .nav_link-item');
+  if (searchExpand && searchInput) {
+    gsap.set(searchExpand, { width: 0, overflow: 'hidden' });
+    window.openNavSearch = function() {
+      if (searchExpand.offsetWidth > 10) { searchInput.focus(); return; }
+      gsap.killTweensOf(searchExpand);
+      gsap.to(searchExpand, {
+        width: 'auto', duration: 0.35, ease: 'power2.out',
+        onComplete: function() { searchInput.focus(); }
+      });
+    };
+    window.closeNavSearch = function() {
+      var ps = document.querySelector('predictive-search');
+      if (ps) ps.close();
+      gsap.killTweensOf(searchExpand);
+      gsap.to(searchExpand, { width: 0, duration: 0.25, ease: 'power2.inOut' });
+      searchInput.value = '';
+    };
+    window.mnavSearchExpand = searchExpand;
+    window.mnavSearchInput  = searchInput;
+    if (searchTrigger) {
+      searchTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.openNavSearch();
+      });
+    }
+            document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchExpand.offsetWidth > 10) window.closeNavSearch();
+    });
+  }
+});
+</script>
+        </div>
+        <div class="w-embed w-script">
+          <script>
+document.addEventListener('DOMContentLoaded', function () {
+var mnav = document.querySelector('.mobilenav');
+var searchExpand = window.mnavSearchExpand;
+var searchInput = window.mnavSearchInput;
+if (mnav) {
+ var mq = window.matchMedia('(max-width: 991px)');
+ var mBar = mnav.querySelector('.mobilenav_bar');
+ var mDrawer = mnav.querySelector('.mobilenav_drawer');
+ var mPanels = mnav.querySelectorAll('.mobilenav_panel');
+ var mMenuBtns = mnav.querySelectorAll('[data-mnav="menu"]');
+ var mMenuBtn2 = mnav.querySelector('.mobilenav_row.is-level2 [data-mnav="menu"]');
+ var mLevel1 = mnav.querySelector('.mobilenav_row.is-level1');
+ var mLevel2 = mnav.querySelector('.mobilenav_row.is-level2');
+ var mAccount = mnav.querySelector('.mobilenav_row.is-level1 [data-mnav="account"]');
+ var mSearch = mnav.querySelector('.mobilenav_row.is-level1 [data-mnav="search"]');
+ var mCart = mnav.querySelector('.mobilenav_row.is-level1 [data-mnav="cart"]');
+ var mCount = mnav.querySelector('.mobilenav_count');
+ var mCartPill = document.querySelector('.nav_menu-3');
+ var mSrcCount = document.querySelector('[li-element="mini-cart-item-count"]');
+ var mState = 'idle';                       // idle | menu
+ var mPanelKey = null;
+ gsap.set(mLevel2, {display: 'none' });
+ gsap.set(mDrawer, {height: 0, overflow: 'hidden' });
+ gsap.set(mPanels, {display: 'none' });
+ function mSyncAnchors() {
+  if (!mq.matches) return;
+  var r = mBar.getBoundingClientRect();
+  var s = document.documentElement.style;
+  s.setProperty('--mnav-left',    r.left + 'px');
+  s.setProperty('--mnav-right',   (window.innerWidth - r.right) + 'px');
+  s.setProperty('--mnav-bar-top', (window.innerHeight - r.top - 4) + 'px');
+ }
+ mSyncAnchors();
+ window.addEventListener('resize', mSyncAnchors);
+ window.addEventListener('orientationchange', mSyncAnchors);
+ function mClearActive() {
+  mnav.querySelectorAll('.mobilenav_item.is-active').forEach(function (i) {
+   i.classList.remove('is-active');
+   i.setAttribute('aria-expanded', 'false');
+  });
+ }
+ function mSetActive(el) {
+  mClearActive();
+  if (el) {el.classList.add('is-active'); el.setAttribute('aria-expanded', 'true'); }
+ }
+ function mSetMenuOpen(on) {
+  mMenuBtns.forEach(function (b) {
+   b.classList.toggle('is-open', on);
+   b.setAttribute('aria-expanded', on ? 'true' : 'false');
+  });
+ }
+ function mUpdateFades() {
+  if (mState !== 'menu') {
+   mBar.classList.remove('can-scroll-left', 'can-scroll-right');
+   return;
+  }
+  var max = mLevel2.scrollWidth - mLevel2.clientWidth;
+  mBar.classList.toggle('can-scroll-left',  mLevel2.scrollLeft > 2);
+  mBar.classList.toggle('can-scroll-right', mLevel2.scrollLeft < max - 2);
+  var barRect = mBar.getBoundingClientRect();
+  var rowRect = mLevel2.getBoundingClientRect();
+  mBar.style.setProperty('--mnav-fade-right', (barRect.right - rowRect.right) + 'px');
+  if (mMenuBtn2) {
+   var menuRect = mMenuBtn2.getBoundingClientRect();
+   mBar.style.setProperty('--mnav-fade-left', (menuRect.right - barRect.left) + 'px');
+  }
+ }
+ mLevel2.addEventListener('scroll', mUpdateFades, {passive: true });
+ window.addEventListener('resize', mUpdateFades);
+ function mSetRow(level) {
+  var show = level === 2 ? mLevel2 : mLevel1;
+  var hide = level === 2 ? mLevel1 : mLevel2;
+  var kids = Array.prototype.filter.call(show.children, function (c) {
+   return !c.matches('[data-mnav="menu"]');
+  });
+  gsap.killTweensOf(kids);
+  gsap.set(hide, {display: 'none' });
+  gsap.set(show, {clearProps: 'transform,opacity' });
+  gsap.set(show, {display: 'flex' });
+  gsap.fromTo(kids,
+   {opacity: 0, x: level === 2 ? 8 : -8 },
+   {opacity: 1, x: 0, duration: 0.2, ease: 'power2.out', clearProps: 'transform' });
+  if (level === 2) mLevel2.scrollLeft = 0;
+  requestAnimationFrame(mUpdateFades);
+ }
+ function mOpenPanel(key, btn) {
+  var panel = mDrawer.querySelector('.mobilenav_panel[data-mnav-panel="' + key + '"]');
+  if (!panel || !panel.querySelector('a')) return false;
+  gsap.set(mPanels, {display: 'none' });
+  gsap.set(panel, {display: 'block' });
+  panel.scrollTop = 0;
+  mPanelKey = key;
+  mSetActive(btn);
+  mBar.classList.add('drawer-is-open');
+  gsap.killTweensOf(mDrawer);
+  gsap.to(mDrawer, {height: panel.offsetHeight, duration: 0.45, ease: 'power2.out' });
+  return true;
+ }
+ function mCloseDrawer() {
+  if (mPanelKey === null) return;
+  mPanelKey = null;
+  mBar.classList.remove('drawer-is-open');
+  gsap.killTweensOf(mDrawer);
+  gsap.to(mDrawer, {
+   height: 0, duration: 0.35, ease: 'power2.inOut',
+   onComplete: function () {gsap.set(mPanels, {display: 'none' }); }
+  });
+ }
+ function mSearchIsOpen() {return !!searchExpand && searchExpand.offsetHeight > 4; }
+ function mOpenSearch() {
+  if (!searchExpand || !searchInput) return;
+  mSyncAnchors();
+  gsap.killTweensOf(searchExpand);
+  gsap.set(searchExpand, {overflow: 'hidden' });
+  gsap.to(searchExpand, {
+   height: 'auto', duration: 0.35, ease: 'power2.out',
+   onComplete: function () {
+    searchExpand.style.overflow = 'visible';   /* let results escape upward */
+    searchInput.focus();
+   }
+  });
+  mBar.classList.add('drawer-is-open');
+ }
+ function mCloseSearch() {
+  if (!searchExpand || !searchInput) return;
+  if (!mSearchIsOpen()) return;
+  var ps = document.querySelector('predictive-search');
+  if (ps && ps.close) ps.close();
+  searchInput.value = '';
+  searchInput.blur();
+  gsap.killTweensOf(searchExpand);
+  gsap.set(searchExpand, {overflow: 'hidden' });
+  gsap.to(searchExpand, {height: 0, duration: 0.25, ease: 'power2.inOut' });
+  if (mPanelKey === null) mBar.classList.remove('drawer-is-open');
+ }
+ var _openDesktop = window.openNavSearch;
+ var _closeDesktop = window.closeNavSearch;
+ window.openNavSearch = function () {
+  if (mq.matches) {mOpenSearch(); mSetActive(mSearch); }
+  else if (_openDesktop) {_openDesktop(); }
+ };
+ window.closeNavSearch = function () {
+  if (mq.matches) {mCloseSearch(); mClearActive(); }
+  else if (_closeDesktop) {_closeDesktop(); }
+ };
+ function mCartIsOpen() {return !!mCartPill && mCartPill.classList.contains('cart-is-open'); }
+ if (mSrcCount && mCount) {
+  var mSyncCount = function () {mCount.textContent = mSrcCount.textContent.trim(); };
+  mSyncCount();
+  new MutationObserver(mSyncCount)
+   .observe(mSrcCount, {childList: true, characterData: true, subtree: true });
+ }
+ if (mCartPill) {
+  new MutationObserver(function () {
+   var open = mCartIsOpen();
+   if (mCart) {
+     if (open) { mSetActive(mCart); }
+     else {
+      mCart.classList.remove('is-active');
+      mCart.setAttribute('aria-expanded', 'false');
+     }
+    }
+   mBar.classList.toggle('drawer-is-open', open || mPanelKey !== null || mSearchIsOpen());
+   if (open) mSyncAnchors();
+  }).observe(mCartPill, {attributes: true, attributeFilter: ['class'] });
+ }
+ function mCloseAll(except) {
+  if (except !== 'drawer') mCloseDrawer();
+  if (except !== 'search') mCloseSearch();
+  if (except !== 'cart' && mCartIsOpen() && window.mnavCloseCart) window.mnavCloseCart();
+ }
+ function mOpenMenu()  {mState = 'menu'; mCloseAll(); mSetRow(2); mClearActive(); mSetMenuOpen(true); }
+ function mCloseMenu() {mState = 'idle'; mCloseAll(); mSetRow(1); mClearActive(); mSetMenuOpen(false); }
+ mMenuBtns.forEach(function (btn) {
+  btn.setAttribute('aria-expanded', 'false');
+  btn.addEventListener('click', function (e) {
+   e.preventDefault();
+   if (!mq.matches) return;
+   if (mState === 'menu') {mCloseMenu(); } else {mOpenMenu(); }
+  });
+ });
+ if (mAccount) {
+  mAccount.setAttribute('aria-expanded', 'false');
+  mAccount.addEventListener('click', function (e) {
+   if (!mq.matches) return;
+   if (mAccount.getAttribute('data-logged-in') === '1') return;   // real link
+   e.preventDefault();
+   if (mPanelKey === 'account') {mCloseDrawer(); mClearActive(); return; }
+   mCloseAll('drawer');
+   mOpenPanel('account', mAccount);
+  });
+ }
+ if (mSearch) {
+  mSearch.setAttribute('aria-expanded', 'false');
+  mSearch.addEventListener('click', function (e) {
+   e.preventDefault();
+   if (!mq.matches) return;
+   if (mSearchIsOpen()) {mCloseSearch(); mClearActive(); return; }
+   mCloseAll('search');
+   mOpenSearch();
+   mSetActive(mSearch);
+  });
+ }
+ if (mCart) {
+  mCart.setAttribute('aria-expanded', 'false');
+  mCart.addEventListener('click', function (e) {
+   e.preventDefault();
+   if (!mq.matches) return;
+   if (mCartIsOpen()) {if (window.mnavCloseCart) window.mnavCloseCart(); return; }
+   mCloseAll('cart');
+   mSyncAnchors();
+   if (window.mnavOpenCart) window.mnavOpenCart();
+  });
+ }
+ mnav.querySelectorAll('.mobilenav_row.is-level2 .mobilenav_item[data-mnav-panel]')
+   .forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+     if (!mq.matches) return;
+     var key = btn.getAttribute('data-mnav-panel');
+     var panel = mDrawer.querySelector('.mobilenav_panel[data-mnav-panel="' + key + '"]');
+     if (!panel || !panel.querySelector('a')) return;
+     e.preventDefault();
+     if (mPanelKey === key) {mCloseDrawer(); mClearActive(); }
+     else {mOpenPanel(key, btn); }
+    });
+   });
+ document.addEventListener('click', function (e) {
+  if (!mq.matches) return;
+  if (e.target.closest('.mobilenav') ||
+    e.target.closest('.nav_search-expand') ||
+    e.target.closest('.nav_mini-cart-holder')) return;
+  mCloseAll();
+  if (mState === 'menu') {mCloseMenu(); } else {mClearActive(); }
+ });
+ document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape' || !mq.matches) return;
+  mCloseAll();
+  if (mState === 'menu') {mCloseMenu(); } else {mClearActive(); }
+ });
+ mq.addEventListener('change', function (e) {
+  if (!e.matches) {mCloseAll(); mCloseMenu(); }
+  else {mSyncAnchors(); }
+ });
+}
+});
+</script>
+        </div> {% schema %} {
+    "tag": "div",
+    "name": "Header",
+    "class": "section_navbar",
+    "settings": [
+        {
+            "id": "image_logo",
+            "type": "image_picker",
+            "label": "Logo"
+        },
+        {
+            "type": "header",
+            "content": "Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu",
+            "default": "main-menu"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Header",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ],
+    "enabled_on": {
+        "groups": [
+            "*"
+        ]
+    }
+} {% endschema %}
