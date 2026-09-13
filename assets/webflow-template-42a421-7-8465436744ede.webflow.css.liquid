@@ -2716,8 +2716,8 @@ figcaption {
 
 .footer_link-grid {
   z-index: 999;
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
   text-transform: uppercase;
   grid-template-rows: min-content min-content;
   grid-template-columns: 1fr 1fr;
@@ -4996,6 +4996,15 @@ figcaption {
   font-family: Roboto Mono, sans-serif;
 }
 
+.footer_sublink-list {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
 .div-block-19 {
   justify-content: center;
   align-items: center;
@@ -5004,7 +5013,7 @@ figcaption {
 }
 
 .div-block-20 {
-  padding-top: 1rem;
+  padding-top: 3rem;
   display: flex;
 }
 
@@ -5130,6 +5139,10 @@ figcaption {
   .section_navbar {
     z-index: auto;
     position: relative;
+  }
+
+  .section_footer {
+    padding-bottom: 6rem;
   }
 
   .cart_grid-wrapper {
@@ -5490,13 +5503,13 @@ figcaption {
   .footer_link-grid {
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
-    flex-flow: column;
+    flex-flow: row;
     grid-template-rows: min-content min-content;
     grid-template-columns: 1fr 1fr;
     grid-auto-columns: 1fr;
-    place-content: start space-between;
+    place-content: start flex-start;
     place-items: start center;
-    display: grid;
+    display: flex;
   }
 
   .contact_component {
@@ -5985,7 +5998,7 @@ figcaption {
 
   .code-embed-3 {
     width: auto;
-    max-width: 100%;
+    max-width: 40vw;
   }
 
   .container-large-recs {
@@ -6147,6 +6160,10 @@ figcaption {
     font-family: Roboto Mono, sans-serif;
     font-size: 14px;
     font-weight: 400;
+  }
+
+  .div-block-19 {
+    width: auto;
   }
 }
 
@@ -6711,6 +6728,11 @@ figcaption {
     margin-bottom: 0;
   }
 
+  .div-block-5 {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+  }
+
   .product-name-link {
     max-width: 30ch;
   }
@@ -6743,6 +6765,22 @@ figcaption {
 
   .mobilenav_label {
     font-size: 16px;
+  }
+
+  .div-block-18 {
+    grid-column-gap: 3rem;
+    grid-row-gap: 3rem;
+    flex-flow: column;
+    align-items: center;
+    display: flex;
+  }
+
+  .footer_mailing-list_container {
+    max-width: 50vw;
+  }
+
+  .div-block-20 {
+    order: -9999;
   }
 }
 

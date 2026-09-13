@@ -125,8 +125,7 @@
     opacity: 1;
   }
 </style>
-
-<script>
+  <script>
 document.addEventListener('click', function (e) {
   var btn = e.target.closest('[data-back-to-top], a[href="#top"]');
   if (!btn) return;
@@ -135,12 +134,7 @@ document.addEventListener('click', function (e) {
   window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
 });
 </script>
-
-<script src="{{ 'li_helper.js' | asset_url }}" type="text/javascript"></script>{{ content_for_header }}
-
-
-
-</head>
+<script src="{{ 'li_helper.js' | asset_url }}" type="text/javascript"></script>{{ content_for_header }}</head>
 <body>
   <div class="page-wrapper">
     {% render 'global_styles' %}
