@@ -32,10 +32,16 @@
       "settings": {
         "menu": "main-menu"
       }
+    },
+    "blog_speed_sounds_VxAMbz": {
+      "type": "blog_speed_sounds",
+      "name": "Blog Speed Sounds",
+      "settings": {}
     }
   },
   "order": [
     "announcement_bar",
-    "header"
+    "header",
+    "blog_speed_sounds_VxAMbz"
   ]
 }
