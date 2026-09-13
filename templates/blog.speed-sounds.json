@@ -12,11 +12,20 @@
     "blog_articles": {
       "type": "blog_articles",
       "settings": {}
+    },
+    "blog_speed_sounds_8iabbX": {
+      "type": "blog_speed_sounds",
+      "custom_css": [
+        ".padding-global {margin-top: 4rem; margin-bottom: 4rem;}"
+      ],
+      "name": "Blog Speed Sounds",
+      "settings": {}
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "blog_articles"
+    "blog_articles",
+    "blog_speed_sounds_8iabbX"
   ]
 }
