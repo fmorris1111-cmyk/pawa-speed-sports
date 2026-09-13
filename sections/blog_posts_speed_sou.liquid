@@ -1,0 +1,61 @@
+<div class="padding-global padding-section-medium">
+          <div class="blog_component">
+            <div class="blog_featured-item">
+              <div class="blog_featured-image-link">{% assign article = articles[section.settings.article_article] %} 
+                <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-image-wrapper w-inline-block"><img alt="" loading="lazy" li-object:src="article.image.src | image_url: width: 600" src="{{ article.image.src | image_url: width: 600 }}" class="blog_featured-image">
+                  <div class="blog_overlay"></div>
+                </a>
+              </div>
+              <div id="w-node-e812e5be-5058-dc0c-9f09-d9e0925fd943-925fd930" class="blog_two-articles">
+                {% assign blog = blogs[section.settings.blog_blog] %}
+{% for article in blog.articles limit: section.settings.post_limit_blog %}
+<div class="blog_featured-item-content">
+
+                  <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-title-link w-inline-block">
+                    <h3 li-object="article.title" class="blog-card_title">{{ article.title }}</h3>
+                  </a>
+                  <div li-object="article.date" class="text-size-regular">{{ article.date }}</div>
+                  <a li-object:href="article.url" href="{{ article.url }}" class="button is-link is-icon w-inline-block">
+                    <div>Read now</div>
+                    <div class="icon-embed-xxsmall w-embed"><svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3L11 8L6 13" stroke="CurrentColor" stroke-width="1.5"></path>
+                      </svg></div>
+                  </a>
+                </div>
+{% endfor %}
+              </div>
+            </div>
+          </div>
+        </div> {% schema %} {
+    "tag": "section",
+    "name": "Blog posts - Speed S",
+    "class": "section_blog",
+    "settings": [
+        {
+            "id": "article_article",
+            "type": "article",
+            "label": "Article"
+        },
+        {
+            "id": "blog_blog",
+            "type": "blog",
+            "label": "Blog"
+        },
+        {
+            "id": "post_limit_blog",
+            "type": "range",
+            "label": "Posts Blog",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "default": 3
+        }
+    ],
+    "presets": [
+        {
+            "name": "Blog posts - Speed S",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ]
+} {% endschema %}
