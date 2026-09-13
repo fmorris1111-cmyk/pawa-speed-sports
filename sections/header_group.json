@@ -32,19 +32,10 @@
       "settings": {
         "menu": "main-menu"
       }
-    },
-    "blog_speed_sounds_JMAK3L": {
-      "type": "blog_speed_sounds",
-      "custom_css": [
-        ".padding-global {margin-top: 4rem; margin-bottom: 4rem;}"
-      ],
-      "name": "Blog Speed Sounds",
-      "settings": {}
     }
   },
   "order": [
     "announcement_bar",
-    "header",
-    "blog_speed_sounds_JMAK3L"
+    "header"
   ]
 }
