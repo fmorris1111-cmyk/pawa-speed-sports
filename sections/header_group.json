@@ -33,8 +33,11 @@
         "menu": "main-menu"
       }
     },
-    "blog_speed_sounds_VxAMbz": {
+    "blog_speed_sounds_JMAK3L": {
       "type": "blog_speed_sounds",
+      "custom_css": [
+        ".padding-global {margin-top: 6rem; margin-bottom: 6rem;}"
+      ],
       "name": "Blog Speed Sounds",
       "settings": {}
     }
@@ -42,6 +45,6 @@
   "order": [
     "announcement_bar",
     "header",
-    "blog_speed_sounds_VxAMbz"
+    "blog_speed_sounds_JMAK3L"
   ]
 }
