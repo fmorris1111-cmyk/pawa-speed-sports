@@ -12,21 +12,11 @@
     "blog_articles": {
       "type": "blog_articles",
       "settings": {}
-    },
-    "blog_posts_speed_sou_NzaEm7": {
-      "type": "blog_posts_speed_sou",
-      "name": "Blog posts - Speed S",
-      "settings": {
-        "article_article": "",
-        "blog_blog": "speed-sounds",
-        "post_limit_blog": 12
-      }
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "blog_articles",
-    "blog_posts_speed_sou_NzaEm7"
+    "blog_articles"
   ]
 }
