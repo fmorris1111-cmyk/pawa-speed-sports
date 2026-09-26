@@ -1,24 +1,78 @@
-<div li-object:style="section.settings.cols_d | prepend: '--cols-d: ' | append: '; --cols-m: ' | append: section.settings.cols_m | append: '; --gap: ' | append: section.settings.gap | append: 'px' | append: '; --ratio: ' | append: section.settings.ratio | append: '; --h-d: ' | append: section.settings.lock_ratio | replace: 'true', 'auto' | replace: 'false', 'HHvh' | replace: 'HH', section.settings.h_d | append: '; --h-m: ' | append: section.settings.lock_ratio | replace: 'true', 'auto' | replace: 'false', 'MMvh' | replace: 'MM', section.settings.h_m | append: '; --group: ' | append: section.settings.group_link | replace: 'true', 'flex' | replace: 'false', 'none' | append: '; --item: ' | append: section.settings.group_link | replace: 'true', 'none' | replace: 'false', 'flex' | append: '; --group-on: ' | append: section.settings.group_link | replace: 'true', '1' | replace: 'false', '0'" class="content-grid" style="{{ section.settings.cols_d | prepend: '--cols-d: ' | append: '; --cols-m: ' | append: section.settings.cols_m | append: '; --gap: ' | append: section.settings.gap | append: 'px' | append: '; --ratio: ' | append: section.settings.ratio | append: '; --h-d: ' | append: section.settings.lock_ratio | replace: 'true', 'auto' | replace: 'false', 'HHvh' | replace: 'HH', section.settings.h_d | append: '; --h-m: ' | append: section.settings.lock_ratio | replace: 'true', 'auto' | replace: 'false', 'MMvh' | replace: 'MM', section.settings.h_m | append: '; --group: ' | append: section.settings.group_link | replace: 'true', 'flex' | replace: 'false', 'none' | append: '; --item: ' | append: section.settings.group_link | replace: 'true', 'none' | replace: 'false', 'flex' | append: '; --group-on: ' | append: section.settings.group_link | replace: 'true', '1' | replace: 'false', '0' }}">
-          <div li-object:style="block.settings.hide_desktop | prepend: '--col-d: ' | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --col-m: ' | append: block.settings.hide_mobile | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --span-d: ' | append: block.settings.span_d | append: '; --span-m: ' | append: block.settings.span_m" li-block="images" class="content-grid_col" style="{{ block.settings.hide_desktop | prepend: '--col-d: ' | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --col-m: ' | append: block.settings.hide_mobile | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --span-d: ' | append: block.settings.span_d | append: '; --span-m: ' | append: block.settings.span_m }}">
-            <div li-object:style="block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%'" class="content-grid_item" style="{{ block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%' }}">
-              <a href="{{ section.settings.url_image_link_url }}" class="content-grid_cover-link w-inline-block"> </a>{% if section.settings.image_image %}
+<div li-object:style="block.settings.hide_desktop | prepend: '--col-d: ' | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --col-m: ' | append: block.settings.hide_mobile | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --span-d: ' | append: block.settings.span_d | append: '; --span-m: ' | append: block.settings.span_m" li-block="images" class="content-grid_col" style="{{ block.settings.hide_desktop | prepend: '--col-d: ' | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --col-m: ' | append: block.settings.hide_mobile | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --span-d: ' | append: block.settings.span_d | append: '; --span-m: ' | append: block.settings.span_m }}">
+          <div li-object:style="block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%'" class="content-grid_item" style="{{ block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%' }}">
+            <a href="{{ section.settings.url_image_link_url }}" class="content-grid_cover-link w-inline-block"> </a>{% if section.settings.image_image %}
 {{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'content-grid_image' }}
 {% else %}
 <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="content-grid_image">
 {% endif %}
-              <div class="content-grid_overlay"></div>
-              <div class="content-grid_hover">
-                <a href="{{ section.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ section.settings.text_link_text }} </a>
-                <a href="{{ section.settings.url_button_url }}" class="content-grid_cta w-button"> {{ section.settings.text_button_text }} </a>
-              </div>
+            <div class="content-grid_overlay"></div>
+            <div class="content-grid_hover">
+              <a href="{{ section.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ section.settings.text_link_text }} </a>
+              <a href="{{ section.settings.url_button_url }}" class="content-grid_cta w-button"> {{ section.settings.text_button_text }} </a>
             </div>
-            
           </div>
-          <a li-object:href="section.settings.grid_url" href="{{ section.settings.grid_url }}" class="content-grid_group-link w-inline-block"></a>
-          <div class="content-grid_group-hover">
-            <a li-object:href="section.settings.grid_url" li-object="section.settings.grid_text" href="{{ section.settings.grid_url }}" class="content-grid_text-link w-inline-block">{{ section.settings.grid_text }}</a>
-            <a li-object="section.settings.grid_cta" li-object:href="section.settings.grid_url" href="{{ section.settings.grid_url }}" class="content-grid_cta w-button">{{ section.settings.grid_cta }}</a>
-          </div>
+          
+        </div>
+        <a li-object:href="section.settings.grid_url" href="{{ section.settings.grid_url }}" class="content-grid_group-link w-inline-block"></a>
+        <div class="content-grid_group-hover">
+          <a li-object:href="section.settings.grid_url" li-object="section.settings.grid_text" href="{{ section.settings.grid_url }}" class="content-grid_text-link w-inline-block">{{ section.settings.grid_text }}</a>
+          <a li-object="section.settings.grid_cta" li-object:href="section.settings.grid_url" href="{{ section.settings.grid_url }}" class="content-grid_cta w-button">{{ section.settings.grid_cta }}</a>
+        </div>
+        
+        <div class="w-embed">
+          <style>
+#shopify-section-{{ section.id }} {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat({{ section.settings.cols_d }}, 1fr);
+  gap: {{ section.settings.gap }}px;
+}
+#shopify-section-{{ section.id }} .content-grid_item {
+{% if section.settings.lock_ratio %}
+  aspect-ratio: {{ section.settings.ratio }};
+  height: auto;
+{% else %}
+  aspect-ratio: auto;
+  height: {{ section.settings.h_d }}vh;
+{% endif %}
+}
+#shopify-section-{{ section.id }} .content-grid_hover {
+  display: {% if section.settings.group_link %}none{% else %}flex{% endif %};
+}
+#shopify-section-{{ section.id }} .content-grid_group-link,
+#shopify-section-{{ section.id }} .content-grid_group-hover {
+  display: {% if section.settings.group_link %}flex{% else %}none{% endif %};
+}
+#shopify-section-{{ section.id }}:hover .content-grid_overlay {
+  opacity: {% if section.settings.group_link %}1{% else %}0{% endif %};
+}
+#shopify-section-{{ section.id }}:hover .content-grid_group-hover {
+  opacity: 1;
+}
+#shopify-section-{{ section.id }} .content-grid_item:hover .content-grid_overlay,
+#shopify-section-{{ section.id }} .content-grid_item:hover .content-grid_hover {
+  opacity: 1;
+}
+@media (hover: none), (pointer: coarse) {
+  #shopify-section-{{ section.id }} .content-grid_overlay,
+  #shopify-section-{{ section.id }} .content-grid_hover,
+  #shopify-section-{{ section.id }} .content-grid_group-hover {
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 767px) {
+  #shopify-section-{{ section.id }} {
+    grid-template-columns: repeat({{ section.settings.cols_m }}, 1fr);
+  }
+  #shopify-section-{{ section.id }} .content-grid_item {
+{% if section.settings.lock_ratio %}
+    height: auto;
+{% else %}
+    height: {{ section.settings.h_m }}vh;
+{% endif %}
+  }
+}
+</style>
         </div> {% schema %} {
     "tag": "div",
     "name": "Content Grid Home",
