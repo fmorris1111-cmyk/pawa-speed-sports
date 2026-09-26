@@ -9,16 +9,13 @@
 {% else %}
 <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="content-grid_image">
 {% endif %}
+            <div class="w-embed"><video class="content-grid_video" autoplay="" muted="" loop="" playsinline="" preload="metadata" style="{% if block.settings.video_mp4 == blank %}display: none;{% endif %}">
+                {% if block.settings.video_webm != blank %}
+                <source src="{{ block.settings.video_webm }}" type="video/webm"></video></div>
             <div class="content-grid_overlay"></div>
             <div class="content-grid_hover">
               <a href="{{ block.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ block.settings.text_link_text }} </a>
               <a href="{{ block.settings.url_button_url }}" class="content-grid_cta w-button"> {{ block.settings.text_button_text }} </a>
-            </div>
-            <div class="w-embed">{% if block.settings.video_mp4 != blank %}
-              <video class="content-grid_video" autoplay="" muted="" loop="" playsinline="" preload="metadata">
-                {% if block.settings.video_webm != blank %}
-                <source src="{{ block.settings.video_webm }}" type="video/webm"></video>
-              {% endif %}
             </div>
           </div>
                                     
