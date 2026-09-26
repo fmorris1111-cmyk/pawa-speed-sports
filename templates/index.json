@@ -26,7 +26,6 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/ezgif-7fc9dc27afbef93a-ezgif.com-optimize.gif",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -38,7 +37,7 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": ""
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/0061f282d539478b9f611229075325fb.mp4"
           }
         },
         "images_at4UMi": {
