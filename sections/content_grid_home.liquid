@@ -1,18 +1,28 @@
-<div li-object:style="block.settings.hide_desktop | prepend: '--col-d: ' | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --col-m: ' | append: block.settings.hide_mobile | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --span-d: ' | append: block.settings.span_d | append: '; --span-m: ' | append: block.settings.span_m" li-block="images" class="content-grid_col" style="{{ block.settings.hide_desktop | prepend: '--col-d: ' | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --col-m: ' | append: block.settings.hide_mobile | replace: 'true', 'none' | replace: 'false', 'block' | append: '; --span-d: ' | append: block.settings.span_d | append: '; --span-m: ' | append: block.settings.span_m }}">
-          <div li-object:style="block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%'" class="content-grid_item" style="{{ block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%' }}">
-            <a href="{{ section.settings.url_image_link_url }}" class="content-grid_cover-link w-inline-block"> </a>{% if section.settings.image_image %}
-{{ section.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'content-grid_image' }}
+{% for block in section.blocks %}
+    {% if block.type == "images" %}
+                    <div li-block="images" class="content-grid_col">
+                                    
+          
+                                    <div li-object:style="block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%'" class="content-grid_item" style="{{ block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%' }}">
+            <a href="{{ block.settings.url_image_link_url }}" class="content-grid_cover-link w-inline-block"> </a>{% if block.settings.image_image %}
+{{ block.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'content-grid_image' }}
 {% else %}
 <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="content-grid_image">
 {% endif %}
             <div class="content-grid_overlay"></div>
             <div class="content-grid_hover">
-              <a href="{{ section.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ section.settings.text_link_text }} </a>
-              <a href="{{ section.settings.url_button_url }}" class="content-grid_cta w-button"> {{ section.settings.text_button_text }} </a>
+              <a href="{{ block.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ block.settings.text_link_text }} </a>
+              <a href="{{ block.settings.url_button_url }}" class="content-grid_cta w-button"> {{ block.settings.text_button_text }} </a>
             </div>
           </div>
+                                    
           
-        </div>
+                                    
+                                    
+        
+                            </div>
+            {% endif %}
+{% endfor %}
         <a li-object:href="section.settings.grid_url" href="{{ section.settings.grid_url }}" class="content-grid_group-link w-inline-block"></a>
         <div class="content-grid_group-hover">
           <a li-object:href="section.settings.grid_url" li-object="section.settings.grid_text" href="{{ section.settings.grid_url }}" class="content-grid_text-link w-inline-block">{{ section.settings.grid_text }}</a>
@@ -24,8 +34,12 @@
 #shopify-section-{{ section.id }} {
   position: relative;
   display: grid;
+  place-items: stretch;
   grid-template-columns: repeat({{ section.settings.cols_d }}, 1fr);
   gap: {{ section.settings.gap }}px;
+}
+#shopify-section-{{ section.id }} > .w-embed {
+  display: none;
 }
 #shopify-section-{{ section.id }} .content-grid_item {
 {% if section.settings.lock_ratio %}
@@ -36,6 +50,12 @@
   height: {{ section.settings.h_d }}vh;
 {% endif %}
 }
+{% for block in section.blocks %}
+#shopify-section-{{ section.id }} > .content-grid_col:nth-child({{ forloop.index }}) {
+  display: {% if block.settings.hide_desktop %}none{% else %}block{% endif %};
+  grid-column: {{ block.settings.span_d }};
+}
+{% endfor %}
 #shopify-section-{{ section.id }} .content-grid_hover {
   display: {% if section.settings.group_link %}none{% else %}flex{% endif %};
 }
@@ -71,125 +91,139 @@
     height: {{ section.settings.h_m }}vh;
 {% endif %}
   }
+{% for block in section.blocks %}
+  #shopify-section-{{ section.id }} > .content-grid_col:nth-child({{ forloop.index }}) {
+    display: {% if block.settings.hide_mobile %}none{% else %}block{% endif %};
+    grid-column: {{ block.settings.span_m }};
+  }
+{% endfor %}
 }
 </style>
         </div> {% schema %} {
     "tag": "div",
     "name": "Content Grid Home",
     "class": "div-block-2",
+    "blocks": [
+        {
+            "name": "images",
+            "type": "images",
+            "settings": [
+                {
+                    "id": "url_image_link_url",
+                    "type": "url",
+                    "label": "Image Link URL"
+                },
+                {
+                    "id": "image_image",
+                    "type": "image_picker",
+                    "label": "Image"
+                },
+                {
+                    "id": "url_link_url",
+                    "type": "url",
+                    "label": "Link URL"
+                },
+                {
+                    "id": "text_link_text",
+                    "type": "text",
+                    "label": "Link Text",
+                    "default": "Lorem Ipsum"
+                },
+                {
+                    "id": "url_button_url",
+                    "type": "url",
+                    "label": "Button Url"
+                },
+                {
+                    "id": "text_button_text",
+                    "type": "text",
+                    "label": "Button Text",
+                    "default": "Button Text"
+                },
+                {
+                    "type": "range",
+                    "id": "image_pos_x",
+                    "label": "Horizontal position",
+                    "min": 0,
+                    "max": 100,
+                    "step": 5,
+                    "unit": "%",
+                    "default": 50
+                },
+                {
+                    "type": "range",
+                    "id": "image_pos_y",
+                    "label": "Vertical position",
+                    "min": 0,
+                    "max": 100,
+                    "step": 5,
+                    "unit": "%",
+                    "default": 50
+                },
+                {
+                    "type": "header",
+                    "content": "Visibility and width"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "hide_desktop",
+                    "label": "Hide on desktop",
+                    "default": false
+                },
+                {
+                    "type": "checkbox",
+                    "id": "hide_mobile",
+                    "label": "Hide on mobile",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "span_d",
+                    "label": "Width - desktop",
+                    "options": [
+                        {
+                            "value": "auto",
+                            "label": "1 column"
+                        },
+                        {
+                            "value": "span 2",
+                            "label": "2 columns"
+                        },
+                        {
+                            "value": "span 3",
+                            "label": "3 columns"
+                        },
+                        {
+                            "value": "1 \/ -1",
+                            "label": "Full row"
+                        }
+                    ],
+                    "default": "auto"
+                },
+                {
+                    "type": "select",
+                    "id": "span_m",
+                    "label": "Width - mobile",
+                    "options": [
+                        {
+                            "value": "auto",
+                            "label": "1 column"
+                        },
+                        {
+                            "value": "span 2",
+                            "label": "2 columns"
+                        },
+                        {
+                            "value": "1 \/ -1",
+                            "label": "Full row"
+                        }
+                    ],
+                    "default": "auto"
+                }
+            ]
+        }
+    ],
     "settings": [
-        {
-            "id": "url_image_link_url",
-            "type": "url",
-            "label": "Image Link URL"
-        },
-        {
-            "id": "image_image",
-            "type": "image_picker",
-            "label": "Image"
-        },
-        {
-            "id": "url_link_url",
-            "type": "url",
-            "label": "Link URL"
-        },
-        {
-            "id": "text_link_text",
-            "type": "text",
-            "label": "Link Text",
-            "default": "Lorem Ipsum"
-        },
-        {
-            "id": "url_button_url",
-            "type": "url",
-            "label": "Button Url"
-        },
-        {
-            "id": "text_button_text",
-            "type": "text",
-            "label": "Button Text",
-            "default": "Button Text"
-        },
-        {
-            "type": "range",
-            "id": "image_pos_x",
-            "label": "Horizontal position",
-            "min": 0,
-            "max": 100,
-            "step": 5,
-            "unit": "%",
-            "default": 50
-        },
-        {
-            "type": "range",
-            "id": "image_pos_y",
-            "label": "Vertical position",
-            "min": 0,
-            "max": 100,
-            "step": 5,
-            "unit": "%",
-            "default": 50
-        },
-        {
-            "type": "header",
-            "content": "Visibility and width"
-        },
-        {
-            "type": "checkbox",
-            "id": "hide_desktop",
-            "label": "Hide on desktop",
-            "default": false
-        },
-        {
-            "type": "checkbox",
-            "id": "hide_mobile",
-            "label": "Hide on mobile",
-            "default": false
-        },
-        {
-            "type": "select",
-            "id": "span_d",
-            "label": "Width - desktop",
-            "options": [
-                {
-                    "value": "auto",
-                    "label": "1 column"
-                },
-                {
-                    "value": "span 2",
-                    "label": "2 columns"
-                },
-                {
-                    "value": "span 3",
-                    "label": "3 columns"
-                },
-                {
-                    "value": "1 \/ -1",
-                    "label": "Full row"
-                }
-            ],
-            "default": "auto"
-        },
-        {
-            "type": "select",
-            "id": "span_m",
-            "label": "Width - mobile",
-            "options": [
-                {
-                    "value": "auto",
-                    "label": "1 column"
-                },
-                {
-                    "value": "span 2",
-                    "label": "2 columns"
-                },
-                {
-                    "value": "1 \/ -1",
-                    "label": "Full row"
-                }
-            ],
-            "default": "auto"
-        },
         {
             "type": "header",
             "content": "Layout"
@@ -345,7 +379,11 @@
         {
             "name": "Content Grid Home",
             "category": "Liquify",
-            "blocks": []
+            "blocks": [
+                {
+                    "type": "images"
+                }
+            ]
         }
     ]
 } {% endschema %}
