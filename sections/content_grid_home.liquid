@@ -14,6 +14,12 @@
               <a href="{{ block.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ block.settings.text_link_text }} </a>
               <a href="{{ block.settings.url_button_url }}" class="content-grid_cta w-button"> {{ block.settings.text_button_text }} </a>
             </div>
+            <div class="w-embed">{% if block.settings.video_mp4 != blank %}
+              <video class="content-grid_video" autoplay="" muted="" loop="" playsinline="" preload="metadata">
+                {% if block.settings.video_webm != blank %}
+                <source src="{{ block.settings.video_webm }}" type="video/webm"></video>
+              {% endif %}
+            </div>
           </div>
                                     
           
@@ -219,6 +225,20 @@
                         }
                     ],
                     "default": "auto"
+                },
+                {
+                    "type": "header",
+                    "content": "Animation (optional)"
+                },
+                {
+                    "type": "text",
+                    "id": "video_webm",
+                    "label": "WebM URL"
+                },
+                {
+                    "type": "text",
+                    "id": "video_mp4",
+                    "label": "MP4 URL"
                 }
             ]
         }
