@@ -1,0 +1,98 @@
+<div class="ticker_row">{% if section.settings.image_default_image %}
+{{ section.settings.image_default_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'img-ticker_src-default' }}
+{% else %}
+<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="img-ticker_src-default">
+{% endif %}{% if section.settings.image_active_image %}
+{{ section.settings.image_active_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'img-ticker_src-active' }}
+{% else %}
+<img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="img-ticker_src-active">
+{% endif %}</div>
+        <div class="w-embed">[
+          { "type": "header", "content": "Layout" },
+          { "type": "range", "id": "count_d", "label": "Figures - desktop", "min": 4, "max": 20, "step": 1, "default": 10 },
+          { "type": "range", "id": "count_m", "label": "Figures - mobile", "min": 2, "max": 10, "step": 1, "default": 5 },
+          { "type": "range", "id": "pad", "label": "Band padding", "min": 0, "max": 64, "step": 2, "unit": "px", "default": 16 },
+          { "type": "range", "id": "gap", "label": "Gap between figures", "min": 0, "max": 64, "step": 2, "unit": "px", "default": 8 },
+          { "type": "color", "id": "bg", "label": "Band background", "default": "#f2f2f2" },
+          { "type": "header", "content": "Animation" },
+          { "type": "range", "id": "step_ms", "label": "Time per figure", "min": 60, "max": 600, "step": 20, "unit": "ms", "default": 180 },
+          { "type": "range", "id": "slow_ms", "label": "Slow-down on hover", "min": 100, "max": 2000, "step": 50, "unit": "ms", "default": 700 },
+          { "type": "range", "id": "resume_ms", "label": "Spin back up", "min": 100, "max": 2000, "step": 50, "unit": "ms", "default": 600 },
+          { "type": "select", "id": "ease", "label": "Slow-down feel",
+          "options": [
+          {"value":"power3.out","label":"Smooth"},
+          {"value":"power1.out","label":"Gentle"},
+          {"value":"expo.out","label":"Sharp"},
+          {"value":"back.out(1.2)","label":"Overshoot"}
+          ],
+          "default": "power3.out" },
+          { "type": "checkbox", "id": "hover_on", "label": "Slow down on hover", "default": true }
+          ]</div>
+        <div class="w-embed">
+          <style>
+#shopify-section-{{ section.id }} .ticker_row {
+  --count: {{ section.settings.count_d }};
+  --step-ms: {{ section.settings.step_ms }};
+  --slow-ms: {{ section.settings.slow_ms }};
+  --resume-ms: {{ section.settings.resume_ms }};
+  --hover-on: {% if section.settings.hover_on %}1{% else %}0{% endif %};
+  --ease: {{ section.settings.ease }};
+  display: grid;
+  grid-template-columns: repeat(var(--count), 1fr);
+  align-items: center;
+  gap: {{ section.settings.gap }}px;
+  padding: {{ section.settings.pad }}px;
+  background: {{ section.settings.bg }};
+}
+#shopify-section-{{ section.id }} .ticker_src-default,
+#shopify-section-{{ section.id }} .ticker_src-active {
+  display: none;
+}
+#shopify-section-{{ section.id }} .ticker_item {
+  position: relative;
+  min-width: 0;
+}
+#shopify-section-{{ section.id }} .ticker_item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#shopify-section-{{ section.id }} .ticker_on {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 110ms linear;
+}
+#shopify-section-{{ section.id }} .ticker_item.is-active .ticker_on {
+  opacity: 1;
+}
+@media screen and (max-width: 767px) {
+  #shopify-section-{{ section.id }} .ticker_row {
+    --count: {{ section.settings.count_m }};
+  }
+}
+</style>
+        </div> {% schema %} {
+    "tag": "div",
+    "name": "Boy Ticker",
+    "class": "ticker_section",
+    "settings": [
+        {
+            "id": "image_default_image",
+            "type": "image_picker",
+            "label": "Default Image"
+        },
+        {
+            "id": "image_active_image",
+            "type": "image_picker",
+            "label": "Active Image"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Boy Ticker",
+            "category": "Liquify",
+            "blocks": []
+        }
+    ]
+} {% endschema %}
