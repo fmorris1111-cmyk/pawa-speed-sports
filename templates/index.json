@@ -19,10 +19,85 @@
         "text_video_url": "https://cdn.shopify.com/videos/c/o/v/6c4e8a03e5f442368c6aa313f00a8c2d.mp4"
       }
     },
+    "content_grid_home_Whcmkf": {
+      "type": "content_grid_home",
+      "blocks": {
+        "images_YnJcnr": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/ezgif-7fc9dc27afbef93a-ezgif.com-optimize.gif",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": true,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        },
+        "images_at4UMi": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0000_R1-08152-0000.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": true,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        },
+        "images_3WfCe3": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0017_R1-08152-0029.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": true,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "images_YnJcnr",
+        "images_at4UMi",
+        "images_3WfCe3"
+      ],
+      "name": "Mobile Hero",
+      "settings": {
+        "cols_d": "3",
+        "cols_m": "1",
+        "gap": 0,
+        "lock_ratio": true,
+        "ratio": "4 / 5",
+        "h_d": 60,
+        "h_m": 45,
+        "group_link": false,
+        "grid_url": "",
+        "grid_text": "Season 6",
+        "grid_cta": "Shop"
+      }
+    },
     "content_grid_home_jGYeFB": {
       "type": "content_grid_home",
       "blocks": {
-        "images_xWHKzc": {
+        "images_GBPtXw": {
           "type": "images",
           "settings": {
             "url_image_link_url": "",
@@ -34,7 +109,7 @@
             "image_pos_x": 50,
             "image_pos_y": 50,
             "hide_desktop": false,
-            "hide_mobile": false,
+            "hide_mobile": true,
             "span_d": "auto",
             "span_m": "auto"
           }
@@ -51,7 +126,7 @@
             "image_pos_x": 50,
             "image_pos_y": 50,
             "hide_desktop": false,
-            "hide_mobile": false,
+            "hide_mobile": true,
             "span_d": "auto",
             "span_m": "auto"
           }
@@ -68,29 +143,29 @@
             "image_pos_x": 50,
             "image_pos_y": 50,
             "hide_desktop": false,
-            "hide_mobile": false,
+            "hide_mobile": true,
             "span_d": "auto",
             "span_m": "auto"
           }
         }
       },
       "block_order": [
-        "images_xWHKzc",
+        "images_GBPtXw",
         "images_yj6GE7",
         "images_7QbnRH"
       ],
-      "name": "Content Grid Home",
+      "name": "Desktop Hero",
       "settings": {
         "cols_d": "3",
-        "cols_m": "2",
+        "cols_m": "1",
         "gap": 0,
         "lock_ratio": true,
-        "ratio": "3 / 4",
+        "ratio": "4 / 5",
         "h_d": 60,
         "h_m": 45,
         "group_link": true,
         "grid_url": "",
-        "grid_text": "",
+        "grid_text": "Season 6",
         "grid_cta": "Shop"
       }
     },
@@ -133,10 +208,68 @@
     },
     "content_grid_home_hdzyeT": {
       "type": "content_grid_home",
+      "blocks": {
+        "images_MhVqAY": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0008_R1-09636-0033.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        },
+        "images_jYppJi": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0030_R1-08911-011A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        },
+        "images_GULVch": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0001_R1-08909-011A-2.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "images_MhVqAY",
+        "images_jYppJi",
+        "images_GULVch"
+      ],
       "name": "Content Grid Home",
       "settings": {
         "cols_d": "3",
-        "cols_m": "2",
+        "cols_m": "1",
         "gap": 0,
         "lock_ratio": true,
         "ratio": "4 / 5",
@@ -178,10 +311,10 @@
       "type": "featured_products",
       "name": "Featured products",
       "settings": {
-        "text_heading": "NEW ARRIVALS",
-        "url_button_link": "shopify://collections/sale",
+        "text_heading": "T-Shirts",
+        "url_button_link": "shopify://collections/t-shirts",
         "text_button_text": "SHOP ALL",
-        "collection_collection": "sale",
+        "collection_collection": "t-shirts",
         "collection_collection_limit": 12
       }
     }
@@ -190,6 +323,7 @@
   "wrapper": "main.main-wrapper",
   "order": [
     "hero_video",
+    "content_grid_home_Whcmkf",
     "content_grid_home_jGYeFB",
     "content_grid",
     "featured_products_RRPnyj",
