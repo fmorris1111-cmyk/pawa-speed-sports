@@ -330,6 +330,14 @@
       "disabled": true,
       "settings": {}
     },
+    "boy_ticker_QbjfXq": {
+      "type": "boy_ticker",
+      "name": "Boy Ticker",
+      "settings": {
+        "image_default_image": "shopify://shop_images/image_1.png",
+        "image_active_image": "shopify://shop_images/image.png"
+      }
+    },
     "featured_products_RhtRKj": {
       "type": "featured_products",
       "name": "Featured products",
@@ -357,6 +365,7 @@
     "featured_products_RRPnyj",
     "content_grid_home_hdzyeT",
     "content_grid_VYrH8L",
+    "boy_ticker_QbjfXq",
     "featured_products_RhtRKj"
   ]
 }
