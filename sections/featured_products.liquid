@@ -54,21 +54,12 @@
 {% else %}
 <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="product_media-image">
 {% endif %}
-                <div class="w-embed"><video class="product_media-video" autoplay="" muted="" loop="" playsinline="" preload="metadata" poster="{% if section.settings.image_media_image %}{{ section.settings.image_media_image | image_url: width: 1200 }}{% endif %}" style="{% if section.settings.media_mp4 == blank %}display: none;{% endif %}">
-                    {% if section.settings.media_webm != blank %}
-                    <source src="{{ section.settings.media_webm }}" type="video/webm"></video></div>
+                <div class="w-embed"><video class="product_media-video" autoplay="" muted="" loop="" playsinline="" preload="metadata" poster="{% if section.settings.image_media_image %}{{ section.settings.image_media_image | image_url: width: 1200 }}{% endif %}" src="{% if section.settings.media_mp4 != blank %}{{ section.settings.media_mp4 }}{% else %}data:,{% endif %}" style="{% if section.settings.media_mp4 == blank %}display: none;{% endif %}"></video></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="w-embed">[
-          { "type": "header", "content": "Media panel" },
-          { "type": "checkbox", "id": "show_media", "label": "Show image / video panel", "default": false },
-          { "type": "range", "id": "media_w", "label": "Panel width - desktop", "min": 15, "max": 50, "step": 1, "unit": "%", "default": 28 },
-          { "type": "range", "id": "media_gap", "label": "Gap", "min": 0, "max": 48, "step": 2, "unit": "px", "default": 16 },
-          { "type": "text", "id": "media_webm", "label": "WebM URL" },
-          { "type": "text", "id": "media_mp4", "label": "MP4 URL" }
-          ]</div>
+        
         <div class="w-embed">
           <style>
 #shopify-section-{{ section.id }} .product_component {
@@ -156,6 +147,46 @@
             "id": "image_media_image",
             "type": "image_picker",
             "label": "Media Image"
+        },
+        {
+            "type": "header",
+            "content": "Media panel"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_media",
+            "label": "Show image \/ video panel",
+            "default": false
+        },
+        {
+            "type": "range",
+            "id": "media_w",
+            "label": "Panel width - desktop",
+            "min": 15,
+            "max": 50,
+            "step": 1,
+            "unit": "%",
+            "default": 28
+        },
+        {
+            "type": "range",
+            "id": "media_gap",
+            "label": "Gap",
+            "min": 0,
+            "max": 48,
+            "step": 2,
+            "unit": "px",
+            "default": 16
+        },
+        {
+            "type": "text",
+            "id": "media_webm",
+            "label": "WebM URL"
+        },
+        {
+            "type": "text",
+            "id": "media_mp4",
+            "label": "MP4 URL"
         }
     ],
     "presets": [
