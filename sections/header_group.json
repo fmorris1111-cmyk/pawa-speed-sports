@@ -17,13 +17,21 @@
         "message_NGVXtk": {
           "type": "message",
           "settings": {
-            "url_link_url": "shopify://collections/sale",
-            "text_announcement_text": "Summer Sale: 40% Off"
+            "url_link_url": "shopify://collections/all",
+            "text_announcement_text": "FREE UK SHIPPING"
+          }
+        },
+        "message_8Qne4t": {
+          "type": "message",
+          "settings": {
+            "url_link_url": "shopify://collections/all",
+            "text_announcement_text": "FREE SOCKS ON ORDERS OVER £60"
           }
         }
       },
       "block_order": [
-        "message_NGVXtk"
+        "message_NGVXtk",
+        "message_8Qne4t"
       ],
       "settings": {}
     },
