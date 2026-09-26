@@ -242,8 +242,6 @@
 }
    /* Content Grid */
 .content-grid_col {
-  display: var(--col-d, block);
-  grid-column: var(--span-d, auto);
   min-width: 0;
 }
 .content-grid_item {
@@ -292,12 +290,6 @@
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-}
-@media screen and (max-width: 767px) {
-  .content-grid_col {
-    display: var(--col-m, block);
-    grid-column: var(--span-m, auto);
-  }
 }
  /* Search */
 .nav_search-expand {
