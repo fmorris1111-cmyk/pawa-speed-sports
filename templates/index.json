@@ -11,6 +11,7 @@
   "sections": {
     "hero_video": {
       "type": "hero_video",
+      "disabled": true,
       "settings": {
         "url_video_link_url": "shopify://collections/all",
         "text_mobile_video_url": "https://cdn.shopify.com/videos/c/o/v/eb9123b60b1b475aad0059299aca9896.mp4",
@@ -20,40 +21,32 @@
     },
     "content_grid_home_jGYeFB": {
       "type": "content_grid_home",
-      "blocks": {
-        "images_fniRza": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "",
-            "image_image": "shopify://shop_images/pawa-speed-sports-p-check-knit-polo-black-harajuku-season-5.jpg",
-            "url_link_url": "shopify://collections/knitwear",
-            "text_link_text": "Knitwear",
-            "url_button_url": "shopify://collections/knitwear",
-            "text_button_text": "Shop",
-            "image_pos_x": 50,
-            "image_pos_y": 50
-          }
-        },
-        "images_jqRhzT": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://collections/accessories",
-            "image_image": "shopify://shop_images/WhatsApp_Image_2026-07-25_at_11.39.54_1.jpg",
-            "url_link_url": "shopify://collections/accessories",
-            "text_link_text": "ACCESSORIES",
-            "url_button_url": "shopify://collections/accessories",
-            "text_button_text": "Shop",
-            "image_pos_x": 50,
-            "image_pos_y": 50
-          }
-        }
-      },
-      "block_order": [
-        "images_fniRza",
-        "images_jqRhzT"
-      ],
       "name": "Content Grid Home",
-      "settings": {}
+      "settings": {
+        "url_image_link_url": "",
+        "image_image": "shopify://shop_images/s6-pt4_0000_R1-08152-0000.jpg",
+        "url_link_url": "",
+        "text_link_text": "Lorem Ipsum",
+        "url_button_url": "",
+        "text_button_text": "Button Text",
+        "image_pos_x": 50,
+        "image_pos_y": 50,
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "span_d": "span 3",
+        "span_m": "auto",
+        "cols_d": "3",
+        "cols_m": "2",
+        "gap": 0,
+        "lock_ratio": true,
+        "ratio": "4 / 5",
+        "h_d": 60,
+        "h_m": 45,
+        "group_link": false,
+        "grid_url": "",
+        "grid_text": "",
+        "grid_cta": "Shop"
+      }
     },
     "content_grid": {
       "type": "content_grid",
@@ -94,40 +87,31 @@
     },
     "content_grid_home_hdzyeT": {
       "type": "content_grid_home",
-      "blocks": {
-        "images_QcEKHY": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://collections/t-shirts",
-            "image_image": "shopify://shop_images/karaoke-t-shirt-pawa-speed-sports-5.avif",
-            "url_link_url": "shopify://collections/t-shirts",
-            "text_link_text": "T-Shirts",
-            "url_button_url": "shopify://collections/t-shirts",
-            "text_button_text": "Shop",
-            "image_pos_x": 50,
-            "image_pos_y": 50
-          }
-        },
-        "images_KKyYBm": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://collections/sweats-hoodies",
-            "image_image": "shopify://shop_images/multi-monogram-zip-hoodie-pawa-speed-sports-4.avif",
-            "url_link_url": "shopify://collections/sweats-hoodies",
-            "text_link_text": "SWEATS",
-            "url_button_url": "shopify://collections/sweats-hoodies",
-            "text_button_text": "Shop",
-            "image_pos_x": 50,
-            "image_pos_y": 50
-          }
-        }
-      },
-      "block_order": [
-        "images_QcEKHY",
-        "images_KKyYBm"
-      ],
       "name": "Content Grid Home",
-      "settings": {}
+      "settings": {
+        "url_image_link_url": "",
+        "url_link_url": "",
+        "text_link_text": "Lorem Ipsum",
+        "url_button_url": "",
+        "text_button_text": "Button Text",
+        "image_pos_x": 50,
+        "image_pos_y": 50,
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "span_d": "auto",
+        "span_m": "auto",
+        "cols_d": "3",
+        "cols_m": "2",
+        "gap": 0,
+        "lock_ratio": true,
+        "ratio": "4 / 5",
+        "h_d": 60,
+        "h_m": 45,
+        "group_link": false,
+        "grid_url": "",
+        "grid_text": "",
+        "grid_cta": "Shop"
+      }
     },
     "content_grid_VYrH8L": {
       "type": "content_grid",
