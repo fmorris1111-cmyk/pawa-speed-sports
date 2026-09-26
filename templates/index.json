@@ -21,28 +21,74 @@
     },
     "content_grid_home_jGYeFB": {
       "type": "content_grid_home",
+      "blocks": {
+        "images_xWHKzc": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0000_R1-08152-0000.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        },
+        "images_yj6GE7": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/ezgif-7fc9dc27afbef93a-ezgif.com-optimize.gif",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        },
+        "images_7QbnRH": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0017_R1-08152-0029.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "images_xWHKzc",
+        "images_yj6GE7",
+        "images_7QbnRH"
+      ],
       "name": "Content Grid Home",
       "settings": {
-        "url_image_link_url": "",
-        "image_image": "shopify://shop_images/s6-pt4_0000_R1-08152-0000.jpg",
-        "url_link_url": "",
-        "text_link_text": "Lorem Ipsum",
-        "url_button_url": "",
-        "text_button_text": "Button Text",
-        "image_pos_x": 50,
-        "image_pos_y": 50,
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "span_d": "span 3",
-        "span_m": "auto",
         "cols_d": "3",
         "cols_m": "2",
         "gap": 0,
         "lock_ratio": true,
-        "ratio": "4 / 5",
+        "ratio": "3 / 4",
         "h_d": 60,
         "h_m": 45,
-        "group_link": false,
+        "group_link": true,
         "grid_url": "",
         "grid_text": "",
         "grid_cta": "Shop"
@@ -89,17 +135,6 @@
       "type": "content_grid_home",
       "name": "Content Grid Home",
       "settings": {
-        "url_image_link_url": "",
-        "url_link_url": "",
-        "text_link_text": "Lorem Ipsum",
-        "url_button_url": "",
-        "text_button_text": "Button Text",
-        "image_pos_x": 50,
-        "image_pos_y": 50,
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "span_d": "auto",
-        "span_m": "auto",
         "cols_d": "3",
         "cols_m": "2",
         "gap": 0,
