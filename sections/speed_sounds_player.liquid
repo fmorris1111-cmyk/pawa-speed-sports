@@ -2,24 +2,22 @@
     
           <div class="w-embed">
             <div class="speed-player_frame">
-              <iframe src="https://www.youtube.com/embed/{{ article.metafields.custom.youtube_id }}?rel=0&iv_load_policy=3&playsinline=1" title="{{ article.title | escape }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe>
+              <iframe src="https://www.youtube-nocookie.com/embed/{{ article.metafields.custom.youtube_id }}?rel=0&iv_load_policy=3&playsinline=1" title="{{ article.title | escape }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <style>
   .speed-player_frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 8.4;     /* shorter than 16:9 → this is the crop */
-  overflow: hidden;
-  background: #000;
-}
-.speed-player_frame iframe {
-  position: absolute;
-  left: 0;
-  top: -7.14%;                /* pull the top bar out of view */
-  width: 100%;
-  height: 107.14%;            /* restore true 16:9 so nothing stretches */
-  border: 0;
-}
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .speed-player_frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 </style>
           </div>
             </div>
@@ -36,8 +34,8 @@
             </div>
           </div>
           <div class="speed_sharing_wrap">
-            <a li-object:href="article.metafields.custom.youtube_url" href="{{ article.metafields.custom.youtube_url }}" class="footer_social-link w-inline-block"><img src="{{ 'youtube-svgrepo-com-2.svg' | asset_url }}" loading="lazy" alt="Youtube" class="footer_social-icon"></a>
-            <a href="#" class="speed-meta_share w-inline-block"><img src="{{ 'share-svgrepo-com.svg' | asset_url }}" loading="lazy" alt="" class="footer_social-icon"></a>
+            <a li-object:href="article.metafields.custom.youtube_url" href="{{ article.metafields.custom.youtube_url }}" target="_blank" class="footer_social-link w-inline-block"><img src="{{ 'youtube-svgrepo-com-2.svg' | asset_url }}" loading="lazy" alt="Youtube" class="footer_social-icon"></a>
+            <a href="#" target="_blank" class="speed-meta_share w-inline-block"><img src="{{ 'share-svgrepo-com.svg' | asset_url }}" loading="lazy" alt="" class="footer_social-icon"></a>
           </div>
         </div>
         <div class="w-embed w-script">
