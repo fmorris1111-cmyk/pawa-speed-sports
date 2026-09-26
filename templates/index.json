@@ -216,11 +216,12 @@
         "text_button_text": "SHOP ALL",
         "collection_collection": "all",
         "collection_collection_limit": 12,
-        "show_media": false,
+        "image_media_image": "shopify://shop_images/videoframe_0_1.png",
+        "show_media": true,
         "media_w": 28,
         "media_gap": 16,
         "media_webm": "",
-        "media_mp4": ""
+        "media_mp4": "https://cdn.shopify.com/videos/c/o/v/feacc9d950b74275be972b5f7919353f.mp4"
       }
     },
     "content_grid_home_hdzyeT": {
