@@ -226,27 +226,54 @@ document.addEventListener('click', function (e) {
       if (fpEl.swiper) return;
       if (!fpEl.classList.contains('swiper')) fpEl.classList.add('swiper');
       var scope = fpEl.closest('.product_component') || fpEl.parentElement;
-      new Swiper(fpEl, {
-        slidesPerView: 1.2,
-        spaceBetween: 16,
-        loop: false,
-        pagination: { el: scope.querySelector('.fp-pagination'), type: 'progressbar' },
-        navigation: {
-          nextEl: scope.querySelector('.fp-next'),
-          prevEl: scope.querySelector('.fp-prev')
-        },
-        breakpoints: {
-          768:  { slidesPerView: 2.5 },
-          1024: { slidesPerView: 4 }
+      var media = scope.querySelector('.product_media');
+      var hasMedia = !!(media && getComputedStyle(media).display !== 'none');
+      var pag = scope.querySelector('.fp-pagination');
+      var sw = new Swiper(fpEl, {
+        slidesPerView: 1.2, spaceBetween: 16, loop: false,
+        pagination: { el: pag, type: 'progressbar' },
+        navigation: { nextEl: scope.querySelector('.fp-next'), prevEl: scope.querySelector('.fp-prev') },
+        breakpoints: { 768: { slidesPerView: 2.5 }, 1024: { slidesPerView: hasMedia ? 3 : 4 } }
+      });
+      if (!pag) return;
+      pag.classList.add('is-seekable');
+      function seek(clientX) {
+        var r = pag.getBoundingClientRect();
+        var grid = sw.snapGrid;
+        if (!r.width || !grid || grid.length < 2) return;
+        var p = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+        var target = p * grid[grid.length - 1];
+        var best = 0, bestD = Infinity;
+        for (var i = 0; i < grid.length; i++) {
+          var d = Math.abs(grid[i] - target);
+          if (d < bestD) { bestD = d; best = i; }
         }
+        sw.slideTo(best);
+      }
+      var dragging = false;
+      pag.addEventListener('pointerdown', function (e) {
+        dragging = true;
+        try { pag.setPointerCapture(e.pointerId); } catch (err) {}
+        seek(e.clientX);
+        e.preventDefault();
+      });
+      pag.addEventListener('pointermove', function (e) { if (dragging) seek(e.clientX); });
+      pag.addEventListener('pointerup', function (e) {
+        dragging = false;
+        try { pag.releasePointerCapture(e.pointerId); } catch (err) {}
+      });
+      pag.addEventListener('pointercancel', function () { dragging = false; });
+      pag.setAttribute('role', 'slider');
+      pag.setAttribute('tabindex', '0');
+      pag.setAttribute('aria-label', 'Carousel position');
+      pag.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  { sw.slidePrev(); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { sw.slideNext(); e.preventDefault(); }
       });
     });
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { initFpCarousels(); });
-  } else {
-    initFpCarousels();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ initFpCarousels(); });
+  else initFpCarousels();
   document.addEventListener('shopify:section:load', function (e) { initFpCarousels(e.target); });
 })();
 </script>
