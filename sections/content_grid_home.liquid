@@ -1,28 +1,29 @@
 {% for block in section.blocks %}
     {% if block.type == "images" %}
                     <div li-block="images" class="content-grid_col">
-                                    
-          
+
+
                                     <div li-object:style="block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%'" class="content-grid_item" style="{{ block.settings.image_pos_x | prepend: '--img-x: ' | append: '%; --img-y: ' | append: block.settings.image_pos_y | append: '%' }}">
             <a href="{{ block.settings.url_image_link_url }}" class="content-grid_cover-link w-inline-block"> </a>{% if block.settings.image_image %}
 {{ block.settings.image_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'content-grid_image' }}
 {% else %}
 <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="content-grid_image">
 {% endif %}
-            <div class="w-embed"><video class="content-grid_video" autoplay="" muted="" loop="" playsinline="" preload="metadata" style="{% if block.settings.video_mp4 == blank %}display: none;{% endif %}">
-                {% if block.settings.video_webm != blank %}
-                <source src="{{ block.settings.video_webm }}" type="video/webm"></video></div>
+            <div class="w-embed"><video class="content-grid_video" autoplay muted loop playsinline preload="metadata" style="{% if block.settings.video_mp4 == blank %}display: none;{% endif %}">
+{% if block.settings.video_webm != blank %}<source src="{{ block.settings.video_webm }}" type="video/webm">{% endif %}
+{% if block.settings.video_mp4 != blank %}<source src="{{ block.settings.video_mp4 }}" type="video/mp4">{% endif %}
+              </video></div>
             <div class="content-grid_overlay"></div>
             <div class="content-grid_hover">
               <a href="{{ block.settings.url_link_url }}" class="content-grid_text-link w-inline-block"> {{ block.settings.text_link_text }} </a>
               <a href="{{ block.settings.url_button_url }}" class="content-grid_cta w-button"> {{ block.settings.text_button_text }} </a>
             </div>
           </div>
-                                    
-          
-                                    
-                                    
-        
+
+
+
+
+
                             </div>
             {% endif %}
 {% endfor %}
@@ -31,7 +32,7 @@
           <a li-object:href="section.settings.grid_url" li-object="section.settings.grid_text" href="{{ section.settings.grid_url }}" class="content-grid_text-link w-inline-block">{{ section.settings.grid_text }}</a>
           <a li-object="section.settings.grid_cta" li-object:href="section.settings.grid_url" href="{{ section.settings.grid_url }}" class="content-grid_cta w-button">{{ section.settings.grid_cta }}</a>
         </div>
-        
+
         <div class="w-embed">
           <style>
 #shopify-section-{{ section.id }} {
@@ -43,6 +44,15 @@
 }
 #shopify-section-{{ section.id }} > .w-embed {
   display: none;
+}
+#shopify-section-{{ section.id }} .content-grid_video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--img-x, 50%) var(--img-y, 50%);
 }
 #shopify-section-{{ section.id }} .content-grid_item {
 {% if section.settings.lock_ratio %}
@@ -197,7 +207,7 @@
                             "label": "3 columns"
                         },
                         {
-                            "value": "1 \/ -1",
+                            "value": "1 / -1",
                             "label": "Full row"
                         }
                     ],
@@ -217,7 +227,7 @@
                             "label": "2 columns"
                         },
                         {
-                            "value": "1 \/ -1",
+                            "value": "1 / -1",
                             "label": "Full row"
                         }
                     ],
@@ -323,27 +333,27 @@
             "label": "Aspect ratio",
             "options": [
                 {
-                    "value": "4 \/ 5",
+                    "value": "4 / 5",
                     "label": "4:5 portrait"
                 },
                 {
-                    "value": "3 \/ 4",
+                    "value": "3 / 4",
                     "label": "3:4"
                 },
                 {
-                    "value": "1 \/ 1",
+                    "value": "1 / 1",
                     "label": "1:1"
                 },
                 {
-                    "value": "3 \/ 2",
+                    "value": "3 / 2",
                     "label": "3:2 landscape"
                 },
                 {
-                    "value": "16 \/ 9",
+                    "value": "16 / 9",
                     "label": "16:9"
                 }
             ],
-            "default": "4 \/ 5"
+            "default": "4 / 5"
         },
         {
             "type": "range",
