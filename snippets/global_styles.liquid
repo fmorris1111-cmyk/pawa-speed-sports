@@ -450,13 +450,14 @@
   color: black;
   flex-shrink: 0;
 }
+.fp-prev svg, .fp-next svg { display: block; }
 .fp-prev:hover, .fp-next:hover { opacity: 0.6; }
 .fp-pagination {
   flex: 1;
   height: 2px !important;
   background: #e0e0e0;
   border-radius: 2px;
-  overflow: hidden;
+  overflow: visible;
   position: relative !important;
 }
 .fp-pagination .swiper-pagination-progressbar-fill {
@@ -472,6 +473,15 @@
   .fp-pagination.is-seekable {
   cursor: pointer;
   touch-action: pan-y;
+}
+  .fp-pagination.is-seekable { position: relative; }
+.fp-pagination.is-seekable::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  bottom: -12px;
 }
 @media (max-width: 767px) {
   .fp-prev, .fp-next { display: none; }

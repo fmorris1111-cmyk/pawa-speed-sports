@@ -96,10 +96,22 @@
     display: flex;
     flex-direction: column;
   }
+{% if section.settings.media_mp4 != blank %}
+  #shopify-section-{{ section.id }} .product_media-image {
+    display: none;
+  }
+  #shopify-section-{{ section.id }} .product_media-video {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: fill;
+  }
+{% else %}
   #shopify-section-{{ section.id }} .product_media-image {
     position: static;
     height: auto;
   }
+{% endif %}
 }
 </style>
         </div> {% schema %} {
