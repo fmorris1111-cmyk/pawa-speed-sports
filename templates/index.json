@@ -98,9 +98,10 @@
         "grid_url": "",
         "grid_text": "",
         "grid_cta": "",
-        "ov_d": true,
-        "ov_t": true,
-        "ov_m": false
+        "ov_m": false,
+        "show_d": false,
+        "show_t": true,
+        "show_m": true
       }
     },
     "content_grid_home_jGYeFB": {
@@ -182,9 +183,10 @@
         "grid_url": "",
         "grid_text": "Season 6",
         "grid_cta": "Shop",
-        "ov_d": true,
-        "ov_t": true,
-        "ov_m": false
+        "ov_m": false,
+        "show_d": true,
+        "show_t": true,
+        "show_m": false
       }
     },
     "content_grid": {
@@ -308,9 +310,10 @@
         "grid_url": "",
         "grid_text": "",
         "grid_cta": "Shop",
-        "ov_d": true,
-        "ov_t": true,
-        "ov_m": false
+        "ov_m": false,
+        "show_d": true,
+        "show_t": true,
+        "show_m": true
       }
     },
     "boy_ticker_NBycpw": {
