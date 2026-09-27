@@ -36,7 +36,7 @@
   --ov:  {% if section.settings.ov_d %}block{% else %}none{% endif %};
   --hov: {% if section.settings.ov_d %}flex{% else %}none{% endif %};
   position: relative;
-  display: grid;
+  display: {% if section.settings.show_d %}grid{% else %}none{% endif %};
   place-items: stretch;
   grid-template-columns: repeat({{ section.settings.cols_d }}, 1fr);
   gap: {{ section.settings.gap }}px;
@@ -90,12 +90,14 @@
 }
 @media screen and (max-width: 991px) {
   #shopify-section-{{ section.id }} {
+    display: {% if section.settings.show_t %}grid{% else %}none{% endif %};
     --ov:  {% if section.settings.ov_t %}block{% else %}none{% endif %};
     --hov: {% if section.settings.ov_t %}flex{% else %}none{% endif %};
   }
 }
 @media screen and (max-width: 767px) {
-  #shopify-section-{{ section.id }} {
+    #shopify-section-{{ section.id }} {
+    display: {% if section.settings.show_m %}grid{% else %}none{% endif %};
     --ov:  {% if section.settings.ov_m %}block{% else %}none{% endif %};
     --hov: {% if section.settings.ov_m %}flex{% else %}none{% endif %};
     grid-template-columns: repeat({{ section.settings.cols_m }}, 1fr);
