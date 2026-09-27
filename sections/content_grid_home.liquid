@@ -33,6 +33,8 @@
         <div class="w-embed">
           <style>
 #shopify-section-{{ section.id }} {
+  --ov:  {% if section.settings.ov_d %}block{% else %}none{% endif %};
+  --hov: {% if section.settings.ov_d %}flex{% else %}none{% endif %};
   position: relative;
   display: grid;
   place-items: stretch;
@@ -57,12 +59,17 @@
   grid-column: {{ block.settings.span_d }};
 }
 {% endfor %}
-#shopify-section-{{ section.id }} .content-grid_hover {
-  display: {% if section.settings.group_link %}none{% else %}flex{% endif %};
+#shopify-section-{{ section.id }} .content-grid_overlay {
+  display: var(--ov);
 }
-#shopify-section-{{ section.id }} .content-grid_group-link,
+#shopify-section-{{ section.id }} .content-grid_hover {
+  display: {% if section.settings.group_link %}none{% else %}var(--hov){% endif %};
+}
 #shopify-section-{{ section.id }} .content-grid_group-hover {
-  display: {% if section.settings.group_link %}flex{% else %}none{% endif %};
+  display: {% if section.settings.group_link %}var(--hov){% else %}none{% endif %};
+}
+#shopify-section-{{ section.id }} .content-grid_group-link {
+  display: {% if section.settings.group_link %}block{% else %}none{% endif %};
 }
 #shopify-section-{{ section.id }}:hover .content-grid_overlay {
   opacity: {% if section.settings.group_link %}1{% else %}0{% endif %};
@@ -81,8 +88,16 @@
     opacity: 1;
   }
 }
+@media screen and (max-width: 991px) {
+  #shopify-section-{{ section.id }} {
+    --ov:  {% if section.settings.ov_t %}block{% else %}none{% endif %};
+    --hov: {% if section.settings.ov_t %}flex{% else %}none{% endif %};
+  }
+}
 @media screen and (max-width: 767px) {
   #shopify-section-{{ section.id }} {
+    --ov:  {% if section.settings.ov_m %}block{% else %}none{% endif %};
+    --hov: {% if section.settings.ov_m %}flex{% else %}none{% endif %};
     grid-template-columns: repeat({{ section.settings.cols_m }}, 1fr);
   }
   #shopify-section-{{ section.id }} .content-grid_item {
@@ -388,6 +403,28 @@
             "id": "grid_cta",
             "label": "Button text",
             "default": "Shop"
+        },
+        {
+            "type": "header",
+            "content": "Overlay visibility"
+        },
+        {
+            "type": "checkbox",
+            "id": "ov_d",
+            "label": "Show overlay - desktop",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "ov_t",
+            "label": "Show overlay - tablet",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "ov_m",
+            "label": "Show overlay - mobile",
+            "default": false
         }
     ],
     "presets": [
