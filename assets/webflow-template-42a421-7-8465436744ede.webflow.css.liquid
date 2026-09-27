@@ -552,6 +552,10 @@ figcaption {
   line-height: 1rem;
 }
 
+.text-size-regular.text-style-strikethrough.text-style-muted {
+  line-height: 1rem;
+}
+
 .text-size-regular.text-weight-semibold {
   margin-bottom: 0;
   font-size: 1rem;
@@ -720,7 +724,6 @@ figcaption {
   height: auto;
   min-height: auto;
   margin: 4rem 20px 60px 240px;
-  padding-top: 50px;
   display: flex;
   position: relative;
 }
@@ -2809,7 +2812,7 @@ figcaption {
 }
 
 .section_filter {
-  margin-top: 6rem;
+  margin-top: 2rem;
 }
 
 .filter_layout {
@@ -2820,7 +2823,9 @@ figcaption {
   grid-auto-columns: 1fr;
   align-items: start;
   width: 100%;
+  margin-top: 2rem;
   margin-left: 0;
+  padding-top: 0;
   display: block;
   position: relative;
 }
@@ -2951,7 +2956,7 @@ figcaption {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  display: flex;
+  display: none;
 }
 
 .filter_tags-wrapper {
@@ -3029,8 +3034,8 @@ figcaption {
 }
 
 .pagination_component {
-  margin-top: 4rem;
-  margin-left: -220px;
+  margin-top: 2rem;
+  display: none;
 }
 
 .filter_tags-inner-wrapper {
@@ -3862,6 +3867,10 @@ figcaption {
 .nav_dropdown-close-button {
   background-color: #0000;
   padding: 0;
+}
+
+.filters_top {
+  display: none;
 }
 
 .form_hidden-label {
@@ -5211,6 +5220,11 @@ figcaption {
     line-height: 16px;
   }
 
+  .text-size-regular.text-style-strikethrough.text-style-muted {
+    font-size: 12px;
+    line-height: 1rem;
+  }
+
   .padding-section-large {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -5289,7 +5303,7 @@ figcaption {
   }
 
   .mini-cart_footer {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
   }
 
   .product-item_image {
@@ -5487,7 +5501,7 @@ figcaption {
   }
 
   .filter_product-list {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .section_product-header {
@@ -5627,10 +5641,17 @@ figcaption {
     min-height: auto;
   }
 
+  .section_filter {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
   .filter_layout {
+    flex: none;
     grid-template-columns: 1fr;
-    margin-left: 0;
-    margin-right: 0;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .filter_filters-wrapper {
@@ -5639,7 +5660,6 @@ figcaption {
     width: 100%;
     max-width: none;
     height: auto;
-    padding: 3rem 5% 0;
     position: fixed;
     inset: 0%;
     overflow: scroll;
@@ -5676,7 +5696,7 @@ figcaption {
 
   .filter_tablet-filters-button {
     justify-content: center;
-    display: flex;
+    display: none;
   }
 
   .filter_feed {
@@ -5715,7 +5735,7 @@ figcaption {
     align-items: center;
     margin-top: 2rem;
     margin-left: 0;
-    display: flex;
+    display: none;
   }
 
   .pagination_count {
@@ -6131,10 +6151,10 @@ figcaption {
 
   .container-large-plp {
     margin-top: 6rem;
-    margin-left: 0;
+    margin-left: auto;
     padding-top: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .quantity-selector_mobile-_subtract {
@@ -6367,6 +6387,11 @@ figcaption {
     font-size: 2rem;
   }
 
+  .text-size-regular.text-style-strikethrough.text-style-muted {
+    font-size: 12px;
+    line-height: 1rem;
+  }
+
   .max-width-large {
     width: auto;
     max-width: none;
@@ -6472,6 +6497,10 @@ figcaption {
 
   .login_image {
     height: 19.2rem;
+  }
+
+  .mini-cart_footer {
+    margin-bottom: auto;
   }
 
   .product-item_image-wrapper {
@@ -6628,6 +6657,10 @@ figcaption {
   .filter_feed {
     min-width: 90vw;
     max-width: 90vw;
+  }
+
+  .pagination_component {
+    display: none;
   }
 
   .section_li-hero {
@@ -7020,6 +7053,11 @@ figcaption {
     display: none;
   }
 
+  .text-size-regular.text-style-strikethrough.text-style-muted {
+    font-size: 12px;
+    line-height: 1rem;
+  }
+
   .heading-style-h4 {
     font-size: 1.25rem;
   }
@@ -7143,7 +7181,7 @@ figcaption {
   .mini-cart_footer {
     flex: none;
     margin-top: 0;
-    margin-bottom: 5rem;
+    margin-bottom: auto;
   }
 
   .mini-cart_line-item.no-scrollbar {
@@ -7152,6 +7190,8 @@ figcaption {
   }
 
   .product-item_text-link {
+    flex-flow: row;
+    justify-content: space-between;
     min-height: 5rem;
     padding-top: .5rem;
     padding-left: .5rem;
@@ -7427,6 +7467,7 @@ figcaption {
   .pagination_component {
     margin-left: 1rem;
     margin-right: 1rem;
+    display: none;
   }
 
   .section_li-hero {
