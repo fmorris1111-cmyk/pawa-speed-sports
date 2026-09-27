@@ -12,18 +12,11 @@
     "collection_products": {
       "type": "collection_products",
       "settings": {}
-    },
-    "mailer_embed_form_zqFTCJ": {
-      "type": "mailer_embed_form",
-      "custom_css": [],
-      "name": "Mailer Embed Form",
-      "settings": {}
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "collection_products",
-    "mailer_embed_form_zqFTCJ"
+    "collection_products"
   ]
 }
