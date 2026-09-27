@@ -97,7 +97,10 @@
         "group_link": false,
         "grid_url": "",
         "grid_text": "",
-        "grid_cta": ""
+        "grid_cta": "",
+        "ov_d": true,
+        "ov_t": true,
+        "ov_m": false
       }
     },
     "content_grid_home_jGYeFB": {
@@ -178,7 +181,10 @@
         "group_link": true,
         "grid_url": "",
         "grid_text": "Season 6",
-        "grid_cta": "Shop"
+        "grid_cta": "Shop",
+        "ov_d": true,
+        "ov_t": true,
+        "ov_m": false
       }
     },
     "content_grid": {
@@ -301,7 +307,10 @@
         "group_link": false,
         "grid_url": "",
         "grid_text": "",
-        "grid_cta": "Shop"
+        "grid_cta": "Shop",
+        "ov_d": true,
+        "ov_t": true,
+        "ov_m": false
       }
     },
     "boy_ticker_NBycpw": {
@@ -313,7 +322,7 @@
         "pad": 16,
         "gap": 16,
         "bg": "#ffffff",
-        "step_ms": 1000,
+        "step_ms": 800,
         "slow_ms": 1200,
         "travel_ms": 650,
         "resume_ms": 600,
