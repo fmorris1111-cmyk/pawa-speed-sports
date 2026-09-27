@@ -304,6 +304,31 @@
         "grid_cta": "Shop"
       }
     },
+    "boy_ticker_NBycpw": {
+      "type": "boy_ticker",
+      "name": "Boy Ticker",
+      "settings": {
+        "count_d": 10,
+        "count_m": 5,
+        "pad": 16,
+        "gap": 16,
+        "bg": "#FFFFFF",
+        "step_ms": 1000,
+        "slow_ms": 1200,
+        "travel_ms": 900,
+        "resume_ms": 600,
+        "ease": "power1.out",
+        "hover_on": true,
+        "lead": 8,
+        "tail": 10,
+        "rand": 10,
+        "soft": 0,
+        "lift": 0,
+        "grow": 0,
+        "colour_off": "#141414",
+        "colour_on": "#141414"
+      }
+    },
     "content_grid_VYrH8L": {
       "type": "content_grid",
       "blocks": {
@@ -356,6 +381,7 @@
     "content_grid",
     "featured_products_RRPnyj",
     "content_grid_home_hdzyeT",
+    "boy_ticker_NBycpw",
     "content_grid_VYrH8L",
     "featured_products_RhtRKj"
   ]
