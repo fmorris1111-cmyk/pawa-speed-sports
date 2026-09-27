@@ -126,12 +126,9 @@
     descent-override: 0%;
     line-gap-override: 0%;
   }
-  /* &#9472;&#9472; Nav: logo always screen-centered &#9472;&#9472; */
+  /* &#9472;&#9472; Nav: logo centring offset (position set in Designer) &#9472;&#9472; */
   .nav_logo-link {
-    position: absolute !important;
-    left: 50% !important;
     transform: translateX(-50%) !important;
-    z-index: 1;
   }
   /* &#9472;&#9472; Nav: link hover underline &#9472;&#9472; */
   .nav_link-item:hover .nav-link,
@@ -230,6 +227,8 @@
     overflow: hidden !important;
   }
   .nav_mini-cart-close { display: none !important; }
+  .mini-cart_empty { display: none !important; }
+  .mini-cart_full[style*="none"] + .mini-cart_empty { display: flex !important; }
   .nav_dropdown-close-button { display: none !important; }
   .nav_menu-3 {
   -webkit-backface-visibility: hidden;
@@ -348,6 +347,15 @@
   z-index: 200;
   border-radius: 0 0 4px 4px;
   overflow: hidden;
+}
+  @media screen and (max-width: 991px) {
+  .mobilenav {
+    transform: translateY(calc(-1 * var(--kb, 0px)));
+    transition: transform .15s ease;
+  }
+  .nav_predictive-results {
+    max-height: calc(var(--vvh, 100vh) - 13rem) !important;
+  }
 }
 .nav_menu-search.search-results-open {
   border-bottom-left-radius: 0;
@@ -486,6 +494,31 @@
 @media (max-width: 767px) {
   .fp-prev, .fp-next { display: none; }
 }
+  @media screen and (max-width: 767px) {
+  .swiper.is-product-thumbnail { overflow: hidden; }
+  .swiper-wrapper.is-product-thumbnail {
+    display: grid !important;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 8px;
+    width: 100% !important;
+    height: auto !important;
+    padding-left: 0 !important;
+    transform: none !important;
+  }
+  .swiper-slide.is-product-thumbnail {
+    width: auto !important;
+    height: auto !important;
+    margin-right: 0 !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .product-header_thumbnail-image {
+    display: block;
+    width: 100% !important;
+    height: auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
   .swiper.is-product-gallery {
   max-width: 100% !important;
   width: 100% !important;
@@ -537,6 +570,31 @@
   }
   .swiper-container.is-product-gallery img.product-header_gallery-image {
     object-fit: contain;
+  }
+}
+  @media screen and (max-width: 767px) {
+  .swiper.is-product-thumbnail { overflow: hidden; }
+  .swiper-wrapper.is-product-thumbnail {
+    display: grid !important;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 8px;
+    width: 100% !important;
+    height: auto !important;
+    padding-left: 0 !important;
+    transform: none !important;
+  }
+  .swiper-slide.is-product-thumbnail {
+    width: auto !important;
+    height: auto !important;
+    margin-right: 0 !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .product-header_thumbnail-image {
+    display: block;
+    width: 100% !important;
+    height: auto;
+    -webkit-tap-highlight-color: transparent;
   }
 }
   /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 1: neutralise desktop chrome &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */

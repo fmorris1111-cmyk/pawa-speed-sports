@@ -830,6 +830,7 @@ if (mnav) {
   s.setProperty('--mnav-bar-top', (window.innerHeight - r.top - 4) + 'px');
  }
  mSyncAnchors();
+window.mnavSyncAnchors = mSyncAnchors;
  window.addEventListener('resize', mSyncAnchors);
  window.addEventListener('orientationchange', mSyncAnchors);
  function mClearActive() {
