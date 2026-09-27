@@ -308,11 +308,11 @@
       "type": "boy_ticker",
       "name": "Boy Ticker",
       "settings": {
-        "count_d": 10,
+        "count_d": 14,
         "count_m": 5,
         "pad": 16,
         "gap": 16,
-        "bg": "#FFFFFF",
+        "bg": "#ffffff",
         "step_ms": 1000,
         "slow_ms": 1200,
         "travel_ms": 900,
