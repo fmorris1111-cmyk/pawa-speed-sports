@@ -351,7 +351,6 @@
   @media screen and (max-width: 991px) {
   .mobilenav {
     transform: translateY(calc(-1 * var(--kb, 0px)));
-    transition: transform .15s ease;
   }
   .nav_predictive-results {
     max-height: calc(var(--vvh, 100vh) - 13rem) !important;
@@ -494,8 +493,16 @@
 @media (max-width: 767px) {
   .fp-prev, .fp-next { display: none; }
 }
-  @media screen and (max-width: 767px) {
-  .swiper.is-product-thumbnail { overflow: hidden; }
+}
+  .swiper.is-product-gallery {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+    @media screen and (max-width: 767px) {
+  .swiper.is-product-thumbnail {
+    height: auto !important;
+    overflow: visible !important;
+  }
   .swiper-wrapper.is-product-thumbnail {
     display: grid !important;
     grid-auto-flow: column;
@@ -504,10 +511,12 @@
     width: 100% !important;
     height: auto !important;
     padding-left: 0 !important;
+    padding-right: 0 !important;
     transform: none !important;
   }
   .swiper-slide.is-product-thumbnail {
     width: auto !important;
+    max-width: none !important;
     height: auto !important;
     margin-right: 0 !important;
     -webkit-tap-highlight-color: transparent;
@@ -518,10 +527,6 @@
     height: auto;
     -webkit-tap-highlight-color: transparent;
   }
-}
-  .swiper.is-product-gallery {
-  max-width: 100% !important;
-  width: 100% !important;
 }
 .swiper.is-product-gallery img {
   -webkit-user-drag: none;
@@ -570,31 +575,6 @@
   }
   .swiper-container.is-product-gallery img.product-header_gallery-image {
     object-fit: contain;
-  }
-}
-  @media screen and (max-width: 767px) {
-  .swiper.is-product-thumbnail { overflow: hidden; }
-  .swiper-wrapper.is-product-thumbnail {
-    display: grid !important;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    gap: 8px;
-    width: 100% !important;
-    height: auto !important;
-    padding-left: 0 !important;
-    transform: none !important;
-  }
-  .swiper-slide.is-product-thumbnail {
-    width: auto !important;
-    height: auto !important;
-    margin-right: 0 !important;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .product-header_thumbnail-image {
-    display: block;
-    width: 100% !important;
-    height: auto;
-    -webkit-tap-highlight-color: transparent;
   }
 }
   /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE NAV &mdash; Stage 1: neutralise desktop chrome &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
