@@ -315,7 +315,7 @@
         "bg": "#ffffff",
         "step_ms": 1000,
         "slow_ms": 1200,
-        "travel_ms": 900,
+        "travel_ms": 650,
         "resume_ms": 600,
         "ease": "power1.out",
         "hover_on": true,
