@@ -316,7 +316,7 @@
         "grid_cta": "Shop",
         "ov_d": true,
         "ov_t": true,
-        "ov_m": false,
+        "ov_m": true,
         "show_d": true,
         "show_t": true,
         "show_m": true
