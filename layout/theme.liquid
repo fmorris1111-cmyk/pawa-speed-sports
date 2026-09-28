@@ -487,5 +487,108 @@ document.addEventListener('click', function (e) {
   sync();
 })();
 </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+  var col = document.querySelector('.nav_filter-col');
+  if (!col || typeof gsap === 'undefined') return;
+  var fBar    = col.querySelector('.nav_filter-bar');
+  var fDrawer = col.querySelector('.nav_filter-drawer');
+  var sBar    = col.querySelector('.nav_sort-bar');
+  var sDrawer = col.querySelector('.nav_sort-drawer');
+  var sBtn    = col.querySelector('.nav_sort-btn');
+  var panels  = col.querySelectorAll('.nav_filter-panel');
+  var openKey = null;
+  if (fDrawer) gsap.set(fDrawer, { height: 0, overflow: 'hidden' });
+  if (sDrawer) gsap.set(sDrawer, { height: 0, overflow: 'hidden' });
+  gsap.set(panels, { display: 'none' });
+  function closeFilter() {
+    if (!fDrawer || openKey === null) return;
+    openKey = null;
+    if (fBar) fBar.classList.remove('is-open');
+    col.querySelectorAll('.nav_filter-btn.is-open').forEach(function (b) {
+      b.classList.remove('is-open');
+    });
+    gsap.killTweensOf(fDrawer);
+    gsap.to(fDrawer, {
+      height: 0, duration: 0.3, ease: 'power2.inOut',
+      onComplete: function () { gsap.set(panels, { display: 'none' }); }
+    });
+  }
+  function closeSort() {
+    if (!sDrawer || !sBtn || !sBtn.classList.contains('is-open')) return;
+    sBtn.classList.remove('is-open');
+    if (sBar) sBar.classList.remove('is-open');
+    gsap.killTweensOf(sDrawer);
+    gsap.to(sDrawer, { height: 0, duration: 0.3, ease: 'power2.inOut' });
+  }
+  function openFilter(key, btn) {
+    var panel = col.querySelector('[data-filter-panel="' + key + '"]');
+    if (!panel || !fDrawer) return;
+    closeSort();
+    openKey = key;
+    if (fBar) fBar.classList.add('is-open');
+    col.querySelectorAll('.nav_filter-btn').forEach(function (b) {
+      b.classList.toggle('is-open', b === btn);
+    });
+    gsap.set(panels, { display: 'none' });
+    gsap.set(panel, { display: 'flex' });
+    gsap.killTweensOf(fDrawer);
+    gsap.to(fDrawer, { height: panel.offsetHeight, duration: 0.4, ease: 'power2.out' });
+  }
+  col.addEventListener('click', function (e) {
+    var fb = e.target.closest('.nav_filter-btn');
+    if (fb) {
+      e.preventDefault();
+      var key = fb.getAttribute('data-filter');
+      if (openKey === key) closeFilter(); else openFilter(key, fb);
+      return;
+    }
+    if (e.target.closest('.nav_sort-btn')) {
+      e.preventDefault();
+      if (sBtn.classList.contains('is-open')) { closeSort(); return; }
+      closeFilter();
+      sBtn.classList.add('is-open');
+      if (sBar) sBar.classList.add('is-open');
+      gsap.killTweensOf(sDrawer);
+      gsap.to(sDrawer, { height: 'auto', duration: 0.4, ease: 'power2.out' });
+      return;
+    }
+    var so = e.target.closest('[data-sort]');
+    if (so) {
+      e.preventDefault();
+      var p = new URLSearchParams(window.location.search);
+      p.set('sort_by', so.getAttribute('data-sort'));
+      window.location.search = p.toString();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav_filter-col')) { closeFilter(); closeSort(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeFilter(); closeSort(); }
+  });
+  // Re-measure if the size pills rewrap
+  window.addEventListener('resize', function () {
+    if (!openKey || !fDrawer) return;
+    var panel = col.querySelector('[data-filter-panel="' + openKey + '"]');
+    if (panel) gsap.set(fDrawer, { height: panel.offsetHeight });
+  });
+  // Reflect current URL state
+  var qp = new URLSearchParams(window.location.search);
+  col.querySelectorAll('.nav_filter-btn').forEach(function (b) {
+    if (qp.has(b.getAttribute('data-filter'))) b.classList.add('has-active');
+  });
+  var current = qp.get('sort_by');
+  if (current) {
+    var opt = col.querySelector('[data-sort="' + current + '"]');
+    if (opt) opt.classList.add('is-active');
+  }
+  var anyFilter = Array.from(qp.keys()).some(function (k) {
+    return k.indexOf('filter.') === 0;
+  });
+  var reset = col.querySelector('.nav_reset');
+  if (reset && !anyFilter) reset.classList.add('is-inactive');
+});
+</script>
 </body>
 </html>
