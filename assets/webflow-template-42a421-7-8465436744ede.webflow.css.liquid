@@ -5152,7 +5152,7 @@ figcaption {
   grid-column-gap: .5rem;
   grid-row-gap: .5rem;
   flex-flow: column;
-  align-items: stretch;
+  align-items: flex-start;
   display: flex;
 }
 
@@ -5235,6 +5235,8 @@ figcaption {
   z-index: 1;
   grid-column-gap: .5rem;
   grid-row-gap: .5rem;
+  flex-flow: row;
+  justify-content: flex-start;
   display: flex;
   position: relative;
 }
@@ -5283,6 +5285,27 @@ figcaption {
   top: 100%;
   left: 0%;
   overflow: hidden;
+}
+
+.nav_applied {
+  grid-column-gap: .5rem;
+  grid-row-gap: .5rem;
+  flex-flow: wrap;
+  padding: .25rem;
+  display: flex;
+}
+
+.nav_applied-chip {
+  grid-column-gap: .25rem;
+  grid-row-gap: .25rem;
+  display: flex;
+}
+
+.div-block-22 {
+  font-family: Roboto Mono, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1rem;
 }
 
 @media screen and (max-width: 991px) {

@@ -493,31 +493,29 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
 })();
 </script>
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   var col = document.querySelector('.nav_filter-col');
   if (!col || typeof gsap === 'undefined') return;
-  var fBar    = col.querySelector('.nav_filter-bar');
+  var fBar = col.querySelector('.nav_filter-bar');
   var fDrawer = col.querySelector('.nav_filter-drawer');
-  var sBar    = col.querySelector('.nav_sort-bar');
+  var sBar = col.querySelector('.nav_sort-bar');
   var sDrawer = col.querySelector('.nav_sort-drawer');
-  var sBtn    = col.querySelector('.nav_sort-btn');
-  var panels  = col.querySelectorAll('.nav_filter-panel');
-  var openKey = null;
+  var sBtn = col.querySelector('.nav_sort-btn');
+  var applied = col.querySelector('.nav_applied');
+  var panels = col.querySelectorAll('.nav_filter-panel');
+  var openKey = null, leaveTimer = null;
   if (fDrawer) gsap.set(fDrawer, { height: 0, overflow: 'hidden' });
   if (sDrawer) gsap.set(sDrawer, { height: 0, overflow: 'hidden' });
   gsap.set(panels, { display: 'none' });
+  if (applied && !applied.querySelector('.nav_applied-chip')) applied.style.display = 'none';
   function closeFilter() {
     if (!fDrawer || openKey === null) return;
     openKey = null;
     if (fBar) fBar.classList.remove('is-open');
-    col.querySelectorAll('.nav_filter-btn.is-open').forEach(function (b) {
-      b.classList.remove('is-open');
-    });
+    col.querySelectorAll('.nav_filter-btn.is-open').forEach(function (b) { b.classList.remove('is-open'); });
     gsap.killTweensOf(fDrawer);
-    gsap.to(fDrawer, {
-      height: 0, duration: 0.3, ease: 'power2.inOut',
-      onComplete: function () { gsap.set(panels, { display: 'none' }); }
-    });
+    gsap.to(fDrawer, { height: 0, duration: 0.3, ease: 'power2.inOut',
+      onComplete: function () { gsap.set(panels, { display: 'none' }); } });
   }
   function closeSort() {
     if (!sDrawer || !sBtn || !sBtn.classList.contains('is-open')) return;
@@ -532,15 +530,20 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
     closeSort();
     openKey = key;
     if (fBar) fBar.classList.add('is-open');
-    col.querySelectorAll('.nav_filter-btn').forEach(function (b) {
-      b.classList.toggle('is-open', b === btn);
-    });
+    col.querySelectorAll('.nav_filter-btn').forEach(function (b) { b.classList.toggle('is-open', b === btn); });
     gsap.set(panels, { display: 'none' });
     gsap.set(panel, { display: 'flex' });
     gsap.killTweensOf(fDrawer);
     gsap.to(fDrawer, { height: panel.offsetHeight, duration: 0.4, ease: 'power2.out' });
   }
   col.addEventListener('click', function (e) {
+    // remember which panel was open so multi-select can resume after the reload
+    var val = e.target.closest('.nav_filter-value');
+    if (val) {
+      var p = val.closest('.nav_filter-panel');
+      try { if (p) sessionStorage.setItem('navFilterOpen', p.getAttribute('data-filter-panel')); } catch (err) {}
+      return;
+    }
     var fb = e.target.closest('.nav_filter-btn');
     if (fb) {
       e.preventDefault();
@@ -561,10 +564,15 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
     var so = e.target.closest('[data-sort]');
     if (so) {
       e.preventDefault();
-      var p = new URLSearchParams(window.location.search);
-      p.set('sort_by', so.getAttribute('data-sort'));
-      window.location.search = p.toString();
+      var q = new URLSearchParams(window.location.search);
+      q.set('sort_by', so.getAttribute('data-sort'));
+      window.location.search = q.toString();
     }
+  });
+  // close when the pointer leaves the whole block
+  col.addEventListener('mouseenter', function () { clearTimeout(leaveTimer); });
+  col.addEventListener('mouseleave', function () {
+    leaveTimer = setTimeout(function () { closeFilter(); closeSort(); }, 250);
   });
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.nav_filter-col')) { closeFilter(); closeSort(); }
@@ -572,27 +580,34 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { closeFilter(); closeSort(); }
   });
-  // Re-measure if the size pills rewrap
   window.addEventListener('resize', function () {
     if (!openKey || !fDrawer) return;
     var panel = col.querySelector('[data-filter-panel="' + openKey + '"]');
     if (panel) gsap.set(fDrawer, { height: panel.offsetHeight });
   });
-  // Reflect current URL state
+  // reflect URL state
   var qp = new URLSearchParams(window.location.search);
   col.querySelectorAll('.nav_filter-btn').forEach(function (b) {
     if (qp.has(b.getAttribute('data-filter'))) b.classList.add('has-active');
   });
-  var current = qp.get('sort_by');
-  if (current) {
-    var opt = col.querySelector('[data-sort="' + current + '"]');
+  var cur = qp.get('sort_by');
+  if (cur) {
+    if (sBtn) sBtn.classList.add('has-active');
+    var opt = col.querySelector('[data-sort="' + cur + '"]');
     if (opt) opt.classList.add('is-active');
   }
-  var anyFilter = Array.from(qp.keys()).some(function (k) {
-    return k.indexOf('filter.') === 0;
-  });
+  var anyFilter = Array.from(qp.keys()).some(function (k) { return k.indexOf('filter.') === 0; });
   var reset = col.querySelector('.nav_reset');
   if (reset && !anyFilter) reset.classList.add('is-inactive');
+  // resume the panel you were using
+  try {
+    var restore = sessionStorage.getItem('navFilterOpen');
+    if (restore) {
+      sessionStorage.removeItem('navFilterOpen');
+      var rb = col.querySelector('.nav_filter-btn[data-filter="' + restore + '"]');
+      if (rb) openFilter(restore, rb);
+    }
+  } catch (err) {}
 });
 </script>
 </body>

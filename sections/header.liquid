@@ -60,7 +60,9 @@
                     {% for filter in collection.filters %}    <div li-for="filter in collection.filters" class="nav_filter-group">
                                     
                       
-                            <a li-object:data-filter="filter.param_name" li-object="filter.label" href="#" class="nav_filter-btn nav_link-item w-inline-block" data-filter="{{ filter.param_name }}">{{ filter.label }}</a>
+                            <a li-object:data-filter="filter.param_name" href="#" class="nav_filter-btn nav_link-item w-inline-block" data-filter="{{ filter.param_name }}">
+                        <div li-object="value-label" class="nav_link">{{ value-label }}</div>
+                      </a>
                             
                     
                         </div>
@@ -74,10 +76,22 @@
                         {% for value in filter.values %}    <div li-for="value in filter.values" class="nav_filter-val-wrap">
                                     
                           
-                            <a li-object:href="value.url_to_remove" li-if="value.active" li-object="value.label" href="{{ value.url_to_remove }}" class="nav_filter-value is-active nav_link-item w-inline-block">{{ value.label }}</a>
+                            {% if value.active %}    <div li-if="value.active" class="nav_filter-on">
+    
+                            <a li-object:href="value.url_to_remove" href="{{ value.url_to_remove }}" class="nav_filter-value is-active nav_link-item w-inline-block">
+                              <div li-object="value.label" class="nav_link">{{ value.label }}</div>
+                            </a>
+                              </div>
+{% endif %}
                             
                           
-                            <a li-object:href="value.url_to_add" li-if="value.active != true" li-object="value.label" href="{{ value.url_to_add }}" class="nav_filter-value nav_link-item w-inline-block">{{ value.label }}</a>
+                            {% if value.active != true %}    <div li-if="value.active != true" class="nav_filter-off">
+    
+                            <a li-object:href="value.url_to_add" href="{{ value.url_to_add }}" class="nav_filter-value nav_link-item w-inline-block">
+                              <div li-object="value.label" class="nav_link">{{ value.label }}</div>
+                            </a>
+                              </div>
+{% endif %}
                             
                         
                         </div>
@@ -89,23 +103,43 @@
 {% endfor %}
                   </div>
                 </div>
-                <div class="nav_sort-row">
-                  <div class="nav_sort-bar">
+                <div class="nav_applied">
+                  {% for filter in collection.filters %}    <div li-for="filter in collection.filters">
+                                    
+                    
+                            {% for value in filter.active_values %}    <div li-for="value in filter.active_values">
+                                    
+                      
+                            <a li-object:href="value.url_to_remove" href="{{ value.url_to_remove }}" class="nav_applied-chip w-inline-block">
+                        <div class="nav_submenu-link">x</div>
+                        <div li-object="value-label" class="nav_submenu-link">{{ value-label }}</div>
+                      </a>
+                            
+                    
+                        </div>
+{% endfor %}
+                            
+                  
+                        </div>
+{% endfor %}
+                </div>
+                <div class="nav_sort-bar">
+                  <div class="nav_sort-row">
                     <a li-object:href="collection.url" href="{{ collection.url }}" class="nav_reset nav_link-item w-inline-block">
                       <div class="nav_link">RESET</div>
                     </a>
                     <a href="#" class="nav_sort-btn nav_link-item w-inline-block">
                       <div class="nav_link">SORT</div>
                     </a>
-                    <div class="nav_sort-drawer">
-                      {% for option in collection.sort_options %}    <div li-for="option in collection.sort_options" class="nav_sort-opt-wrap">
-                                    
-                        
-                            <a li-object:data-sort="option.value" li-object="option.name" href="#" class="nav_sort-option nav_link-item w-inline-block" data-sort="{{ option.value }}">{{ option.name }}</a>
-                            
-                      
-                        </div>
-{% endfor %}
+                  </div>
+                  <div class="nav_sort-drawer">
+                    <div class="nav_sort-opt-wrap">
+                      <a href="#" class="nav_sort-option nav_link-item w-inline-block">
+                        <div data-sort="price-ascending" class="nav_submenu-link">PRICE ↑</div>
+                        <div data-sort="price-descending" class="nav_submenu-link">PRICE ↓</div>
+                        <div data-sort="created-ascending" class="nav_submenu-link">DATE ↑</div>
+                        <div data-sort="created-descending" class="nav_submenu-link">DATE ↓</div>
+                      </a>
                     </div>
                   </div>
                 </div>
