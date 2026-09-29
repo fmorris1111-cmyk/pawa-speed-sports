@@ -504,7 +504,11 @@ document.addEventListener('click', function (e) {
     qa('.nav_sort-option').forEach(function (o) {
       o.classList.toggle('is-active', !!cur && o.getAttribute('data-sort') === cur);
     });
-    var any = Array.from(p.keys()).some(function (k) { return k.indexOf('filter.') === 0; });
+        var any = Array.from(p.keys()).some(function (k) {
+      return k.indexOf('filter.') === 0 || k === 'sort_by';
+    });
+    var st = q('.nav_stock-toggle');
+    if (st) st.classList.toggle('is-active', p.get('filter.v.availability') === '1');
     var r = q('.nav_reset'); if (r) r.classList.toggle('is-inactive', !any);
     var a = q('.nav_applied');
     if (a) a.style.display = a.querySelector('.nav_applied-chip') ? '' : 'none';
@@ -579,6 +583,15 @@ document.addEventListener('click', function (e) {
       p.set('sort_by', so.getAttribute('data-sort'));
       closeSort();
       go(window.location.pathname + '?' + p.toString());
+      return;
+    }
+        var stk = e.target.closest('.nav_stock-toggle');
+    if (stk) {
+      e.preventDefault();
+      var sp = new URLSearchParams(window.location.search);
+      if (sp.get('filter.v.availability') === '1') sp.delete('filter.v.availability');
+      else sp.set('filter.v.availability', '1');
+      go(window.location.pathname + (sp.toString() ? '?' + sp.toString() : ''));
       return;
     }
     var fb = e.target.closest('.nav_filter-btn');

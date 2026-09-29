@@ -56,13 +56,20 @@
     
                 <div class="nav_filter-bar">
                   <div class="div-block-21">
-                    <div class="nav_filter-label nav-link">FILTER</div>
+                    <div class="nav-link nav_filter-caption">FILTER</div>
+                    <a href="#" class="nav_stock-toggle nav_link-item w-inline-block">
+                      <div class="nav-link">IN STOCK<br></div>
+                    </a>
                     {% for filter in collection.filters %}    <div li-for="filter in collection.filters" class="nav_filter-group">
                                     
                       
-                            <a li-object:data-filter="filter.param_name" href="#" class="nav_filter-btn nav_link-item w-inline-block" data-filter="{{ filter.param_name }}">
-                        <div li-object="filter.label" class="nav-link">{{ filter.label }}</div>
-                      </a>
+                            {% if filter.param_name != 'filter.v.availability' %}    <div li-if="filter.param_name != 'filter.v.availability'" class="nav_filter-skip">
+    
+                        <a li-object:data-filter="filter.param_name" href="#" class="nav_filter-btn nav_link-item w-inline-block" data-filter="{{ filter.param_name }}">
+                          <div li-object="filter.label" class="nav-link">{{ filter.label }}</div>
+                        </a>
+                          </div>
+{% endif %}
                             
                     
                         </div>
