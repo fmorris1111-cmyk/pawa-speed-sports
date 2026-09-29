@@ -888,5 +888,94 @@
     background: #fff; border-radius: 4px; padding: .25rem .75rem;
   }
   .nav_applied-chip:hover { background: #cacaca; }
-  @media screen and (max-width: 991px) { .nav_filter-col { display: none !important; } }
+    /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MOBILE FILTER PANEL (&le;991px) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+  .mfilter-trigger, .mfilter-actions { display: none; }
+@media screen and (max-width: 991px) {
+  /* panel shell */
+  .nav_filter-col {
+    display: flex !important;
+    position: fixed;
+    inset: 0;
+    bottom: var(--mnav-bar-top, 6rem);
+    z-index: 9990;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0;
+    padding: 1rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .25s ease, visibility .25s;
+  }
+  .nav_filter-col.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+  .mfilter-backdrop {
+    position: fixed; inset: 0; z-index: -1;
+    background: rgba(255,255,255,.55);
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+  }
+  /* chips to the top */
+  .nav_applied { order: -1; gap: .5rem; margin-bottom: 1rem; }
+  .nav_applied-chip { background: #fff !important; border: 1px solid #e3e3e3; }
+  /* bars become plain stacks */
+  .nav_filter-bar, .nav_sort-bar {
+    background: transparent !important;
+    padding: 0; border-radius: 0; width: 100%; margin-bottom: .5rem;
+  }
+  .nav_filter-bar > div:first-child, .nav_sort-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: .5rem;
+  }
+  .nav_filter-caption, .nav_sort-row > .nav_reset { display: none !important; }
+  /* accordion headers */
+  .nav_filter-btn, .nav_stock-toggle, .nav_sort-btn {
+    width: 100%;
+    justify-content: space-between;
+    background: #fff !important;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    padding: .9rem 1rem !important;
+  }
+  /* drawers in flow */
+  .nav_filter-drawer, .nav_sort-drawer {
+    position: static !important;
+    width: 100%; min-width: 0; margin-top: 0;
+    background: #fff !important;
+    border-radius: 0 0 4px 4px;
+  }
+  .nav_filter-panel {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem; padding: .75rem;
+  }
+  .nav_sort-opt-wrap { padding: .75rem; gap: .5rem; }
+  .nav_filter-value, .nav_sort-option {
+    justify-content: center;
+    background: #f3f3f3 !important;
+  }
+  /* staged state */
+  .nav_filter-value.is-staged,
+  .nav_sort-option.is-staged,
+  .nav_stock-toggle.is-staged { background: #cacaca !important; }
+  /* the two button bars */
+  .mfilter-trigger { display: flex; gap: .5rem; margin-bottom: .5rem; }
+  .mfilter-actions { display: none; gap: .5rem; margin-bottom: .5rem; }
+  body.mfilter-open .mfilter-trigger { display: none; }
+  body.mfilter-open .mfilter-actions { display: flex; }
+  .mfilter-trigger > a, .mfilter-actions > a {
+    flex: 1; justify-content: center;
+    border-radius: 4px; padding: .9rem 1rem !important;
+  }
+  .mfilter-open, .mfilter-apply { background: #000 !important; }
+  .mfilter-open.has-active, .mfilter-apply.has-staged { background: #cacaca !important; }
+  .mfilter-open.has-active > div, .mfilter-apply.has-staged > div { color: #000 !important; }
+  .mfilter-clear, .mfilter-reset { background: #fff !important; }
+  .mfilter-clear.is-inactive, .mfilter-reset.is-inactive {
+    background: transparent !important; opacity: .4; pointer-events: none;
+  }
+  .mfilter-clear.is-inactive { display: none; }
+}
 </style>

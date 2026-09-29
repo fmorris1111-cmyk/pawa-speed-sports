@@ -54,11 +54,12 @@
               </nav>
               {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="nav_filter-col">
     
+                <div class="mfilter-backdrop"></div>
                 <div class="nav_filter-bar">
                   <div class="div-block-21">
-                    <div class="nav-link nav_filter-caption">FILTER</div>
+                    <div class="nav_filter-link nav_filter-caption">FILTER</div>
                     <a href="#" class="nav_stock-toggle nav_link-item w-inline-block">
-                      <div class="nav-link">IN STOCK<br></div>
+                      <div class="nav_filter-link">IN STOCK</div>
                     </a>
                     {% for filter in collection.filters %}    <div li-for="filter in collection.filters" class="nav_filter-group">
                                     
@@ -66,7 +67,7 @@
                             {% if filter.param_name != 'filter.v.availability' %}    <div li-if="filter.param_name != 'filter.v.availability'" class="nav_filter-skip">
     
                         <a li-object:data-filter="filter.param_name" href="#" class="nav_filter-btn nav_link-item w-inline-block" data-filter="{{ filter.param_name }}">
-                          <div li-object="filter.label" class="nav-link">{{ filter.label }}</div>
+                          <div li-object="filter.label" class="nav_filter-link">{{ filter.label }}</div>
                         </a>
                           </div>
 {% endif %}
@@ -85,8 +86,8 @@
                           
                             {% if value.active %}    <div li-if="value.active" class="nav_filter-on">
     
-                            <a li-object:href="value.url_to_remove" href="{{ value.url_to_remove }}" class="nav_filter-value is-active nav_link-item w-inline-block">
-                              <div li-object="value.label" class="nav-link">{{ value.label }}</div>
+                            <a li-object:data-value="value.value" li-object:href="value.url_to_remove" href="{{ value.url_to_remove }}" class="nav_filter-value is-active nav_link-item w-inline-block" data-value="{{ value.value }}">
+                              <div li-object="value.label" class="nav_filter-link">{{ value.label }}</div>
                             </a>
                               </div>
 {% endif %}
@@ -94,8 +95,8 @@
                           
                             {% if value.active != true %}    <div li-if="value.active != true" class="nav_filter-off">
     
-                            <a li-object:href="value.url_to_add" href="{{ value.url_to_add }}" class="nav_filter-value nav_link-item w-inline-block">
-                              <div li-object="value.label" class="nav-link">{{ value.label }}</div>
+                            <a li-object:data-value="value.value" li-object:href="value.url_to_add" href="{{ value.url_to_add }}" class="nav_filter-value nav_link-item w-inline-block" data-value="{{ value.value }}">
+                              <div li-object="value.label" class="nav_filter-link">{{ value.label }}</div>
                             </a>
                               </div>
 {% endif %}
@@ -108,6 +109,7 @@
                     
                         </div>
 {% endfor %}
+                    <div></div>
                   </div>
                 </div>
                 <div class="nav_applied">
@@ -133,10 +135,10 @@
                 <div class="nav_sort-bar">
                   <div class="nav_sort-row">
                     <a li-object:href="collection.url" href="{{ collection.url }}" class="nav_reset nav_link-item w-inline-block">
-                      <div class="nav-link">RESET</div>
+                      <div class="nav_filter-link-reset">RESET</div>
                     </a>
                     <a href="#" class="nav_sort-btn nav_link-item w-inline-block">
-                      <div class="nav-link">SORT</div>
+                      <div class="nav_filter-link">SORT</div>
                     </a>
                   </div>
                   <div class="nav_sort-drawer">
@@ -726,6 +728,24 @@
 {% endif %}
             </div>
           </div>
+          {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="mfilter-trigger">
+    
+            <a href="#" class="mfilter-open nav_link-item w-inline-block">
+              <div class="nav_filter-link-reset">FILTERS</div>
+            </a>
+            <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-clear nav_link-item w-inline-block">
+              <div class="nav_filter-link">RESET</div>
+            </a>
+              </div>
+{% endif %}
+          <div class="mfilter-actions">
+            <a href="#" class="mfilter-apply nav_link-item w-inline-block">
+              <div class="nav_filter-link-reset">CLOSE</div>
+            </a>
+            <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-reset nav_link-item w-inline-block">
+              <div class="nav_filter-link">RESET</div>
+            </a>
+          </div>
           <div class="mobilenav_bar">
             <div class="mobilenav_row is-level1">
               <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
@@ -1076,7 +1096,9 @@ window.mnavSyncAnchors = mSyncAnchors;
   if (except !== 'drawer') mCloseDrawer();
   if (except !== 'search') mCloseSearch();
   if (except !== 'cart' && mCartIsOpen() && window.mnavCloseCart) window.mnavCloseCart();
+  if (except !== 'filter' && window.mfilterClose) window.mfilterClose();
  }
+   window.mnavCloseAll = mCloseAll;
  function mOpenMenu()  {mState = 'menu'; mCloseAll(); mSetRow(2); mClearActive(); mSetMenuOpen(true); }
  function mCloseMenu() {mState = 'idle'; mCloseAll(); mSetRow(1); mClearActive(); mSetMenuOpen(false); }
  mMenuBtns.forEach(function (btn) {
@@ -1134,8 +1156,9 @@ window.mnavSyncAnchors = mSyncAnchors;
    });
  document.addEventListener('click', function (e) {
   if (!mq.matches) return;
-  if (e.target.closest('.mobilenav') ||
+    if (e.target.closest('.mobilenav') ||
     e.target.closest('.nav_search-expand') ||
+    e.target.closest('.nav_filter-col') ||
     e.target.closest('.nav_mini-cart-holder')) return;
   mCloseAll();
   if (mState === 'menu') {mCloseMenu(); } else {mClearActive(); }
