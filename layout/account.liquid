@@ -493,122 +493,140 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
 })();
 </script>
   <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var col = document.querySelector('.nav_filter-col');
-  if (!col || typeof gsap === 'undefined') return;
-  var fBar = col.querySelector('.nav_filter-bar');
-  var fDrawer = col.querySelector('.nav_filter-drawer');
-  var sBar = col.querySelector('.nav_sort-bar');
-  var sDrawer = col.querySelector('.nav_sort-drawer');
-  var sBtn = col.querySelector('.nav_sort-btn');
-  var applied = col.querySelector('.nav_applied');
-  var panels = col.querySelectorAll('.nav_filter-panel');
-  var openKey = null, leaveTimer = null;
-  if (fDrawer) gsap.set(fDrawer, { height: 0, overflow: 'hidden' });
-  if (sDrawer) gsap.set(sDrawer, { height: 0, overflow: 'hidden' });
-  gsap.set(panels, { display: 'none' });
-  if (applied && !applied.querySelector('.nav_applied-chip')) applied.style.display = 'none';
+(function () {
+  if (typeof gsap === 'undefined') return;
+  var openKey = null, leaveTimer = null, busy = false;
+  var q  = function (s) { return document.querySelector(s); };
+  var qa = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  function markState() {
+    if (!q('.nav_filter-col')) return;
+    var p = new URLSearchParams(window.location.search);
+    qa('.nav_filter-btn').forEach(function (b) {
+      b.classList.toggle('has-active', p.has(b.getAttribute('data-filter')));
+    });
+    var cur = p.get('sort_by'), sb = q('.nav_sort-btn');
+    if (sb) sb.classList.toggle('has-active', !!cur);
+    qa('.nav_sort-option').forEach(function (o) {
+      o.classList.toggle('is-active', !!cur && o.getAttribute('data-sort') === cur);
+    });
+    var any = Array.from(p.keys()).some(function (k) { return k.indexOf('filter.') === 0; });
+    var r = q('.nav_reset'); if (r) r.classList.toggle('is-inactive', !any);
+    var a = q('.nav_applied');
+    if (a) a.style.display = a.querySelector('.nav_applied-chip') ? '' : 'none';
+  }
+  function prime() {
+    var fd = q('.nav_filter-drawer'), sd = q('.nav_sort-drawer');
+    if (fd) gsap.set(fd, { height: 0, overflow: 'hidden' });
+    if (sd) gsap.set(sd, { height: 0, overflow: 'hidden' });
+    gsap.set(qa('.nav_filter-panel'), { display: 'none' });
+    markState();
+  }
   function closeFilter() {
-    if (!fDrawer || openKey === null) return;
+    var fd = q('.nav_filter-drawer'); if (!fd || openKey === null) return;
     openKey = null;
-    if (fBar) fBar.classList.remove('is-open');
-    col.querySelectorAll('.nav_filter-btn.is-open').forEach(function (b) { b.classList.remove('is-open'); });
-    gsap.killTweensOf(fDrawer);
-    gsap.to(fDrawer, { height: 0, duration: 0.3, ease: 'power2.inOut',
-      onComplete: function () { gsap.set(panels, { display: 'none' }); } });
+    var fb = q('.nav_filter-bar'); if (fb) fb.classList.remove('is-open');
+    qa('.nav_filter-btn.is-open').forEach(function (b) { b.classList.remove('is-open'); });
+    gsap.killTweensOf(fd);
+    gsap.to(fd, { height: 0, duration: .3, ease: 'power2.inOut',
+      onComplete: function () { gsap.set(qa('.nav_filter-panel'), { display: 'none' }); } });
   }
   function closeSort() {
-    if (!sDrawer || !sBtn || !sBtn.classList.contains('is-open')) return;
-    sBtn.classList.remove('is-open');
-    if (sBar) sBar.classList.remove('is-open');
-    gsap.killTweensOf(sDrawer);
-    gsap.to(sDrawer, { height: 0, duration: 0.3, ease: 'power2.inOut' });
+    var sd = q('.nav_sort-drawer'), sb = q('.nav_sort-btn');
+    if (!sd || !sb || !sb.classList.contains('is-open')) return;
+    sb.classList.remove('is-open');
+    var sbar = q('.nav_sort-bar'); if (sbar) sbar.classList.remove('is-open');
+    gsap.killTweensOf(sd);
+    gsap.to(sd, { height: 0, duration: .3, ease: 'power2.inOut' });
   }
-  function openFilter(key, btn) {
-    var panel = col.querySelector('[data-filter-panel="' + key + '"]');
-    if (!panel || !fDrawer) return;
+  function openFilter(key, animate) {
+    var fd = q('.nav_filter-drawer'), panel = q('[data-filter-panel="' + key + '"]');
+    if (!fd || !panel) return;
     closeSort();
     openKey = key;
-    if (fBar) fBar.classList.add('is-open');
-    col.querySelectorAll('.nav_filter-btn').forEach(function (b) { b.classList.toggle('is-open', b === btn); });
-    gsap.set(panels, { display: 'none' });
+    var fb = q('.nav_filter-bar'); if (fb) fb.classList.add('is-open');
+    qa('.nav_filter-btn').forEach(function (b) {
+      b.classList.toggle('is-open', b.getAttribute('data-filter') === key);
+    });
+    gsap.set(qa('.nav_filter-panel'), { display: 'none' });
     gsap.set(panel, { display: 'flex' });
-    gsap.killTweensOf(fDrawer);
-    gsap.to(fDrawer, { height: panel.offsetHeight, duration: 0.4, ease: 'power2.out' });
+    gsap.killTweensOf(fd);
+    if (animate === false) gsap.set(fd, { height: panel.offsetHeight });
+    else gsap.to(fd, { height: panel.offsetHeight, duration: .4, ease: 'power2.out' });
   }
-  col.addEventListener('click', function (e) {
-    // remember which panel was open so multi-select can resume after the reload
-    var val = e.target.closest('.nav_filter-value');
-    if (val) {
-      var p = val.closest('.nav_filter-panel');
-      try { if (p) sessionStorage.setItem('navFilterOpen', p.getAttribute('data-filter-panel')); } catch (err) {}
+  function go(url) {
+    if (busy || !url || url === '#') return;
+    busy = true;
+    var keep = openKey;
+    fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var ng = doc.querySelector('.filter_layout'), cg = q('.filter_layout');
+      if (ng && cg) cg.replaceWith(ng);
+      var nc = doc.querySelector('.nav_filter-col'), cc = q('.nav_filter-col');
+      if (nc && cc) cc.replaceWith(nc);
+      window.history.pushState({}, '', url);
+      prime();
+      if (keep) openFilter(keep, false);
+      busy = false;
+    }).catch(function () { window.location.href = url; });
+  }
+  document.addEventListener('click', function (e) {
+    var col = q('.nav_filter-col');
+    var link = e.target.closest('.nav_filter-value, .nav_applied-chip, .nav_reset');
+    if (link && col && col.contains(link)) {
+      e.preventDefault();
+      if (!link.classList.contains('is-inactive')) go(link.getAttribute('href'));
+      return;
+    }
+    var so = e.target.closest('.nav_sort-option');
+    if (so && col && col.contains(so)) {
+      e.preventDefault();
+      var p = new URLSearchParams(window.location.search);
+      p.set('sort_by', so.getAttribute('data-sort'));
+      closeSort();
+      go(window.location.pathname + '?' + p.toString());
       return;
     }
     var fb = e.target.closest('.nav_filter-btn');
     if (fb) {
       e.preventDefault();
       var key = fb.getAttribute('data-filter');
-      if (openKey === key) closeFilter(); else openFilter(key, fb);
+      if (openKey === key) closeFilter(); else openFilter(key);
       return;
     }
     if (e.target.closest('.nav_sort-btn')) {
       e.preventDefault();
-      if (sBtn.classList.contains('is-open')) { closeSort(); return; }
-      closeFilter();
-      sBtn.classList.add('is-open');
-      if (sBar) sBar.classList.add('is-open');
-      gsap.killTweensOf(sDrawer);
-      gsap.to(sDrawer, { height: 'auto', duration: 0.4, ease: 'power2.out' });
+      var sb = q('.nav_sort-btn');
+      if (sb.classList.contains('is-open')) closeSort();
+      else { closeFilter(); sb.classList.add('is-open');
+             var sbar = q('.nav_sort-bar'); if (sbar) sbar.classList.add('is-open');
+             var sd = q('.nav_sort-drawer');
+             gsap.killTweensOf(sd); gsap.to(sd, { height: 'auto', duration: .4, ease: 'power2.out' }); }
       return;
     }
-    var so = e.target.closest('[data-sort]');
-    if (so) {
-      e.preventDefault();
-      var q = new URLSearchParams(window.location.search);
-      q.set('sort_by', so.getAttribute('data-sort'));
-      window.location.search = q.toString();
-    }
-  });
-  // close when the pointer leaves the whole block
-  col.addEventListener('mouseenter', function () { clearTimeout(leaveTimer); });
-  col.addEventListener('mouseleave', function () {
-    leaveTimer = setTimeout(function () { closeFilter(); closeSort(); }, 250);
-  });
-  document.addEventListener('click', function (e) {
     if (!e.target.closest('.nav_filter-col')) { closeFilter(); closeSort(); }
+  });
+  document.addEventListener('mouseover', function (e) {
+    if (e.target.closest('.nav_filter-col')) clearTimeout(leaveTimer);
+  });
+  document.addEventListener('mouseout', function (e) {
+    var col = q('.nav_filter-col'); if (!col) return;
+    if (col.contains(e.target) && !col.contains(e.relatedTarget)) {
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(function () { closeFilter(); closeSort(); }, 250);
+    }
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { closeFilter(); closeSort(); }
   });
+  window.addEventListener('popstate', function () { window.location.reload(); });
   window.addEventListener('resize', function () {
-    if (!openKey || !fDrawer) return;
-    var panel = col.querySelector('[data-filter-panel="' + openKey + '"]');
-    if (panel) gsap.set(fDrawer, { height: panel.offsetHeight });
+    if (!openKey) return;
+    var fd = q('.nav_filter-drawer'), p = q('[data-filter-panel="' + openKey + '"]');
+    if (fd && p) gsap.set(fd, { height: p.offsetHeight });
   });
-  // reflect URL state
-  var qp = new URLSearchParams(window.location.search);
-  col.querySelectorAll('.nav_filter-btn').forEach(function (b) {
-    if (qp.has(b.getAttribute('data-filter'))) b.classList.add('has-active');
-  });
-  var cur = qp.get('sort_by');
-  if (cur) {
-    if (sBtn) sBtn.classList.add('has-active');
-    var opt = col.querySelector('[data-sort="' + cur + '"]');
-    if (opt) opt.classList.add('is-active');
-  }
-  var anyFilter = Array.from(qp.keys()).some(function (k) { return k.indexOf('filter.') === 0; });
-  var reset = col.querySelector('.nav_reset');
-  if (reset && !anyFilter) reset.classList.add('is-inactive');
-  // resume the panel you were using
-  try {
-    var restore = sessionStorage.getItem('navFilterOpen');
-    if (restore) {
-      sessionStorage.removeItem('navFilterOpen');
-      var rb = col.querySelector('.nav_filter-btn[data-filter="' + restore + '"]');
-      if (rb) openFilter(restore, rb);
-    }
-  } catch (err) {}
-});
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', prime);
+  else prime();
+})();
 </script>
 </body>
 </html>
