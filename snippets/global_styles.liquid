@@ -968,16 +968,17 @@
   .nav_sort-option.is-staged,
   .nav_stock-toggle.is-staged { background: #cacaca !important; }
   /* the two button bars */
-  .mfilter-trigger, .mfilter-actions {
+    .mfilter-trigger, .mfilter-actions {
     position: fixed;
-    bottom: var(--mnav-bar-top, 6rem);
+    bottom: calc(var(--mnav-bar-top, 6rem) + 4px);
     left:   var(--mnav-left,  1rem);
     right:  var(--mnav-right, 1rem);
-    z-index: 9990;
     gap: .5rem;
     margin-bottom: 0;
     pointer-events: auto;
   }
+  .mfilter-trigger { z-index: 998; }
+  .mfilter-actions { z-index: 1000; }
   .mfilter-trigger { display: flex; }
   .mfilter-actions { display: none; }
   body.mfilter-panel-open .mfilter-trigger { display: none; }
