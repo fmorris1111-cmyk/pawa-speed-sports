@@ -56,12 +56,12 @@
     
                 <div class="nav_filter-bar">
                   <div class="div-block-21">
-                    <div class="nav_filter-label nav_link">FILTER</div>
+                    <div class="nav_filter-label nav-link">FILTER</div>
                     {% for filter in collection.filters %}    <div li-for="filter in collection.filters" class="nav_filter-group">
                                     
                       
                             <a li-object:data-filter="filter.param_name" href="#" class="nav_filter-btn nav_link-item w-inline-block" data-filter="{{ filter.param_name }}">
-                        <div li-object="value-label" class="nav_link">{{ value-label }}</div>
+                        <div li-object="filter.label" class="nav-link">{{ filter.label }}</div>
                       </a>
                             
                     
@@ -79,7 +79,7 @@
                             {% if value.active %}    <div li-if="value.active" class="nav_filter-on">
     
                             <a li-object:href="value.url_to_remove" href="{{ value.url_to_remove }}" class="nav_filter-value is-active nav_link-item w-inline-block">
-                              <div li-object="value.label" class="nav_link">{{ value.label }}</div>
+                              <div li-object="value.label" class="nav-link">{{ value.label }}</div>
                             </a>
                               </div>
 {% endif %}
@@ -88,7 +88,7 @@
                             {% if value.active != true %}    <div li-if="value.active != true" class="nav_filter-off">
     
                             <a li-object:href="value.url_to_add" href="{{ value.url_to_add }}" class="nav_filter-value nav_link-item w-inline-block">
-                              <div li-object="value.label" class="nav_link">{{ value.label }}</div>
+                              <div li-object="value.label" class="nav-link">{{ value.label }}</div>
                             </a>
                               </div>
 {% endif %}
@@ -112,7 +112,7 @@
                       
                             <a li-object:href="value.url_to_remove" href="{{ value.url_to_remove }}" class="nav_applied-chip w-inline-block">
                         <div class="nav_submenu-link">x</div>
-                        <div li-object="value-label" class="nav_submenu-link">{{ value-label }}</div>
+                        <div li-object="value.label" class="nav_submenu-link">{{ value.label }}</div>
                       </a>
                             
                     
@@ -126,19 +126,25 @@
                 <div class="nav_sort-bar">
                   <div class="nav_sort-row">
                     <a li-object:href="collection.url" href="{{ collection.url }}" class="nav_reset nav_link-item w-inline-block">
-                      <div class="nav_link">RESET</div>
+                      <div class="nav-link">RESET</div>
                     </a>
                     <a href="#" class="nav_sort-btn nav_link-item w-inline-block">
-                      <div class="nav_link">SORT</div>
+                      <div class="nav-link">SORT</div>
                     </a>
                   </div>
                   <div class="nav_sort-drawer">
                     <div class="nav_sort-opt-wrap">
-                      <a href="#" class="nav_sort-option nav_link-item w-inline-block">
-                        <div data-sort="price-ascending" class="nav_submenu-link">PRICE ↑</div>
-                        <div data-sort="price-descending" class="nav_submenu-link">PRICE ↓</div>
-                        <div data-sort="created-ascending" class="nav_submenu-link">DATE ↑</div>
-                        <div data-sort="created-descending" class="nav_submenu-link">DATE ↓</div>
+                      <a data-sort="price-ascending" href="#" class="nav_sort-option nav_link-item w-inline-block">
+                        <div class="nav_submenu-link">PRICE ↑</div>
+                      </a>
+                      <a data-sort="price-descending" href="#" class="nav_sort-option nav_link-item w-inline-block">
+                        <div class="nav_submenu-link">PRICE ↓</div>
+                      </a>
+                      <a data-sort="created-ascending" href="#" class="nav_sort-option nav_link-item w-inline-block">
+                        <div class="nav_submenu-link">DATE ↑</div>
+                      </a>
+                      <a data-sort="created-descending" href="#" class="nav_sort-option nav_link-item w-inline-block">
+                        <div class="nav_submenu-link">DATE ↓</div>
                       </a>
                     </div>
                   </div>
