@@ -900,7 +900,8 @@
     bottom: var(--mnav-bar-top, 6rem);
     z-index: 9990;
     flex-direction: column;
-    align-items: stretch !important;
+        align-items: stretch !important;
+    justify-content: safe center;
     gap: 0;
     padding: 1rem;
     overflow-y: auto;
@@ -922,7 +923,13 @@
   .nav_filter-col.is-open .mfilter-backdrop { opacity: 1; }
   /* chips to the top */
   .nav_applied { order: -1; gap: .5rem; margin-bottom: 1rem; }
-  .nav_applied-chip { background: #fff !important; border: 1px solid #e3e3e3; }
+    .nav_applied-chip {
+    background: #fff !important;
+    border: 1px solid #e3e3e3;
+    flex-direction: row !important;
+    align-items: center;
+    gap: .4rem;
+  }
   /* bars become plain stacks */
   .nav_filter-bar, .nav_sort-bar {
     background: transparent !important;
@@ -933,8 +940,6 @@
     align-items: stretch !important;
     gap: .5rem;
   }
-  .nav_applied { margin-top: auto; }
-  .nav_sort-bar  { margin-bottom: auto; }
   .nav_filter-caption, .nav_sort-row > .nav_reset { display: none !important; }
   /* accordion headers */
   .nav_filter-btn, .nav_stock-toggle, .nav_sort-btn {
@@ -977,7 +982,8 @@
     margin-bottom: 0;
     pointer-events: auto;
   }
-  .mfilter-trigger { z-index: 998; }
+  .mfilter-trigger { z-index: 998; visibility: hidden; }
+  body.mfilter-ready .mfilter-trigger { visibility: visible; }
   .mfilter-actions { z-index: 1000; }
   .mfilter-trigger { display: flex; }
   .mfilter-actions { display: none; }
@@ -987,9 +993,9 @@
     flex: 1; justify-content: center;
     border-radius: 4px; padding: .9rem 1rem !important;
   }
-  .mfilter-open, .mfilter-apply { background: #000 !important; }
-  .mfilter-open.has-active, .mfilter-apply.has-staged { background: #cacaca !important; }
-  .mfilter-open.has-active > div, .mfilter-apply.has-staged > div { color: #000 !important; }
+    .mfilter-open, .mfilter-apply { background: #000 !important; }
+  .mfilter-open.has-active { background: #cacaca !important; }
+  .mfilter-open.has-active > div { color: #000 !important; }
   .mfilter-clear, .mfilter-reset { background: #fff !important; }
   .mfilter-clear.is-inactive, .mfilter-reset.is-inactive {
     background: transparent !important; opacity: .4; pointer-events: none;

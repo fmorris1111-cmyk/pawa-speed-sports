@@ -505,6 +505,7 @@ if (kb < 150) kb = 0;
     gsap.set(qa('.nav_filter-panel'), { display: 'none' });
     openKey = null;
     refresh();
+    document.body.classList.add('mfilter-ready');
   }
   function closeFilter() {
     var fd = q('.nav_filter-drawer'); if (!fd || openKey === null) return;

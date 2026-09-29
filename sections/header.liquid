@@ -1096,7 +1096,6 @@ window.mnavSyncAnchors = mSyncAnchors;
   if (except !== 'drawer') mCloseDrawer();
   if (except !== 'search') mCloseSearch();
   if (except !== 'cart' && mCartIsOpen() && window.mnavCloseCart) window.mnavCloseCart();
-  if (except !== 'filter' && window.mfilterClose) window.mfilterClose();
  }
    window.mnavCloseAll = mCloseAll;
  function mOpenMenu()  {mState = 'menu'; mCloseAll(); mSetRow(2); mClearActive(); mSetMenuOpen(true); }
