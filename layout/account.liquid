@@ -483,6 +483,7 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
   var root = document.documentElement;
   function sync() {
     var kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+if (kb < 150) kb = 0;
     root.style.setProperty('--kb', kb + 'px');
     root.style.setProperty('--vvh', vv.height + 'px');
     if (window.mnavSyncAnchors) window.mnavSyncAnchors();
@@ -537,7 +538,7 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
       b.classList.toggle('is-open', b.getAttribute('data-filter') === key);
     });
     gsap.set(qa('.nav_filter-panel'), { display: 'none' });
-    gsap.set(panel, { display: MOB.matches ? 'grid' : 'flex' });
+    gsap.set(panel, { display: 'flex' });
     gsap.killTweensOf(fd);
     gsap.to(fd, { height: panel.offsetHeight, duration: .4, ease: 'power2.out' });
   }

@@ -860,6 +860,7 @@
   .nav_filter-panel { display: flex; flex-wrap: wrap; gap: .5rem; padding: .5rem .25rem .25rem; }
   .nav_sort-opt-wrap { display: flex; flex-direction: column; gap: .25rem; padding: .5rem .25rem; }
   .nav_sort-option > div { white-space: nowrap; }
+  .nav_sort-option { justify-content: flex-end; }
   .nav_filter-btn > div,
   .nav_stock-toggle > div,
   .nav_filter-value > div,
@@ -911,7 +912,7 @@
   .nav_filter-col.is-open { visibility: visible; pointer-events: auto; }
     .mfilter-backdrop {
     position: fixed; inset: 0; z-index: -1;
-    background: rgba(255,255,255,.55);
+    background: rgba(0,0,0,.12);
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     opacity: 0;
@@ -932,7 +933,7 @@
     align-items: stretch !important;
     gap: .5rem;
   }
-  .nav_filter-bar { margin-top: auto; }
+  .nav_applied { margin-top: auto; }
   .nav_sort-bar  { margin-bottom: auto; }
   .nav_filter-caption, .nav_sort-row > .nav_reset { display: none !important; }
   /* accordion headers */
@@ -952,10 +953,11 @@
     border-radius: 0 0 4px 4px;
   }
   .nav_filter-panel {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: .5rem; padding: .75rem;
   }
+  .nav_filter-value > div { white-space: nowrap; }
   .nav_sort-opt-wrap { padding: .75rem; gap: .5rem; }
   .nav_filter-value, .nav_sort-option {
     justify-content: center;
@@ -966,10 +968,20 @@
   .nav_sort-option.is-staged,
   .nav_stock-toggle.is-staged { background: #cacaca !important; }
   /* the two button bars */
-  .mfilter-trigger { display: flex; gap: .5rem; margin-bottom: .5rem; }
-  .mfilter-actions { display: none; gap: .5rem; margin-bottom: .5rem; }
-  body.mfilter-open .mfilter-trigger { display: none; }
-  body.mfilter-open .mfilter-actions { display: flex; }
+  .mfilter-trigger, .mfilter-actions {
+    position: fixed;
+    bottom: var(--mnav-bar-top, 6rem);
+    left:   var(--mnav-left,  1rem);
+    right:  var(--mnav-right, 1rem);
+    z-index: 9990;
+    gap: .5rem;
+    margin-bottom: 0;
+    pointer-events: auto;
+  }
+  .mfilter-trigger { display: flex; }
+  .mfilter-actions { display: none; }
+  body.mfilter-panel-open .mfilter-trigger { display: none; }
+  body.mfilter-panel-open .mfilter-actions { display: flex; }
   .mfilter-trigger > a, .mfilter-actions > a {
     flex: 1; justify-content: center;
     border-radius: 4px; padding: .9rem 1rem !important;
