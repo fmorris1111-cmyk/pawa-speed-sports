@@ -728,24 +728,6 @@
 {% endif %}
             </div>
           </div>
-          {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="mfilter-trigger">
-    
-            <a href="#" class="mfilter-open nav_link-item w-inline-block">
-              <div class="nav_filter-link-reset">FILTERS</div>
-            </a>
-            <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-clear nav_link-item w-inline-block">
-              <div class="nav_filter-link">RESET</div>
-            </a>
-              </div>
-{% endif %}
-          <div class="mfilter-actions">
-            <a href="#" class="mfilter-apply nav_link-item w-inline-block">
-              <div class="nav_filter-link-reset">CLOSE</div>
-            </a>
-            <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-reset nav_link-item w-inline-block">
-              <div class="nav_filter-link">RESET</div>
-            </a>
-          </div>
           <div class="mobilenav_bar">
             <div class="mobilenav_row is-level1">
               <a data-mnav="menu" href="#" class="mobilenav_item w-inline-block">
@@ -778,6 +760,24 @@
 {% endfor %}
             </div>
           </div>
+        </div>
+        {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="mfilter-trigger">
+    
+          <a href="#" class="mfilter-open nav_link-item w-inline-block">
+            <div class="nav_filter-link-reset">FILTERS</div>
+          </a>
+          <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-clear nav_link-item w-inline-block">
+            <div class="nav_filter-link">RESET</div>
+          </a>
+            </div>
+{% endif %}
+        <div class="mfilter-actions">
+          <a href="#" class="mfilter-apply nav_link-item w-inline-block">
+            <div class="nav_filter-link-reset">CLOSE</div>
+          </a>
+          <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-reset nav_link-item w-inline-block">
+            <div class="nav_filter-link">RESET</div>
+          </a>
         </div>
         
         <div class="w-embed w-script">
