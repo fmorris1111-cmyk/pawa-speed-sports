@@ -566,7 +566,14 @@ if (kb < 150) kb = 0;
         a.href = '#';
         a.setAttribute('data-chip-key', k);
         a.setAttribute('data-chip-val', v);
-        a.innerHTML = '<div class="nav_filter-link">\u2715<div class="nav_filter-link">' + label + '';
+                var x = document.createElement('div');
+        x.className = 'nav_filter-link';
+        x.textContent = '\u2715';
+        var t = document.createElement('div');
+        t.className = 'nav_filter-link';
+        t.textContent = label;
+        a.appendChild(x);
+        a.appendChild(t);
         wrap.appendChild(a);
       });
     }
