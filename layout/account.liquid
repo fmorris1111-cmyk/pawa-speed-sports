@@ -495,35 +495,20 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
   <script>
 (function () {
   if (typeof gsap === 'undefined') return;
-  var openKey = null, leaveTimer = null, busy = false;
+  var MOB = window.matchMedia('(max-width: 991px)');
+  var openKey = null, leaveTimer = null, busy = false, staged = null;
   var q  = function (s) { return document.querySelector(s); };
   var qa = function (s) { return [].slice.call(document.querySelectorAll(s)); };
-  function markState() {
-    if (!q('.nav_filter-col')) return;
-    var p = new URLSearchParams(window.location.search);
-    qa('.nav_filter-btn').forEach(function (b) {
-      b.classList.toggle('has-active', p.has(b.getAttribute('data-filter')));
-    });
-    var cur = p.get('sort_by'), sb = q('.nav_sort-btn');
-    if (sb) sb.classList.toggle('has-active', !!cur);
-    qa('.nav_sort-option').forEach(function (o) {
-      o.classList.toggle('is-active', !!cur && o.getAttribute('data-sort') === cur);
-    });
-        var any = Array.from(p.keys()).some(function (k) {
-      return k.indexOf('filter.') === 0 || k === 'sort_by';
-    });
-    var st = q('.nav_stock-toggle');
-    if (st) st.classList.toggle('is-active', p.get('filter.v.availability') === '1');
-    var r = q('.nav_reset'); if (r) r.classList.toggle('is-inactive', !any);
-    var a = q('.nav_applied');
-    if (a) a.style.display = a.querySelector('.nav_applied-chip') ? '' : 'none';
-  }
+  var url = function () { return new URLSearchParams(window.location.search); };
+  var live = function () { return (MOB.matches && staged) ? staged : url(); };
+  var path = function (p) { var s = p.toString(); return location.pathname + (s ? '?' + s : ''); };
   function prime() {
     var fd = q('.nav_filter-drawer'), sd = q('.nav_sort-drawer');
     if (fd) gsap.set(fd, { height: 0, overflow: 'hidden' });
     if (sd) gsap.set(sd, { height: 0, overflow: 'hidden' });
     gsap.set(qa('.nav_filter-panel'), { display: 'none' });
-    markState();
+    openKey = null;
+    refresh();
   }
   function closeFilter() {
     var fd = q('.nav_filter-drawer'); if (!fd || openKey === null) return;
@@ -542,7 +527,7 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
     gsap.killTweensOf(sd);
     gsap.to(sd, { height: 0, duration: .3, ease: 'power2.inOut' });
   }
-  function openFilter(key, animate) {
+  function openFilter(key) {
     var fd = q('.nav_filter-drawer'), panel = q('[data-filter-panel="' + key + '"]');
     if (!fd || !panel) return;
     closeSort();
@@ -552,53 +537,180 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
       b.classList.toggle('is-open', b.getAttribute('data-filter') === key);
     });
     gsap.set(qa('.nav_filter-panel'), { display: 'none' });
-    gsap.set(panel, { display: 'flex' });
+    gsap.set(panel, { display: MOB.matches ? 'grid' : 'flex' });
     gsap.killTweensOf(fd);
-    if (animate === false) gsap.set(fd, { height: panel.offsetHeight });
-    else gsap.to(fd, { height: panel.offsetHeight, duration: .4, ease: 'power2.out' });
+    gsap.to(fd, { height: panel.offsetHeight, duration: .4, ease: 'power2.out' });
   }
-  function go(url) {
-    if (busy || !url || url === '#') return;
+  function openSort() {
+    var sd = q('.nav_sort-drawer'), sb = q('.nav_sort-btn');
+    if (!sd || !sb) return;
+    closeFilter();
+    sb.classList.add('is-open');
+    var sbar = q('.nav_sort-bar'); if (sbar) sbar.classList.add('is-open');
+    gsap.killTweensOf(sd);
+    gsap.to(sd, { height: 'auto', duration: .4, ease: 'power2.out' });
+  }
+  function countFilters(p) { var n = 0; p.forEach(function (v, k) { if (k.indexOf('filter.') === 0) n++; }); return n; }
+  function anyApplied() {
+    var y = false; url().forEach(function (v, k) { if (k.indexOf('filter.') === 0 || k === 'sort_by') y = true; });
+    return y;
+  }
+  function renderChips(p) {
+    var wrap = q('.nav_applied');
+    if (!wrap || !MOB.matches) return;
+    wrap.innerHTML = '';
+    p.forEach(function (v, k) {
+      if (k.indexOf('filter.') !== 0) return;
+      var src = q('.nav_filter-panel[data-filter-panel="' + k + '"] .nav_filter-value[data-value="' + v + '"] div');
+      var label = src ? src.textContent : (k === 'filter.v.availability' ? 'IN STOCK' : v);
+      var a = document.createElement('a');
+      a.className = 'nav_applied-chip w-inline-block';
+      a.href = '#';
+      a.setAttribute('data-chip-key', k);
+      a.setAttribute('data-chip-val', v);
+      a.innerHTML = '<div class="nav_filter-link">\u2715<div class="nav_filter-link">' + label + '';
+      wrap.appendChild(a);
+    });
+    wrap.style.display = wrap.children.length ? '' : 'none';
+  }
+  function refresh() {
+    var p = live(), applied = anyApplied();
+    qa('.nav_filter-btn').forEach(function (b) {
+      b.classList.toggle('has-active', p.has(b.getAttribute('data-filter')));
+    });
+    qa('.nav_filter-value').forEach(function (a) {
+      var panel = a.closest('.nav_filter-panel'); if (!panel) return;
+      var on = p.getAll(panel.getAttribute('data-filter-panel')).indexOf(a.getAttribute('data-value')) > -1;
+      a.classList.toggle('is-staged', on);
+    });
+    var st = q('.nav_stock-toggle');
+    if (st) {
+      var son = p.get('filter.v.availability') === '1';
+      st.classList.toggle('is-active', son);
+      st.classList.toggle('is-staged', son);
+    }
+    var cur = p.get('sort_by'), sb = q('.nav_sort-btn');
+    if (sb) sb.classList.toggle('has-active', !!cur);
+    qa('.nav_sort-option').forEach(function (o) {
+      var on = !!cur && o.getAttribute('data-sort') === cur;
+      o.classList.toggle('is-active', on);
+      o.classList.toggle('is-staged', on);
+    });
+    var r = q('.nav_reset'); if (r) r.classList.toggle('is-inactive', !applied);
+    var dirty = MOB.matches && staged && staged.toString() !== url().toString();
+    var ap = q('.mfilter-apply');
+    if (ap) {
+      ap.classList.toggle('has-staged', !!dirty);
+      var al = ap.querySelector('div');
+      if (al) al.textContent = dirty ? 'APPLY (' + countFilters(p) + ')' : 'CLOSE';
+    }
+    var op = q('.mfilter-open');
+    if (op) {
+      op.classList.toggle('has-active', applied);
+      var n = countFilters(url()), ol = op.querySelector('div');
+      if (ol) ol.textContent = n ? 'FILTERS (' + n + ')' : 'FILTERS';
+    }
+    [q('.mfilter-clear'), q('.mfilter-reset')].forEach(function (el) {
+      if (el) el.classList.toggle('is-inactive', !applied);
+    });
+    renderChips(p);
+  }
+  function stage(k, v) {
+    if (!staged) staged = url();
+    var all = staged.getAll(k), kept = all.filter(function (x) { return x !== v; });
+    if (kept.length === all.length) kept.push(v);
+    staged.delete(k);
+    kept.forEach(function (x) { staged.append(k, x); });
+    refresh();
+  }
+  function go(target) {
+    if (busy || !target || target === '#') return;
     busy = true;
     var keep = openKey;
-    fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+    fetch(target).then(function (r) { return r.text(); }).then(function (html) {
       var doc = new DOMParser().parseFromString(html, 'text/html');
       var ng = doc.querySelector('.filter_layout'), cg = q('.filter_layout');
       if (ng && cg) cg.replaceWith(ng);
       var nc = doc.querySelector('.nav_filter-col'), cc = q('.nav_filter-col');
-      if (nc && cc) cc.replaceWith(nc);
-      window.history.pushState({}, '', url);
+      if (nc && cc) { if (cc.classList.contains('is-open')) nc.classList.add('is-open'); cc.replaceWith(nc); }
+      history.pushState({}, '', target);
       prime();
-      if (keep) openFilter(keep, false);
+      if (keep) openFilter(keep);
       busy = false;
-    }).catch(function () { window.location.href = url; });
+    }).catch(function () { location.href = target; });
   }
+  function openPanel() {
+    staged = url();
+    document.body.classList.add('mfilter-open');
+    var c = q('.nav_filter-col'); if (c) c.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (window.mnavCloseAll) window.mnavCloseAll('filter');
+    refresh();
+  }
+  function closePanel() {
+    document.body.classList.remove('mfilter-open');
+    var c = q('.nav_filter-col'); if (c) c.classList.remove('is-open');
+    document.body.style.overflow = '';
+        staged = null;
+    closeFilter(); closeSort();
+    refresh();
+  }
+  window.mfilterClose = closePanel;
   document.addEventListener('click', function (e) {
-    var col = q('.nav_filter-col');
-    var link = e.target.closest('.nav_filter-value, .nav_applied-chip, .nav_reset');
-    if (link && col && col.contains(link)) {
+    if (e.target.closest('.mfilter-open')) { e.preventDefault(); openPanel(); return; }
+    if (e.target.closest('.mfilter-apply')) {
       e.preventDefault();
-      if (!link.classList.contains('is-inactive')) go(link.getAttribute('href'));
+      var dirty = staged && staged.toString() !== url().toString();
+      var t = dirty ? path(staged) : null;
+      closePanel();
+      if (t) go(t);
+      return;
+    }
+    var clear = e.target.closest('.mfilter-clear, .mfilter-reset');
+    if (clear) {
+      e.preventDefault();
+      if (clear.classList.contains('is-inactive')) return;
+      closePanel();
+      go(clear.getAttribute('href'));
+      return;
+    }
+    var chip = e.target.closest('.nav_applied-chip');
+    if (chip) {
+      e.preventDefault();
+      if (MOB.matches) stage(chip.getAttribute('data-chip-key'), chip.getAttribute('data-chip-val'));
+      else go(chip.getAttribute('href'));
+      return;
+    }
+    var val = e.target.closest('.nav_filter-value');
+    if (val) {
+      e.preventDefault();
+      if (MOB.matches) {
+        var panel = val.closest('.nav_filter-panel');
+        stage(panel.getAttribute('data-filter-panel'), val.getAttribute('data-value'));
+      } else go(val.getAttribute('href'));
+      return;
+    }
+    if (e.target.closest('.nav_stock-toggle')) {
+      e.preventDefault();
+      if (MOB.matches) stage('filter.v.availability', '1');
+      else {
+        var p = url();
+        if (p.get('filter.v.availability') === '1') p.delete('filter.v.availability');
+        else p.set('filter.v.availability', '1');
+        go(path(p));
+      }
       return;
     }
     var so = e.target.closest('.nav_sort-option');
-    if (so && col && col.contains(so)) {
+    if (so) {
       e.preventDefault();
-      var p = new URLSearchParams(window.location.search);
-      p.set('sort_by', so.getAttribute('data-sort'));
-      closeSort();
-      go(window.location.pathname + '?' + p.toString());
+      var sp = MOB.matches ? staged : url();
+      sp.set('sort_by', so.getAttribute('data-sort'));
+      if (MOB.matches) { refresh(); closeSort(); } else { closeSort(); go(path(sp)); }
       return;
     }
-        var stk = e.target.closest('.nav_stock-toggle');
-    if (stk) {
-      e.preventDefault();
-      var sp = new URLSearchParams(window.location.search);
-      if (sp.get('filter.v.availability') === '1') sp.delete('filter.v.availability');
-      else sp.set('filter.v.availability', '1');
-      go(window.location.pathname + (sp.toString() ? '?' + sp.toString() : ''));
-      return;
-    }
+    var rs = e.target.closest('.nav_reset');
+    if (rs) { e.preventDefault(); if (!rs.classList.contains('is-inactive')) go(rs.getAttribute('href')); return; }
     var fb = e.target.closest('.nav_filter-btn');
     if (fb) {
       e.preventDefault();
@@ -608,35 +720,29 @@ Learn more: https://www.liquify.pro/docu/getting-started#template-structure
     }
     if (e.target.closest('.nav_sort-btn')) {
       e.preventDefault();
-      var sb = q('.nav_sort-btn');
-      if (sb.classList.contains('is-open')) closeSort();
-      else { closeFilter(); sb.classList.add('is-open');
-             var sbar = q('.nav_sort-bar'); if (sbar) sbar.classList.add('is-open');
-             var sd = q('.nav_sort-drawer');
-             gsap.killTweensOf(sd); gsap.to(sd, { height: 'auto', duration: .4, ease: 'power2.out' }); }
+      if (q('.nav_sort-btn').classList.contains('is-open')) closeSort(); else openSort();
       return;
     }
-    if (!e.target.closest('.nav_filter-col')) { closeFilter(); closeSort(); }
+    if (!MOB.matches && !e.target.closest('.nav_filter-col')) { closeFilter(); closeSort(); }
   });
   document.addEventListener('mouseover', function (e) {
-    if (e.target.closest('.nav_filter-col')) clearTimeout(leaveTimer);
+    if (!MOB.matches && e.target.closest('.nav_filter-col')) clearTimeout(leaveTimer);
   });
   document.addEventListener('mouseout', function (e) {
-    var col = q('.nav_filter-col'); if (!col) return;
-    if (col.contains(e.target) && !col.contains(e.relatedTarget)) {
+    if (MOB.matches) return;
+    var c = q('.nav_filter-col'); if (!c) return;
+    if (c.contains(e.target) && !c.contains(e.relatedTarget)) {
       clearTimeout(leaveTimer);
       leaveTimer = setTimeout(function () { closeFilter(); closeSort(); }, 250);
     }
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { closeFilter(); closeSort(); }
+    if (e.key !== 'Escape') return;
+    if (document.body.classList.contains('mfilter-open')) closePanel();
+    else { closeFilter(); closeSort(); }
   });
-  window.addEventListener('popstate', function () { window.location.reload(); });
-  window.addEventListener('resize', function () {
-    if (!openKey) return;
-    var fd = q('.nav_filter-drawer'), p = q('[data-filter-panel="' + openKey + '"]');
-    if (fd && p) gsap.set(fd, { height: p.offsetHeight });
-  });
+  window.addEventListener('popstate', function () { location.reload(); });
+  MOB.addEventListener('change', function () { closePanel(); prime(); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', prime);
   else prime();
 })();
