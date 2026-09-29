@@ -1156,9 +1156,11 @@ window.mnavSyncAnchors = mSyncAnchors;
    });
  document.addEventListener('click', function (e) {
   if (!mq.matches) return;
-    if (e.target.closest('.mobilenav') ||
+      if (e.target.closest('.mobilenav') ||
     e.target.closest('.nav_search-expand') ||
     e.target.closest('.nav_filter-col') ||
+    e.target.closest('.mfilter-trigger') ||
+    e.target.closest('.mfilter-actions') ||
     e.target.closest('.nav_mini-cart-holder')) return;
   mCloseAll();
   if (mState === 'menu') {mCloseMenu(); } else {mClearActive(); }
