@@ -3,7 +3,7 @@
                     <div class="product-item_image-link">
                       <a li-object:href="product.url" href="{{ product.url }}" class="product-item_image-wrapper w-inline-block"><img class="product-item_image" src="{{ product.featured_image | image_url: width: 900 }}" width="900" height="900" alt="{{ product.featured_image.alt }}" li-object:src="product.featured_image | image_url: width: 900" loading="lazy" li-object:alt="product.featured_image.alt" srcset="{{ product.featured_image | image_url: width: 1200 }}"><img class="product-item_image-hover" src="{{ product.metafields.custom.hover_product_image }}" width="900" height="900" alt="{{ product.featured_image.alt }}" li-object:src="product.metafields.custom.hover_product_image" loading="lazy" li-object:alt="product.featured_image.alt" srcset="{{ product.metafields.custom.hover_product_image | image_url: width: 900 }}"></a>
                       <div class="product-item_tag_list">
-                        {% if product.available and product.tags contains 'Season 6' %}    <div li-if="product.available and product.tags contains 'Season 6'" class="product-item_tag is-new">
+                        {% if product.available and product.tags contains 'season 6' %}    <div li-if="product.available and product.tags contains 'season 6'" class="product-item_tag is-new">
     NEW<br>    </div>
 {% endif %}
                         {% if product.selected_or_first_available_variant.available != true %}    <div li-if="product.selected_or_first_available_variant.available != true" class="product-item_tag">

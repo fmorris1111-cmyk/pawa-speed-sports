@@ -52,6 +52,13 @@
 {% endfor %}
                 </div>
               </nav>
+              {% if template.name == 'product' %}    <div li-if="template.name == 'product'" class="nav_back">
+    
+                <a data-nav-back="true" href="/collections/all" class="nav_back-link nav_link-item w-inline-block">
+                  <div class="nav-link">Back</div>
+                </a>
+                  </div>
+{% endif %}
               {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="nav_filter-col">
     
                 <div class="mfilter-backdrop"></div>
