@@ -18,12 +18,6 @@
           "settings": {},
           "blocks": {}
         },
-        "colourways_QdtJmF": {
-          "type": "colourways",
-          "name": "Colourways",
-          "settings": {},
-          "blocks": {}
-        },
         "product-name": {
           "type": "product-name",
           "name": "Product Name",
@@ -42,6 +36,12 @@
           "settings": {},
           "blocks": {}
         },
+        "colourways_QdtJmF": {
+          "type": "colourways",
+          "name": "Colourways",
+          "settings": {},
+          "blocks": {}
+        },
         "add-to-cart": {
           "type": "add-to-cart",
           "name": "Add to Cart",
@@ -51,10 +51,10 @@
       },
       "block_order": [
         "vendor",
-        "colourways_QdtJmF",
         "product-name",
         "product-price",
         "description",
+        "colourways_QdtJmF",
         "add-to-cart"
       ],
       "settings": {}
