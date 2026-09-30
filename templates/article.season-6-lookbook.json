@@ -644,7 +644,7 @@
       "type": "featured_products",
       "name": "Featured products",
       "settings": {
-        "text_heading": "Season 6 ℗",
+        "text_heading": "Season 6",
         "url_button_link": "shopify://collections/season-6",
         "text_button_text": "VIEW ALL",
         "collection_collection": "season-6",
