@@ -629,7 +629,7 @@
       "settings": {
         "cols_d": "2",
         "cols_m": "1",
-        "gap": 10,
+        "gap": 16,
         "lock_ratio": true,
         "ratio": "4 / 5",
         "h_d": 60,
