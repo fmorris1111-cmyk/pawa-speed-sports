@@ -312,6 +312,9 @@
         "images_jAtAzk",
         "images_QbgkWW"
       ],
+      "custom_css": [
+        ".div-block-2 {margin-top: 10rem; margin-left: 6rem; margin-right: 6rem; margin-bottom: 2rem;}"
+      ],
       "name": "Content Grid Home - Desktop",
       "settings": {
         "cols_d": "2",
@@ -619,7 +622,10 @@
         "images_m9UD3J",
         "images_zFzxGn"
       ],
-      "name": "Content Grid Home",
+      "custom_css": [
+        "@media screen and (max-width: 767px) {.div-block-2 {margin-top: 8rem; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem; }}"
+      ],
+      "name": "Content Grid Home - Mobile",
       "settings": {
         "cols_d": "2",
         "cols_m": "1",
