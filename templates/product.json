@@ -18,6 +18,12 @@
           "settings": {},
           "blocks": {}
         },
+        "colourways_QdtJmF": {
+          "type": "colourways",
+          "name": "Colourways",
+          "settings": {},
+          "blocks": {}
+        },
         "product-name": {
           "type": "product-name",
           "name": "Product Name",
@@ -45,17 +51,26 @@
       },
       "block_order": [
         "vendor",
+        "colourways_QdtJmF",
         "product-name",
         "product-price",
         "description",
         "add-to-cart"
       ],
       "settings": {}
+    },
+    "recommended_products_ybLkAc": {
+      "type": "recommended_products",
+      "name": "Recommended Products",
+      "settings": {
+        "text_heading": "Recommended"
+      }
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "product_header"
+    "product_header",
+    "recommended_products_ybLkAc"
   ]
 }
