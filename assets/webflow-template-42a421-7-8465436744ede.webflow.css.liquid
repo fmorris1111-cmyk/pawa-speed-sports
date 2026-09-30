@@ -2701,13 +2701,19 @@ figcaption {
   text-transform: uppercase;
   padding: .3rem .5rem;
   font-family: Nimbussanl Reg, Arial, sans-serif;
-  font-size: .85rem;
+  font-size: .75rem;
   font-weight: 500;
+  display: block;
 }
 
 .product-item_tag.is-red {
   background-color: var(--base-color-system--error-red);
   color: var(--base-color-system--error-red-dark);
+}
+
+.product-item_tag.is-new {
+  background-color: var(--base-color-neutral--neutral-lightest);
+  color: var(--141414);
 }
 
 .product-header_tag-list {
@@ -5322,6 +5328,7 @@ figcaption {
   grid-column-gap: .25rem;
   grid-row-gap: .25rem;
   background-color: #cacaca;
+  align-items: center;
   display: flex;
 }
 
@@ -5364,6 +5371,13 @@ figcaption {
   padding-left: .75rem;
   padding-right: .75rem;
   font-size: 12px;
+}
+
+.text-block-10 {
+  font-family: Roboto Mono, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1px;
 }
 
 @media screen and (max-width: 991px) {
