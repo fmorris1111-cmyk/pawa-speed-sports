@@ -1,43 +1,41 @@
-<div data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related" class="container-large-recs">
-          <div class="headline-wrapper">
-            <h2 class="heading-style-h3">
+{% if product.metafields.custom.related_products.value.size > 0 %}    <div li-if="product.metafields.custom.related_products.value.size > 0" class="recs-guard">
+    
+          <div class="container-large-recs">
+            <div class="headline-wrapper">
+              <h2 class="heading-style-h3">
 {{ section.settings.text_heading }}
 </h2>
-          </div>
-          <div class="product_list-wrapper">
-            <ul role="list" class="product_list w-list-unstyled">
-              {% for product in recommendations.products %}    <li li-for="product in recommendations.products" class="product_list-item">
+            </div>
+            <div class="product_list-wrapper swiper is-fp-carousel">
+              <ul role="list" class="product_list swiper-wrapper w-list-unstyled">
+                {% for product in product.metafields.custom.related_products.value %}    <li li-for="product in product.metafields.custom.related_products.value" class="product_list-item swiper-slide">
                                     
-                
+                  
                             {% render 'product_item', product: product %}
                             
-              
+                
                         </li>
 {% endfor %}
-            </ul>
+              </ul>
+            </div>
+            <div class="w-embed">
+              <div class="fp-controls">
+                <button class="fp-prev" aria-label="Previous">
+                  <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18L9 12L15 6" fill="none"></path>
+                  </svg>
+                </button>
+                <div class="fp-pagination"></div>
+                <button class="fp-next" aria-label="Next">
+                  <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18L15 12L9 6" fill="none"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="hide w-embed w-script">
-          <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const productRecommendationsSection = document.querySelector('.product-recommendations');
-    const url = productRecommendationsSection.dataset.url;
-    fetch(url)
-      .then(response => response.text())
-      .then(text => {
-      const html = document.createElement('div');
-      html.innerHTML = text;
-      const recommendations = html.querySelector('.product-recommendations');
-      if (recommendations && recommendations.innerHTML.trim().length) {
-        productRecommendationsSection.innerHTML = recommendations.innerHTML;
-      }
-    })
-      .catch(e => {
-      console.error(e);
-    });
-  });
-</script>
-        </div> {% schema %} {
+            </div>
+{% endif %} {% schema %} {
     "tag": "section",
     "name": "Recommended Products",
     "class": "section_product-recommended",
