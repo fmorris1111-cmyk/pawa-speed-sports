@@ -178,7 +178,7 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/edd2837803284b97998dfb33b71a73f3.mp4"
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/d537b98c78824eb4b06c4bface366533.mp4"
           }
         },
         "images_cUzYBp": {
@@ -254,7 +254,7 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/feacc9d950b74275be972b5f7919353f.mp4"
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/f5f5ca8b48dd4b0e823f721fd369b4fc.mp4"
           }
         },
         "images_jAtAzk": {
@@ -393,7 +393,7 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/0061f282d539478b9f611229075325fb.mp4"
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/99f7b7fab814471792e4c9b03391eb11.mp4"
           }
         },
         "images_GbRqRk": {
@@ -476,6 +476,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0_2.png",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -487,7 +488,7 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/edd2837803284b97998dfb33b71a73f3.mp4"
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/d537b98c78824eb4b06c4bface366533.mp4"
           }
         },
         "images_JffCaN": {
@@ -551,6 +552,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0_1.png",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -562,7 +564,7 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/feacc9d950b74275be972b5f7919353f.mp4"
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/f5f5ca8b48dd4b0e823f721fd369b4fc.mp4"
           }
         },
         "images_m9UD3J": {
