@@ -1,8 +1,12 @@
-<a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
-{{ section.settings.image_logo | image_url: width: 1000 | image_tag: loading: 'lazy', width: '86', class: 'nav_logo' }}
+{% if template.name != 'index' %}    <div li-if="template.name != 'index'" class="logo-guard">
+    
+          <a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
+{{ section.settings.image_logo | image_url: width: 1000 | image_tag: width: '86', class: 'nav_logo' }}
 {% else %}
-<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" loading="lazy" width="86" alt="" class="nav_logo">
+<img src="{{ '69d7d2dc1ed998081a8ad583_PAWA_BOY_LOGO_SPIN.gif' | asset_url }}" alt="" width="86" class="nav_logo">
 {% endif %}</a>
+            </div>
+{% endif %}
         <div data-animation="default" class="nav_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="none" data-w-id="9132635a-7891-b0d1-9b20-ecb0d5a86df9" role="banner" data-duration="400" x-data="">
           <div class="nav_container">
             <div id="w-node-_9132635a-7891-b0d1-9b20-ecb0d5a86e16-d5a86df8" class="nav_menu-button w-nav-button">

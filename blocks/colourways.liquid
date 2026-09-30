@@ -1,0 +1,44 @@
+<div li-block="Colourways" {{ block.shopify_attributes }}>
+                    
+                  
+                    {% if product.metafields.custom.colourways.value.size > 0 %}    <div li-if="product.metafields.custom.colourways.value.size > 0" class="cw-guard">
+    
+                    <div class="product-header_colourways">
+                      <div>VARIATIONS</div>
+                      <div class="product-header_colourway-list">
+                        {% for item in product.metafields.custom.colourways.value %}    <div li-for="item in product.metafields.custom.colourways.value" class="product-header_colourway-wrap">
+                                    
+                          
+                            {% if item.handle == product.handle %}    <div li-if="item.handle == product.handle" class="cw-on">
+    
+                            <a li-object:href="item.url" href="{{ item.url }}" class="product-header_colourway is-active w-inline-block"><img src="{{ item.featured_image | image_url: width: 160 }}" loading="lazy" li-object:src="item.featured_image | image_url: width: 160" li-object:alt="item.title" alt="{{ item.title }}" class="product-header_colourway-img"></a>
+                              </div>
+{% endif %}
+                            
+                          
+                            {% if item.handle != product.handle %}    <div li-if="item.handle != product.handle" class="cw-off">
+    
+                            <a li-object:href="item.url" href="{{ item.url }}" class="product-header_colourway w-inline-block"><img src="{{ item.featured_image | image_url: width: 160 }}" loading="lazy" li-object:src="item.featured_image | image_url: width: 160" li-object:alt="item.title" alt="{{ item.title }}" class="product-header_colourway-img"></a>
+                              </div>
+{% endif %}
+                            
+                        
+                        </div>
+{% endfor %}
+                      </div>
+                    </div>
+                      </div>
+{% endif %}
+                    
+                
+                </div> {% schema %} {
+    "name": "Colourways",
+    "settings": [],
+    "presets": [
+        {
+            "name": "Colourways",
+            "blocks": []
+        }
+    ],
+    "tag": null
+} {% endschema %}
