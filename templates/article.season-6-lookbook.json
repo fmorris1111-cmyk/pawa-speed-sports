@@ -312,7 +312,7 @@
         "images_jAtAzk",
         "images_QbgkWW"
       ],
-      "name": "Content Grid Home",
+      "name": "Content Grid Home - Desktop",
       "settings": {
         "cols_d": "2",
         "cols_m": "2",
@@ -330,6 +330,313 @@
         "ov_m": false,
         "show_d": true,
         "show_t": true,
+        "show_m": false
+      }
+    },
+    "content_grid_home_eXFpiE": {
+      "type": "content_grid_home",
+      "blocks": {
+        "images_kRahFR": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/S6PT2_0002_R1-08380-027A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_dY6tbf": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0000_R1-08152-0000_14291735-013f-44a7-a399-3fe809e82e10.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_3CxpwA": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/0061f282d539478b9f611229075325fb.mp4"
+          }
+        },
+        "images_GbRqRk": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0030_R1-08911-011A_66a775fb-f773-4c24-86eb-b6d9932fdf72.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_txpDyK": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0008_R1-09636-0033_80ccc8fe-9498-475c-a537-91886d9c0347.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_6qCMhq": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0005_R1-08909-019A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_kkdKJM": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0039_extend_background_3.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_Pm3FVc": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0_2.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/edd2837803284b97998dfb33b71a73f3.mp4"
+          }
+        },
+        "images_JffCaN": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0017_R1-08152-0029embroidery_copy.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_rAC9LG": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0012_R1-08909-033A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_yTTJFh": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0007_extend_background_2.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_x66U7r": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0_1.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/feacc9d950b74275be972b5f7919353f.mp4"
+          }
+        },
+        "images_m9UD3J": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0055_R1-09678-023A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_zFzxGn": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0054_R1-09678-025A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        }
+      },
+      "block_order": [
+        "images_kRahFR",
+        "images_dY6tbf",
+        "images_3CxpwA",
+        "images_GbRqRk",
+        "images_txpDyK",
+        "images_6qCMhq",
+        "images_kkdKJM",
+        "images_Pm3FVc",
+        "images_JffCaN",
+        "images_rAC9LG",
+        "images_yTTJFh",
+        "images_x66U7r",
+        "images_m9UD3J",
+        "images_zFzxGn"
+      ],
+      "name": "Content Grid Home",
+      "settings": {
+        "cols_d": "2",
+        "cols_m": "1",
+        "gap": 10,
+        "lock_ratio": true,
+        "ratio": "4 / 5",
+        "h_d": 60,
+        "h_m": 45,
+        "group_link": false,
+        "grid_url": "",
+        "grid_text": "",
+        "grid_cta": "Shop",
+        "ov_d": false,
+        "ov_t": false,
+        "ov_m": false,
+        "show_d": false,
+        "show_t": false,
         "show_m": true
       }
     },
@@ -357,6 +664,7 @@
     "article_content",
     "related_articles",
     "content_grid_home_cbWjVw",
+    "content_grid_home_eXFpiE",
     "featured_products_tbxpyJ"
   ]
 }
