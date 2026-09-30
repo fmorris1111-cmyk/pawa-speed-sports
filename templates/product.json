@@ -36,12 +36,6 @@
           "settings": {},
           "blocks": {}
         },
-        "availability": {
-          "type": "availability",
-          "name": "Availability",
-          "settings": {},
-          "blocks": {}
-        },
         "add-to-cart": {
           "type": "add-to-cart",
           "name": "Add to Cart",
@@ -54,7 +48,6 @@
         "product-name",
         "product-price",
         "description",
-        "availability",
         "add-to-cart"
       ],
       "settings": {}
