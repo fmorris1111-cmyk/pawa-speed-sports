@@ -26,126 +26,328 @@
         "text_heading": "Other Articles"
       }
     },
-    "content_grid_BXmExe": {
-      "type": "content_grid",
+    "content_grid_home_cbWjVw": {
+      "type": "content_grid_home",
       "blocks": {
-        "images_LtT9XX": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://products/p-check-knit-polo",
-            "image_image": "shopify://shop_images/69d7d2dc1ed998081a8ad64a_23_1.avif"
-          }
-        },
-        "images_TLLRdq": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://products/p-check-knit-polo",
-            "image_image": "shopify://shop_images/69a46ae18b2f1d82070ae097_pppp.jpg"
-          }
-        },
-        "images_bNTcf4": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://products/equipe-football-shirt-off-white",
-            "image_image": "shopify://shop_images/69a46c9585be85fb320e2015_eqqquipe.jpg"
-          }
-        },
-        "images_mBpQbt": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://collections/all",
-            "image_image": "shopify://shop_images/69a46707ace5625cf00e8d1c_99.jpg"
-          }
-        },
-        "images_hXU3D6": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://products/equipe-football-shirt-black",
-            "image_image": "shopify://shop_images/69a4677bb3ff1de50e7be8df_3_0009_Layer_0.jpg"
-          }
-        },
-        "images_ANzXpG": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://products/p-key-t-shirt",
-            "image_image": "shopify://shop_images/69d7d2dc1ed998081a8ad62e_P_KEY-2.jpg"
-          }
-        },
-        "images_DG49qj": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://products/karaoke-t-shirt-black",
-            "image_image": "shopify://shop_images/69a46bf4b41ca671632e0419_3pawaoke.jpg"
-          }
-        },
-        "images_T49HAP": {
+        "images_fTxwic": {
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/69a468a1c3a471fb5b4f46c0_3_0003_8.jpg"
+            "image_image": "shopify://shop_images/S6PT2_0002_R1-08380-027A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
           }
         },
-        "images_8EnmPg": {
+        "images_GrhicW": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://collections/all",
-            "image_image": "shopify://shop_images/69a4682c6a187f590f8634a4_3_0007_2.jpg"
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0000_R1-08152-0000_14291735-013f-44a7-a399-3fe809e82e10.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
           }
         },
-        "images_VbdWLr": {
+        "images_fMgJCr": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://products/equipe-t-shirt-black",
-            "image_image": "shopify://shop_images/69a46bbd8efa4ed53993292b_3foootie.jpg"
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/0061f282d539478b9f611229075325fb.mp4"
           }
         },
-        "images_Gew76K": {
+        "images_FTb9Mz": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://products/dragon-doggo-t-shirt-white",
-            "image_image": "shopify://shop_images/69a46c60d0d27cc538de98a7_doggodrag.jpg"
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0030_R1-08911-011A_66a775fb-f773-4c24-86eb-b6d9932fdf72.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
           }
         },
-        "images_z8cKD4": {
+        "images_MxxTqn": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://collections/all",
-            "image_image": "shopify://shop_images/69a46880bb1af3cbf7a4d7ac_3_0005_5.jpg"
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0008_R1-09636-0033_80ccc8fe-9498-475c-a537-91886d9c0347.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
           }
         },
-        "images_7JzfAy": {
+        "images_4wxqUX": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://products/ghost-camo-knit-polo",
-            "image_image": "shopify://shop_images/69a46924bb1af3cbf7a4e46a_3ccc.jpg"
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0005_R1-08909-019A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
           }
         },
-        "images_8FCVgm": {
+        "images_MMBBXR": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://products/ghost-camo-knit-polo",
-            "image_image": "shopify://shop_images/69a4697b7df92c09e4aa5e30_3camo.jpg"
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0039_extend_background_3.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_hJQELU": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0_2.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/edd2837803284b97998dfb33b71a73f3.mp4"
+          }
+        },
+        "images_cUzYBp": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt4_0017_R1-08152-0029embroidery_copy.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_Wa9Eh6": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-cv-pt3_0012_R1-08909-033A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_tkjgbJ": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0007_extend_background_2.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_GYC8Yj": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0_1.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/feacc9d950b74275be972b5f7919353f.mp4"
+          }
+        },
+        "images_jAtAzk": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0055_R1-09678-023A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_QbgkWW": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/s6-pt5_0054_R1-09678-025A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
           }
         }
       },
       "block_order": [
-        "images_LtT9XX",
-        "images_TLLRdq",
-        "images_bNTcf4",
-        "images_mBpQbt",
-        "images_hXU3D6",
-        "images_ANzXpG",
-        "images_DG49qj",
-        "images_T49HAP",
-        "images_8EnmPg",
-        "images_VbdWLr",
-        "images_Gew76K",
-        "images_z8cKD4",
-        "images_7JzfAy",
-        "images_8FCVgm"
+        "images_fTxwic",
+        "images_GrhicW",
+        "images_fMgJCr",
+        "images_FTb9Mz",
+        "images_MxxTqn",
+        "images_4wxqUX",
+        "images_MMBBXR",
+        "images_hJQELU",
+        "images_cUzYBp",
+        "images_Wa9Eh6",
+        "images_tkjgbJ",
+        "images_GYC8Yj",
+        "images_jAtAzk",
+        "images_QbgkWW"
       ],
-      "name": "Content Grid",
-      "settings": {}
+      "name": "Content Grid Home",
+      "settings": {
+        "cols_d": "2",
+        "cols_m": "2",
+        "gap": 20,
+        "lock_ratio": true,
+        "ratio": "4 / 5",
+        "h_d": 60,
+        "h_m": 45,
+        "group_link": false,
+        "grid_url": "",
+        "grid_text": "",
+        "grid_cta": "Shop",
+        "ov_d": false,
+        "ov_t": false,
+        "ov_m": false,
+        "show_d": true,
+        "show_t": true,
+        "show_m": true
+      }
+    },
+    "featured_products_tbxpyJ": {
+      "type": "featured_products",
+      "name": "Featured products",
+      "settings": {
+        "text_heading": "Short heading here",
+        "url_button_link": "",
+        "text_button_text": "All products",
+        "collection_collection": "all",
+        "collection_collection_limit": 6,
+        "show_media": false,
+        "media_w": 28,
+        "media_gap": 16,
+        "media_webm": "",
+        "media_mp4": ""
+      }
     }
   },
   "layout": "theme",
@@ -154,6 +356,7 @@
     "article_hero",
     "article_content",
     "related_articles",
-    "content_grid_BXmExe"
+    "content_grid_home_cbWjVw",
+    "featured_products_tbxpyJ"
   ]
 }
