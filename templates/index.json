@@ -279,12 +279,12 @@
         "images_GULVch": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "",
+            "url_image_link_url": "shopify://collections/knitwear",
             "image_image": "shopify://shop_images/s6-cv-pt3_0001_R1-08909-011A-2.jpg",
-            "url_link_url": "",
-            "text_link_text": "Lorem Ipsum",
-            "url_button_url": "",
-            "text_button_text": "Button Text",
+            "url_link_url": "shopify://collections/knitwear",
+            "text_link_text": "Knitwear",
+            "url_button_url": "shopify://collections/knitwear",
+            "text_button_text": "Shop",
             "image_pos_x": 50,
             "image_pos_y": 50,
             "hide_desktop": false,
