@@ -424,7 +424,11 @@ figcaption {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.2;
-  display: block;
+  display: none;
+}
+
+.heading-style-h3.is-recs {
+  display: flex;
 }
 
 .text-rich-text h1, .text-rich-text h2, .text-rich-text h3, .text-rich-text h4 {
@@ -2221,7 +2225,6 @@ figcaption {
 }
 
 .section_product-recommended {
-  border-top: 1px solid var(--base-color-neutral--neutral-lightest);
   position: relative;
   overflow: hidden;
 }
@@ -5401,6 +5404,7 @@ figcaption {
 }
 
 .product-header_colourway {
+  border: 1px solid #0000;
   width: 4rem;
   height: 4rem;
 }
@@ -7469,14 +7473,22 @@ figcaption {
     overflow: auto;
   }
 
+  .product-item_component {
+    align-items: stretch;
+  }
+
   .product-item_text-link {
-    flex-flow: row;
-    justify-content: space-between;
+    flex-flow: column;
+    justify-content: flex-start;
     min-height: 5rem;
     padding-top: .5rem;
     padding-left: .5rem;
     padding-right: .5rem;
     font-size: 12px;
+  }
+
+  .product-item_left {
+    margin-right: 0;
   }
 
   .nav_component {
@@ -7540,7 +7552,9 @@ figcaption {
   .filter_product-list {
     grid-column-gap: .5rem;
     grid-row-gap: .5rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    place-content: stretch center;
+    justify-items: stretch;
   }
 
   .product-header_component {
@@ -7859,6 +7873,11 @@ figcaption {
   .sort_select.filter_checkbox {
     order: -1;
     margin-left: 0;
+  }
+
+  .filter_product-list-item {
+    min-width: 0;
+    overflow: hidden;
   }
 
   .footer_sub-footer {
