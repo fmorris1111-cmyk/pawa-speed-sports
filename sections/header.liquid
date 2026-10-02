@@ -56,7 +56,7 @@
 {% endfor %}
                 </div>
               </nav>
-              {% if template.name == 'product' %}    <div li-if="template.name == 'product'" class="nav_back">
+              {% if template.name == 'product' or template.name == 'cart' %}    <div li-if="template.name == 'product' or template.name == 'cart'" class="nav_back">
     
                 <a data-nav-back="true" href="/collections/all" class="nav_back-link nav_link-item w-inline-block">
                   <div class="nav-link">BACK</div>
