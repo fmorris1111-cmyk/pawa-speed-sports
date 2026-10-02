@@ -1035,4 +1035,14 @@
 .logo-guard { display: contents; }
   /* Recs carousel needs a definite width: its flex parent doesn't stretch it */
 .section_product-recommended .product_list-wrapper { width: 100%; }
+/* Cart quantity: hide native number spinners, match the PDP field */
+.input_cart-quantity::-webkit-outer-spin-button,
+.input_cart-quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input_cart-quantity[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
 </style>
