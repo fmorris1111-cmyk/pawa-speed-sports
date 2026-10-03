@@ -823,5 +823,32 @@ window.pdpMax = (function () {
   };
 })();
 </script>
+  <script>
+(function () {
+  var hideT;
+  function say(box, msg) {
+    var wrap = box.closest('.product-header_add-to-cart-wrapper');
+    var el = wrap && wrap.querySelector('.qty-note');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('is-on');
+    clearTimeout(hideT);
+    hideT = setTimeout(function () { el.classList.remove('is-on'); }, 2600);
+  }
+  document.addEventListener('click', function (e) {
+    var minus = e.target.closest('.quantity-selector_mobile-_subtract');
+    var plus  = minus ? null : e.target.closest('.quantity-selector_mobile');
+    if (!minus && !plus) return;
+    var box = (minus || plus).closest('.div-block-8');
+    if (!box) return;
+    var input = box.querySelector('.input_cart-quantity');
+    var q = parseInt(input && input.value, 10) || 1;
+    var max = parseInt(box.getAttribute('data-max'), 10);
+    if (isNaN(max)) max = 9999;
+    if (minus && q <= 1) say(box, 'Minimum quantity is 1');
+    else if (plus && q >= max) say(box, max === 1 ? 'Only 1 left in stock' : 'Only ' + max + ' left in stock');
+  }, true);
+})();
+</script>
 </body>
 </html>
