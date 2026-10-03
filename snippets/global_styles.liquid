@@ -1045,4 +1045,18 @@
   -moz-appearance: textfield;
   appearance: textfield;
 }
+  /* Before the click: visibly unavailable */
+.quantity-selector_mobile.is-off,
+.quantity-selector_mobile-_subtract.is-off {
+  opacity: .28;
+  cursor: not-allowed;
+}
+/* On the click: the reason */
+.qty-note {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity .18s ease, max-height .18s ease;
+}
+.qty-note.is-on { opacity: 1; max-height: 2.5rem; }
 </style>
