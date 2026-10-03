@@ -137,12 +137,22 @@
                         </div>
                       </div>
                       <div class="product-header_add-to-cart-wrapper">
+                        <div class="pdp-stock">
+                          {% for variant in product.variants %}    <div li-for="variant in product.variants">
+                                    
+                            
+                            <div li-object:data-track="variant.inventory_management" li-object:data-vid="variant.id" li-object:data-qty="variant.inventory_quantity" li-object:data-policy="variant.inventory_policy" class="pdp-stock-item" data-track="{{ variant.inventory_management }}" data-vid="{{ variant.id }}" data-qty="{{ variant.inventory_quantity }}" data-policy="{{ variant.inventory_policy }}"></div>
+                            
+                          
+                        </div>
+{% endfor %}
+                        </div>
                         <template x-if="selected_or_first_available_variant.available">
             <div li-js-if="selected_or_first_available_variant.available" class="product-header_buy-wrappper">
         
-                          <div class="div-block-8">
-                            <a x-on:click="quantity = Math.max(1, quantity - 1)" href="#" class="quantity-selector_mobile-_subtract w-inline-block"><img src="{{ '679fcfb0dade609036261e61_blockmine-substract.svg' | asset_url }}" loading="lazy" alt="" class="quantity-icon"></a><input li-element="add-to-cart-quantity" x-on:change="quantity = isNaN(parseInt(quantity)) ? 1 : Math.max(1, parseInt(quantity))" class="input_cart-quantity" value="1" x-model="quantity">
-                            <a x-on:click="quantity = quantity + 1" href="#" class="quantity-selector_mobile w-inline-block"><img src="{{ '679fcfa0b2a6908facabf998_blockmine-add.svg' | asset_url }}" loading="lazy" alt="" class="quantity-icon"></a>
+                          <div x-effect="quantity = Math.max(1, Math.min(quantity, window.pdpMax(selected_or_first_available_variant.id)))" class="div-block-8">
+                            <a x-bind:class="quantity <= 1 ? 'is-off' : ''" x-on:click="quantity = Math.max(1, quantity - 1)" href="#" class="quantity-selector_mobile-_subtract w-inline-block"><img src="{{ '679fcfb0dade609036261e61_blockmine-substract.svg' | asset_url }}" loading="lazy" alt="" class="quantity-icon"></a><input li-element="add-to-cart-quantity" x-on:change="quantity = Math.min(window.pdpMax(selected_or_first_available_variant.id), isNaN(parseInt(quantity)) ? 1 : Math.max(1, parseInt(quantity)))" class="input_cart-quantity" value="1" x-model="quantity">
+                            <a x-bind:class="quantity >= window.pdpMax(selected_or_first_available_variant.id) ? 'is-off' : ''" x-on:click="quantity = Math.min(window.pdpMax(selected_or_first_available_variant.id), quantity + 1)" href="#" class="quantity-selector_mobile w-inline-block"><img src="{{ '679fcfa0b2a6908facabf998_blockmine-add.svg' | asset_url }}" loading="lazy" alt="" class="quantity-icon"></a>
                           </div>
                           <div class="div-block-9">
                             <template x-if="selected_or_first_available_variant.available">

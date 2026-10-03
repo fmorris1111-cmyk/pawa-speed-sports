@@ -805,5 +805,28 @@ document.addEventListener('click', function (e) {
   });
 })();
 </script>
+  <script>
+window.pdpMax = (function () {
+  var map = null;
+  function build() {
+    map = {};
+    var nodes = document.querySelectorAll('.pdp-stock-item');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var id = String(el.getAttribute('data-vid') || '').trim();
+      if (!id) continue;
+      var track  = (el.getAttribute('data-track')  || '').trim();
+      var policy = (el.getAttribute('data-policy') || '').trim();
+      var qty    = parseInt(el.getAttribute('data-qty'), 10);
+      map[id] = (!track || policy === 'continue' || isNaN(qty)) ? 9999 : Math.max(0, qty);
+    }
+  }
+  return function (vid) {
+    if (!map) build();
+    var m = map[String(vid)];
+    return m === undefined ? 9999 : m;
+  };
+})();
+</script>
 </body>
 </html>
