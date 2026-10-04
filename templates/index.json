@@ -242,29 +242,10 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "shopify://collections/accessories",
-            "image_image": "shopify://shop_images/s6-pt5_0008_R1-09636-0033-edit.jpg",
+            "image_image": "shopify://shop_images/fragmentscamobeanieblack_38e53995-be91-489c-ad7d-ca3f818f2822.jpg",
             "url_link_url": "shopify://collections/accessories",
             "text_link_text": "ACCESSORIES",
             "url_button_url": "shopify://collections/accessories",
-            "text_button_text": "SHOP",
-            "image_pos_x": 50,
-            "image_pos_y": 50,
-            "hide_desktop": false,
-            "hide_mobile": false,
-            "span_d": "auto",
-            "span_m": "auto",
-            "video_webm": "",
-            "video_mp4": ""
-          }
-        },
-        "images_jYppJi": {
-          "type": "images",
-          "settings": {
-            "url_image_link_url": "shopify://collections/sweats-tracksuits",
-            "image_image": "shopify://shop_images/s6-cv-pt3_0030_R1-08911-011A.jpg",
-            "url_link_url": "shopify://collections/sweats-tracksuits",
-            "text_link_text": "TRACKSUITS",
-            "url_button_url": "shopify://collections/sweats-tracksuits",
             "text_button_text": "SHOP",
             "image_pos_x": 50,
             "image_pos_y": 50,
@@ -294,12 +275,31 @@
             "video_webm": "",
             "video_mp4": ""
           }
+        },
+        "images_jYppJi": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "shopify://collections/sweats-tracksuits",
+            "image_image": "shopify://shop_images/barelogosteewhite.jpg",
+            "url_link_url": "shopify://collections/sweats-tracksuits",
+            "text_link_text": "T-SHIRTS",
+            "url_button_url": "shopify://collections/t-shirts-1",
+            "text_button_text": "SHOP",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": false,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
         }
       },
       "block_order": [
         "images_MhVqAY",
-        "images_jYppJi",
-        "images_GULVch"
+        "images_GULVch",
+        "images_jYppJi"
       ],
       "name": "Content Grid Home",
       "settings": {
