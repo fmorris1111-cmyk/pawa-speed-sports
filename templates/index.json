@@ -64,7 +64,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/s6-pt4_0017_R1-08152-0029.jpg",
+            "image_image": "shopify://shop_images/flowersshirt.jpg",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -151,7 +151,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/s6-pt4_0017_R1-08152-0029.jpg",
+            "image_image": "shopify://shop_images/flowersshirt.jpg",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -242,7 +242,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "shopify://collections/accessories",
-            "image_image": "shopify://shop_images/s6-pt5_0008_R1-09636-0033.jpg",
+            "image_image": "shopify://shop_images/s6-pt5_0008_R1-09636-0033-edit.jpg",
             "url_link_url": "shopify://collections/accessories",
             "text_link_text": "ACCESSORIES",
             "url_button_url": "shopify://collections/accessories",
