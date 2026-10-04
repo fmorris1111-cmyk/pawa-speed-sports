@@ -58,7 +58,7 @@
         "add-to-cart"
       ],
       "custom_css": [
-        ".container-large-product {margin-bottom: 0;}"
+        ".container-large-product {margin-bottom: 2rem;}"
       ],
       "settings": {}
     }
