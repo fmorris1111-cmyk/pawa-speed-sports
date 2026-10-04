@@ -58,22 +58,14 @@
         "add-to-cart"
       ],
       "custom_css": [
-        ".container-large-product{margin-bottom:0}"
+        ".container-large-product {margin-bottom: 0;}"
       ],
       "settings": {}
-    },
-    "recommended_products_ybLkAc": {
-      "type": "recommended_products",
-      "name": "Recommended Products",
-      "settings": {
-        "text_heading": "Recommended"
-      }
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "product_header",
-    "recommended_products_ybLkAc"
+    "product_header"
   ]
 }
