@@ -194,19 +194,18 @@
     
                               <p class="predictive-search_label">FIRST 10 RESULTS</p>
                               <ul class="predictive-search_list w-list-unstyled">
-                                {% for product in predictive_search.resources.products %}    <li li-for="product in predictive_search.resources.products" class="predictive-search_item">
-                                    
-                                  
-                            <a li-object:href="product.url" href="{{ product.url }}" class="predictive-search_line-item w-inline-block">
+                                {% for product in predictive_search.resources.products %}
+                                {% unless product.tags contains 'gift-hidden' %}
+                                <li class="predictive-search_item">
+                                  <a href="{{ product.url }}" class="predictive-search_line-item w-inline-block">
                                     <div class="predictive-search_img-wrap">
-                                      <img li-object:src="product.featured_media | image_url: width: 150" li-object:alt="product.featured_image.alt" src="{{ product.featured_media | image_url: width: 150 }}" loading="lazy" alt="{{ product.featured_image.alt }}" class="predictive-search_img">
+                                      <img src="{{ product.featured_media | image_url: width: 150 }}" alt="{{ product.featured_image.alt }}" loading="lazy" class="predictive-search_img">
                                     </div>
-                                    <div li-object="product.title" class="predictive-search_product-title text-size_small">{{ product.title }}</div>
+                                    <div class="predictive-search_product-title text-size_small">{{ product.title }}</div>
                                   </a>
-                            
-                                
-                        </li>
-{% endfor %}
+                                </li>
+                                {% endunless %}
+                                {% endfor %}
                               </ul>
                               <a href="/search?type=product&q={{ predictive_search.terms | url_encode }}" class="predictive-search_see-all w-inline-block">SEE ALL</a>
                                 </div>
@@ -666,7 +665,7 @@
                                             </div>
     </template>
                                   </div>
-                                  <div li-element="mini-cart-item-remove" class="text-size-tiny text-color-grey text-style-link" :productprop="product" @click="$dispatch('setcartitem', { product: product.key, quantity: 0 })">Remove</div>
+                                  <div x-show="!(product.properties && product.properties._gift)" li-element="mini-cart-item-remove" class="text-size-tiny text-color-grey text-style-link" :productprop="product" @click="$dispatch('setcartitem', { product: product.key, quantity: 0 })">Remove</div>
                                 </div>
                               </li></template>
                             </ul>
