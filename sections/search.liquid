@@ -48,7 +48,19 @@
                   {% for product in search.results %}    <div li-for="product in search.results" role="listitem" class="filter_product-list-item w-dyn-item">
                                     
                     
-                            {% render 'product_item', product: product %}
+                            <div class="w-embed">{% assign is_gift = false %}{% if product.tags contains 'gift-hidden' %}{% assign is_gift = true %}{% endif %}</div>
+                            
+                    
+                            {% if is_gift %}    <div li-if="is_gift" class="gift-flag">
+        </div>
+{% endif %}
+                            
+                    
+                            {% if is_gift != true %}    <div li-if="is_gift != true" class="gift-skip">
+    
+                      {% render 'product_item', product: product %}
+                        </div>
+{% endif %}
                             
                   
                         </div>
