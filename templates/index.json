@@ -242,7 +242,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "shopify://collections/accessories",
-            "image_image": "shopify://shop_images/fragmentscamobeanieblack_38e53995-be91-489c-ad7d-ca3f818f2822.jpg",
+            "image_image": "shopify://shop_images/ghost_camo_beanie_cow.jpg",
             "url_link_url": "shopify://collections/accessories",
             "text_link_text": "ACCESSORIES",
             "url_button_url": "shopify://collections/accessories",
@@ -261,7 +261,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "shopify://collections/knitwear",
-            "image_image": "shopify://shop_images/s6-cv-pt3_0001_R1-08909-011A-2.jpg",
+            "image_image": "shopify://shop_images/ghostcamosweater_1.jpg",
             "url_link_url": "shopify://collections/knitwear",
             "text_link_text": "Knitwear",
             "url_button_url": "shopify://collections/knitwear",
@@ -280,7 +280,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "shopify://collections/sweats-tracksuits",
-            "image_image": "shopify://shop_images/barelogosteewhite.jpg",
+            "image_image": "shopify://shop_images/spiraltee_09fed420-f038-453d-9c4f-ae472c8d3901.jpg",
             "url_link_url": "shopify://collections/sweats-tracksuits",
             "text_link_text": "T-SHIRTS",
             "url_button_url": "shopify://collections/t-shirts-1",
