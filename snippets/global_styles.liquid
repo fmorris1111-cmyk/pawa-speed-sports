@@ -1065,4 +1065,48 @@
 .gift-show { display: contents; }
 .gift-flag { display: none; }
 .filter_product-list-item:has(.gift-flag) { display: none; }
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; PASSWORD HERO &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+.hero-standard, .hero-carousel, .hero-grid { display: contents; }
+/* carousel */
+.pw-carousel { width: 100%; overflow: hidden; }
+.pw-carousel .swiper-wrapper { transition-timing-function: linear !important; }
+.pw-carousel .swiper-slide { width: auto; }
+.pw-carousel .swiper-slide img { height: 60vh; width: auto; display: block; }
+/* grid */
+.pw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.pw-grid_main-img { width: 100%; height: auto; display: block; }
+.pw-grid_thumb { cursor: pointer; border: 2px solid transparent; }
+.pw-grid_thumb.is-active { border-color: #d02b2b; }
+.pw-grid_thumb img { width: 100%; height: auto; display: block; }
+@media (min-width: 768px) {
+  .pw-grid_track.swiper-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .5rem;
+    transform: none !important;
+  }
+  .pw-grid_thumb.swiper-slide { width: auto !important; margin-right: 0 !important; }
+  .pw-grid .fp-controls { grid-column: 2; }
+}
+@media (max-width: 767px) {
+  .pw-grid { grid-template-columns: 1fr; }
+  .pw-grid_main { display: none; }
+  .pw-grid_thumb.is-active { border-color: transparent; }
+  .fp-controls.is-pw .fp-prev,
+  .fp-controls.is-pw .fp-next { display: flex; }
+}
+.pw-count { font-size: 11px; letter-spacing: .08em; white-space: nowrap; }
+  /* hero modes escape the 34rem column */
+.pw-carousel,
+.pw-grid {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+  @media (min-width: 1500px) {
+  .pw-grid { width: 1400px; margin-left: auto; margin-right: auto; }
+}
 </style>
