@@ -28,6 +28,13 @@
             "text_announcement_text": "FREE UK SHIPPING OVER £60"
           }
         },
+        "message_hyVndj": {
+          "type": "message",
+          "settings": {
+            "url_link_url": "shopify://collections/season-6",
+            "text_announcement_text": "Season 6 Online now"
+          }
+        },
         "message_8Qne4t": {
           "type": "message",
           "settings": {
@@ -39,6 +46,7 @@
       "block_order": [
         "message_xmMx4W",
         "message_NGVXtk",
+        "message_hyVndj",
         "message_8Qne4t"
       ],
       "settings": {}
