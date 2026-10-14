@@ -24,14 +24,14 @@
         "message_NGVXtk": {
           "type": "message",
           "settings": {
-            "url_link_url": "",
+            "url_link_url": "shopify://collections/season-6",
             "text_announcement_text": "FREE UK SHIPPING OVER £60"
           }
         },
         "message_8Qne4t": {
           "type": "message",
           "settings": {
-            "url_link_url": "",
+            "url_link_url": "shopify://collections/season-6",
             "text_announcement_text": "FREE SOCKS ON ORDERS OVER £100"
           }
         }
