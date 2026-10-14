@@ -339,7 +339,7 @@
         "hover_on": true,
         "lead": 8,
         "tail": 10,
-        "rand": 10,
+        "rand": 0,
         "soft": 0,
         "lift": 0,
         "grow": 0,
