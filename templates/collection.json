@@ -11,6 +11,7 @@
   "sections": {
     "collection_products": {
       "type": "collection_products",
+      "custom_css": [],
       "settings": {}
     }
   },
