@@ -661,7 +661,9 @@
     <li li-element="mini-cart-item" class="mini-cart_line-item_item">
                                 <a x-bind:href="product.properties && product.properties._gift ? null : product.url" href="#" class="mini-cart_img-link w-inline-block"><img src="../images/product-apparel-2.svg" loading="lazy" alt="" class="mini-cart_line-item_img" x-bind:src="product.image"></a>
                                 <div class="mini-cart_line-item_product-info">
-                                  <a x-bind:href="product.title" li-js-object="product.title" href="#" class="text-size-small is-link">Text Link</a>
+                                  <a x-bind:href="product.properties && product.properties._gift ? null : product.url" href="#" class="mini-cart_title-link w-inline-block">
+                                    <div li-js-object="product.title" class="text-size-small" x-text="product.title">Product Title</div>
+                                  </a>
                                   <div class="mini-cart_line-item_quantity-text">
                                     <div class="text-size-small">QTY:  <br></div>
                                     <div li-js-object="product.quantity" class="text-size-small" x-text="product.quantity">1</div>
