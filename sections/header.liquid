@@ -1,4 +1,5 @@
-{% if template.name != 'index' %}    <div li-if="template.name != 'index'" class="logo-guard">
+<div class="w-embed">{% if template.name == 'search' %}{% assign nav_filters = search.filters %}{% assign q_enc = search.terms | url_encode %}{% assign nav_reset_url = routes.search_url | append: '?type=product&q=' | append: q_enc %}{% else %}{% assign nav_filters = collection.filters %}{% assign nav_reset_url = collection.url %}{% endif %}</div>
+        {% if template.name != 'index' %}    <div li-if="template.name != 'index'" class="logo-guard">
     
           <a href="{{ routes.root_url }}" li-object:href="routes.root_url" class="nav_logo-link w-nav-brand">{% if section.settings.image_logo %}
 {{ section.settings.image_logo | image_url: width: 1000 | image_tag: width: '86', class: 'nav_logo' }}
@@ -63,7 +64,7 @@
                 </a>
                   </div>
 {% endif %}
-              {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="nav_filter-col">
+              {% if template.name == 'collection' or template.name == 'search' %}    <div li-if="template.name == 'collection' or template.name == 'search'" class="nav_filter-col">
     
                 <div class="mfilter-backdrop"></div>
                 <div class="nav_filter-bar">
@@ -72,7 +73,7 @@
                     <a href="#" class="nav_stock-toggle nav_link-item w-inline-block">
                       <div class="nav_filter-link">IN STOCK</div>
                     </a>
-                    {% for filter in collection.filters %}    <div li-for="filter in collection.filters" class="nav_filter-group">
+                    {% for filter in nav_filters %}    <div li-for="filter in nav_filters" class="nav_filter-group">
                                     
                       
                             {% if filter.param_name != 'filter.v.availability' %}    <div li-if="filter.param_name != 'filter.v.availability'" class="nav_filter-skip">
@@ -88,7 +89,7 @@
 {% endfor %}
                   </div>
                   <div class="nav_filter-drawer">
-                    {% for filter in collection.filters %}    <div li-for="filter in collection.filters" class="nav_filter-panel-wrap">
+                    {% for filter in nav_filters %}    <div li-for="filter in nav_filters" class="nav_filter-panel-wrap">
                                     
                       
                             <div li-object:data-filter-panel="filter.param_name" class="nav_filter-panel" data-filter-panel="{{ filter.param_name }}">
@@ -124,7 +125,7 @@
                   </div>
                 </div>
                 <div class="nav_applied">
-                  {% for filter in collection.filters %}    <div li-for="filter in collection.filters">
+                  {% for filter in nav_filters %}    <div li-for="filter in nav_filters">
                                     
                     
                             {% for value in filter.active_values %}    <div li-for="value in filter.active_values">
@@ -145,7 +146,7 @@
                 </div>
                 <div class="nav_sort-bar">
                   <div class="nav_sort-row">
-                    <a li-object:href="collection.url" href="{{ collection.url }}" class="nav_reset nav_link-item w-inline-block">
+                    <a li-object:href="nav_reset_url" href="{{ nav_reset_url }}" class="nav_reset nav_link-item w-inline-block">
                       <div class="nav_filter-link-reset">RESET</div>
                     </a>
                     <a href="#" class="nav_sort-btn nav_link-item w-inline-block">
@@ -160,12 +161,20 @@
                       <a data-sort="price-descending" href="#" class="nav_sort-option nav_link-item w-inline-block">
                         <div class="nav_submenu-link">PRICE ↓</div>
                       </a>
-                      <a data-sort="created-ascending" href="#" class="nav_sort-option nav_link-item w-inline-block">
-                        <div class="nav_submenu-link">DATE ↑</div>
-                      </a>
-                      <a data-sort="created-descending" href="#" class="nav_sort-option nav_link-item w-inline-block">
-                        <div class="nav_submenu-link">DATE ↓</div>
-                      </a>
+                      {% if template.name != 'search' %}    <div li-if="template.name != 'search'" class="nav_sort-date">
+    
+                        <a data-sort="created-ascending" href="#" class="nav_sort-option nav_link-item w-inline-block">
+                          <div class="nav_submenu-link">DATE ↑</div>
+                        </a>
+                          </div>
+{% endif %}
+                      {% if template.name != 'search' %}    <div li-if="template.name != 'search'" class="nav_sort-date">
+    
+                        <a data-sort="created-descending" href="#" class="nav_sort-option nav_link-item w-inline-block">
+                          <div class="nav_submenu-link">DATE ↓</div>
+                        </a>
+                          </div>
+{% endif %}
                     </div>
                   </div>
                 </div>
@@ -649,9 +658,10 @@
                           <div class="mini-cart_line-item no-scrollbar">
                             <ul role="list" class="mini-cart_line-item_list w-list-unstyled">
                               <template x-for="product in products" :key="product.key">
-    <li li-element="mini-cart-item" class="mini-cart_line-item_item"><img src="../images/product-apparel-2.svg" loading="lazy" alt="" class="mini-cart_line-item_img" x-bind:src="product.image">
+    <li li-element="mini-cart-item" class="mini-cart_line-item_item">
+                                <a x-bind:href="product.properties && product.properties._gift ? null : product.url" href="#" class="mini-cart_img-link w-inline-block"><img src="../images/product-apparel-2.svg" loading="lazy" alt="" class="mini-cart_line-item_img" x-bind:src="product.image"></a>
                                 <div class="mini-cart_line-item_product-info">
-                                  <div li-js-object="product.title" class="text-size-small" x-text="product.title">Product Title</div>
+                                  <a x-bind:href="product.title" li-js-object="product.title" href="#" class="text-size-small is-link">Text Link</a>
                                   <div class="mini-cart_line-item_quantity-text">
                                     <div class="text-size-small">QTY:  <br></div>
                                     <div li-js-object="product.quantity" class="text-size-small" x-text="product.quantity">1</div>
@@ -708,7 +718,7 @@
             <a href="#" class="mfilter-apply nav_link-item w-inline-block">
               <div class="nav_filter-link-reset">CLOSE</div>
             </a>
-            <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-reset nav_link-item w-inline-block">
+            <a li-object:href="nav_reset_url" href="{{ nav_reset_url }}" class="mfilter-reset nav_link-item w-inline-block">
               <div class="nav_filter-link">RESET</div>
             </a>
           </div>
@@ -778,12 +788,12 @@
             </div>
           </div>
         </div>
-        {% if template.name == 'collection' %}    <div li-if="template.name == 'collection'" class="mfilter-trigger">
+        {% if template.name == 'collection' or template.name == 'search' %}    <div li-if="template.name == 'collection' or template.name == 'search'" class="mfilter-trigger">
     
           <a href="#" class="mfilter-open nav_link-item w-inline-block">
             <div class="nav_filter-link-reset">FILTERS</div>
           </a>
-          <a li-object:href="collection.url" href="{{ collection.url }}" class="mfilter-clear nav_link-item w-inline-block">
+          <a li-object:href="nav_reset_url" href="{{ nav_reset_url }}" class="mfilter-clear nav_link-item w-inline-block">
             <div class="nav_filter-link">RESET</div>
           </a>
             </div>
