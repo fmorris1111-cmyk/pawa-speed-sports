@@ -136,7 +136,7 @@
 </script>
                         </div>
                       </div>
-                      <div class="product-header_add-to-cart-wrapper">
+                      <div class="product-header_add-to-cart-wrapper" data-gift-hidden="{% if product.tags contains 'gift-hidden' %}true{% endif %}">
                         <div class="pdp-stock">
                           {% for variant in product.variants %}    <div li-for="variant in product.variants">
                                     

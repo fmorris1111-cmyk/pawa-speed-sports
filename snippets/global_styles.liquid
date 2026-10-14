@@ -130,6 +130,12 @@
   .nav_logo-link {
     transform: translateX(-50%) !important;
   }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; NAV: desktop click-through &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+@media screen and (min-width: 992px) {
+  .section_navbar, .nav_component, .nav_container, .nav_left, .nav_right { pointer-events: none; }
+  .nav_left > *, .nav_right > *, .nav_logo-link { pointer-events: auto; }
+  .nav_logo-link { z-index: 1001; }
+}
   /* &#9472;&#9472; Nav: link hover underline &#9472;&#9472; */
   .nav_link-item:hover .nav-link,
   .nav_link-item:hover .nav_link,
@@ -844,6 +850,7 @@
   .nav_filter-bar > div:first-child,
   .nav_sort-row { display: flex !important; align-items: center; gap: .5rem; }
   .nav_sort-row { position: relative; z-index: 1; }
+  .nav_sort-date { display: contents; }
   .nav_filter-drawer,
   .nav_sort-drawer {
     position: absolute !important;
@@ -1065,6 +1072,10 @@
 .gift-show { display: contents; }
 .gift-flag { display: none; }
 .filter_product-list-item:has(.gift-flag) { display: none; }
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; GIFT-HIDDEN PDP &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+[data-gift-hidden="true"] { cursor: not-allowed; }
+[data-gift-hidden="true"] .product-header_buy-wrappper { opacity: .4; pointer-events: none; }
+.cart_info-order div.product-name-link:hover { color: inherit; }
 /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; PASSWORD HERO &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
 .hero-standard, .hero-carousel, .hero-grid { display: contents; }
 /* carousel */

@@ -31,9 +31,25 @@
                                     
                     
                             <div id="w-node-_4ff72092-e0e6-d591-6af1-5b10f594a63c-f594a625" class="display-inlineflex">
-                      <a href="{{ item.url }}" li-object:href="item.url" id="w-node-_4ff72092-e0e6-d591-6af1-5b10f594a63d-f594a625" class="w-inline-block"><img src="{{ item.image | image_url: width: 200 }}" li-object:src="item.image | image_url: width: 200" alt="" class="cart_image"></a>
+                      {% unless item.product.tags contains 'gift-hidden' %}    <div li-unless="item.product.tags contains 'gift-hidden'" class="gift-hide">
+    
+                        <a href="{{ item.url }}" li-object:href="item.url" class="w-inline-block"><img src="{{ item.image | image_url: width: 200 }}" li-object:src="item.image | image_url: width: 200" alt="" class="cart_image"></a>
+                          </div>
+{% endunless %}
+                      {% if item.product.tags contains 'gift-hidden' %}    <div li-if="item.product.tags contains 'gift-hidden'" class="gift-show">
+    <img src="{{ item.image | image_url: width: 200 }}" li-object:src="item.image | image_url: width: 200" alt="" class="cart_image">    </div>
+{% endif %}
                       <div class="cart_info-order">
-                        <a href="{{ item.url }}" li-object:href="item.url" li-object="item.title" class="product-name-link">{{ item.title }}</a>
+                        {% unless item.product.tags contains 'gift-hidden' %}    <div li-unless="item.product.tags contains 'gift-hidden'" class="gift-hide">
+    
+                          <a href="{{ item.url }}" li-object:href="item.url" li-object="item.title" class="product-name-link">{{ item.title }}</a>
+                            </div>
+{% endunless %}
+                        {% if item.product.tags contains 'gift-hidden' %}    <div li-if="item.product.tags contains 'gift-hidden'" class="gift-show">
+    
+                          <div li-object="item.title" class="product-name-link">{{ item.title }}</div>
+                            </div>
+{% endif %}
                         <div class="hide">
                           <p item="price" class="cart_price">$13</p>
                           <p item="original-price" class="cart_price away">$18</p>
@@ -61,6 +77,7 @@
                       {% if item.properties._gift != blank %}    <div li-if="item.properties._gift != blank" class="gift-hide">
     
                         <div>FREE GIFT</div>
+                        <div class="w-embed"><input type="hidden" name="updates[]" value="1"></div>
                           </div>
 {% endif %}
                     </div>
