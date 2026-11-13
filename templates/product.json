@@ -61,11 +61,17 @@
         ".container-large-product {margin-bottom: 2rem;}"
       ],
       "settings": {}
+    },
+    "recommended_products_xzJcqq": {
+      "type": "recommended_products",
+      "name": "Recommended Products",
+      "settings": {}
     }
   },
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "product_header"
+    "product_header",
+    "recommended_products_xzJcqq"
   ]
 }
