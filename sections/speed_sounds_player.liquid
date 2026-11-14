@@ -1,24 +1,387 @@
-{% if article.metafields.custom.youtube_id != blank %}    <div li-if="article.metafields.custom.youtube_id != blank" class="speed_player_wrap">
+{% if article.metafields.custom.video_url != blank %}    <div li-if="article.metafields.custom.video_url != blank" class="speed_player_wrap">
     
           <div class="w-embed">
-            <div class="speed-player_frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/{{ article.metafields.custom.youtube_id }}?rel=0&iv_load_policy=3&playsinline=1" title="{{ article.title | escape }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe>
+            <div class="ssp" data-ssp-player="" data-src="{{ article.metafields.custom.video_url }}" data-title="{{ article.title | escape }}" data-artist="Speed Sounds" data-poster="{% if article.image %}{{ article.image | image_url: width: 1600 }}{% endif %}">
+              <div class="ssp_stage">
+                <video class="ssp_video" playsinline="" preload="none"></video>
+                <div class="ssp_audio-card">
+                  <div class="ssp_audio-card-bg"></div>
+                  <div class="ssp_audio-card-text">
+                    <div class="ssp_audio-label">Audio only</div>
+                    <div class="ssp_audio-title">{{ article.title | escape }}</div>
+                  </div>
+                </div>
+                <button type="button" class="ssp_big-play" aria-label="Play"></button>
+                <div class="ssp_spinner" aria-hidden="true"></div>
+                <div class="ssp_error" hidden=""></div>
+              </div>
+              <div class="ssp_controls">
+                <button type="button" class="ssp_btn" data-ssp="play" aria-label="Play"></button>
+                <button type="button" class="ssp_btn ssp_hide-sm" data-ssp="back" aria-label="Back 10 seconds"></button>
+                <button type="button" class="ssp_btn ssp_hide-sm" data-ssp="fwd" aria-label="Forward 10 seconds"></button>
+                <span class="ssp_time ssp_time-cur">0:00</span>
+                <div class="ssp_bar" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
+                  <div class="ssp_bar-track">
+                    <div class="ssp_bar-buffered"></div>
+                    <div class="ssp_bar-progress"></div>
+                  </div>
+                  <div class="ssp_bar-thumb"></div>
+                  <div class="ssp_bar-tip"></div>
+                </div>
+                <span class="ssp_time ssp_time-dur">--:--</span>
+                <div class="ssp_vol-wrap">
+                  <button type="button" class="ssp_btn" data-ssp="mute" aria-label="Mute"></button>
+                  <input type="range" class="ssp_vol" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+                </div>
+                <select class="ssp_quality" aria-label="Quality" hidden=""></select>
+                <button type="button" class="ssp_btn" data-ssp="audio" aria-label="Audio only" aria-pressed="false"></button>
+                <button type="button" class="ssp_btn ssp_hide-sm" data-ssp="pip" aria-label="Picture in picture" hidden=""></button>
+                <button type="button" class="ssp_btn" data-ssp="fs" aria-label="Fullscreen"></button>
+              </div>
             </div>
+          </div>
+          <div class="w-embed">
             <style>
-  .speed-player_frame {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-  }
-  .speed-player_frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
+.ssp {
+  --ssp-fg: #000; --ssp-bg: #fff; --ssp-muted: #666; --ssp-line: #e5e5e5;
+  --ssp-chip: #f3f3f3; --ssp-chip-hover: #cacaca; --ssp-pad: 2rem;
+  position: relative; background: var(--ssp-bg); color: var(--ssp-fg);
+  font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+.ssp *, .ssp *::before, .ssp *::after { box-sizing: border-box; }
+.ssp svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+/* Stage */
+.ssp_stage { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; cursor: pointer; }
+.ssp_video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.ssp_big-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 4.5rem; height: 4.5rem; border: 0; border-radius: 4px; background: #fff; color: #000;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s, opacity .2s;
+}
+.ssp_big-play svg { width: 28px; height: 28px; }
+.ssp_big-play:hover { transform: translate(-50%, -50%) scale(1.06); }
+.ssp.is-started .ssp_big-play { opacity: 0; pointer-events: none; }
+.ssp.is-started:not(.is-playing) .ssp_big-play { opacity: 1; pointer-events: auto; }
+/* Audio-only card */
+.ssp_audio-card { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; text-align: center; color: #fff; }
+.ssp.is-audio .ssp_audio-card { display: flex; }
+.ssp_audio-card-bg { position: absolute; inset: -40px; background: #111 center / cover no-repeat; filter: blur(24px) brightness(.45); }
+.ssp_audio-card-text { position: relative; padding: 0 1.5rem; max-width: 40rem; }
+.ssp_audio-label { opacity: .7; margin-bottom: .75rem; }
+.ssp_audio-title { font-family: 'Nimbussanl Bol', Arial, sans-serif; font-size: clamp(1.25rem, 3vw, 2.25rem); line-height: 1; }
+.ssp.is-audio .ssp_big-play { background: rgba(255,255,255,.9); }
+.ssp.is-audio.is-playing .ssp_big-play { opacity: 0; }
+/* Spinner + error */
+.ssp_spinner { position: absolute; left: 50%; top: 50%; width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem;
+  border: 3px solid rgba(255,255,255,.25); border-top-color: #fff; border-radius: 50%; animation: ssp-spin .8s linear infinite; display: none; pointer-events: none; }
+.ssp.is-waiting .ssp_spinner { display: block; }
+.ssp.is-waiting .ssp_big-play { opacity: 0; }
+@keyframes ssp-spin { to { transform: rotate(360deg); } }
+.ssp_error { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 1rem; color: #fff; background: rgba(0,0,0,.8); text-align: center; }
+.ssp_error[hidden] { display: none; }
+/* Controls */
+.ssp_controls { display: flex; align-items: center; gap: .5rem; padding: .5rem var(--ssp-pad); }
+.ssp_btn, .ssp_quality {
+  flex: none; height: 2rem; min-width: 2rem; padding: 0 .5rem; border: 0; border-radius: 4px;
+  background: var(--ssp-chip); color: var(--ssp-fg); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; transition: background-color .2s;
+  font: inherit; text-transform: uppercase;
+}
+.ssp_btn:hover, .ssp_quality:hover, .ssp_btn[aria-pressed="true"] { background: var(--ssp-chip-hover); }
+.ssp_btn[hidden], .ssp_quality[hidden] { display: none; }
+.ssp_quality { appearance: none; -webkit-appearance: none; padding: 0 .6rem; }
+.ssp_quality:disabled { opacity: .4; cursor: default; }
+.ssp :focus-visible { outline: 2px solid #2d62ff; outline-offset: 2px; }
+.ssp_time { flex: none; font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: center; }
+/* Seek bar */
+.ssp_bar { position: relative; flex: 1; height: 2rem; cursor: pointer; touch-action: none; min-width: 4rem; }
+.ssp_bar-track { position: absolute; left: 0; right: 0; top: 50%; height: 4px; margin-top: -2px; background: var(--ssp-line); }
+.ssp_bar-buffered, .ssp_bar-progress { position: absolute; left: 0; top: 0; bottom: 0; width: 0; }
+.ssp_bar-buffered { background: #bdbdbd; }
+.ssp_bar-progress { background: var(--ssp-fg); }
+.ssp_bar-thumb { position: absolute; top: 50%; left: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--ssp-fg); transform: scale(0); transition: transform .15s; }
+.ssp_bar:hover .ssp_bar-thumb, .ssp_bar:focus-visible .ssp_bar-thumb, .ssp.is-scrubbing .ssp_bar-thumb { transform: scale(1); }
+.ssp_bar-tip { position: absolute; bottom: calc(100% + 4px); left: 0; transform: translateX(-50%); background: #000; color: #fff;
+  padding: .3rem .5rem; border-radius: 4px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .1s; max-width: 18rem; overflow: hidden; text-overflow: ellipsis; }
+.ssp_bar.is-hover .ssp_bar-tip, .ssp.is-scrubbing .ssp_bar-tip { opacity: 1; }
+/* Volume */
+.ssp_vol-wrap { display: flex; align-items: center; gap: .35rem; flex: none; }
+.ssp_vol { width: 4.5rem; accent-color: var(--ssp-fg); cursor: pointer; }
+/* Fullscreen */
+.ssp:fullscreen { --ssp-bg: #000; --ssp-fg: #fff; --ssp-chip: #222; --ssp-chip-hover: #444; --ssp-line: #333; display: flex; flex-direction: column; }
+.ssp:fullscreen .ssp_stage { flex: 1; aspect-ratio: auto; }
+.ssp:-webkit-full-screen { --ssp-bg: #000; --ssp-fg: #fff; --ssp-chip: #222; --ssp-chip-hover: #444; --ssp-line: #333; display: flex; flex-direction: column; width: 100%; height: 100%; }
+.ssp:-webkit-full-screen .ssp_stage { flex: 1; aspect-ratio: auto; }
+/* Small screens */
+@media (max-width: 767px) {
+  .ssp { --ssp-pad: 1rem; }
+  .ssp_hide-sm { display: none !important; }
+  .ssp_controls { gap: .35rem; }
+}
+@media (hover: none) { .ssp_vol { display: none; } }
 </style>
+          </div>
+          <div class="w-embed w-script">
+            <script>
+(function () {
+  if (window.__sspLoaded) return; window.__sspLoaded = true;
+  var HLS_URL = 'https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js';
+  var S = 'fill="none" stroke="currentColor" stroke-width="2"';
+  var I = {
+    play: '<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/>',
+    pause: '<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/>',
+    back: '<svg viewBox="0 0 24 24"><path d="M12 5V1L6 6l6 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/>',
+    fwd: '<svg viewBox="0 0 24 24" style="transform:scaleX(-1)"><path d="M12 5V1L6 6l6 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/>',
+    vol: '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" ' + S + '/>',
+    mute: '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M16 9l6 6M22 9l-6 6" ' + S + '/>',
+    audio: '<svg viewBox="0 0 24 24"><path d="M4 16v-4a8 8 0 0 1 16 0v4" ' + S + '/><rect x="3" y="14" width="5" height="7" rx="1"/><rect x="16" y="14" width="5" height="7" rx="1"/>',
+    video: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="1" ' + S + '/><path d="M8 21h8M12 17v4" ' + S + '/>',
+    pip: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1" ' + S + '/><rect x="12" y="12" width="7" height="5"/>',
+    fs: '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" ' + S + '/>',
+    fsx: '<svg viewBox="0 0 24 24"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" ' + S + '/>'
+  };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+  function fmt(t) {
+    if (!isFinite(t) || t < 0) t = 0; t = Math.floor(t);
+    var h = Math.floor(t / 3600), m = Math.floor(t % 3600 / 60), s = t % 60;
+    return (h ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+  var hlsQueue = null;
+  function loadHls(cb) {
+    if (window.Hls) return cb(window.Hls);
+    if (hlsQueue) return hlsQueue.push(cb);
+    hlsQueue = [cb];
+    var s = document.createElement('script'); s.src = HLS_URL; s.async = true;
+    s.onload = s.onerror = function () { var q = hlsQueue; q.forEach(function (f) { f(window.Hls || null); }); };
+    document.head.appendChild(s);
+  }
+  var isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var active = null;
+  function init(root) {
+    var src = (root.getAttribute('data-src') || '').trim();
+    if (!src) return;
+    function $(s) { return root.querySelector(s); }
+    function btn(n) { return root.querySelector('[data-ssp="' + n + '"]'); }
+    var video = $('.ssp_video'), stage = $('.ssp_stage'), bar = $('.ssp_bar'), prog = $('.ssp_bar-progress'),
+        buf = $('.ssp_bar-buffered'), thumb = $('.ssp_bar-thumb'), tip = $('.ssp_bar-tip'),
+        cur = $('.ssp_time-cur'), dur = $('.ssp_time-dur'), big = $('.ssp_big-play'), vol = $('.ssp_vol'),
+        qual = $('.ssp_quality'), errBox = $('.ssp_error'),
+        bPlay = btn('play'), bBack = btn('back'), bFwd = btn('fwd'), bMute = btn('mute'), bAudio = btn('audio'), bPip = btn('pip'), bFs = btn('fs');
+    var title = root.getAttribute('data-title') || document.title, artist = root.getAttribute('data-artist') || '';
+    var poster = root.getAttribute('data-poster') || src.replace(/playlist\.m3u8.*$/, 'thumbnail.jpg');
+    if (poster.indexOf('//') === 0) poster = 'https:' + poster;
+    video.poster = poster;
+    $('.ssp_audio-card-bg').style.backgroundImage = 'url("' + poster + '")';
+    big.innerHTML = I.play; bPlay.innerHTML = I.play; bBack.innerHTML = I.back; bFwd.innerHTML = I.fwd;
+    bAudio.innerHTML = I.audio; bPip.innerHTML = I.pip; bFs.innerHTML = I.fs;
+    // State
+    var hls = null, started = false, audioMode = false, lastSave = 0;
+    var key = 'ssp:' + src.split('?')[0];
+    var resume = parseFloat(store.get(key)) || 0;
+    var duration = 0;
+    if (resume) { cur.textContent = fmt(resume); }
+    var savedVol = parseFloat(store.get('ssp:vol'));
+    if (isFinite(savedVol)) video.volume = savedVol;
+    if (store.get('ssp:muted') === '1') video.muted = true;
+    function showError(msg) { errBox.textContent = msg; errBox.hidden = false; root.classList.remove('is-waiting'); }
+    loadHls(function (Hls) {
+      if (Hls && Hls.isSupported() && !isIOS) {
+        hls = new Hls({ autoStartLoad: false, capLevelToPlayerSize: true, maxBufferLength: 30, maxMaxBufferLength: 60, maxBufferSize: 30 * 1000 * 1000 });
+        hls.loadSource(src); hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, buildQuality);
+        hls.on(Hls.Events.ERROR, function (e, d) {
+          if (!d.fatal) return;
+          if (d.type === Hls.ErrorTypes.NETWORK_ERROR) {
+            if (d.details === 'manifestLoadError') return showError('This mix is unavailable right now.');
+            hls.startLoad();
+          } else if (d.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
+          else showError('Playback error. Please refresh the page.');
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+      } else {
+        showError('Sorry, this browser can&rsquo;t play this mix.');
+      }
+    });
+    function buildQuality() {
+      var lv = hls.levels || [];
+      if (lv.length < 2) return;
+      var opts = '<option value="-1">Auto';
+      for (var i = lv.length - 1; i >= 0; i--) opts += '<option value="' + i + '">' + (lv[i].height ? lv[i].height + 'p' : Math.round(lv[i].bitrate / 1000) + 'k') + '';
+      qual.innerHTML = opts; qual.value = '-1'; qual.hidden = false; qual.disabled = audioMode;
+    }
+    qual.addEventListener('change', function () { if (hls) hls.currentLevel = +qual.value; });
+    // Playback
+    function play() {
+      active = root;
+      if (!started) {
+        started = true; root.classList.add('is-started', 'is-waiting');
+        if (hls) hls.startLoad(resume > 0 ? resume : -1);
+        else if (resume > 0) { var r = resume; video.addEventListener('loadedmetadata', function f() { video.removeEventListener('loadedmetadata', f); video.currentTime = r; }); }
+        setMeta();
+      }
+      var p = video.play(); if (p && p.catch) p.catch(function () {});
+    }
+    function pause() { video.pause(); }
+    function toggle() { video.paused ? play() : pause(); }
+    function seek(t) {
+      t = Math.max(0, duration ? Math.min(t, duration - 0.5) : t);
+      if (!started) { resume = t; cur.textContent = fmt(t); render(t); return; }
+      video.currentTime = t; render(t);
+    }
+    function skip(d) { seek((started ? video.currentTime : resume) + d); }
+    function render(t) {
+      var pct = duration ? Math.min(100, t / duration * 100) : 0;
+      prog.style.width = pct + '%'; thumb.style.left = pct + '%';
+      cur.textContent = fmt(t);
+      bar.setAttribute('aria-valuenow', Math.floor(t)); bar.setAttribute('aria-valuetext', fmt(t));
+    }
+    function renderBuffered() {
+      if (!duration) return;
+      var b = video.buffered, t = video.currentTime, end = 0;
+      for (var i = 0; i < b.length; i++) if (b.start(i) <= t + 0.5 && b.end(i) >= t) end = b.end(i);
+      buf.style.width = Math.min(100, end / duration * 100) + '%';
+    }
+    function onDuration() {
+      var d = video.duration;
+      if (!isFinite(d) || d <= 0 || d === duration) return;
+      duration = d; dur.textContent = fmt(d); bar.setAttribute('aria-valuemax', Math.floor(d));
+      render(video.currentTime || resume); posState();
+    }
+    video.addEventListener('play', function () { root.classList.add('is-playing'); bPlay.innerHTML = I.pause; bPlay.setAttribute('aria-label', 'Pause'); big.setAttribute('aria-label', 'Pause'); msState('playing'); });
+    video.addEventListener('pause', function () { root.classList.remove('is-playing'); bPlay.innerHTML = I.play; bPlay.setAttribute('aria-label', 'Play'); big.setAttribute('aria-label', 'Play'); msState('paused'); save(true); });
+    video.addEventListener('waiting', function () { root.classList.add('is-waiting'); });
+    ['playing', 'canplay', 'seeked'].forEach(function (ev) { video.addEventListener(ev, function () { root.classList.remove('is-waiting'); }); });
+    video.addEventListener('durationchange', onDuration);
+    video.addEventListener('loadedmetadata', onDuration);
+    video.addEventListener('progress', renderBuffered);
+    video.addEventListener('timeupdate', function () { if (!scrubbing) render(video.currentTime); renderBuffered(); save(false); });
+    video.addEventListener('seeked', posState);
+    video.addEventListener('ended', function () { store.del(key); });
+    function save(force) {
+      if (!started) return;
+      var now = Date.now(); if (!force && now - lastSave < 5000) return; lastSave = now;
+      var t = video.currentTime;
+      if (duration && t > duration - 30) store.del(key); else if (t > 10) store.set(key, t.toFixed(1));
+    }
+    // Seek bar
+    var scrubbing = false;
+    function pctFromEvent(e) { var r = bar.getBoundingClientRect(); return Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)); }
+    function showTip(p) {
+      tip.textContent = fmt(p * duration);
+      var w = bar.offsetWidth, tw = tip.offsetWidth / 2, x = Math.max(tw, Math.min(w - tw, p * w));
+      tip.style.left = x + 'px';
+    }
+    bar.addEventListener('pointermove', function (e) {
+      if (!duration) return; var p = pctFromEvent(e); bar.classList.add('is-hover'); showTip(p);
+      if (scrubbing) { prog.style.width = thumb.style.left = (p * 100) + '%'; cur.textContent = fmt(p * duration); }
+    });
+    bar.addEventListener('pointerleave', function () { bar.classList.remove('is-hover'); });
+    bar.addEventListener('pointerdown', function (e) {
+      if (!duration) { if (!started) play(); return; }
+      scrubbing = true; root.classList.add('is-scrubbing'); bar.setPointerCapture(e.pointerId);
+      var p = pctFromEvent(e); prog.style.width = thumb.style.left = (p * 100) + '%'; showTip(p);
+    });
+    function endScrub(e) {
+      if (!scrubbing) return; scrubbing = false; root.classList.remove('is-scrubbing');
+      seek(pctFromEvent(e) * duration);
+    }
+    bar.addEventListener('pointerup', endScrub);
+    bar.addEventListener('pointercancel', function () { scrubbing = false; root.classList.remove('is-scrubbing'); });
+    bar.addEventListener('keydown', function (e) {
+      var d = { ArrowLeft: -5, ArrowRight: 5, ArrowDown: -5, ArrowUp: 5, PageDown: -60, PageUp: 60 }[e.key];
+      if (d) { skip(d); } else if (e.key === 'Home') seek(0); else if (e.key === 'End' && duration) seek(duration); else return;
+      e.preventDefault(); e.stopPropagation();
+    });
+    // Buttons
+    big.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+    stage.addEventListener('click', function () { toggle(); });
+    stage.addEventListener('dblclick', function () { toggleFs(); });
+    bPlay.addEventListener('click', toggle);
+    bBack.addEventListener('click', function () { skip(-10); });
+    bFwd.addEventListener('click', function () { skip(10); });
+    function volUI() {
+      var m = video.muted || video.volume === 0;
+      bMute.innerHTML = m ? I.mute : I.vol; bMute.setAttribute('aria-label', m ? 'Unmute' : 'Mute');
+      vol.value = video.muted ? 0 : video.volume;
+    }
+    bMute.addEventListener('click', function () { video.muted = !video.muted; if (!video.muted && video.volume === 0) video.volume = 0.5; });
+    vol.addEventListener('input', function () { video.volume = +vol.value; video.muted = +vol.value === 0; });
+    video.addEventListener('volumechange', function () { volUI(); store.set('ssp:vol', video.volume); store.set('ssp:muted', video.muted ? '1' : ''); });
+    volUI();
+    function setAudio(on) {
+      audioMode = on; root.classList.toggle('is-audio', on);
+      bAudio.innerHTML = on ? I.video : I.audio;
+      bAudio.setAttribute('aria-label', on ? 'Show video' : 'Audio only'); bAudio.setAttribute('aria-pressed', on);
+      qual.disabled = on;
+      // Audio mode locks the stream to the lowest quality to save data; leaving it returns to Auto.
+      if (hls) { hls.nextLevel = on ? 0 : -1; qual.value = '-1'; }
+      store.set('ssp:audio', on ? '1' : '');
+    }
+    bAudio.addEventListener('click', function () { setAudio(!audioMode); });
+    if (store.get('ssp:audio') === '1') setAudio(true);
+    if (document.pictureInPictureEnabled && !video.disablePictureInPicture) {
+      bPip.hidden = false;
+      bPip.addEventListener('click', function () {
+        if (document.pictureInPictureElement) document.exitPictureInPicture();
+        else { if (!started) play(); video.requestPictureInPicture().catch(function () {}); }
+      });
+    }
+    function fsEl() { return document.fullscreenElement || document.webkitFullscreenElement; }
+    function toggleFs() {
+      if (fsEl()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else if (root.requestFullscreen) root.requestFullscreen();
+      else if (root.webkitRequestFullscreen) root.webkitRequestFullscreen();
+      else if (video.webkitEnterFullscreen) { if (!started) play(); video.webkitEnterFullscreen(); }
+    }
+    bFs.addEventListener('click', toggleFs);
+    function fsUI() { var on = fsEl() === root; bFs.innerHTML = on ? I.fsx : I.fs; bFs.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Fullscreen'); }
+    document.addEventListener('fullscreenchange', fsUI); document.addEventListener('webkitfullscreenchange', fsUI);
+    // Lock screen / media keys
+    var ms = navigator.mediaSession;
+    function setMeta() {
+      if (!ms || !started || active !== root || typeof MediaMetadata === 'undefined') return;
+      ms.metadata = new MediaMetadata({ title: title, artist: artist,
+        artwork: poster ? [{ src: poster, sizes: '1600x900', type: 'image/jpeg' }] : [] });
+      var h = {
+        play: play, pause: pause,
+        seekbackward: function (d) { skip(-((d && d.seekOffset) || 10)); },
+        seekforward: function (d) { skip((d && d.seekOffset) || 10); },
+        seekto: function (d) { seek(d.seekTime); }
+      };
+      for (var k in h) { try { ms.setActionHandler(k, h[k]); } catch (e) {} }
+    }
+    function msState(s) { if (ms && active === root) ms.playbackState = s; }
+    function posState() {
+      if (!ms || !ms.setPositionState || !duration || active !== root) return;
+      try { ms.setPositionState({ duration: duration, position: Math.min(video.currentTime, duration), playbackRate: video.playbackRate }); } catch (e) {}
+    }
+    root.__ssp = { toggle: toggle, skip: skip, started: function () { return started; }, mute: function () { video.muted = !video.muted; }, fs: toggleFs };
+  }
+  // Keyboard shortcuts (for the player that was last played)
+  document.addEventListener('keydown', function (e) {
+    if (!active || e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target, tag = t && t.tagName;
+    if (t && (t.isContentEditable || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT')) return;
+    if (tag === 'BUTTON' && (e.key === ' ' || e.key === 'Enter')) return;
+    var p = active.__ssp, k = e.key.toLowerCase();
+    if (k === ' ' || k === 'k') p.toggle();
+    else if (k === 'arrowleft' || k === 'j') p.skip(-10);
+    else if (k === 'arrowright' || k === 'l') p.skip(10);
+    else if (k === 'm') p.mute();
+    else if (k === 'f') p.fs();
+    else return;
+    e.preventDefault();
+  });
+  function boot() { document.querySelectorAll('[data-ssp-player]').forEach(init); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
           </div>
             </div>
 {% endif %}
@@ -31,30 +394,153 @@
                 <div li-object="article.metafields.custom.location" class="text-size-regular">{{ article.metafields.custom.location }}</div>
               </div>
               <div li-object="article.title" class="heading-style-h2">{{ article.title }}</div>
+              <div class="w-embed">{% assign ssp_genres = article.metafields.custom.genres.value %}
+                {% if ssp_genres != blank %}
+                <ul class="ssp-genres" aria-label="Genres">
+                  {% for genre in ssp_genres %}<li class="ssp-genre">{{ genre | escape }}</li>{% endfor %}
+                </ul>
+                {% endif %}
+                <style>
+.ssp-genres { list-style: none; margin: .75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+.ssp-genre { font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; line-height: 1;
+  padding: .4rem .55rem; border: 1px solid #000; border-radius: 4px; }
+</style>
+              </div>
             </div>
           </div>
           <div class="speed_sharing_wrap">
-            <a li-object:href="article.metafields.custom.youtube_url" href="{{ article.metafields.custom.youtube_url }}" target="_blank" class="footer_social-link w-inline-block"><img src="{{ 'youtube-svgrepo-com-2.svg' | asset_url }}" loading="lazy" alt="Youtube" class="footer_social-icon"></a>
-            <a href="#" target="_blank" class="speed-meta_share w-inline-block"><img src="{{ 'share-svgrepo-com.svg' | asset_url }}" loading="lazy" alt="" class="footer_social-icon"></a>
-          </div>
-        </div>
-        <div class="w-embed w-script">
-          <script>
-document.addEventListener('click', function (e) {
-  var btn = e.target.closest('[data-share]');
-  if (!btn) return;
-  e.preventDefault();
-  var data = { title: document.title, url: window.location.href };
-  if (navigator.share) {
-    navigator.share(data).catch(function () {});
-  } else if (navigator.clipboard) {
-    navigator.clipboard.writeText(data.url).then(function () {
-      btn.classList.add('is-copied');
-      setTimeout(function () { btn.classList.remove('is-copied'); }, 1500);
+            <div class="w-embed w-script">
+              <div class="ssp-links">
+                {% if article.metafields.custom.youtube_url != blank %}
+                <a class="ssp-link" href="{{ article.metafields.custom.youtube_url }}" target="_blank" rel="noopener">
+                  <svg viewbox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"></path>
+                  </svg>
+                  <span>YouTube</span>
+                </a>
+                {% endif %}
+                {% if article.metafields.custom.soundcloud_url != blank %}
+                <a class="ssp-link" href="{{ article.metafields.custom.soundcloud_url }}" target="_blank" rel="noopener">
+                  <svg viewbox="0 0 24 24" aria-hidden="true">
+                    <path d="M1 14h1.2v4H1zM3.2 12h1.2v6H3.2zM5.4 11h1.2v7H5.4zM7.6 10h1.2v8H7.6zM9.8 8h1.2v10H9.8zM12 7.2A6 6 0 0 1 14.6 6.6a6 6 0 0 1 5.9 5 3.4 3.4 0 0 1-.5 6.4H12z"></path>
+                  </svg>
+                  <span>SoundCloud</span>
+                </a>
+                {% endif %}
+                <button type="button" class="ssp-link" data-ssp-share="" data-url="{{ shop.url }}{{ article.url }}" data-title="{{ article.title | escape }}">
+                  <svg viewbox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 15V3M7 8l5-5 5 5M5 12v8h14v-8" fill="none" stroke="currentColor" stroke-width="2"></path>
+                  </svg>
+                  <span class="ssp-share-label">Share</span>
+                </button>
+              </div>
+              <style>
+.ssp-links { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; }
+.ssp-link { display: inline-flex; align-items: center; gap: .4rem; height: 2.5rem; padding: 0 .75rem; border: 0; border-radius: 4px;
+  background: #f3f3f3; color: #000; text-decoration: none; cursor: pointer; transition: background-color .2s;
+  font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; line-height: 1; }
+.ssp-link:hover { background: #cacaca; }
+.ssp-link:focus-visible { outline: 2px solid #2d62ff; outline-offset: 2px; }
+.ssp-link svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+.ssp-link.is-copied { background: #000; color: #fff; }
+@media (max-width: 479px) { .ssp-links { justify-content: flex-start; } .ssp-link span { display: none; } .ssp-link.is-copied span { display: inline; } }
+</style>
+              <script>
+(function () {
+  if (window.__sspShare) return; window.__sspShare = true;
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (res, rej) {
+      var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly', '');
+      t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy') ? res() : rej(); } catch (e) { rej(e); }
+      document.body.removeChild(t);
     });
   }
-});
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-ssp-share]'); if (!btn) return;
+    e.preventDefault();
+    var url = btn.getAttribute('data-url') || location.href.split('?')[0];
+    var title = btn.getAttribute('data-title') || document.title;
+    var touch = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+    if (navigator.share && touch) { navigator.share({ title: title, url: url }).catch(function () {}); return; }
+    var label = btn.querySelector('.ssp-share-label');
+    copy(url).then(function () {
+      btn.classList.add('is-copied'); if (label) label.textContent = 'Link copied';
+      clearTimeout(btn.__t); btn.__t = setTimeout(function () { btn.classList.remove('is-copied'); if (label) label.textContent = 'Share'; }, 1800);
+    }, function () { window.prompt('Copy this link:', url); });
+  });
+})();
 </script>
+            </div>
+          </div>
+        </div>
+        <div class="w-embed">{% assign ssp_desc = article.metafields.custom.description %}
+          {% assign ssp_artists = article.metafields.custom.artists.value %}
+          {% if ssp_desc != blank or ssp_artists != blank %}
+          <div class="ssp-details">
+            {% if ssp_desc != blank %}
+            <div class="ssp-details_col ssp-details_desc">
+              <div class="ssp-details_label">About</div>
+              <div class="ssp-desc">{{ ssp_desc | metafield_tag }}</div>
+            </div>
+            {% endif %}
+            {% if ssp_artists != blank %}
+            <div class="ssp-details_col ssp-details_artists">
+              <div class="ssp-details_label">{% if ssp_artists.size == 1 %}Artist{% else %}Artists{% endif %}</div>
+              <ul class="ssp-artists">
+                {% for artist in ssp_artists %}
+                <li class="ssp-artist">
+                  <span class="ssp-artist_name">{{ artist.name.value | escape }}</span>
+                  <span class="ssp-artist_socials">
+                    {% if artist.instagram.value != blank %}<a class="ssp-social" href="{{ artist.instagram.value }}" target="_blank" rel="noopener" aria-label="{{ artist.name.value | escape }} on Instagram"><svg viewbox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"></rect>
+                        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <circle cx="17.5" cy="6.5" r="1.3"></circle>
+                      </svg></a>{% endif %}
+                    {% if artist.soundcloud.value != blank %}<a class="ssp-social" href="{{ artist.soundcloud.value }}" target="_blank" rel="noopener" aria-label="{{ artist.name.value | escape }} on SoundCloud"><svg viewbox="0 0 24 24" aria-hidden="true">
+                        <path d="M1 14h1.2v4H1zM3.2 12h1.2v6H3.2zM5.4 11h1.2v7H5.4zM7.6 10h1.2v8H7.6zM9.8 8h1.2v10H9.8zM12 7.2A6 6 0 0 1 14.6 6.6a6 6 0 0 1 5.9 5 3.4 3.4 0 0 1-.5 6.4H12z"></path>
+                      </svg></a>{% endif %}
+                    {% if artist.youtube.value != blank %}<a class="ssp-social" href="{{ artist.youtube.value }}" target="_blank" rel="noopener" aria-label="{{ artist.name.value | escape }} on YouTube"><svg viewbox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"></path>
+                      </svg></a>{% endif %}
+                    {% if artist.tiktok.value != blank %}<a class="ssp-social" href="{{ artist.tiktok.value }}" target="_blank" rel="noopener" aria-label="{{ artist.name.value | escape }} on TikTok"><svg viewbox="0 0 24 24" aria-hidden="true">
+                        <path d="M16.5 2h-3.3v13.3a2.9 2.9 0 1 1-2.1-2.8V9.1a6.2 6.2 0 1 0 5.4 6.2V8.6a7.8 7.8 0 0 0 4.5 1.4V6.7a4.5 4.5 0 0 1-4.5-4.5z"></path>
+                      </svg></a>{% endif %}
+                    {% if artist.website.value != blank %}<a class="ssp-social" href="{{ artist.website.value }}" target="_blank" rel="noopener" aria-label="{{ artist.name.value | escape }} website"><svg viewbox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" fill="none" stroke="currentColor" stroke-width="2"></path>
+                      </svg></a>{% endif %}
+                  </span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+          <style>
+.ssp-details { display: flex; flex-wrap: wrap; gap: 2rem 4rem; margin: 2.5rem 2rem 0; align-items: flex-start; }
+.ssp-details_desc { flex: 1 1 26rem; max-width: 46rem; }
+.ssp-details_artists { flex: 1 1 18rem; max-width: 30rem; }
+.ssp-details_label { font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; padding-bottom: .5rem; border-bottom: 1px solid #000; margin-bottom: .75rem; }
+.ssp-desc { font-family: 'Nimbussanl Reg', Arial, sans-serif; font-size: 1rem; line-height: 1.5; }
+.ssp-desc p { margin: 0 0 1em; }
+.ssp-desc > :last-child { margin-bottom: 0; }
+.ssp-desc a { color: inherit; text-decoration: underline; }
+.ssp-desc a:hover { color: #818181; }
+.ssp-desc ul, .ssp-desc ol { margin: 0 0 1em; padding-left: 1.25em; }
+.ssp-desc h2, .ssp-desc h3, .ssp-desc h4 { font-family: 'Nimbussanl Bol', Arial, sans-serif; text-transform: uppercase; font-size: 1rem; margin: 1.25em 0 .5em; }
+.ssp-artists { list-style: none; margin: 0; padding: 0; }
+.ssp-artist { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .5rem 0; border-bottom: 1px solid #e5e5e5; min-height: 3rem; }
+.ssp-artist_name { font-family: 'Nimbussanl Bol', Arial, sans-serif; font-size: 1rem; text-transform: uppercase; line-height: 1.1; }
+.ssp-artist_socials { display: flex; gap: .35rem; flex: none; }
+.ssp-social { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; background: #f3f3f3; color: #000; transition: background-color .2s; }
+.ssp-social:hover { background: #cacaca; }
+.ssp-social:focus-visible { outline: 2px solid #2d62ff; outline-offset: 2px; }
+.ssp-social svg { width: 16px; height: 16px; fill: currentColor; }
+@media (max-width: 767px) { .ssp-details { margin: 2rem 1rem 0; gap: 2rem; } }
+</style>
         </div> {% schema %} {
     "tag": "div",
     "name": "Speed Sounds Player",
