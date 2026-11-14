@@ -475,10 +475,31 @@
             </div>
           </div>
         </div>
-        <div class="w-embed">{% assign ssp_desc = article.metafields.custom.description %}
+        <div class="w-embed">{% if article.metafields.custom.video_url != blank %}
+{% assign ssp_desc = article.metafields.custom.description %}
 {% assign ssp_artists = article.metafields.custom.artists.value %}
-{% if ssp_desc != blank or ssp_artists != blank %}
+
+{% comment %} ---- Rank other mixes: shared artist = 3 pts, shared genre = 1 pt, ties broken by newest. Current mix excluded. ---- {% endcomment %}
+{% assign ssp_cur_artists = '|' %}
+{% for a in ssp_artists %}{% assign ssp_cur_artists = ssp_cur_artists | append: a.system.handle | append: '|' %}{% endfor %}
+{% assign ssp_cur_genres = '|' %}
+{% for g in article.metafields.custom.genres.value %}{% assign ssp_g = g | downcase | strip %}{% assign ssp_cur_genres = ssp_cur_genres | append: ssp_g | append: '|' %}{% endfor %}
+{% assign ssp_keys = '' %}
+{% for other in blog.articles %}
+  {% assign ssp_idx = forloop.index0 | plus: 1000 %}
+  {% if other.id == article.id or other.metafields.custom.video_url == blank %}{% continue %}{% endif %}
+  {% assign ssp_score = 0 %}
+  {% for a in other.metafields.custom.artists.value %}{% assign ssp_t = '|' | append: a.system.handle | append: '|' %}{% if ssp_cur_artists contains ssp_t %}{% assign ssp_score = ssp_score | plus: 3 %}{% endif %}{% endfor %}
+  {% for g in other.metafields.custom.genres.value %}{% assign ssp_g = g | downcase | strip %}{% assign ssp_t = '|' | append: ssp_g | append: '|' %}{% if ssp_cur_genres contains ssp_t %}{% assign ssp_score = ssp_score | plus: 1 %}{% endif %}{% endfor %}
+  {% assign ssp_inv = 900 | minus: ssp_score %}
+  {% assign ssp_keys = ssp_keys | append: ssp_inv | append: '-' | append: ssp_idx | append: ',' %}
+{% endfor %}
+{% assign ssp_related = ssp_keys | split: ',' | sort %}
+
+{% if ssp_desc != blank or ssp_artists != blank or ssp_related.size > 0 %}
 <div class="ssp-details">
+  {% if ssp_desc != blank or ssp_artists != blank %}
+  <div class="ssp-details_main">
   {% if ssp_desc != blank %}
   <div class="ssp-details_col ssp-details_desc">
     <div class="ssp-details_label">About</div>
@@ -507,12 +528,49 @@
     </ul>
   </div>
   {% endif %}
+  </div>
+  {% endif %}
+  {% if ssp_related.size > 0 %}
+  <div class="ssp-details_col ssp-details_related">
+    <div class="ssp-details_label">You may also like</div>
+    <ul class="ssp-related">
+      {% for ssp_key in ssp_related limit: 4 %}
+      {% assign ssp_want = ssp_key | split: '-' | last | plus: 0 | minus: 1000 %}
+      {% for other in blog.articles %}
+      {% if forloop.index0 == ssp_want %}
+      <li>
+        <a class="ssp-rel" href="{{ other.url }}">
+          {% if other.image %}{{ other.image | image_url: width: 480, height: 270, crop: 'center' | image_tag: loading: 'lazy', alt: other.title, class: 'ssp-rel_img', width: 160, height: 90 }}{% else %}<span class="ssp-rel_img"></span>{% endif %}
+          <span class="ssp-rel_text">
+            <span class="ssp-rel_meta">{{ other.published_at | date: '%d %b %Y' }}{% if other.metafields.custom.location != blank %} · {{ other.metafields.custom.location }}{% endif %}</span>
+            <span class="ssp-rel_title">{{ other.title | escape }}</span>
+          </span>
+        </a>
+      </li>
+      {% break %}
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
 {% endif %}
+{% endif %}
 <style>
-.ssp-details { display: flex; flex-wrap: wrap; gap: 2rem 4rem; margin: 2.5rem 2rem 0; align-items: flex-start; }
-.ssp-details_desc { flex: 1 1 26rem; max-width: 46rem; }
-.ssp-details_artists { flex: 1 1 18rem; max-width: 30rem; }
+.ssp-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem 4rem; margin: 2.5rem 2rem 0; align-items: start; }
+.ssp-details_main { display: flex; flex-direction: column; gap: 2.5rem; min-width: 0; }
+.ssp-details_desc, .ssp-details_artists { max-width: 46rem; }
+.ssp-details_related { min-width: 0; }
+.ssp-related { list-style: none; margin: 0; padding: 0; }
+.ssp-rel { display: flex; gap: 1rem; align-items: center; padding: .6rem 0; border-bottom: 1px solid #e5e5e5; color: #000; text-decoration: none; }
+.ssp-rel_img { width: 8rem; aspect-ratio: 16 / 9; height: auto; flex: none; object-fit: cover; border-radius: 4px; background: #f3f3f3; display: block; }
+.ssp-rel_text { display: flex; flex-direction: column; gap: .35rem; min-width: 0; }
+.ssp-rel_meta { font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666; }
+.ssp-rel_title { font-family: 'Nimbussanl Bol', Arial, sans-serif; font-size: 1rem; text-transform: uppercase; line-height: 1.15;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ssp-rel:hover .ssp-rel_title { text-decoration: underline; }
+.ssp-rel:focus-visible { outline: 2px solid #2d62ff; outline-offset: 2px; }
 .ssp-details_label { font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; padding-bottom: .5rem; border-bottom: 1px solid #000; margin-bottom: .75rem; }
 .ssp-desc { font-family: 'Nimbussanl Reg', Arial, sans-serif; font-size: 1rem; line-height: 1.5; }
 .ssp-desc p { margin: 0 0 1em; }
@@ -532,7 +590,11 @@
 .ssp-social:hover { background: #cacaca; }
 .ssp-social:focus-visible { outline: 2px solid #2d62ff; outline-offset: 2px; }
 .ssp-social svg { width: 16px; height: 16px; fill: currentColor; }
-@media (max-width: 767px) { .ssp-details { margin: 2rem 1rem 0; gap: 2rem; } }
+@media (max-width: 767px) {
+  .ssp-details { grid-template-columns: minmax(0, 1fr); margin: 2rem 1rem 0; gap: 2rem; }
+  .ssp-details_main { gap: 2rem; }
+  .ssp-rel_img { width: 6.5rem; }
+}
 </style>
         </div> {% schema %} {
     "tag": "div",
