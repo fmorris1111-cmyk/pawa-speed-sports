@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "blog_articles": {
-      "type": "blog_articles",
-      "settings": {}
-    },
     "blog_speed_sounds_8iabbX": {
       "type": "blog_speed_sounds",
       "custom_css": [
@@ -25,7 +21,6 @@
   "layout": "theme",
   "wrapper": "main.main-wrapper",
   "order": [
-    "blog_articles",
     "blog_speed_sounds_8iabbX"
   ]
 }
