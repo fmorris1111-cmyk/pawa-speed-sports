@@ -34,8 +34,24 @@
                                     
                             
                             <div class="blog_featured-image-link">
-                              <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-image-wrapper w-inline-block"><img alt="" loading="lazy" li-object:src="article.image | image_url: width: 600" src="{{ article.image | image_url: width: 600 }}" class="blog_featured-image">
+                              <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-image-wrapper w-inline-block">
                                 <div class="blog_overlay"></div>
+                                <div class="w-embed">{% assign ssp_c_alt = article.image.alt | default: article.title | escape %}
+                                  {% assign ssp_c_clip = article.metafields.custom.preview_clip.value %}
+                                  {% assign ssp_c_src = '' %}{% assign ssp_c_src_sm = '' %}{% assign ssp_c_h = 0 %}{% assign ssp_c_h_sm = 0 %}
+                                  {% if ssp_c_clip != blank %}{% for s in ssp_c_clip.sources %}{% if s.format == 'mp4' %}
+                                  {% if s.height <= 1080="" and="" s.height=""> ssp_c_h %}{% assign ssp_c_h = s.height %}{% assign ssp_c_src = s.url %}{% endif %}
+                                  {% if s.height <= 720="" and="" s.height=""> ssp_c_h_sm %}{% assign ssp_c_h_sm = s.height %}{% assign ssp_c_src_sm = s.url %}{% endif %}
+                                  {% endif %}{% endfor %}{% endif %}
+                                  {% comment %} No clip uploaded? Fall back to Bunny's automatic animated preview (lower resolution). {% endcomment %}
+                                  {% assign ssp_c_webp = '' %}
+                                  {% assign ssp_c_video = article.metafields.custom.video_url.value | default: '' | append: '' %}
+                                  {% if ssp_c_src == blank and ssp_c_video contains 'playlist.m3u8' %}{% assign ssp_c_webp = ssp_c_video | split: 'playlist.m3u8' | first | append: 'preview.webp' %}{% endif %}
+                                  <span class="ssp-card" if="" ssp_c_src="" data-preview="{{ ssp_c_src }}" data-preview-sm="{% if ssp_c_src_sm != blank %}{{ ssp_c_src_sm }}{% else %}{{ ssp_c_src }}{% endif %}" elsif="" ssp_c_webp="" data-preview-webp="{{ ssp_c_webp }}" endif="">
+                                    {% if article.image %}{{ article.image | image_url: width: 1800 | image_tag: widths: '400, 600, 800, 1000, 1200, 1600, 1800', sizes: '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw', loading: 'lazy', alt: ssp_c_alt, class: 'ssp-card_img' }}{% else %}<span class="ssp-card_img ssp-card_img--blank"></span>{% endif %}
+                                    <img class="ssp-card_badge" src="{{ 'pstar-badge.png' | file_url }}" alt="" aria-hidden="true" width="120" height="94" loading="lazy">
+                                  </span>
+                                =>=></div>
                               </a>
                             </div>
                             
@@ -58,6 +74,93 @@
                           
                         </div>
 {% endfor %}
+                          <div class="w-embed w-script">
+                            <style>
+.ssp-card { position: absolute; inset: 0; display: block; overflow: hidden; background: #111; }
+.ssp-card_img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.ssp-card_img--blank { background: #f3f3f3; }
+.ssp-card_video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.ssp-card.is-previewing .ssp-card_video { opacity: 1; }
+/* Cards with no preview at all get a gentle zoom instead */
+a:hover .ssp-card:not([data-preview]):not([data-preview-webp]) .ssp-card_img { transform: scale(1.03); }
+/* P* glass badge */
+.ssp-card_badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; width: 42%; max-width: 16rem; height: auto; pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .3)); }
+/* The old grey hover overlay is no longer used */
+.blog_overlay { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .ssp-card_img, .ssp-card_video { transition: none; } }
+</style>
+                            <script>
+(function () {
+  if (window.__sspCards) return; window.__sspCards = true;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
+  var canHover = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function getVideo(card) {
+    if (card.__v) return card.__v;
+    var webp = card.getAttribute('data-preview-webp');
+    if (webp) {
+      // Bunny animated preview: an <img> that animates by itself; play/pause = show/hide
+      var im = document.createElement('img');
+      im.className = 'ssp-card_video'; im.alt = ''; im.setAttribute('aria-hidden', 'true');
+      im.addEventListener('load', function () { if (card.__want) card.classList.add('is-previewing'); });
+      im.play = function () { if (!im.getAttribute('src')) im.src = webp; else if (im.complete) card.classList.add('is-previewing'); };
+      im.pause = function () {};
+      card.insertBefore(im, card.querySelector('.ssp-card_badge'));
+      card.__v = im;
+      return im;
+    }
+    var v = document.createElement('video');
+    v.className = 'ssp-card_video';
+    v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+    v.preload = 'auto';
+    v.src = (window.innerWidth < 768 && card.getAttribute('data-preview-sm')) || card.getAttribute('data-preview');
+    v.addEventListener('playing', function () { if (card.__want) card.classList.add('is-previewing'); });
+    card.insertBefore(v, card.querySelector('.ssp-card_badge'));
+    card.__v = v;
+    return v;
+  }
+  function start(card) {
+    card.__want = true;
+    var p = getVideo(card).play(); if (p && p.catch) p.catch(function () {});
+  }
+  function stop(card) {
+    card.__want = false; clearTimeout(card.__t);
+    card.classList.remove('is-previewing');
+    var v = card.__v; if (!v) return;
+    v.pause();
+    setTimeout(function () { if (!card.__want) { try { v.currentTime = 0; } catch (e) {} } }, 400);
+  }
+  function bind() {
+    var cards = [].slice.call(document.querySelectorAll('.ssp-card[data-preview], .ssp-card[data-preview-webp]'));
+    if (!cards.length || reduce) return;
+    if (canHover) {
+      // Desktop: play on hover, after a short pause so sweeping the mouse across the grid doesn't load every clip
+      cards.forEach(function (card) {
+        var host = card.closest('a') || card;
+        host.addEventListener('mouseenter', function () { clearTimeout(card.__t); card.__t = setTimeout(function () { start(card); }, 120); });
+        host.addEventListener('mouseleave', function () { stop(card); });
+        host.addEventListener('focus', function () { start(card); });
+        host.addEventListener('blur', function () { stop(card); });
+      });
+    } else if (!saveData && 'IntersectionObserver' in window) {
+      // Touch screens: play the one card most in view, one at a time
+      var current = null;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.target.__ratio = e.intersectionRatio; });
+        var best = null;
+        cards.forEach(function (c) { if ((c.__ratio || 0) >= 0.75 && (!best || c.__ratio > best.__ratio)) best = c; });
+        if (best !== current) { if (current) stop(current); current = best; if (best) start(best); }
+      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+      cards.forEach(function (c) { io.observe(c); });
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) cards.forEach(stop); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+})();
+</script>
+                          </div>
                         </div>{% endpaginate %}
                       </section>
                     </div>
