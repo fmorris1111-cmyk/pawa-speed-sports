@@ -35,23 +35,24 @@
                             
                             <div class="blog_featured-image-link">
                               <a li-object:href="article.url" href="{{ article.url }}" class="blog_featured-image-wrapper w-inline-block">
-                                <div class="blog_overlay"></div>
-                                <div class="w-embed">{% assign ssp_c_alt = article.image.alt | default: article.title | escape %}
+                                <div class="w-embed">{% comment %} Webflow-safe: no Liquid inside HTML tags, and no less-than signs inside Liquid. {% endcomment %}
+                                  {% assign ssp_c_alt = article.image.alt | default: article.title | escape %}
                                   {% assign ssp_c_clip = article.metafields.custom.preview_clip.value %}
                                   {% assign ssp_c_src = '' %}{% assign ssp_c_src_sm = '' %}{% assign ssp_c_h = 0 %}{% assign ssp_c_h_sm = 0 %}
                                   {% if ssp_c_clip != blank %}{% for s in ssp_c_clip.sources %}{% if s.format == 'mp4' %}
-                                  {% if s.height <= 1080="" and="" s.height=""> ssp_c_h %}{% assign ssp_c_h = s.height %}{% assign ssp_c_src = s.url %}{% endif %}
-                                  {% if s.height <= 720="" and="" s.height=""> ssp_c_h_sm %}{% assign ssp_c_h_sm = s.height %}{% assign ssp_c_src_sm = s.url %}{% endif %}
+                                  {% unless s.height > 1080 %}{% if s.height > ssp_c_h %}{% assign ssp_c_h = s.height %}{% assign ssp_c_src = s.url %}{% endif %}{% endunless %}
+                                  {% unless s.height > 720 %}{% if s.height > ssp_c_h_sm %}{% assign ssp_c_h_sm = s.height %}{% assign ssp_c_src_sm = s.url %}{% endif %}{% endunless %}
                                   {% endif %}{% endfor %}{% endif %}
+                                  {% if ssp_c_src_sm == blank %}{% assign ssp_c_src_sm = ssp_c_src %}{% endif %}
                                   {% comment %} No clip uploaded? Fall back to Bunny's automatic animated preview (lower resolution). {% endcomment %}
                                   {% assign ssp_c_webp = '' %}
                                   {% assign ssp_c_video = article.metafields.custom.video_url.value | default: '' | append: '' %}
                                   {% if ssp_c_src == blank and ssp_c_video contains 'playlist.m3u8' %}{% assign ssp_c_webp = ssp_c_video | split: 'playlist.m3u8' | first | append: 'preview.webp' %}{% endif %}
-                                  <span class="ssp-card" if="" ssp_c_src="" data-preview="{{ ssp_c_src }}" data-preview-sm="{% if ssp_c_src_sm != blank %}{{ ssp_c_src_sm }}{% else %}{{ ssp_c_src }}{% endif %}" elsif="" ssp_c_webp="" data-preview-webp="{{ ssp_c_webp }}" endif="">
+                                  <span class="ssp-card" data-preview="{{ ssp_c_src }}" data-preview-sm="{{ ssp_c_src_sm }}" data-preview-webp="{{ ssp_c_webp }}">
                                     {% if article.image %}{{ article.image | image_url: width: 1800 | image_tag: widths: '400, 600, 800, 1000, 1200, 1600, 1800', sizes: '(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw', loading: 'lazy', alt: ssp_c_alt, class: 'ssp-card_img' }}{% else %}<span class="ssp-card_img ssp-card_img--blank"></span>{% endif %}
                                     <img class="ssp-card_badge" src="{{ 'pstar-badge.png' | file_url }}" alt="" aria-hidden="true" width="120" height="94" loading="lazy">
                                   </span>
-                                =>=></div>
+                                </div>
                               </a>
                             </div>
                             
@@ -63,7 +64,7 @@
                                 </a>
                                 <div li-object="article.published_at | date: '%B %d, %Y'" class="text-size-regular">{{ article.published_at | date: '%B %d, %Y' }}</div>
                                 <a li-object:href="article.url" href="{{ article.url }}" class="button is-link is-icon w-inline-block">
-                                  <div>Read now</div>
+                                  <div>WATCH</div>
                                   <div class="icon-embed-xxsmall w-embed"><svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M6 3L11 8L6 13" stroke="CurrentColor" stroke-width="1.5"></path>
                                     </svg></div>
@@ -82,7 +83,7 @@
 .ssp-card_video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
 .ssp-card.is-previewing .ssp-card_video { opacity: 1; }
 /* Cards with no preview at all get a gentle zoom instead */
-a:hover .ssp-card:not([data-preview]):not([data-preview-webp]) .ssp-card_img { transform: scale(1.03); }
+a:hover .ssp-card[data-preview=""][data-preview-webp=""] .ssp-card_img { transform: scale(1.03); }
 /* P* glass badge */
 .ssp-card_badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; width: 42%; max-width: 16rem; height: auto; pointer-events: none;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .3)); }
@@ -99,7 +100,7 @@ a:hover .ssp-card:not([data-preview]):not([data-preview-webp]) .ssp-card_img { t
   function getVideo(card) {
     if (card.__v) return card.__v;
     var webp = card.getAttribute('data-preview-webp');
-    if (webp) {
+    if (webp && !card.getAttribute('data-preview')) {
       // Bunny animated preview: an <img> that animates by itself; play/pause = show/hide
       var im = document.createElement('img');
       im.className = 'ssp-card_video'; im.alt = ''; im.setAttribute('aria-hidden', 'true');
@@ -133,7 +134,7 @@ a:hover .ssp-card:not([data-preview]):not([data-preview-webp]) .ssp-card_img { t
     setTimeout(function () { if (!card.__want) { try { v.currentTime = 0; } catch (e) {} } }, 400);
   }
   function bind() {
-    var cards = [].slice.call(document.querySelectorAll('.ssp-card[data-preview], .ssp-card[data-preview-webp]'));
+    var cards = [].slice.call(document.querySelectorAll('.ssp-card[data-preview]:not([data-preview=""]), .ssp-card[data-preview-webp]:not([data-preview-webp=""])'));
     if (!cards.length || reduce) return;
     if (canHover) {
       // Desktop: play on hover, after a short pause so sweeping the mouse across the grid doesn't load every clip
