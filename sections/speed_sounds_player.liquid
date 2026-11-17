@@ -409,7 +409,9 @@
             </div>
           </div>
           <div class="speed_sharing_wrap">
-            <div class="w-embed w-script">
+            <div class="w-embed w-script">{% comment %} Share uses the YouTube link when there is one, otherwise this page's link. {% endcomment %}
+              {% assign ssp_share_url = article.metafields.custom.youtube_url.value | default: '' | append: '' %}
+              {% if ssp_share_url == blank %}{% assign ssp_share_url = shop.url | append: article.url %}{% endif %}
               <div class="ssp-links">
                 {% if article.metafields.custom.youtube_url != blank %}
                 <a class="ssp-link" href="{{ article.metafields.custom.youtube_url }}" target="_blank" rel="noopener">
@@ -427,7 +429,7 @@
                   <span>SoundCloud</span>
                 </a>
                 {% endif %}
-                <button type="button" class="ssp-link" data-ssp-share="" data-url="{{ shop.url }}{{ article.url }}" data-title="{{ article.title | escape }}">
+                <button type="button" class="ssp-link" data-ssp-share="" data-url="{{ ssp_share_url | escape }}" data-title="{{ article.title | escape }}">
                   <svg viewbox="0 0 24 24" aria-hidden="true">
                     <path d="M12 15V3M7 8l5-5 5 5M5 12v8h14v-8" fill="none" stroke="currentColor" stroke-width="2"></path>
                   </svg>
