@@ -57,6 +57,9 @@ a:hover .ssp-card[data-preview=""][data-preview-webp=""] .ssp-card_img { transfo
 /* P* glass badge */
 .ssp-card_badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; width: 42%; max-width: 16rem; height: auto; pointer-events: none;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .3)); }
+/* Grid rows: every card in a row is as tall as the tallest one, and content sits at the top */
+.blog_component { align-items: stretch; }
+.blog_component > .blog_featured-item { justify-content: flex-start; align-items: stretch; height: 100%; }
 /* The old grey hover overlay is no longer used */
 .blog_overlay { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .ssp-card_img, .ssp-card_video { transition: none; } }
