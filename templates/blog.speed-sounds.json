@@ -12,7 +12,8 @@
     "blog_speed_sounds_8iabbX": {
       "type": "blog_speed_sounds",
       "custom_css": [
-        ".blog_component {margin-top: 10rem; margin-bottom: 2rem;}"
+        ".blog_component {margin-top: 10rem; margin-bottom: 2rem;}",
+        "@media screen and (max-width: 767px) {.blog_component {margin-top: 8rem; }}"
       ],
       "name": "Blog Speed Sounds",
       "settings": {}
