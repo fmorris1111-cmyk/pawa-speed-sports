@@ -11,16 +11,14 @@
 {% endif %}
                           <div class="w-embed">{% assign sale_pct = 0 %}
                             {% for v in product.variants %}
-                            {% if v.compare_at_price > v.price %}
-                            {% assign sale_off = v.compare_at_price | minus: v.price | times: 100 %}
-                            {% assign sale_pct = sale_off | divided_by: v.compare_at_price %}
-                            {% break %}
-                            {% endif %}
+                              {% if v.compare_at_price > v.price %}
+                                {% assign sale_off = v.compare_at_price | minus: v.price | times: 100 %}
+                                {% assign sale_pct = sale_off | divided_by: v.compare_at_price %}
+                                {% break %}
+                              {% endif %}
                             {% endfor %}
                             {% if sale_pct > 0 %}
-                            {% assign sale_class = 'is-grey' %}
-                            {% if sale_pct >= 40 %}{% assign sale_class = 'is-red' %}{% endif %}
-                            <div class="product-item_tag {{ sale_class }}">{{ sale_pct }}% off</div>
+                              <div class="product-item_tag is-red">{{ sale_pct }}% off</div>
                             {% endif %}
                           </div>
                         </div>
