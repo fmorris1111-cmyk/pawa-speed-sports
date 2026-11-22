@@ -9,7 +9,6 @@
                           {% if product.selected_or_first_available_variant.available != true %}    <div li-if="product.selected_or_first_available_variant.available != true" class="product-item_tag">
     SOLD OUT    </div>
 {% endif %}
-                          <div class="product-item_tag is-grey">30% OFF</div>
                           <div class="w-embed">{% assign sale_pct = 0 %}
                             {% for v in product.variants %}
                             {% if v.compare_at_price > v.price %}
