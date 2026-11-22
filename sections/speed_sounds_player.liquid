@@ -120,6 +120,8 @@
   .ssp_controls { gap: .35rem; }
 }
 @media (hover: none) { .ssp_vol { display: none; } }
+  /* Mix pages only (this embed only exists on them): hide the boy logo in the top nav on tablet + mobile */
+@media screen and (max-width: 991px) { .nav_logo-link { display: none !important; } }
 </style>
           </div>
           <div class="w-embed w-script">
@@ -608,9 +610,6 @@
   .ssp-details_main { gap: 2rem; }
   .ssp-rel_img { width: 6.5rem; }
 }
-
-/* Mix pages only (this embed only exists on them): hide the boy logo in the top nav on tablet + mobile */
-@media screen and (max-width: 991px) { .nav_logo-link { display: none !important; } }
 </style>
         </div> {% schema %} {
     "tag": "div",
