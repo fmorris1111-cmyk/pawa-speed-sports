@@ -9,9 +9,21 @@
                           {% if product.selected_or_first_available_variant.available != true %}    <div li-if="product.selected_or_first_available_variant.available != true" class="product-item_tag">
     SOLD OUT    </div>
 {% endif %}
-                          {% if product.compare_at_price_max > product.price %}    <div li-if="product.compare_at_price_max > product.price" class="product-item_tag is-red">
-    Sale    </div>
-{% endif %}
+                          <div class="product-item_tag is-grey">30% OFF</div>
+                          <div class="w-embed">{% assign sale_pct = 0 %}
+                            {% for v in product.variants %}
+                            {% if v.compare_at_price > v.price %}
+                            {% assign sale_off = v.compare_at_price | minus: v.price | times: 100 %}
+                            {% assign sale_pct = sale_off | divided_by: v.compare_at_price %}
+                            {% break %}
+                            {% endif %}
+                            {% endfor %}
+                            {% if sale_pct > 0 %}
+                            {% assign sale_class = 'is-grey' %}
+                            {% if sale_pct >= 40 %}{% assign sale_class = 'is-red' %}{% endif %}
+                            <div class="product-item_tag {{ sale_class }}">{{ sale_pct }}% off</div>
+                            {% endif %}
+                          </div>
                         </div>
                       </div>
                       <a li-object:href="product.url" href="{{ product.url }}" class="product-item_text-link w-inline-block">
