@@ -25,12 +25,12 @@
         "images_at4UMi": {
           "type": "images",
           "settings": {
-            "url_image_link_url": "shopify://collections/sweats-tracksuits",
+            "url_image_link_url": "",
             "image_image": "shopify://shop_images/blackfridayartworks_copy3_copy-2.jpg",
-            "url_link_url": "shopify://collections/sweats-tracksuits",
-            "text_link_text": "Tracksuits",
-            "url_button_url": "shopify://collections/sweats-tracksuits",
-            "text_button_text": "Shop",
+            "url_link_url": "",
+            "text_link_text": "",
+            "url_button_url": "",
+            "text_button_text": "",
             "image_pos_x": 50,
             "image_pos_y": 50,
             "hide_desktop": true,
