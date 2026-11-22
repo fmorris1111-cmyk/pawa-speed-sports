@@ -113,7 +113,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/tartan_jacket2.jpg",
+            "image_image": "shopify://shop_images/blackfridayartworks_copy3_copy-2.jpg",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -132,7 +132,7 @@
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/videoframe_0.png",
+            "image_image": "shopify://shop_images/9e04f9efdd504273932dbf4bc97fcf34.thumbnail.0000000000_800x800_bbedbf19-0a3e-445c-b082-3da8785464db.jpg",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -144,14 +144,14 @@
             "span_d": "auto",
             "span_m": "auto",
             "video_webm": "",
-            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/99f7b7fab814471792e4c9b03391eb11.mp4"
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/9e04f9efdd504273932dbf4bc97fcf34.mp4"
           }
         },
         "images_7QbnRH": {
           "type": "images",
           "settings": {
             "url_image_link_url": "",
-            "image_image": "shopify://shop_images/S6PT2_0002_R1-08380-027A.jpg",
+            "image_image": "shopify://shop_images/Untitled-1_0002_adedea2_2.00_00_01_29.Still003.jpg",
             "url_link_url": "",
             "text_link_text": "Lorem Ipsum",
             "url_button_url": "",
@@ -172,6 +172,94 @@
         "images_yj6GE7",
         "images_7QbnRH"
       ],
+      "name": "BF - Desktop Hero",
+      "settings": {
+        "cols_d": "3",
+        "cols_m": "1",
+        "gap": 0,
+        "lock_ratio": true,
+        "ratio": "3 / 4",
+        "h_d": 60,
+        "h_m": 45,
+        "group_link": true,
+        "grid_url": "shopify://collections/season-6",
+        "grid_text": "Season 6",
+        "grid_cta": "Shop",
+        "ov_d": true,
+        "ov_t": true,
+        "ov_m": false,
+        "show_d": true,
+        "show_t": true,
+        "show_m": false
+      }
+    },
+    "content_grid_home_CMexWf": {
+      "type": "content_grid_home",
+      "blocks": {
+        "images_B4JizA": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/tartan_jacket2.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": true,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        },
+        "images_nNNDNA": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/videoframe_0.png",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": true,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/99f7b7fab814471792e4c9b03391eb11.mp4"
+          }
+        },
+        "images_rHgetF": {
+          "type": "images",
+          "settings": {
+            "url_image_link_url": "",
+            "image_image": "shopify://shop_images/S6PT2_0002_R1-08380-027A.jpg",
+            "url_link_url": "",
+            "text_link_text": "Lorem Ipsum",
+            "url_button_url": "",
+            "text_button_text": "Button Text",
+            "image_pos_x": 50,
+            "image_pos_y": 50,
+            "hide_desktop": false,
+            "hide_mobile": true,
+            "span_d": "auto",
+            "span_m": "auto",
+            "video_webm": "",
+            "video_mp4": ""
+          }
+        }
+      },
+      "block_order": [
+        "images_B4JizA",
+        "images_nNNDNA",
+        "images_rHgetF"
+      ],
+      "disabled": true,
       "name": "Desktop Hero",
       "settings": {
         "cols_d": "3",
@@ -396,6 +484,7 @@
     "hero_video",
     "content_grid_home_Whcmkf",
     "content_grid_home_jGYeFB",
+    "content_grid_home_CMexWf",
     "content_grid",
     "featured_products_RRPnyj",
     "content_grid_home_hdzyeT",
