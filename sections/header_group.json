@@ -17,28 +17,28 @@
         "message_xmMx4W": {
           "type": "message",
           "settings": {
-            "url_link_url": "shopify://collections/season-6",
-            "text_announcement_text": "Season 6 Online now"
+            "url_link_url": "shopify://collections/all",
+            "text_announcement_text": "Black Friday Live now"
           }
         },
         "message_NGVXtk": {
           "type": "message",
           "settings": {
-            "url_link_url": "shopify://collections/season-6",
+            "url_link_url": "shopify://collections/all",
             "text_announcement_text": "FREE UK SHIPPING OVER £60"
           }
         },
         "message_hyVndj": {
           "type": "message",
           "settings": {
-            "url_link_url": "shopify://collections/season-6",
-            "text_announcement_text": "Season 6 Online now"
+            "url_link_url": "shopify://collections/all",
+            "text_announcement_text": "Black Friday Live Now"
           }
         },
         "message_8Qne4t": {
           "type": "message",
           "settings": {
-            "url_link_url": "shopify://collections/season-6",
+            "url_link_url": "shopify://collections/all",
             "text_announcement_text": "FREE MYSTERY SOCKS OVER £60"
           }
         }
