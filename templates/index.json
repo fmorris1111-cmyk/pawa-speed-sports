@@ -95,7 +95,7 @@
         "h_d": 60,
         "h_m": 45,
         "group_link": true,
-        "grid_url": "",
+        "grid_url": "shopify://collections/all",
         "grid_text": "Black Friday",
         "grid_cta": "Shop",
         "ov_d": false,
